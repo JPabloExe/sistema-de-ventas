@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/ventas.css')}}">
+</head>
+
+<body>
+
+    <div class="contenedor-ventas">
+        <header class="header">
+            <div class="div-presentacion">
+                <h2 id="lbl-saludo">Gestion de Ventas</h2>
+                <p id="lbl-texto">Consulta y administra todas tus ventas</p>
+            </div>
+        </header>
+
+
+        <div class="operaciones">
+
+            <div class="fechas">
+                <div class="div-fecha-inicial">
+                    <p>FECHA INICIAL</p>
+                    <input id="input-fecha-inicial" class="input-fecha-inicial" type="date">
+                </div>
+                
+                <div class="div-fecha-final">
+                    <p>FECHA FINAL</p>
+                    <input id="input-fecha-final" class="input-fecha-final" type="date">
+                </div>
+
+                <button id="btn-buscar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Buscar
+                </button>
+            </div>
+
+
+            <button id="btn-actualizar-pagina">
+                <i class="fa-solid fa-arrows-rotate"></i>
+                Actualizar
+            </button>
+        </div>
+
+
+        <table class="tabla-ventas">
+            <thead>
+                <tr>
+                    <th>NUMERO</th>
+                    <th>FECHA</th>
+                    <th>USUARIO</th>
+                    <th>ITEMS</th>
+                    <th>METODO</th>
+                    <th>TOTAL</th>
+                    <th>ESTADO</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+
+            <tbody id="cuerpo-tabla-ventas"> </tbody>
+        </table>
+    </div>
+
+    <dialog id="dialog-confirmacion" class="dialog-confirmacion">
+        <p>¿Deseas borrar esta venta?</p>
+
+        <div class="div-botones-confirmacion">
+            <button id="btn-cancelar-confirmacion" class="btn-cancelar-confirmacion">
+                <i class="fa-solid fa-x"></i>
+                Cancelar
+            </button>
+
+            <button id="btn-confirmar-borrado" class="btn-confirmar-borrado">
+                <i class="fa-solid fa-check"></i>
+                Confirmar
+            </button>
+        </div>
+    </dialog>
+
+    <div id="letrero" class="letrero"> 
+        <i id="icono-letrero"></i>
+        <span id="texto-letrero" class="texto-letrero"></span>
+    
+    </div>
+
+    <script src="{{ url_for('static', filename='js/ventas.js') }}"></script>
+
+</body>
+
+</html>

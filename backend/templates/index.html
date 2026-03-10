@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
+</head>
+
+<body>
+
+    <div id="div-boton" class="div-boton">
+
+        <button id="btn-menu">☰</button>
+    </div>
+
+    <nav id="sidebar" class="sidebar">
+        <p id="parrafo-nombre-software">Sistema de Ventas</p>
+
+        <div class="div-menu-lateral">
+            <a id="link-inicio">
+                <i class="fa-solid fa-house"></i>
+                Inicio
+            </a>
+
+            <a id="link-punto-ventas">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Punto de Venta
+            </a>
+
+            <a id="link-ventas">
+                <i class="fa-solid fa-cash-register"></i>
+                Ventas
+            </a>
+
+            <a id="link-inventario">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                Inventario
+            </a>
+        </div>
+
+        <button id="btn-cerrar-sesion">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            Cerrar Sesion
+        </button>
+    </nav>
+
+
+    <div id="contenedor" class="contenedor">
+        <header class="header">
+
+            <div class="cabezal">
+                <div class="div-presentacion">
+                    <p id="lbl-saludo">Buenos dias,</p>
+                    <p id="lbl-texto">Resumen de tu sistema de inventario</p>
+                </div>
+
+                <button id="btn-actualizar">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                    Actualizar
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <div class="div-resumenes">
+            <div class="div-valor-ventas">
+                <section>
+                    <b>VENTAS HOY</b>
+                    <button id="btn-ventas">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
+                </section>
+                <h2 id="lbl-valor-ventas-hoy"></h2>
+            </div>
+
+            <div class="div-productos">
+                <section>
+                    <b>PRODUCTOS</b>
+                    <button id="btn-inventario">
+                        <i class="fa-solid fa-box"></i>
+                    </button>
+                </section>
+                <h2 id="lbl-productos"></h2>
+                <b>En inventario</b>
+            </div>
+            
+            <div class="div-valor-inventario">
+                <section>
+                    <b>VALOR INVENTARIO</b>
+                    <button id="btn-inventario">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                    </button>
+                </section>
+                <h2 id="lbl-valor-inventario"></h2>
+            </div>
+            
+            <div class="div-stock-bajo">
+                <section>
+                    <b>STOCK BAJO</b>
+                    <button id="btn-inventario">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </button>
+                </section>
+                <h2 id="lbl-stock-bajo"></h2>
+                <b>Productos</b>
+            </div>
+
+        </div>
+
+        <div class="div-inferior">
+
+            <section class="seccion-inferior">
+
+                <div class="div-acciones-rapidas">
+                    <h3>ACCIONES RAPIDAS</h3>
+
+                    <div class="div-botones">
+                        <button>
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Nueva Venta
+                        </button>
+
+                        <button>
+                            <i class="fa-solid fa-boxes-stacked"></i>
+                            Gestionar Inventario
+                        </button>
+
+                        <button>
+                            <i class="fa-solid fa-chart-pie"></i>
+                            Ver Reportes</button>
+                    </div>
+                </div>
+
+                <div class="div">
+                    <h3> ALERTAS DEL SISTEMA</h3>
+
+                    <div class="divs">
+
+                        <div class="div-alertas-sistema">
+                            <div class="div-ventas-hoy">
+                                <b class="parrafos-divs-alertas-sistema">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    Ventas Hoy
+                                </b>
+                                <p id="lbl-ventas-hoy"></p>
+                                <a href="#">Ver ventas →</a>
+                            </div>
+                        </div>
+                        <div class="div-alertas-sistema">
+                            <div class="div-pendiente">
+                                <b class="parrafos-divs-alertas-sistema">
+                                    <i class="fa-regular fa-clock"></i>
+                                    Productos por Vencer
+                                </b>
+                                <p> 8 productos proximos a vencer</p>
+                                <a href="#">Ver productos →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="letrero" class="letrero"> 
+        <i id="icono-letrero"></i>
+        <span id="texto-letrero" class="texto-letrero"></span>
+    
+    </div>
+
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/inventario.css')}}">
+</head>
+
+<body>
+    <div class="contenedor-inventario">
+
+        <header class="header">
+            <div class="div-presentacion">
+                <h2 id="lbl-saludo">Gestion de Productos</h2>
+                <p id="lbl-texto">Administra tu catalogo de productos</p>
+            </div>
+
+            <button id="btn-agregar-producto" class="btn-agregar-producto">
+                <i class="fa-solid fa-plus"></i>
+                Nuevo Producto
+            </button>
+        </header>
+
+        <div class="div-acciones">
+           
+            <div class="div-productos-inventario">  
+                <div class="div-cantidad-inventario">  
+                    <p class="p-total">Total:</p>
+                    <p id="p-cantidad-productos-inventario" class="p-cantidad-productos-inventario">2</p>
+                    <p class="p-productos">productos</p>
+                </div>
+            </div>
+
+            <div class="operaciones">
+                <button>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+                <div class="div-input">
+                    <i id="icono-buscar" class="fa-solid fa-magnifying-glass"></i>
+                    <input id="input-producto" class="input-producto" type="number"
+                        placeholder="Buscar producto por codigo">
+                </div>
+
+                <select id="select-categorias" class="select-categorias" name="select-categorias">
+                    <option value="">Todas las categorias</option>
+                    <option value="Abarrotes">Abarrotes</option>
+                    <option value="Bebidas">Bebidas</option>
+                    <option value="Aseo y Limpieza">Aseo y Limpieza</option>
+                </select>
+
+                <button id="btn-actualizar-pagina">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                    Actualizar
+                </button>
+                <button>
+                    <i class="fa-solid fa-plus"></i>
+                    Nueva Categoria
+                </button>
+            </div>
+        </div>
+
+        <table class="tabla-productos">
+            <thead>
+                <tr>
+                    <th>PRODUCTO</th>
+                    <th>CÓDIGO</th>
+                    <th>PRECIO</th>
+                    <th>COSTO</th>
+                    <th>STOCK</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+
+            <tbody id="cuerpo-tabla-inventario"></tbody>
+        </table>
+    </div>
+
+    <dialog id="dialog-agregar-producto" class="dialog-agregar-producto">
+        <form class="formularios-dialog-inventario" action="/agregar" method="POST">
+            <h2 class="titulo"> Nuevo Producto </h2>
+            <div class="inputs">
+
+                <input id="codigo" type="number" placeholder="Codigo del producto" required>
+                <input id="nombre" type="text" placeholder="Nombre del producto" required>
+                <input id="stock" type="number" placeholder="Cantidad que se ingresa" required>
+                <input id="precio" type="number" placeholder="Valor unitario" required>
+                <input id="costo" type="number" placeholder="Costo del producto" required>
+                <input id="caducidad" type="date" required>
+                <select id="select-agregar-categoria" class="select-agregar-categoria" name="select-agregar-categoria">
+                    <option value="">Categorias</option>
+                    <option value="abarrotes">Abarrotes</option>
+                    <option value="bebidas">Bebidas</option>
+                    <option value="aseo">Aseo y Limpieza</option>
+                </select>
+            </div>
+
+            <div class="dialog-botones">
+
+                <button id="btn-cerrar-dialog-agregar" class="btn-cerrar-dialog-agregar" type="button">
+                    <i class="fa-solid fa-x"></i>
+                    Cancelar
+                </button>
+
+                <button id="btn-dialog-agregar" class="btn-agregar" type="button">
+                    <i class="fa-solid fa-plus"></i>
+                    Agregar
+                </button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="dialog-actualizar-producto" class="dialog-actualizar-producto">
+        <form class="formularios-dialog-inventario" action="/actualizar" method="POST">
+            <h2 class="titulo"> Actualizar Producto </h2>
+            <div class="inputs">
+                
+                <input id="input-actualizar-codigo" type="number" placeholder="Codigo del producto" readonly>
+                <input id="input-actualizar-nombre" type="text" placeholder="Nombre del producto" name="nombre" required>
+                <input id="input-actualizar-stock" type="number" placeholder="Cantidad que se ingresa" required>
+                <input id="input-actualizar-precio" type="number" placeholder="Valor unitario" required>
+                <input id="input-actualizar-costo" type="number" placeholder="Costo del producto" required>
+                <input id="input-actualizar-caducidad" type="date" required>
+                <select id="select-actualizar-categoria" class="select-actualizar-categoria" name="select-actualizar-categoria">
+                    <option value="">Categorias</option>
+                    <option value="abarrotes">Abarrotes</option>
+                    <option value="bebidas">Bebidas</option>
+                    <option value="aseo y limpieza">Aseo y Limpieza</option>
+                </select>
+            </div>
+
+            <div class="dialog-botones">
+
+                    <button id="btn-cerrar-dialog-actualizar" class="btn-cerrar-dialog-actualizar" type="button">                     
+                    <i class="fa-solid fa-x"></i>
+                    Cancelar
+                </button>
+
+                <button id="btn-actualizar" class="btn-actualizar" type="button">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                    Actualizar
+                </button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="dialog-confirmacion" class="dialog-confirmacion">
+        <p>¿Deseas borrar este producto?</p>
+
+        <div class="div-botones-confirmacion">
+            <button id="btn-cancelar-confirmacion" class="btn-cancelar-confirmacion">
+                <i class="fa-solid fa-x"></i>
+                Cancelar
+            </button>
+
+            <button id="btn-confirmar-borrado" class="btn-confirmar-borrado">
+                <i class="fa-solid fa-check"></i>
+                Confirmar
+            </button>
+        </div>
+
+    </dialog>
+
+    <div id="letrero" class="letrero"> 
+        <i id="icono-letrero"></i>
+        <span id="texto-letrero" class="texto-letrero"></span>
+    
+    </div>
+
+    <script src="{{ url_for('static', filename='js/inventario.js') }}"></script>
+
+</body>
+
+</html>

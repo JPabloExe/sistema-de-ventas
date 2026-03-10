@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/puntoVentas.css')}}">
+</head>
+
+<body>
+    <div class="contenedor-carrito">
+        <div class="div-buscar-producto">
+            <div class="div-input">
+                <i id="icono-buscar" class="fa-solid fa-magnifying-glass"></i>
+                <input id="input-producto-carrito" type="number" placeholder="Buscar producto por codigo">
+            </div>
+        </div>
+
+        <div class="div-productos">
+            <div class="div-titulo">
+                <b>Carrito de Compras</b>
+                <p id="cantidad"></p>
+            </div>
+
+            <div class="div-carrito"></div>
+
+            <div class="div-total">
+                <b>Total:</b>
+                <b id="total"></b>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="div-pagos-contenedor">
+
+        <div class="div-pagos">
+
+            <b>Metodo de pago</b>
+
+            <div class="div-metodos-pago">
+                <div id="div-efectivo">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                    <b>Efectivo</b>
+                </div>
+
+                <div id="div-tarjeta">
+                    <i class="fa-regular fa-credit-card"></i>
+                    <b>Tarjeta</b>
+                </div>
+
+                <div id="div-transferencia">
+                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    <b>Transferencia</b>
+                </div>
+
+                <div id="div-credito">
+                    <i class="fa-regular fa-user"></i>
+                    <b>Credito/Fiado</b>
+                </div>
+
+            </div>
+
+            <div class="div-funciones-adicionales">
+
+            </div>
+
+            <div class="div-procesar-venta">
+                <button id="btn-procesar-venta" class="btn-procesar-venta">Procesar Venta</button>
+                <button id="btn-limpiar-carrito" class="btn-limpiar-carrito">Limpiar Carrito</button>
+            </div>
+        </div>
+
+    </div>
+
+    <dialog id="dialog-pagos" class="dialog-pagos">
+        <b style="font-size: large;">Registrar Pago</b>
+
+        <div class="div-total-pagos">
+            <p>Total a pagar</p>
+            <b id="total-venta">15.500,00</b>
+        </div>
+
+        <div class="div-monto-ingresado">
+            <p>¿Con cuanto paga?</p>
+            <input id="input-monto-ingresado" type="number" placeholder="Ingrese el monto recibido">
+        </div>
+
+        <div id="div-vueltos" class="div-vueltos">
+            <p>Vueltos:</p>
+            <b id="lbl-vueltos">Monto insuficiente</b>
+        </div>
+
+        <div class="div-botones-pagos">
+            <button id="btn-cancelar-pago" class="btn-cancelar-pago">
+                <i class="fa-solid fa-x"></i>
+                Cancelar
+            </button>
+
+            <button id="btn-confirmar-pago" class="btn-confirmar-pago">
+                <i class="fa-solid fa-check"></i>
+                Confirmar
+            </button>
+        </div>
+
+    </dialog>
+
+    <div id="letrero" class="letrero"> 
+        <i id="icono-letrero"></i>
+        <span id="texto-letrero" class="texto-letrero"></span>
+    
+    </div>
+
+    <script src="{{ url_for('static', filename='js/puntoVentas.js') }}"></script>
+
+</body>
+
+</html>
