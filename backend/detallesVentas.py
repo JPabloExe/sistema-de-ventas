@@ -1,6 +1,6 @@
 import sqlite3
 
-DB_RUTA = "backend/datos/bd_sistema_ventas.db"
+DB_RUTA = "C:\\Users\\jp11l\\Documents\\datos\\bd_sistema_ventas.db"
 
 class Detalles:
     

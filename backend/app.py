@@ -174,7 +174,5 @@ def eliminar_venta():
         return jsonify({'mensaje': 'n', 'error': str(e)})
     
 
-Detalles.eliminarTabla()
-
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,6 +1,6 @@
 import sqlite3
 
-DB_RUTA = "backend/datos/bd_sistema_ventas.db"
+DB_RUTA = "C:\\Users\\jp11l\\Documents\\datos\\bd_sistema_ventas.db"
 
 class Producto:
     def __init__(self, codigo, nombre, stock, valor_unitario, costo, fecha_caducidad, categoria):
@@ -26,7 +26,6 @@ class Producto:
     @staticmethod
     def crearTabla():
         conexion = sqlite3.connect(DB_RUTA)
-        conexion.execute("PRAGMA foreign_keys = ON;")
         cursor = conexion.cursor()
         cursor.execute('''
                 CREATE TABLE IF NOT EXISTS productos(
@@ -45,7 +44,6 @@ class Producto:
     @staticmethod    
     def agregarProducto(self):
         conexion = sqlite3.connect(DB_RUTA)
-        conexion.execute("PRAGMA foreign_keys = ON;")
         cursor = conexion.cursor()
         cursor.execute('''
             INSERT INTO productos(codigo, nombre, stock, valor_unitario, costo, fecha_caducidad, categoria)
@@ -57,7 +55,6 @@ class Producto:
     @staticmethod
     def eliminarProducto(codigo):
         conexion = sqlite3.connect(DB_RUTA)
-        conexion.execute("PRAGMA foreign_keys = ON;")
         cursor = conexion.cursor()
         cursor.execute('DELETE FROM productos WHERE codigo = ?', (codigo,))
         conexion.commit()
@@ -66,7 +63,6 @@ class Producto:
     @staticmethod    
     def buscarProducto(codigo):
         conexion = sqlite3.connect(DB_RUTA)
-        conexion.execute("PRAGMA foreign_keys = ON;")
         cursor = conexion.cursor()
         cursor.execute('SELECT * FROM productos WHERE codigo = ?', (codigo,))
         producto = cursor.fetchone() #Almacena una fila
@@ -80,7 +76,6 @@ class Producto:
     @staticmethod
     def editarProducto(self):
         conexion = sqlite3.connect(DB_RUTA)
-        conexion.execute("PRAGMA foreign_keys = ON;")
         cursor = conexion.cursor()
         cursor.execute('''
             UPDATE productos 
@@ -93,7 +88,6 @@ class Producto:
     @staticmethod
     def obtenerPorCategoria(categoria):
         conexion = sqlite3.connect(DB_RUTA)
-        conexion.execute("PRAGMA foreign_keys = ON;")
         cursor = conexion.cursor()
         
         if categoria != "" or len(categoria) != 0:
