@@ -25,7 +25,10 @@ class Detalles:
                 FOREIGN KEY (id_venta)
                     REFERENCES ventas(id_venta)
                     ON DELETE CASCADE
-                    ON UPDATE CASCADE
+                    ON UPDATE CASCADE,
+                
+                FOREIGN KEY (codigo_producto)
+                    REFERENCES productos(codigo)
             );
         ''')
         conexion.commit()

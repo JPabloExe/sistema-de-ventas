@@ -87,7 +87,7 @@ def eliminar_producto():
 def realizar_venta():
     import sqlite3
     
-    DB_RUTA = "backend/datos/bd_sistema_ventas.db"
+    DB_RUTA = "C:\\Users\\jp11l\\Documents\\datos\\bd_sistema_ventas.db"
     
     conexion = sqlite3.connect(DB_RUTA)
     conexion.execute("PRAGMA foreign_keys = ON;")
@@ -172,7 +172,6 @@ def eliminar_venta():
         
     except Exception as e:
         return jsonify({'mensaje': 'n', 'error': str(e)})
-    
 
 if __name__ == '__main__':
     app.run(debug=True)
