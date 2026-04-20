@@ -25,11 +25,6 @@ class Detalles:
                 FOREIGN KEY (id_venta)
                     REFERENCES ventas(id_venta)
                     ON DELETE CASCADE
-                    ON UPDATE CASCADE,
-                    
-                FOREIGN KEY (codigo_producto)
-                    REFERENCES productos(codigo_producto)
-                    ON DELETE CASCADE
                     ON UPDATE CASCADE
             );
         ''')
@@ -52,4 +47,14 @@ class Detalles:
             DELETE FROM detalles_ventas WHERE id_venta = ?''', (id_venta,))
         conexion.commit()
         conexion.close()
+
+    @staticmethod
+    def eliminarTabla():
+        conexion = sqlite3.connect(DB_RUTA)
+        cursor = conexion.cursor()
+        cursor.execute('DROP TABLE detalles_ventas;')
+        conexion.commit()
+        conexion.close()
+
+    
         

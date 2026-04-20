@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     input.addEventListener("input", async () => {
 
-        if (input.value.trim().length == 5) {
+        if (input.value.trim().length == 4) {
             agregarAlCarrito(input.value.trim());
             pCantidad.innerHTML = `(${productosEnCarrito()} productos)`;
             input.value = "";

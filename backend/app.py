@@ -173,9 +173,8 @@ def eliminar_venta():
     except Exception as e:
         return jsonify({'mensaje': 'n', 'error': str(e)})
     
-Producto.crearTabla()
-Venta.crearTabla()
-Detalles.crearTabla()
+
+Detalles.eliminarTabla()
 
 if __name__ == '__main__':
     app.run(debug=True)
