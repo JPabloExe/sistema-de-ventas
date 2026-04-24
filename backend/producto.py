@@ -27,25 +27,6 @@ class Producto:
             "categoria": self.categoria,
         }
     
-    @staticmethod
-    def crearTabla():
-        conexion = sqlite3.connect(DB_RUTA)
-        conexion.execute("PRAGMA foreign_keys = ON;")
-        cursor = conexion.cursor()
-        cursor.execute('''
-                CREATE TABLE IF NOT EXISTS productos(
-                    codigo INTEGER PRIMARY KEY,
-                    nombre TEXT NOT NULL,
-                    stock INTEGER,
-                    valor_unitario INTEGER,
-                    costo INTEGER,
-                    fecha_caducidad TEXT NOT NULL,
-                    categoria TEXT NOT NULL
-                );         
-            ''')
-        conexion.commit()
-        conexion.close()
-    
     @staticmethod    
     def agregarProducto(self):
         conexion = Conexion.get_conexion()
@@ -77,29 +58,46 @@ class Producto:
     
     @staticmethod    
     def buscarProducto(codigo):
-        conexion = sqlite3.connect(DB_RUTA)
-        conexion.execute("PRAGMA foreign_keys = ON;")
+        conexion = Conexion.get_conexion()
         cursor = conexion.cursor()
-        cursor.execute('SELECT * FROM productos WHERE codigo = ?', (codigo,))
-        producto = cursor.fetchone() #Almacena una fila
+        cursor.callproc("sp_buscar_producto", [codigo])
+       
+        resultado_final = None
+
+        for resultado in cursor.stored_results():
+            resultado_final = resultado.fetchone()
+        
+        cursor.close()
         conexion.close()
         
-        if producto:
-            return Producto(producto[0], producto[1], producto[2], producto[3], producto[4], producto[5], producto[6])
-        else:
+        if resultado_final == None:
             return None
         
+        return Producto(
+            resultado_final[0], 
+            resultado_final[1], 
+            resultado_final[2], 
+            resultado_final[4], 
+            resultado_final[5], 
+            resultado_final[6], 
+            resultado_final[7]
+        )
+    
     @staticmethod
     def editarProducto(self):
-        conexion = sqlite3.connect(DB_RUTA)
-        conexion.execute("PRAGMA foreign_keys = ON;")
+        conexion = Conexion.get_conexion()
         cursor = conexion.cursor()
-        cursor.execute('''
-            UPDATE productos 
-            SET nombre = ?, stock = ?, valor_unitario = ?, costo = ?, fecha_caducidad = ?, categoria = ?
-            WHERE codigo = ?''', (self.nombre, self.stock, self.valor_unitario, self.costo, self.fecha_caducidad, self.categoria, self.codigo)
-            )
+        cursor.callproc("sp_actualizar_producto", [
+            self.codigo, 
+            self.nombre, 
+            self.stock, 
+            self.valor_unitario, 
+            self.costo, 
+            self.fecha_caducidad, 
+            self.categoria
+        ])
         conexion.commit()
+        cursor.close()
         conexion.close()
         
     @staticmethod

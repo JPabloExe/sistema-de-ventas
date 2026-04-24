@@ -53,7 +53,7 @@ def obtener_productos():
 def buscar_producto():
     codigo = request.args.get('codigo')
     
-    producto = Producto.buscarProducto(int(codigo))
+    producto = Producto.buscarProducto(codigo)
     
     if producto == None:
         return jsonify({"mensaje": "n"})

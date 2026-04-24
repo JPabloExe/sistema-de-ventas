@@ -302,7 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (input.value.trim() == "") {
             llenarTabla("");
         }
-        if (input.value.trim().length == 5) {
+        if (input.value.trim().length == 4) {
             buscarProducto(input.value.trim());
         }
     });
