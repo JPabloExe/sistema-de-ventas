@@ -62,7 +62,7 @@ function mostrarToast(mensaje, tipo) {
 };
 
 async function obtenerProductos() {
-    const respuesta = await fetch(`/obtenerProductos?categoria=${""}`);
+    const respuesta = await fetch(`/obtenerProductos?categoria=${''}`);
 
     const info = await respuesta.json();
 
@@ -142,6 +142,8 @@ async function stockBajo() {
 async function valorVentasHoy() {
     const lblValorVentasHoy = document.getElementById("lbl-valor-ventas-hoy");
 
+    lblValorVentasHoy.textContent = `COP ${formatearCOP(0)}`;
+    
     const ventas = await obtenerVentas();
 
      let totalVentas = 0;
@@ -156,6 +158,8 @@ async function valorVentasHoy() {
 async function ventasHoy() {
     const lblVentasHoy = document.getElementById("lbl-ventas-hoy");
 
+    lblVentasHoy.textContent = `${0} ventas - COP ${formatearCOP(0)}`;
+    
     const ventas = await obtenerVentas();
 
      let totalVentas = 0;

@@ -1,12 +1,15 @@
 import sqlite3
+from conexionBD import Conexion
 
 DB_RUTA = "C:\\Users\\jp11l\\Documents\\datos\\bd_sistema_ventas.db"
+
 
 class Producto:
     def __init__(self, codigo, nombre, stock, valor_unitario, costo, fecha_caducidad, categoria):
         self.codigo = codigo
         self.nombre = nombre
         self.stock = stock
+        self.stock_m = 5
         self.valor_unitario =  valor_unitario
         self.costo =  costo
         self.fecha_caducidad = fecha_caducidad
@@ -17,6 +20,7 @@ class Producto:
             "codigo": self.codigo,
             "nombre": self.nombre,
             "stock": self.stock,
+            "stock_m": self.stock_m,
             "valor_unitario": self.valor_unitario,
             "costo": self.costo,
             "fecha_caducidad": self.fecha_caducidad,
@@ -44,14 +48,22 @@ class Producto:
     
     @staticmethod    
     def agregarProducto(self):
-        conexion = sqlite3.connect(DB_RUTA)
-        conexion.execute("PRAGMA foreign_keys = ON;")
+        conexion = Conexion.get_conexion()
         cursor = conexion.cursor()
-        cursor.execute('''
-            INSERT INTO productos(codigo, nombre, stock, valor_unitario, costo, fecha_caducidad, categoria)
-            VALUES(?, ?, ?, ?, ?, ?, ?)''', (self.codigo, self.nombre, self.stock, self.valor_unitario, self.costo, self.fecha_caducidad, self.categoria)
-            )
+
+        cursor.callproc("sp_agregar_producto", [
+            self.codigo, 
+            self.nombre, 
+            self.stock, 
+            self.stock_m, 
+            self.valor_unitario, 
+            self.costo, 
+            self.fecha_caducidad, 
+            self.categoria
+        ])
+
         conexion.commit()
+        cursor.close()
         conexion.close()
     
     @staticmethod
@@ -92,16 +104,17 @@ class Producto:
         
     @staticmethod
     def obtenerPorCategoria(categoria):
-        conexion = sqlite3.connect(DB_RUTA)
-        conexion.execute("PRAGMA foreign_keys = ON;")
+        conexion = Conexion.get_conexion()
         cursor = conexion.cursor()
         
-        if categoria != "" or len(categoria) != 0:
-            cursor.execute('SELECT * FROM productos WHERE categoria = ?;', (categoria,))
-        else:
-            cursor.execute('SELECT * FROM productos;')
+        cursor.callproc("sp_obtener_productos_por_categoria", [categoria])
+        
+        filas = []
+
+        for resultado in cursor.stored_results():
+            filas.extend(resultado.fetchall())
             
-        filas = cursor.fetchall() #Almacena todas las filas
+        cursor.close()
         conexion.close()
         
         productos = []
@@ -111,10 +124,10 @@ class Producto:
                 "codigo": fila[0],
                 "nombre": fila[1],
                 "stock": fila[2],
-                "valor_unitario": fila[3],
-                "costo": fila[4],
-                "fecha_caducidad": fila[5],
-                "categoria": fila[6]
+                "valor_unitario": fila[4],
+                "costo": fila[5],
+                "fecha_caducidad": fila[6],
+                "categoria": fila[7]
             })
         return productos   
     
