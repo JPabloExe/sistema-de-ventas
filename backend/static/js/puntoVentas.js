@@ -146,8 +146,7 @@ async function realizarVenta() {
     productos.forEach(producto => {
         productosComprados.push({
             "codigo": producto.dataset.codigo,
-            "cantidad": Number(producto.querySelector(".input-cantidad").value),
-            "subtotal": Number(producto.querySelector(".input-cantidad").value) * parseInt(producto.dataset.precio)
+            "cantidad": Number(producto.querySelector(".input-cantidad").value)
         });
     });
 

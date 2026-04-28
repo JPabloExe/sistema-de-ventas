@@ -1,58 +1,50 @@
 import sqlite3
+from conexionBD import Conexion
 
 DB_RUTA = "C:\\Users\\jp11l\\Documents\\datos\\bd_sistema_ventas.db"
 
 class Venta:
     
-    def __init__(self, numero, fecha, hora, usuario, items, metodo, estado, total):
-        self.numero = numero
+    def __init__(self, id_venta, fecha, hora, codigo_u, metodo, items, total):
+        self.id_venta = id_venta
         self.fecha = fecha
         self.hora = hora
-        self.usuario = usuario
-        self.items = items
+        self.codigo_u = codigo_u
         self.metodo = metodo 
-        self.estado = estado
+        self.items = items
         self.total = total
+
+    def __init__(self, metodo, items):
+        self.metodo = metodo 
+        self.items = items
 
     def toDict(self):
         return {
-            "numero": self.numero,
+            "id": self.id_venta,
             "fecha": self.fecha,
             "hora": self.hora,
             "usuario": self.usuario,
-            "items": self.items,
             "metodo": self.metodo,
-            "estado": self.estado,
+            "items": self.items,
             "total": self.total
         }
     
     @staticmethod
-    def crearTabla():
-        conexion = sqlite3.connect(DB_RUTA)
-        conexion.execute("PRAGMA foreign_keys = ON;")
+    def realizarVenta(self):
+        conexion = Conexion.get_conexion()
         cursor = conexion.cursor()
-        cursor.execute(''' 
-            CREATE TABLE IF NOT EXISTS ventas (
-                id_venta TEXT NOT NULL PRIMARY KEY,
-                fecha TEXT NOT NULL,
-                hora TEXT NOT NULL,
-                usuario TEXT NOT NULL,
-                items INTEGER,
-                metodo TEXT NOT NULL,
-                estado BOOLEAN,
-                total INTEGER    
-            );
-        ''')
-        conexion.commit()
+        cursor.callproc("sp_realizar_venta", [
+            self.metodo,
+            self.items, 
+        ])
+
+        for result in cursor.stored_results():
+            result.fetchall()
+        
+        cursor.close()
         conexion.close()
-    
-    @staticmethod
-    def agregarVenta(self, cursor):
-        cursor.execute('''
-            INSERT INTO ventas(id_venta, fecha, hora, usuario, items, metodo, estado, total) 
-            VALUES(?, ?, ?, ?, ?, ?, ?, ?);''', 
-            (self.numero, self.fecha, self.hora, self.usuario, self.items, self.metodo ,self.estado, self.total))
-    
+        conexion.commit()
+        
     @staticmethod
     def eliminarVenta(numero):
         conexion = sqlite3.connect(DB_RUTA)
@@ -118,26 +110,5 @@ class Venta:
                 WHERE id_venta = ?;
             ''', (total, id_venta))
         
-    @staticmethod
-    def obtenerUltimoId(cursor, venta_numeracion):
-        cursor.execute("""
-            SELECT 
-                CAST(
-                    SUBSTR(id_venta, LENGTH(?) + 2) AS INTEGER
-                ) AS consecutivo
-            FROM ventas
-            WHERE id_venta LIKE ?
-            ORDER BY consecutivo DESC
-            LIMIT 1;
-        """, (
-            f"VTA-{venta_numeracion}",
-            f"VTA-{venta_numeracion}-%"
-        ))
-
-        fila = cursor.fetchone()
-
-        if fila is None or fila[0] is None:
-            return 0
-
-        return fila[0] + 1
+    
             

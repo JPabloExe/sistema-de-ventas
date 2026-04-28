@@ -1,9 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from producto import Producto
 from venta import Venta
-from usuario import Usuario
-from detallesVentas import Detalles
-from datetime import datetime
+import json
 
 app = Flask(__name__)   
 
@@ -85,54 +83,23 @@ def eliminar_producto():
 
 @app.route('/realizarVenta', methods=['POST'])
 def realizar_venta():
-    import sqlite3
-    
-    DB_RUTA = "C:\\Users\\jp11l\\Documents\\datos\\bd_sistema_ventas.db"
-    
-    conexion = sqlite3.connect(DB_RUTA)
-    conexion.execute("PRAGMA foreign_keys = ON;")
-    cursor = conexion.cursor()
-    
-    try:
-        conexion.execute("BEGIN")
+    try:   
+
+        productosComprados = request.get_json()
+
+        productos_json = json.dumps(productosComprados)
+
+        print(productos_json)
         
-        productosComprados = request.json
+        nuevaVenta = Venta('Efectivo', productos_json) 
         
-        total = 0
+        Venta.realizarVenta(nuevaVenta)
         
-        ahora = datetime.now()
-        
-        venta_numeracion = f"{ahora.year}{ahora.month}{ahora.day}"
-        
-        consecutivo = Venta.obtenerUltimoId(cursor, venta_numeracion)
-        
-        id_venta = f"VTA-{venta_numeracion}-{consecutivo}"
-        
-        usuario = Usuario(1, 'Juan', 'Lopez', 'admin', '1234', 'jp@gmail.com')
-        fecha = ahora.strftime("%d/%m/%Y")
-        hora = f"{ahora.hour}:{ahora.minute}"
-        
-        nuevaVenta = Venta(id_venta, fecha, hora, Usuario.toString(usuario), len(productosComprados), 'Efectivo', 'Completada', 0) # Total temporal
-        
-        Venta.agregarVenta(nuevaVenta, cursor)
-        
-        for producto in productosComprados:
-            Detalles.agregarDetalles(Detalles(id_venta, producto['codigo'], producto['cantidad'], producto['subtotal']), cursor)
-            total += producto['subtotal']
-        
-        Venta.actualizarTotal(id_venta, total, cursor)
-        Producto.actualizarStock(productosComprados, cursor)
-        
-        conexion.commit()
-       
         return jsonify({'mensaje': 's'})
     
     except Exception as e:
-        conexion.rollback()
         return jsonify({'mensaje': 'n', 'excepcion': str(e)})
     
-    finally:
-        conexion.close()
         
 @app.route('/obtenerVentas', methods=['GET'])
 def obtener_ventas():
