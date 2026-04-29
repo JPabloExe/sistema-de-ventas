@@ -93,7 +93,6 @@ async function obtenerVentas() {
 
     if (info["mensaje"] == "n") {
         if (info["error"] == 0) {
-            mostrarToast("No hay ventas registradas", "error");
             return;
         }
         mostrarToast(info["error"], "error");

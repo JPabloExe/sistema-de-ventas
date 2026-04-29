@@ -88,8 +88,6 @@ def realizar_venta():
         productosComprados = request.get_json()
 
         productos_json = json.dumps(productosComprados)
-
-        print(productos_json)
         
         nuevaVenta = Venta('Efectivo', productos_json) 
         
@@ -106,7 +104,7 @@ def obtener_ventas():
     try:
         ventas = Venta.obtenerVentas()
         
-        if len(ventas) == 0:
+        if ventas == 0:
             return jsonify({'mensaje': 'n', 'error': 0})
         else:
             return jsonify({'mensaje': 's', 'ventas': ventas})

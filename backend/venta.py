@@ -33,17 +33,22 @@ class Venta:
     def realizarVenta(self):
         conexion = Conexion.get_conexion()
         cursor = conexion.cursor()
-        cursor.callproc("sp_realizar_venta", [
-            self.metodo,
-            self.items, 
-        ])
 
-        for result in cursor.stored_results():
-            result.fetchall()
-        
-        cursor.close()
-        conexion.close()
-        conexion.commit()
+        try:
+            cursor.callproc("sp_realizar_venta", [
+                self.metodo,
+                self.items, 
+            ])
+            
+            conexion.commit()
+
+        except Exception as e:
+            print("Error: ", e)
+            conexion.rollback()
+
+        finally:
+            cursor.close()
+            conexion.close()
         
     @staticmethod
     def eliminarVenta(numero):
@@ -80,27 +85,41 @@ class Venta:
     
     @staticmethod
     def obtenerVentas():
-        conexion = sqlite3.connect(DB_RUTA)
-        conexion.execute("PRAGMA foreign_keys = ON;")
+        conexion = Conexion.get_conexion()
         cursor = conexion.cursor()
-        cursor.execute('SELECT * FROM ventas')
-        datos = cursor.fetchall()
-        conexion.close()
+
+        try:
+            cursor.callproc("sp_obtener_ventas", [])
+
+            ventas = None
+
+            for resultado in cursor.stored_results():
+                ventas = resultado.fetchall()
+
+            if ventas == None:
+                return 0
+            
+            conexion.commit()
+            cursor.close()
+            conexion.close()
+            
+            ventas_t = []
+
+            for venta in ventas:
+                ventas_t.append({
+                    "id": venta[0],
+                    "fecha": venta[1],
+                    "hora": venta[2],
+                    "usuario": venta[3],
+                    "items": venta[4],
+                    "metodo": venta[5],
+                    "total": venta[6]
+                })
+            
+            return ventas_t
         
-        ventas = []
-        
-        for venta in datos:
-            ventas.append({
-                "numero": venta[0],
-                "fecha": venta[1],
-                "hora": venta[2],
-                "usuario": venta[3],
-                "items": venta[4],
-                "metodo": venta[5],
-                "estado": venta[6],
-                "total": venta[7]
-            })
-        return ventas
+        except Exception as e:
+            print("Error: ", e)
     
     @staticmethod
     def actualizarTotal(id_venta, total, cursor):

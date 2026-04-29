@@ -52,7 +52,7 @@ function llenarTabla(ventas) {
 
         fila.innerHTML = `
             <tr>
-                <td class="numero">#${venta["numero"]}</td>
+                <td class="numero">#${venta["id"]}</td>
 
                 <td class="fecha">
                     <div>
@@ -66,9 +66,7 @@ function llenarTabla(ventas) {
                     <p class="p-metodo">${venta["metodo"]}</p>
                 </td>
                 <td class="total">COP ${formatearCOP(venta["total"])}</td>
-                <td class="estado"> 
-                    <p class="p-estado">${venta["estado"]}</p>
-                </td>
+                
                 <td class="acciones">
                     <i id="btn-info-producto" class="fa-solid fa-circle-info informacion"
                         data-numero="${venta["numero"]}">
