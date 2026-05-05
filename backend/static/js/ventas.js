@@ -8,8 +8,6 @@ function formatearCOP(valor) {
     });
 }
 
-let toastTimeout;
-
 function mostrarToast(mensaje, tipo) {
     const letrero = document.getElementById("letrero");
     const texto = document.getElementById("texto-letrero")

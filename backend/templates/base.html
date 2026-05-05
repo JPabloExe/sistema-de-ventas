@@ -1,0 +1,75 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sistema{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- CSS GLOBAL -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
+    <!-- CSS POR VISTA -->
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- BOTÓN MENU -->
+    <div id="div-boton" class="div-boton">
+        <button id="btn-menu">☰</button>
+    </div>
+
+    <!-- SIDEBAR -->
+    <nav id="sidebar" class="sidebar">
+        <p id="parrafo-nombre-software">Sistema de Ventas</p>
+
+        <div class="div-menu-lateral">
+            <a href="/" id="link-inicio">
+                <i class="fa-solid fa-house"></i>
+                Inicio
+            </a>
+
+            <a href="/puntoVentas" id="link-punto-ventas">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Punto de Venta
+            </a>
+
+            <a href="/ventas" id="link-ventas">
+                <i class="fa-solid fa-cash-register"></i>
+                Ventas
+            </a>
+
+            <a href="/inventario" id="link-inventario">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                Inventario
+            </a>
+        </div>
+
+        <button id="btn-cerrar-sesion">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            Cerrar Sesion
+        </button>
+    </nav>
+
+    <!-- 🔴 CONTENIDO DINÁMICO -->
+    <div id="contenedor" class="contenedor">
+        {% block contenido %}{% endblock %}
+    </div>
+
+    <!-- TOAST GLOBAL -->
+    <div id="letrero" class="letrero"> 
+        <i id="icono-letrero"></i>
+        <span id="texto-letrero"></span>
+    </div>
+
+    <!-- JS GLOBAL -->
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+    <!-- JS POR VISTA -->
+    {% block js %}{% endblock %}
+
+</body>
+</html>

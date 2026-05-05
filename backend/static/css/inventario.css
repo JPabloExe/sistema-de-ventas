@@ -1,9 +1,7 @@
 body {
     display: flex;
-    flex-direction: column;
     margin: 0;
     background-color: #F8FAF9;
-    padding: 0px 20px 20px 20px;
     font-family: sans-serif;
 }
 
@@ -14,7 +12,7 @@ body button, a, i {
 .contenedor-inventario {
     display: flex;
     flex-direction: column;
-    height: 96vh;
+    padding: 0px 20px 20px 20px;
 }
 
 .header {
@@ -39,6 +37,7 @@ body button, a, i {
 .div-presentacion {
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
     gap: 5px;
 }
 
@@ -50,6 +49,7 @@ body button, a, i {
 
 .div-presentacion h2 {
     margin-bottom: 0;
+    margin-top: 5%;
 }
 
 .div-acciones {
@@ -167,7 +167,7 @@ body button, a, i {
 /* TBODY CON SCROLL */
 .tabla-productos tbody {
     display: block;
-    height: 300px;
+    height: 290px;
     overflow-y: auto;
 }
 
