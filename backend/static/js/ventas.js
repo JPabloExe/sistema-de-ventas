@@ -81,7 +81,17 @@ function llenarTabla(ventas) {
 
 async function cargarTabla() {
 
-    const respuesta = await fetch(`${URL_API}/obtenerVentas`);
+    const intervalo = {
+        "inicial": null,
+        "final": null
+    }
+
+    const respuesta = await fetch(`${URL_API}/obtenerVentas`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(intervalo)
+    });
+
 
     const info = await respuesta.json();
 
@@ -105,7 +115,7 @@ async function buscarVentas(fechaInicial, fechaFinal) {
         "final": fechaFinal
     }
 
-    const respuesta = await fetch(`${URL_API}/buscarVentas`, {
+    const respuesta = await fetch(`${URL_API}/obtenerVentas`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(intervalo)
@@ -140,11 +150,6 @@ async function eliminarVenta(numeroVenta) {
 
     mostrarToast("Venta eliminada", "success");  
     cargarTabla();
-}
-
-function formatearFecha(fecha) {
-    const datos = fecha.split('-');
-    return `${datos[2]}/${datos[1]}/${datos[0]}`
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -184,15 +189,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const fechaInicial = document.getElementById("input-fecha-inicial");
-    const fechaFinal = document.getElementById("input-fecha-final");
     const btnBuscar = document.getElementById("btn-buscar");
-
+    
     btnBuscar.addEventListener("click", () => {
-        if (!fechaFinal.value.trim() == "" && !fechaFinal.value.trim() == "") {
-            buscarVentas(formatearFecha(fechaInicial.value), formatearFecha(fechaFinal.value));
-        } else {
+        const fechaInicial = document.getElementById("input-fecha-inicial").value;
+        const fechaFinal = document.getElementById("input-fecha-final").value;
+        
+        if (fechaInicial.trim() == "" && fechaFinal.trim() == "") {
             cargarTabla();
+        } else {
+            buscarVentas(fechaInicial, fechaFinal);
         }
     });
 });

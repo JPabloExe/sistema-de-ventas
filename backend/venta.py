@@ -84,12 +84,12 @@ class Venta:
         return ventas
     
     @staticmethod
-    def obtenerVentas():
+    def obtenerVentas(fecha_inicial, fecha_final):
         conexion = Conexion.get_conexion()
         cursor = conexion.cursor()
 
         try:
-            cursor.callproc("sp_obtener_ventas", [])
+            cursor.callproc("sp_obtener_ventas", [fecha_inicial, fecha_final])
 
             ventas = None
 
@@ -108,9 +108,9 @@ class Venta:
             for venta in ventas:
                 ventas_t.append({
                     "id": venta[0],
-                    "fecha": venta[1],
-                    "hora": venta[2],
-                    "usuario": venta[3],
+                    "usuario": venta[1],
+                    "fecha": venta[2].strftime("%Y-%m-%d"),
+                    "hora": str(venta[3]),
                     "items": venta[4],
                     "metodo": venta[5],
                     "total": venta[6]

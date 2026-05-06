@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request, jsonify
 from producto import Producto
 from venta import Venta
+from dotenv import load_dotenv
 import json
+
+load_dotenv()
 
 app = Flask(__name__)   
 
@@ -83,8 +86,8 @@ def eliminar_producto():
 
 @app.route('/realizarVenta', methods=['POST'])
 def realizar_venta():
-    try:   
 
+    try:   
         productosComprados = request.get_json()
 
         productos_json = json.dumps(productosComprados)
@@ -99,31 +102,19 @@ def realizar_venta():
         return jsonify({'mensaje': 'n', 'excepcion': str(e)})
     
         
-@app.route('/obtenerVentas', methods=['GET'])
+@app.route('/obtenerVentas', methods=['POST'])
 def obtener_ventas():
+
+    intervalo = request.get_json()
+
     try:
-        ventas = Venta.obtenerVentas()
+        ventas = Venta.obtenerVentas(intervalo['inicial'], intervalo['final'])
         
         if ventas == 0:
             return jsonify({'mensaje': 'n', 'error': 0})
         else:
             return jsonify({'mensaje': 's', 'ventas': ventas})
     
-    except Exception as e:
-        return jsonify({'mensaje': 'n', 'error': str(e)})
-
-@app.route('/buscarVentas', methods=['POST'])
-def buscar_ventas():
-    intervalo = request.json
-    
-    try:
-        ventas = Venta.buscarVentas(intervalo['inicial'], intervalo['final'])
-        
-        if len(ventas) == 0:
-            return jsonify({'mensaje': 'n', 'error': 0})
-        else:
-            return jsonify({'mensaje': 's', 'ventas': ventas})
-        
     except Exception as e:
         return jsonify({'mensaje': 'n', 'error': str(e)})
     

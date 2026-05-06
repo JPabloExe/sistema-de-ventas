@@ -1,0 +1,10 @@
+# Entornos virtuales
+venv/
+__pycache__/
+
+# Variables de entorno
+.env
+
+# Archivo de base de datos o temporales
+*.sql
+.DS_Store

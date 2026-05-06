@@ -246,30 +246,6 @@ body button {
     font-size: 3.5mm;
 }
 
-#div-efectivo {
-    background-color: #EFFCF2;
-    border: solid #97e5b7 2px;
-    color: #49775D;
-}
-
-#div-tarjeta {
-    background-color: #F5F8FD;
-    border: solid #BEC8D4 2px;
-    color: #4C558C;
-}
-
-#div-transferencia {
-    background-color: #FBF9FE;
-    border: solid #D7CFDC 2px;
-    color: #552A82;
-}
-
-#div-credito {
-    background-color: #FFFCF3;
-    border: solid #E1DEAB 2px;
-    color: #7C6249;
-}
-
 .btn-borrar {
     background-color: transparent;
     border: none;
@@ -278,22 +254,6 @@ body button {
 
 .btn-borrar:hover {
     color: rgb(151, 0, 0);
-}
-
-#div-efectivo:hover {
-    border-color: #49775D;
-}
-
-#div-tarjeta:hover {
-    border-color: #4C558C;
-}
-
-#div-transferencia:hover {
-    border-color: #552A82;
-}
-
-#div-credito:hover {
-    border-color: #7C6249;
 }
 
 .letrero {
@@ -331,6 +291,40 @@ body button {
 
 .letrero.error i {
     color: #8b2e2e;
+}
+
+.pago-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pago-box input {
+    padding: 8px;
+    border-radius: 8px;
+    border: solid 1px;
+}
+
+.in_total {
+    border: none !important; 
+}
+
+.quick-cash {
+    display: flex;
+    gap: 10px;
+}
+
+.quick-cash button {
+    flex: 1;
+    padding: 8px;
+    background: #ddd;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.estado {
+    font-weight: bold;
 }
 
 input[type=number]::-webkit-inner-spin-button,

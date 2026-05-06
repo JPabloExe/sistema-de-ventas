@@ -36,35 +36,7 @@ function mostrarToast(mensaje, tipo) {
     clearTimeout(toastTimeout);
     toastTimeout = setTimeout(() => {
         letrero.classList.remove('show');
-    }, 1500);
-}
-
-function calcularVueltos(total) {
-    const inputMonto = document.getElementById("input-monto-ingresado");
-    const btnConfirmar = document.getElementById("btn-confirmar-pago");
-    const divVueltos = document.getElementById("div-vueltos");
-    const lblVueltos = document.getElementById("lbl-vueltos");
-    const lblTotal = document.getElementById("total-venta");
-
-    lblTotal.textContent = `COP ${formatearCOP(total)}`
-
-    inputMonto.addEventListener("input", () => {
-        if (inputMonto.value < total) {
-            inputMonto.style.outlineColor = "red";
-            btnConfirmar.style.backgroundColor = "#86b69bff"
-            divVueltos.style.backgroundColor = "#FCD4D4"
-            divVueltos.style.color = "#8e3939";
-            lblVueltos.textContent = "Monto insuficiente"
-
-        } else {
-            let vueltos = inputMonto.value - total;
-            inputMonto.style.outlineColor = "green";
-            btnConfirmar.style.backgroundColor = "#49775D"
-            divVueltos.style.backgroundColor = "#aaf2bbff"
-            divVueltos.style.color = "#49775D";
-            lblVueltos.textContent = `COP ${formatearCOP(vueltos)}`;
-        }
-    });
+    }, 2500);
 }
 
 async function agregarAlCarrito(codigo) {
@@ -173,48 +145,16 @@ function limpiarCarrito() {
     });
 };
 
-function limpiarDialogPago() {
-    const inputMonto = document.getElementById("input-monto-ingresado");
-    const btnConfirmar = document.getElementById("btn-confirmar-pago");
-    const divVueltos = document.getElementById("div-vueltos");
-    const lblVueltos = document.getElementById("lbl-vueltos");
-
-    inputMonto.style.outlineColor = "red";
-    btnConfirmar.style.backgroundColor = "#86b69bff";
-    divVueltos.style.backgroundColor = "#FCD4D4";
-    divVueltos.style.color = "#8e3939";
-    lblVueltos.textContent = "Monto insuficiente";
-    inputMonto.value = "";
-}
-
 // Dialog pagos
 document.addEventListener("DOMContentLoaded", () => {
-    const boton = document.getElementById("btn-procesar-venta");
+    const botonProcesar = document.getElementById("btn-procesar-venta");
     const botonCerrar = document.getElementById("btn-cancelar-pago");
-    const dialogPagos = document.getElementById("dialog-pagos");
-    const inputMonto = document.getElementById("input-monto-ingresado");
     const botonConfirmar = document.getElementById("btn-confirmar-pago");
-    const cantidad = document.getElementById("cantidad");
 
-    boton.addEventListener("click", () => {
-        dialogPagos.showModal();
-    });
-
-    inputMonto.addEventListener("focus", () => {
-        calcularVueltos(total);
-    });
-    
-    botonCerrar.addEventListener("click", () => {
-        dialogPagos.close();
-        limpiarDialogPago();
-    });
-
-    botonConfirmar.addEventListener("click", () => {
+    botonProcesar.addEventListener("click", () => {
         realizarVenta();
-        dialogPagos.close();
         mostrarToast("Venta exitosa", "success");
         limpiarCarrito();
-        limpiarDialogPago();
         cantidad.textContent = `(${productosEnCarrito()} productos)`;
     });
 });
@@ -322,9 +262,42 @@ function recalcularTotal() {
     });
 
     // Buscamos el elemento donde quieres mostrar el gran total
-    const lblTotal = document.getElementById("total");
+    const lblTotal = document.getElementById("totalPagar");
     if (lblTotal) {
-        lblTotal.textContent = `COP ${formatearCOP(totalGeneral)}`;
+        lblTotal.value = `COP ${formatearCOP(totalGeneral)}`;
         total = totalGeneral;
+        calcular();
     }
 }
+
+const totalInput = document.getElementById("totalPagar");
+const recibidoInput = document.getElementById("recibido");
+const cambioInput = document.getElementById("cambio");
+const estado = document.getElementById("estadoPago");
+
+
+function calcular() {
+    const recibido = parseInt(recibidoInput.value) || 0;
+
+    const cambio = recibido - total;
+
+    cambioInput.value = cambio >= 0 ? `COP ${formatearCOP(cambio)}` : `COP ${formatearCOP(0)}`;
+
+    if (recibido === 0) {
+        estado.textContent = "";
+    } else if (cambio < 0) {
+        estado.textContent = "Pago incompleto";
+        estado.style.color = "red";
+    } else {
+        estado.textContent = "Pago completo";
+        estado.style.color = "green";
+    }
+}
+
+
+function agregarMonto(valor) {
+    recibidoInput.value = (parseFloat(recibidoInput.value) || 0) + valor;
+    calcular();
+}
+
+recibidoInput.addEventListener("input", calcular);
