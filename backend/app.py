@@ -60,6 +60,26 @@ def buscar_producto():
         return jsonify({"mensaje": "n"})
     else:
         return jsonify({"mensaje": "s", "producto": Producto.toDict(producto)})
+
+@app.route('/obtenerInformeInventario', methods=['GET'])
+def informe_inventario():
+    
+    informe = Producto.obtenerInforme()
+    
+    if informe == None:
+        return jsonify({"mensaje": "n"})
+    else:
+        return jsonify({"mensaje": "s", "informe": informe})
+    
+@app.route('/obtenerInformeVentas', methods=['GET'])
+def informe_ventas():
+    
+    informe = Venta.obtenerInforme()
+    
+    if informe == None:
+        return jsonify({"mensaje": "n"})
+    else:
+        return jsonify({"mensaje": "s", "informe": informe})
     
 @app.route('/actualizar', methods=['POST'])
 def actualizar_producto():

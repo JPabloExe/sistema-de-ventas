@@ -46,6 +46,24 @@ class Producto:
         conexion.commit()
         cursor.close()
         conexion.close()
+
+    @staticmethod    
+    def obtenerInforme():
+        conexion = Conexion.get_conexion()
+        cursor = conexion.cursor()
+
+        datos = cursor.callproc("sp_informe_inventario", [0, 0, 0])
+            
+        cursor.close()
+        conexion.close()
+        
+        informe = {
+            "productos": datos[0],
+            "valor_total": datos[1],
+            "stock_bajo": datos[2]
+        }
+    
+        return informe 
     
     @staticmethod
     def eliminarProducto(codigo):

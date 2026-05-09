@@ -235,11 +235,13 @@ body dialog {
     background-color: transparent;
     border: none;
     width: 400px;
+    height: 600px;
 }
 
 .formularios-dialog-inventario {
     background-color: #FFFFFF;
     padding: 20px 80px 30px;
+    height: 500px;
     border-radius: 8px;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 }
@@ -265,7 +267,7 @@ body dialog {
 
 .dialog-botones {
     display: flex;
-    padding-top: 40px;
+    padding-top: 20px;
     justify-content: space-around;
 
 }
@@ -275,14 +277,16 @@ body dialog {
     border: none;
     padding: 8px 12px 8px 12px; 
     border-radius: 8px;
+    font-size: medium;
 }
 
-.btn-agregar, .btn-actualizar {
+#btn-dialog-agregar, #btn-actualizar {
     background-color: #324154;
 }
 
-.btn-cerrar-dialog-actualizar, .btn-cerrar-dialog-agregar {
+#btn-cerrar-dialog-actualizar, #btn-cerrar-dialog-agregar {
     color: black !important;
+    background-color: #cecece;
 }
 
 .letrero {

@@ -187,6 +187,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// Recargar pagina
+document.addEventListener("DOMContentLoaded", () => {
+    const boton = document.getElementById("btn-actualizar-pagina");
+
+    boton.addEventListener("click", () => {
+        window.location.reload();
+    });
+});
 
 document.addEventListener("DOMContentLoaded", () => {
     const btnBuscar = document.getElementById("btn-buscar");

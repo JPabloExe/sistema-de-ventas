@@ -122,6 +122,23 @@ class Venta:
             print("Error: ", e)
     
     @staticmethod
+    def obtenerInforme():
+        conexion = Conexion.get_conexion()
+        cursor = conexion.cursor()
+
+        datos = cursor.callproc("sp_informe_ventas_hoy", [0, 0])
+
+        cursor.close()
+        conexion.close()
+        
+        informe = {
+            "ventas": datos[0],
+            "valor_ventas": datos[1]
+        }
+        
+        return informe
+    
+    @staticmethod
     def actualizarTotal(id_venta, total, cursor):
         cursor.execute('''
                 UPDATE ventas
