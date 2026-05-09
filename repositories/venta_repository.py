@@ -1,43 +1,17 @@
-import sqlite3
-from conexionBD import Conexion
+from database.conexionBD import Conexion
+from entities.venta import Venta
 
-DB_RUTA = "C:\\Users\\jp11l\\Documents\\datos\\bd_sistema_ventas.db"
+class VentaRepository:
 
-class Venta:
-    
-    def __init__(self, id_venta, fecha, hora, codigo_u, metodo, items, total):
-        self.id_venta = id_venta
-        self.fecha = fecha
-        self.hora = hora
-        self.codigo_u = codigo_u
-        self.metodo = metodo 
-        self.items = items
-        self.total = total
-
-    def __init__(self, metodo, items):
-        self.metodo = metodo 
-        self.items = items
-
-    def toDict(self):
-        return {
-            "id": self.id_venta,
-            "fecha": self.fecha,
-            "hora": self.hora,
-            "usuario": self.usuario,
-            "metodo": self.metodo,
-            "items": self.items,
-            "total": self.total
-        }
-    
     @staticmethod
-    def realizarVenta(self):
+    def realizarVenta(venta):
         conexion = Conexion.get_conexion()
         cursor = conexion.cursor()
 
         try:
             cursor.callproc("sp_realizar_venta", [
-                self.metodo,
-                self.items, 
+                venta.metodo,
+                venta.items, 
             ])
             
             conexion.commit()
@@ -82,7 +56,7 @@ class Venta:
                 "total": venta[7]
             })
         return ventas
-    
+
     @staticmethod
     def obtenerVentas(fecha_inicial, fecha_final):
         conexion = Conexion.get_conexion()
@@ -120,7 +94,7 @@ class Venta:
         
         except Exception as e:
             print("Error: ", e)
-    
+
     @staticmethod
     def obtenerInforme():
         conexion = Conexion.get_conexion()
@@ -137,7 +111,7 @@ class Venta:
         }
         
         return informe
-    
+
     @staticmethod
     def actualizarTotal(id_venta, total, cursor):
         cursor.execute('''
@@ -145,6 +119,3 @@ class Venta:
                 SET total = ?
                 WHERE id_venta = ?;
             ''', (total, id_venta))
-        
-    
-            

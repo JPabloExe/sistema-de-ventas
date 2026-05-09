@@ -1,7 +1,3 @@
-import sqlite3
-
-DB_RUTA = "C:\\Users\\jp11l\\Documents\\datos\\bd_sistema_ventas.db"
-
 class Usuario:
     
     def __init__(self, codigo, cedula, nombre, apellido, usuario, contrasena, correo):
@@ -23,7 +19,3 @@ class Usuario:
             "contrasena": self.contrasena,
             "correo": self.correo
         }
-    
-    @staticmethod
-    def toString(self):
-        return self.usuario
