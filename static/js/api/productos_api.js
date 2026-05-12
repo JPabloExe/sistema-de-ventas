@@ -1,58 +1,28 @@
-async function agregarProducto() {
-    const select = document.getElementById("select-agregar-categoria");
+import { llenarTablaInventario } from "../ui/tablas.js";
+import {URL_API} from "../config/config.js"
 
-    const producto = {
-        "codigo": document.getElementById("codigo").value,
-        "nombre": document.getElementById("nombre").value,
-        "stock": document.getElementById("stock").value,
-        "valor_unitario": document.getElementById("precio").value,
-        "costo": document.getElementById("costo").value,
-        "fecha_caducidad": document.getElementById("caducidad").value,
-        "categoria": select.options[select.selectedIndex].text
-    }
-
+async function agregarProducto(producto) {
+   
     const respuesta = await fetch(`${URL_API}/agregarProducto`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(producto)
     });
 
-    const info = await respuesta.json();
+    return await respuesta.json();
 
-    if (info["mensaje"] == "s") {
-        mostrarToast("Producto agregado", "success");
-        document.querySelector(".formularios-dialog-inventario").reset();
-        llenarTabla("");
-    }
 };
 
-async function actualizarProducto() {
-
-    const select = document.getElementById("select-actualizar-categoria");
-
-    const producto = {
-        "codigo": document.getElementById("input-actualizar-codigo").value,
-        "nombre": document.getElementById("input-actualizar-nombre").value,
-        "stock": document.getElementById("input-actualizar-stock").value,
-        "valor_unitario": document.getElementById("input-actualizar-precio").value,
-        "costo": document.getElementById("input-actualizar-costo").value,
-        "fecha_caducidad": document.getElementById("input-actualizar-caducidad").value,
-        "categoria": select.options[select.selectedIndex].text
-    }
+async function actualizarProducto(productoActualizado) {
 
     const respuesta = await fetch(`${URL_API}/actualizarProducto`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(producto)
+        body: JSON.stringify(productoActualizado)
     });
 
-    const info = await respuesta.json();
+    return await respuesta.json();
 
-    if (info["mensaje"] == "s") {
-        llenarTabla("");
-        mostrarToast("Producto actualizado", "success");
-        document.querySelector(".formularios-dialog-inventario").reset();
-    }
 };
 
 async function buscarProducto(codigo) {
@@ -112,20 +82,14 @@ async function eliminarProducto(codigo) {
     mostrarToast("Producto eliminado", "success");
 }
 
-async function informeInventario() {
-    const lblProductos = document.getElementById("lbl-productos");
-    const lblValorInventario = document.getElementById("lbl-valor-inventario");
-    const lblStockBajo = document.getElementById("lbl-stock-bajo");
-    
+async function obtenerInformeInventario() {
+
     const respuesta = await fetch(`/obtenerInformeInventario`);
 
     const info = await respuesta.json();
 
-    const informe = info["informe"];
+    return info["informe"];
 
-    lblProductos.textContent = `${informe["productos"]}`;
-    lblStockBajo.textContent = `${informe["stock_bajo"]}`;
-    lblValorInventario.textContent = `COP ${formatearCOP(informe["valor_total"])}`;
 }
 
 async function llenarTabla(categoria) {
@@ -141,51 +105,14 @@ async function llenarTabla(categoria) {
         return;
     }
 
-    const productos = info["productos"]
-    tbody.innerHTML = "";
+    const productos = info["productos"];
 
-    for (const producto of productos) {
-        const fila = document.createElement("tr");
-
-        fila.innerHTML = `
-        <td class="producto">
-            <div class="nombre">${producto["nombre"]}</div>
-        </td>
-        <td class="codigo">${producto["codigo"]}</td>
-        <td class="precio">COP ${formatearCOP(producto["valor_unitario"])}</td>
-        <td class="costo">COP ${formatearCOP(producto["costo"])}</td>
-        <td class="stock">
-            <div class="cantidad">${producto["stock"]} UNIDADES</div>
-        </td>
-        <td class="acciones">
-            <i id="btn-actualizar-producto" class="fa-solid fa-pen-to-square editar"
-                data-codigo="${producto["codigo"]}"
-                data-nombre="${producto["nombre"]}"
-                data-stock="${producto["stock"]}"
-                data-precio="${producto["valor_unitario"]}"
-                data-costo="${producto["costo"]}"
-                data-caducidad="${producto["fecha_caducidad"]}"
-                data-categoria="${producto["categoria"]}">
-            </i>
-
-            <i id="btn-eliminar-producto" class="fa-solid fa-trash eliminar"
-                data-codigo="${producto["codigo"]}">
-            </i>
-            </td>`;
-
-        tbody.appendChild(fila);
-    }
-
-    divProductos.innerHTML = "";
-    const divCantidad = document.createElement("div");
-
-    divCantidad.innerHTML = `
-            <div class="div-cantidad-inventario">  
-                <p class="p-total">Total:</p>
-                <p class="p-cantidad-productos-inventario">${productos.length}</p>
-                <p class="p-productos">productos</p>
-            </div>
-        `;
-
-    divProductos.appendChild(divCantidad);
+    llenarTablaInventario(productos);
 };
+
+export async function obtenerProductos(categoria) {
+
+    const respuesta = await fetch(`${URL_API}/obtenerProductos?categoria=${categoria}`);
+
+    return await respuesta.json();
+}

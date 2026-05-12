@@ -117,7 +117,7 @@ body button, a, i {
     outline: none;
 }
 
-.select-categorias, .select-agregar-categoria, .select-actualizar-categoria {
+.select-categorias, .select-categoria, .select-categoria {
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #FEFEFE;

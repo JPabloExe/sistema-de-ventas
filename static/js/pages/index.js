@@ -1,10 +1,8 @@
-function abrirVentanas(ventana) {
-    if (ventana != "") {
-        window.location.href = `/${ventana}`;
-    } else {
-        window.location.href = '/';
-    }
-};
+import {abrirVentanas} from "../ui/ventanas.js"
+
+import {
+    cargarInformeInventario
+} from "../controllers/inventarioController.js"
 
 document.addEventListener("DOMContentLoaded", () => {
     const btnMenu = document.getElementById("btn-menu");
@@ -65,6 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    informeInventario();
+    cargarInformeInventario();
     informeVentas();
 });

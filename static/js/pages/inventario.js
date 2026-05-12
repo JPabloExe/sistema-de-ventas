@@ -1,3 +1,92 @@
+import { inicializarDialogoEliminar } from "../ui/inventarioUI.js"; 
+import { 
+    cargarInventario,
+    eliminarProductoController,
+    agregarProductoController,
+    actualizarProductoController
+ } from "../controllers/inventarioController.js"; 
+
+let codigoAEliminar = null;
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const btnConfirmar = document.getElementById("btn-confirmar-borrado");
+    const btnCancelar = document.getElementById("btn-cancelar-confirmacion");
+    const dialogConfirmacion = document.getElementById("dialog-confirmacion");
+    const tbody = document.getElementById("cuerpo-tabla-inventario");
+
+
+    tbody.addEventListener("click", (e) => {
+        const botonEliminar = e.target.closest(".eliminar");
+
+        if (botonEliminar) {
+            codigoAEliminar = botonEliminar.dataset.codigo;
+            dialogConfirmacion.showModal();
+        }
+    });
+
+    btnCancelar.addEventListener("click", () => {
+        dialogConfirmacion.close();
+    });
+
+    btnConfirmar.addEventListener("click", () => {
+        if (codigoAEliminar) {
+            eliminarProductoController(codigoAEliminar);
+            dialogConfirmacion.close();
+        }
+    });
+   
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    cargarInventario();
+
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    const btnAgregar = document.getElementById("btn-dialog-agregar");
+    
+    btnAgregar.addEventListener("click", () => {
+        agregarProductoController();
+    });
+    
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    const btnActualizar = document.getElementById("btn-actualizar");
+    const btnCerrarDialog = document.getElementById("btn-cerrar-dialog-actualizar");
+    const btnAbrirDialog = document.getElementById("btn-actualizar-producto");
+    const dialogProducto = document.getElementById("dialog-actualizar-producto");
+    
+    btnAbrirDialog.addEventListener("click", () => {
+        dialogProducto.showModal()
+    });
+
+    btnAbrirDialog.addEventListener("click", () => {
+        dialogProducto.close()
+    });
+
+    btnActualizar.addEventListener("click", () => {
+        actualizarProductoController();
+    });
+    
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Abrir y cerrar el dialog de actualizar producto
 document.addEventListener("DOMContentLoaded", () => {
     const tbody = document.getElementById("cuerpo-tabla-inventario");
@@ -104,36 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Eliminar un producto
-document.addEventListener("DOMContentLoaded", () => {
-    const btnConfirmar = document.getElementById("btn-confirmar-borrado");
-    const btnCancelar = document.getElementById("btn-cancelar-confirmacion");
-    const dialogConfirmacion = document.getElementById("dialog-confirmacion");
-    const tbody = document.getElementById("cuerpo-tabla-inventario");
 
-    let codigoAEliminar = null;
-
-    tbody.addEventListener("click", (e) => {
-        const botonEliminar = e.target.closest(".eliminar");
-
-        if (botonEliminar) {
-            codigoAEliminar = botonEliminar.dataset.codigo;
-            dialogConfirmacion.showModal();
-        }
-    });
-
-    btnCancelar.addEventListener("click", () => {
-        dialogConfirmacion.close();
-    });
-    
-    
-    btnConfirmar.addEventListener("click", () => {
-        if (codigoAEliminar) {
-            eliminarProducto(codigoAEliminar);
-            dialogConfirmacion.close();
-        }
-    });
-});
 
 document.addEventListener("DOMContentLoaded", () => {
 
