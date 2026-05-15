@@ -75,7 +75,7 @@ class ProductoRepository:
             resultado_final[2], 
             resultado_final[4], 
             resultado_final[5], 
-            resultado_final[6], 
+            resultado_final[6].strftime("%Y-%m-%d"), 
             resultado_final[7]
         )
     
@@ -120,7 +120,7 @@ class ProductoRepository:
                 "stock": fila[2],
                 "valor_unitario": fila[4],
                 "costo": fila[5],
-                "fecha_caducidad": fila[6],
+                "fecha_caducidad": fila[6].strftime("%Y-%m-%d"),
                 "categoria": fila[7]
             })
         return productos   

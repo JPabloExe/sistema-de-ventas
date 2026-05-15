@@ -33,13 +33,19 @@ def obtener_productos():
 @productos_bp.route('/buscarProducto', methods=['POST'])
 def buscar_producto():
     codigo = request.args.get('codigo')
+    p_lista = []
+
+    try:
+        producto = ProductoRepository.buscarProducto(codigo)
+        
+        if producto == None:
+            return jsonify({"mensaje": "n"})
+        else:
+            p_lista.append(Producto.toDict(producto))
+            return jsonify({"mensaje": "s", "producto": p_lista})
+    except Exception as e:
+        return jsonify({'mensaje': 'n', 'excepcion': str(e)})
     
-    producto = ProductoRepository.buscarProducto(codigo)
-    
-    if producto == None:
-        return jsonify({"mensaje": "n"})
-    else:
-        return jsonify({"mensaje": "s", "producto": Producto.toDict(producto)})
 
 @productos_bp.route('/actualizarProducto', methods=['POST'])
 def actualizar_producto():

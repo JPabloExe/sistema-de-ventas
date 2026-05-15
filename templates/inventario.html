@@ -16,7 +16,7 @@
             <p id="lbl-texto">Administra tu catalogo de productos</p>
         </div>
 
-        <button id="btn-agregar-producto" class="btn-agregar-producto">
+        <button id="btn-nuevo-producto" class="btn-agregar-producto">
             <i class="fa-solid fa-plus"></i>
             Nuevo Producto
         </button>
@@ -27,7 +27,7 @@
         <div class="div-productos-inventario">  
             <div class="div-cantidad-inventario">  
                 <p class="p-total">Total:</p>
-                <p id="p-cantidad-productos-inventario" class="p-cantidad-productos-inventario"></p>
+                <p id="p-cantidad-productos-inventario" class="p-cantidad-productos-inventario">0</p>
                 <p class="p-productos">productos</p>
             </div>
         </div>
@@ -40,7 +40,7 @@
                     placeholder="Buscar producto por codigo">
             </div>
 
-            <select id="select-categorias" class="select-categorias">
+            <select id="select-categorias-acciones" class="select-categorias">
                 <option value="">Todas las categorias</option>
                 <option value="Abarrotes">Abarrotes</option>
                 <option value="Bebidas">Bebidas</option>
@@ -76,51 +76,19 @@
 
 </div>
 
-<dialog id="dialog-agregar-producto" class="dialog-agregar-producto">
-    <form class="formularios-dialog-inventario">
-        <h2 class="titulo"> Nuevo Producto </h2>
-
-        <div class="inputs">
-            <input id="input-codigo" type="number" placeholder="Codigo del producto" required>
-            <input id="input-nombre" type="text" placeholder="Nombre del producto" required>
-            <input id="input-stock" type="number" placeholder="Cantidad que se ingresa" required>
-            <input id="input-precio" type="number" placeholder="Valor unitario" required>
-            <input id="input-costo" type="number" placeholder="Costo del producto" required>
-            <input id="input-caducidad" type="date" required>
-
-            <select id="select-categoria" class="select-agregar-categoria">
-                <option value="">Categorias</option>
-                <option value="abarrotes">Abarrotes</option>
-                <option value="bebidas">Bebidas</option>
-                <option value="aseo">Aseo y Limpieza</option>
-            </select>
-        </div>
-
-        <div class="dialog-botones">
-            <button id="btn-cerrar-dialog-agregar" type="button">
-                Cancelar
-            </button>
-
-            <button id="btn-dialog-agregar" type="button">
-                Agregar
-            </button>
-        </div>
-    </form>
-</dialog>
-
-<dialog id="dialog-actualizar-producto" class="dialog-actualizar-producto">
-    <form class="formularios-dialog-inventario">
+<dialog id="dialog-actualizar" class="dialog-actualizar">
+    <form id="form-actualizar" class="form-actualizar">
         <h2 class="titulo"> Actualizar Producto </h2>
 
         <div class="inputs">
-            <input id="input-codigo" type="number" readonly>
-            <input id="input-nombre" type="text" required>
-            <input id="input-stock" type="number" required>
-            <input id="input-precio" type="number" required>
-            <input id="input-costo" type="number" required>
-            <input id="input-caducidad" type="date" required>
+            <input name="codigo" type="number" readonly>
+            <input name="nombre" type="text" required>
+            <input name="stock" type="number" required>
+            <input name="precio" type="number" required>
+            <input name="costo" type="number" required>
+            <input name="caducidad" type="date" required>
 
-            <select id="select-categoria" class="select-actualizar-categoria">
+            <select name="categorias" class="select-categorias">
                 <option value="">Categorias</option>
                 <option value="abarrotes">Abarrotes</option>
                 <option value="bebidas">Bebidas</option>
@@ -140,6 +108,39 @@
     </form>
 </dialog>
 
+<dialog id="dialog-agregar" class="dialog-agregar">
+    <form id="form-agregar" class="form-agregar">
+        <h2 class="titulo"> Nuevo Producto </h2>
+
+        <div class="inputs">
+            <input name="codigo" type="number" placeholder="Codigo del producto" required>
+            <input name="nombre" type="text" placeholder="Nombre del producto" required>
+            <input name="stock" type="number" placeholder="Cantidad que se ingresa" required>
+            <input name="precio" type="number" placeholder="Valor unitario" required>
+            <input name="costo" type="number" placeholder="Costo del producto" required>
+            <input name="caducidad" type="date" required>
+
+            <select name="categorias" class="select-categorias">
+                <option value="">Categorias</option>
+                <option value="abarrotes">Abarrotes</option>
+                <option value="bebidas">Bebidas</option>
+                <option value="aseo">Aseo y Limpieza</option>
+            </select>
+        </div>
+
+        <div class="dialog-botones">
+            <button id="btn-cerrar-dialog-agregar" type="button">
+                Cancelar
+            </button>
+
+            <button id="btn-dialog-agregar" type="button">
+                Agregar
+            </button>
+        </div>
+    </form>
+</dialog>
+
+
 <dialog id="dialog-confirmacion" class="dialog-confirmacion">
     <p>¿Deseas borrar este producto?</p>
 
@@ -148,7 +149,7 @@
             Cancelar
         </button>
 
-        <button id="btn-confirmar-borrado">
+        <button id="btn-confirmar-borrado" class="btn-confirmar-borrado">
             Confirmar
         </button>
     </div>
@@ -157,5 +158,5 @@
 {% endblock %}
 
 {% block js %}
-<script src="{{ url_for('static', filename='js/inventario.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/pages/inventario.js') }}"></script>
 {% endblock %}

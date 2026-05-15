@@ -1,7 +1,7 @@
-import { llenarTablaInventario } from "../ui/tablas.js";
+import { llenarTablaInventario } from "../ui/inventarioUI.js";
 import {URL_API} from "../config/config.js"
 
-async function agregarProducto(producto) {
+export async function agregarProducto(producto) {
    
     const respuesta = await fetch(`${URL_API}/agregarProducto`, {
         method: "POST",
@@ -13,7 +13,7 @@ async function agregarProducto(producto) {
 
 };
 
-async function actualizarProducto(productoActualizado) {
+export async function actualizarProducto(productoActualizado) {
 
     const respuesta = await fetch(`${URL_API}/actualizarProducto`, {
         method: "POST",
@@ -25,64 +25,27 @@ async function actualizarProducto(productoActualizado) {
 
 };
 
-async function buscarProducto(codigo) {
-
-    const tbody = document.getElementById("cuerpo-tabla-inventario");
+export async function buscarProducto(codigo) {
 
     const respuesta = await fetch(`${URL_API}/buscarProducto?codigo=${codigo}`, {
         method: "POST"
     });
 
-    const info = await respuesta.json();
+    return await respuesta.json();
 
-    if (info["mensaje"] == "n") {
-        mostrarToast("Producto no encontrado", "error");
-        return;
-    }
-
-    const producto = info["producto"];
-
-    tbody.innerHTML = "";
-
-    const fila = document.createElement("tr");
-
-    fila.innerHTML = `
-        <td class="producto">
-            <div class="nombre">${producto["nombre"]}</div>
-        </td>
-        <td>${producto["codigo"]}</td>
-        <td class="precio">COP ${formatearCOP(producto["valor_unitario"])}</td>
-        <td class="costo">COP ${formatearCOP(producto["costo"])}</td>
-        <td class="stock">
-            <div class="cantidad">${producto["stock"]} UNIDADES</div>
-        </td>
-        <td class="acciones">
-            <i id="btn-actualizar-producto" class="fa-solid fa-pen editar"></i>
-            <i id="btn-eliminar-producto" class="fa-solid fa-trash eliminar"></i>
-        </td>`
-
-    tbody.appendChild(fila)
-    mostrarToast("Producto encontrado", "success");
 };
 
-async function eliminarProducto(codigo) {
+export async function eliminarProducto(codigo) {
 
     const respuesta = await fetch(`${URL_API}/eliminarProducto?codigo=${codigo}`, {
         method: "POST"
     });
 
-    const info = await respuesta.json();
+    return await respuesta.json();
 
-    if (info["mensaje"] == "n") {
-        mostrarToast(info["excepcion"], "error");
-        return;
-    }
-
-    llenarTabla("");
-    mostrarToast("Producto eliminado", "success");
 }
 
-async function obtenerInformeInventario() {
+export async function obtenerInformeInventario() {
 
     const respuesta = await fetch(`/obtenerInformeInventario`);
 
@@ -92,7 +55,7 @@ async function obtenerInformeInventario() {
 
 }
 
-async function llenarTabla(categoria) {
+export async function llenarTabla(categoria) {
     const tbody = document.getElementById("cuerpo-tabla-inventario");
     const divProductos = document.querySelector(".div-productos-inventario");
 

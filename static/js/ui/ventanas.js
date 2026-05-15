@@ -1,4 +1,4 @@
-function abrirVentanas(ventana) {
+export function abrirVentanas(ventana) {
     if (ventana != "") {
         window.location.href = `/${ventana}`;
     } else {

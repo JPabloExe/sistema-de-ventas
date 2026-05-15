@@ -1,6 +1,6 @@
 let toastTimeout;
 
-function mostrarToast(mensaje, tipo) {
+export function mostrarToast(mensaje, tipo) {
     const letrero = document.getElementById("letrero");
     const texto = document.getElementById("texto-letrero")
     const icono = document.getElementById("icono-letrero")

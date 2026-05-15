@@ -117,7 +117,7 @@ body button, a, i {
     outline: none;
 }
 
-.select-categorias, .select-categoria, .select-categoria {
+.select-categorias, .select-categorias-acciones {
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #FEFEFE;
@@ -129,9 +129,6 @@ body button, a, i {
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 }
 
-.select-categorias {
-    width: 30%;
-}
 /* TABLA BASE */
 .tabla-productos {
     width: 100%;
@@ -238,7 +235,7 @@ body dialog {
     height: 600px;
 }
 
-.formularios-dialog-inventario {
+.form-agregar, .form-actualizar {
     background-color: #FFFFFF;
     padding: 20px 80px 30px;
     height: 500px;
@@ -273,19 +270,27 @@ body dialog {
 }
 
 .dialog-botones button {
-    color: white;
+    color: black;
     border: none;
     padding: 8px 12px 8px 12px; 
     border-radius: 8px;
     font-size: medium;
+    background-color: #cecece;
 }
 
-#btn-dialog-agregar, #btn-actualizar {
+
+#btn-dialog-agregar:hover {
+    color: white;
     background-color: #324154;
+
+}
+#btn-actualizar:hover {
+    color: white;
+    background-color: #324154;
+
 }
 
 #btn-cerrar-dialog-actualizar, #btn-cerrar-dialog-agregar {
-    color: black !important;
     background-color: #cecece;
 }
 
@@ -328,6 +333,7 @@ body dialog {
 
 .dialog-confirmacion {
     width: fit-content;
+    height: fit-content !important;
     background-color: #FEFEFE;
     border-radius: 10px;
 }
@@ -345,14 +351,14 @@ body dialog {
     border: none;
     padding: 8px 12px 8px 12px; 
     border-radius: 8px;
+    outline: none;
+    background-color: #cecece;
 }
 
 .btn-confirmar-borrado:hover {
     color: white;
-    background-color: #2E3547;
+    background-color: #8b2e2e;
 }
-
-
 
 input[type="date"] {
   font-family: 'Arial', sans-serif;
