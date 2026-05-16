@@ -24,38 +24,14 @@ class VentaRepository:
             cursor.close()
             conexion.close()
         
-    @staticmethod
+    """@staticmethod
     def eliminarVenta(numero):
         conexion = sqlite3.connect(DB_RUTA)
         conexion.execute("PRAGMA foreign_keys = ON;")
         cursor = conexion.cursor()
         cursor.execute('DELETE FROM ventas WHERE id_venta = ?;', (numero,))
         conexion.commit()
-        conexion.close()
-        
-    @staticmethod
-    def buscarVentas(fechaInicial, fechaFinal):
-        conexion = sqlite3.connect(DB_RUTA)
-        conexion.execute("PRAGMA foreign_keys = ON;")
-        cursor = conexion.cursor()
-        cursor.execute('SELECT * FROM ventas WHERE fecha BETWEEN ? AND ?;', (fechaInicial, fechaFinal))
-        datos = cursor.fetchall()
-        conexion.close()
-        
-        ventas = []
-        
-        for venta in datos:
-            ventas.append({
-                "numero": venta[0],
-                "fecha": venta[1],
-                "hora": venta[2],
-                "usuario": venta[3],
-                "items": venta[4],
-                "metodo": venta[5],
-                "estado": venta[6],
-                "total": venta[7]
-            })
-        return ventas
+        conexion.close()"""
 
     @staticmethod
     def obtenerVentas(fecha_inicial, fecha_final):
@@ -111,11 +87,3 @@ class VentaRepository:
         }
         
         return informe
-
-    @staticmethod
-    def actualizarTotal(id_venta, total, cursor):
-        cursor.execute('''
-                UPDATE ventas
-                SET total = ?
-                WHERE id_venta = ?;
-            ''', (total, id_venta))

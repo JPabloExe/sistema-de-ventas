@@ -49,29 +49,9 @@ export async function obtenerInformeInventario() {
 
     const respuesta = await fetch(`/obtenerInformeInventario`);
 
-    const info = await respuesta.json();
-
-    return info["informe"];
+    return await respuesta.json();
 
 }
-
-export async function llenarTabla(categoria) {
-    const tbody = document.getElementById("cuerpo-tabla-inventario");
-    const divProductos = document.querySelector(".div-productos-inventario");
-
-    const respuesta = await fetch(`${URL_API}/obtenerProductos?categoria=${categoria}`);
-
-    const info = await respuesta.json();
-
-    if (info["mensaje"] == "n") {
-        mostrarToast("No se han registrado productos", "error");
-        return;
-    }
-
-    const productos = info["productos"];
-
-    llenarTablaInventario(productos);
-};
 
 export async function obtenerProductos(categoria) {
 

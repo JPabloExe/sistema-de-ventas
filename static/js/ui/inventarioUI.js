@@ -1,4 +1,4 @@
-import { formatearCOP } from "./moneda.js"
+import { formatearCOP } from "../utilities/moneda.js";
 
 let codigoAEliminar = null;
 

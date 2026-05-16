@@ -246,13 +246,13 @@ body button {
 }
 
 .btn-borrar {
-    background-color: transparent;
+    background-color: white !important;
     border: none;
-    color: red;
+    color: #dc143c !important;
 }
 
 .btn-borrar:hover {
-    color: rgb(151, 0, 0);
+    color: #610000 !important;
 }
 
 .letrero {

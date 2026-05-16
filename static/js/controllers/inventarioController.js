@@ -5,7 +5,7 @@ import {
     actualizarProducto,
     buscarProducto,
     obtenerInformeInventario
-} from "../api/productos_api.js";
+} from "../api/productosApi.js";
 
 import {
     llenarTablaInventario, 
@@ -14,7 +14,7 @@ import {
     mostrarInformeInventario
 } from "../ui/inventarioUI.js";
 
-import {mostrarToast} from "../ui/toast.js"
+import { mostrarToast } from "../components/toast.js";
 
 export async function eliminarProductoController(codigo) {
     
@@ -72,13 +72,16 @@ export async function actualizarProductoController(formulario) {
 export async function buscarProductoController(codigo) {
 
     const info = await buscarProducto(codigo);
+    const prodToList = [];
 
     if (info["mensaje"] === "n") {
         mostrarToast("Producto no encontrado", "error");
         return;
     }
 
-    llenarTablaInventario(info["producto"]);
+    prodToList.push(info["producto"]);
+
+    llenarTablaInventario(prodToList);
     mostrarToast("Producto encontrado", "success");
     
 }
@@ -87,6 +90,6 @@ export async function cargarInformeInventario() {
 
     const info = await obtenerInformeInventario();
 
-    mostrarInformeInventario(info);
+    mostrarInformeInventario(info["informe"]);
   
 }

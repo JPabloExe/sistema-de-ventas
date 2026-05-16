@@ -54,7 +54,7 @@
         </button>
     </nav>
 
-    <!-- 🔴 CONTENIDO DINÁMICO -->
+    <!-- CONTENIDO DINÁMICO -->
     <div id="contenedor" class="contenedor">
         {% block contenido %}{% endblock %}
     </div>
@@ -64,9 +64,6 @@
         <i id="icono-letrero"></i>
         <span id="texto-letrero"></span>
     </div>
-
-    <!-- JS GLOBAL -->
-    <script type="module" src="{{ url_for('static', filename='/js/pages/index.js') }}"></script>
 
     <!-- JS POR VISTA -->
     {% block js %}{% endblock %}

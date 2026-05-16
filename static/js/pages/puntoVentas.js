@@ -1,72 +1,59 @@
-function productosEnCarrito() {
-    let cantidad = 0;
+import { activarSidebar } from "../components/sidebar.js";
 
-    const productos = document.querySelectorAll(".div-carrito .producto");
+import { mostrarToast } from "../components/toast.js";
 
-    productos.forEach(producto => {
-        cantidad++;
-    });
+import { formatearCOP } from "../utilities/moneda.js";
 
-    return cantidad;
-};
+import {
+    limpiarCarrito,
+    productosEnCarrito,
+    calcularVueltos,
+    recalcularTotal,
+    limpiarInputsPago
+} from "../ui/puntoVentasUI.js";
 
-function limpiarCarrito() {
-    const carrito = document.querySelectorAll(".div-carrito .producto");
+import {
+    agregarProductosAlcarritoController,
+    realizarVentaController
+} from "../controllers/puntoVentasController.js";
 
-    carrito.forEach(producto => {
-        producto.remove();
-    });
-};
-
-// Dialog pagos
 document.addEventListener("DOMContentLoaded", () => {
+    activarSidebar();
+});
+
+// Realizar venta
+document.addEventListener("DOMContentLoaded", () => {
+    const cantidad = document.getElementById("cantidad");
     const botonProcesar = document.getElementById("btn-procesar-venta");
-    const botonCerrar = document.getElementById("btn-cancelar-pago");
-    const botonConfirmar = document.getElementById("btn-confirmar-pago");
+    const botonLimpiar = document.getElementById("btn-limpiar-carrito");
 
     botonProcesar.addEventListener("click", () => {
-        realizarVenta();
-        mostrarToast("Venta exitosa", "success");
+        realizarVentaController();
         limpiarCarrito();
+        cantidad.textContent = `(${productosEnCarrito()} productos)`;
+    });
+    
+    botonLimpiar.addEventListener("click", () => {
+        limpiarCarrito();
+        limpiarInputsPago();
         cantidad.textContent = `(${productosEnCarrito()} productos)`;
     });
 });
 
-// Simular placeholder en input de buscar
+
+// Agrega producto al carrito
 document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("input-producto-carrito");
-    const icon = document.getElementById("icono-buscar")
 
-    input.addEventListener("focus", () => {
+    input.addEventListener("input", () => {
 
-        input.addEventListener("input", () => {
-            if (input.value.trim() !== "") {
-                icon.style.color = "transparent";
-            } else {
-                icon.style.color = "gray";
-            }
-        });
-    });
-});
-
-// Agregar producto al carrito
-document.addEventListener("DOMContentLoaded", () => {
-    const input = document.getElementById("input-producto-carrito");
-    const pCantidad = document.getElementById("cantidad");
-
-    pCantidad.innerHTML = `(${productosEnCarrito()} productos)`;
-    pCantidad.style.color = "gray";
-
-    input.addEventListener("input", async () => {
-
-        if (input.value.trim().length == 4) {
-            agregarAlCarrito(input.value.trim());
-            pCantidad.innerHTML = `(${productosEnCarrito()} productos)`;
-            input.value = "";
+        if (input.value.trim().length === 4) {
+            agregarProductosAlcarritoController(input.value.trim());
         }
     });
 });
 
+// Recalcula el subtotal de un producto dependiendo de la cantidad
 document.addEventListener("DOMContentLoaded", () => {
 
     recalcularTotal();
@@ -120,57 +107,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-let total = 0;
 
-function recalcularTotal() {
-    let totalGeneral = 0;
-    // Seleccionamos todos los productos que existen en el carrito en este momento
-    const todosLosProductos = document.querySelectorAll(".div-carrito .producto");
+// Calcular Vueltos
+document.addEventListener("DOMContentLoaded", () => {
 
-    todosLosProductos.forEach(producto => {
-        const precio = parseFloat(producto.dataset.precio);
-        const cantidad = parseInt(producto.querySelector(".input-cantidad").value) || 0;
+    const recibidoInput = document.getElementById("recibido");
 
-        totalGeneral += precio * cantidad;
+    recibidoInput.addEventListener("input", () => {
+        calcularVueltos();
     });
 
-    // Buscamos el elemento donde quieres mostrar el gran total
-    const lblTotal = document.getElementById("totalPagar");
-    if (lblTotal) {
-        lblTotal.value = `COP ${formatearCOP(totalGeneral)}`;
-        total = totalGeneral;
-        calcular();
-    }
-}
-
-const totalInput = document.getElementById("totalPagar");
-const recibidoInput = document.getElementById("recibido");
-const cambioInput = document.getElementById("cambio");
-const estado = document.getElementById("estadoPago");
-
-
-function calcular() {
-    const recibido = parseInt(recibidoInput.value) || 0;
-
-    const cambio = recibido - total;
-
-    cambioInput.value = cambio >= 0 ? `COP ${formatearCOP(cambio)}` : `COP ${formatearCOP(0)}`;
-
-    if (recibido === 0) {
-        estado.textContent = "";
-    } else if (cambio < 0) {
-        estado.textContent = "Pago incompleto";
-        estado.style.color = "red";
-    } else {
-        estado.textContent = "Pago completo";
-        estado.style.color = "green";
-    }
-}
-
-
-function agregarMonto(valor) {
-    recibidoInput.value = (parseFloat(recibidoInput.value) || 0) + valor;
-    calcular();
-}
-
-recibidoInput.addEventListener("input", calcular);
+});

@@ -10,18 +10,16 @@ import {
     agregarProductoController,
     actualizarProductoController,
     buscarProductoController
- } from "../controllers/inventarioController.js"; 
+} from "../controllers/inventarioController.js"; 
+
+import { activarSidebar } from "../components/sidebar.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    inicializarDialogEliminar(eliminarProductoController);
     
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-
+    inicializarDialogEliminar(eliminarProductoController);
+    activarSidebar();
     cargarInventario("");
-
+    
 });
 
 // Agregar Producto
@@ -84,21 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
-// Simular placeholder en input de buscar
-document.addEventListener("DOMContentLoaded", () => {
-    const input = document.getElementById("input-producto");
-    const icon = document.getElementById("icono-buscar")
-
-    input.addEventListener("input", () => {
-        if (input.value.trim() !== "") {
-            icon.style.color = "transparent";
-        } else {
-            icon.style.color = "gray";
-        }
-    });
-});
-
 // Buscar Producto
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -109,12 +92,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (input.value.trim() === "") {
             cargarInventario("");
         }
-        if (input.value.trim().length == 4) {
+        if (input.value.trim().length === 4) {
             buscarProductoController(input.value.trim());
         }
     });
 });
 
+// Cargar inventario por categoria
 document.addEventListener("DOMContentLoaded", () => {
 
     const select = document.getElementById("select-categorias-acciones");
