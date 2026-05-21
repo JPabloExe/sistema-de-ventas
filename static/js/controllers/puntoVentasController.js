@@ -21,14 +21,16 @@ export async function realizarVentaController() {
 
     const info = await realizarVenta(productosEncarrito);
 
-    if (info["mensaje"] == "n") {
-        mostrarToast(info["excepcion"], 'error');
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
         return;
+
     }
 
-    mostrarToast("Venta realizada", "success");
     recalcularTotal();
     limpiarInputsPago();
+    mostrarToast(info.message, info.type);
     
 }
 
@@ -36,13 +38,15 @@ export async function agregarProductosAlcarritoController(codigo) {
     
     const info = await buscarProducto(codigo);
     
-    if (info["mensaje"] === "n") {
-        mostrarToast("Producto no encontrado", "error");
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
         return;
+
     }
     
-    agregarProductoAlCarrito(info["producto"]);
+    agregarProductoAlCarrito(info.data);
     recalcularTotal();
-    mostrarToast("Producto agregado", "success");
+    mostrarToast(info.message, info.type);
 
 }

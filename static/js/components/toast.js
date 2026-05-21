@@ -9,12 +9,16 @@ export function mostrarToast(mensaje, tipo) {
     letrero.classList.remove('success', 'error', 'warning', 'show');
     texto.textContent = mensaje;
 
-    if (tipo == "success") {
+    if (tipo === "success") {
         icono.className = 'fa-solid fa-circle-check'
         letrero.classList.add(tipo)
     }
 
-    if (tipo == "error") {
+    if (tipo === "error") {
+        icono.className = "fa-solid fa-triangle-exclamation" 
+        letrero.classList.add(tipo)
+    }
+    if (tipo === "exception") {
         icono.className = "fa-solid fa-circle-xmark"
         letrero.classList.add(tipo)
     }

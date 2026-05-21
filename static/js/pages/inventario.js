@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     inicializarDialogEliminar(eliminarProductoController);
     activarSidebar();
-    cargarInventario("");
+    cargarInventario(0);
     
 });
 
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     input.addEventListener("input", () => {
 
         if (input.value.trim() === "") {
-            cargarInventario("");
+            cargarInventario(0);
         }
         if (input.value.trim().length === 4) {
             buscarProductoController(input.value.trim());
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const select = document.getElementById("select-categorias-acciones");
 
     select.addEventListener("change", () => {
-        cargarInventario(select.value);
+        cargarInventario(parseInt(select.value));
     });
 
 });

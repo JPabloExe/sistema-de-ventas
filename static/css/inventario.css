@@ -328,6 +328,10 @@ body dialog {
 }
 
 .letrero.error i {
+    color: #FFC32E;
+}
+
+.letrero.exception i {
     color: #8b2e2e;
 }
 

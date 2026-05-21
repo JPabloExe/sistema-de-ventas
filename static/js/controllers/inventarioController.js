@@ -1,5 +1,5 @@
 import {
-    eliminarProducto, 
+    eliminarProducto,
     obtenerProductos,
     agregarProducto,
     actualizarProducto,
@@ -8,7 +8,7 @@ import {
 } from "../api/productosApi.js";
 
 import {
-    llenarTablaInventario, 
+    llenarTablaInventario,
     obtenerDatosFormularioProducto,
     limpiarFormularioProducto,
     mostrarInformeInventario
@@ -17,15 +17,18 @@ import {
 import { mostrarToast } from "../components/toast.js";
 
 export async function eliminarProductoController(codigo) {
-    
+
     const info = await eliminarProducto(codigo);
 
-    if(info["mensaje"] === "n") {
-        mostrarToast(info["excepcion"], "error");
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
     }
 
     cargarInventario("");
-    mostrarToast("Producto eliminado", "success");
+    mostrarToast(info.message, info.type);
 
 }
 
@@ -33,7 +36,17 @@ export async function cargarInventario(categoria) {
 
     const info = await obtenerProductos(categoria);
 
-    llenarTablaInventario(info["productos"]);
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+
+        llenarTablaInventario(null);
+        return;
+
+    }
+
+    mostrarToast(info.message, info.type)
+    llenarTablaInventario(info.data);
 }
 
 export async function agregarProductoController(formulario) {
@@ -42,31 +55,36 @@ export async function agregarProductoController(formulario) {
 
     const info = await agregarProducto(producto);
 
-    if (info["mensaje"] == "n") {
-        mostrarToast(info["exepcion"], "error");
-        return;
-    } 
+    if (!info.ok) {
 
-    mostrarToast("Producto agregado", "success");
+        mostrarToast(info.message, info.type);
+        return;
+        
+    }
+
+    mostrarToast(info.message, info.type);
     limpiarFormularioProducto(formulario);
     cargarInventario("");
-    
+
 }
 
 export async function actualizarProductoController(formulario) {
-    
-    const productoActualizado = obtenerDatosFormularioProducto(formulario);
-    
-    const info = await actualizarProducto(productoActualizado);
-    
-    if (info["mensaje"] == "n") {
-        mostrarToast(info["exepcion"], "error");
-        return;
-    } 
 
-    mostrarToast("Producto actualizado", "success");
+    const productoActualizado = obtenerDatosFormularioProducto(formulario);
+
+    const info = await actualizarProducto(productoActualizado);
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    mostrarToast(info.message, info.type);
     limpiarFormularioProducto(formulario);
     cargarInventario("");
+
 }
 
 export async function buscarProductoController(codigo) {
@@ -74,22 +92,32 @@ export async function buscarProductoController(codigo) {
     const info = await buscarProducto(codigo);
     const prodToList = [];
 
-    if (info["mensaje"] === "n") {
-        mostrarToast("Producto no encontrado", "error");
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
         return;
+
     }
 
-    prodToList.push(info["producto"]);
+    prodToList.push(info.data);
 
     llenarTablaInventario(prodToList);
-    mostrarToast("Producto encontrado", "success");
-    
+    mostrarToast(info.message, info.type);
+
 }
 
 export async function cargarInformeInventario() {
 
     const info = await obtenerInformeInventario();
 
-    mostrarInformeInventario(info["informe"]);
-  
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+        
+    }
+    
+    mostrarInformeInventario(info.data);
+    mostrarToast(info.message, info.type);
+
 }

@@ -36,8 +36,12 @@ export function llenarTablaInventario(productos) {
     const tbody = document.getElementById("cuerpo-tabla-inventario");
     const pCantidadProductosInventario = document.getElementById("p-cantidad-productos-inventario");
 
-    const p = productos;
-    
+    if (productos === null) {    
+        pCantidadProductosInventario.textContent = 0;
+        tbody.innerHTML = "";
+        return;
+    }    
+
     tbody.innerHTML = "";
 
     for (const producto of productos) {
@@ -79,8 +83,6 @@ export function llenarTablaInventario(productos) {
 
 export function obtenerDatosFormularioProducto(formulario) {
 
-    const select = formulario.categorias;
-
     return {
         "codigo": formulario.codigo.value,
         "nombre": formulario.nombre.value,
@@ -88,7 +90,7 @@ export function obtenerDatosFormularioProducto(formulario) {
         "valor_unitario": formulario.precio.value,
         "costo": formulario.costo.value,
         "fecha_caducidad": formulario.caducidad.value,
-        "categoria": select.options[select.selectedIndex].text
+        "categoria": parseInt(formulario.categorias.value)
     }
 }
 

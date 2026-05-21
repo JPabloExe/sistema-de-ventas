@@ -15,21 +15,31 @@ export async function eliminarVentaController(numeroVenta) {
     
     const info = await eliminarVenta(numeroVenta);
 
-    if(info["mensaje"] === "n") {
-        mostrarToast(info["excepcion"], "error");
+    if(!info.ok) {
+
+        mostrarToast(info.message, info.type);
         return;
+        
     }
-
+    
     cargarVentas("", "");
-    mostrarToast("Venta eliminada", "success");
-
+    mostrarToast(info.message, info.type);
+    
 }
 
 export async function cargarInformeVentas() {
-
+    
     const info = await obtenerInformeVentas();
-
-    mostrarInformeVentas(info["informe"]);
+    
+    if(!info.ok) {
+    
+        mostrarToast(info.message, info.type);
+        return;
+        
+    }
+    
+    mostrarInformeVentas(info.data);
+    mostrarToast(info.message, info.type);
   
 }
 
@@ -37,16 +47,14 @@ export async function cargarVentas(fechaInicial, fechaFinal) {
 
     const info = await buscarVentas(fechaInicial, fechaFinal);
 
-    if (info["mensaje"] == "n") {
+    if (!info.ok) {
 
-        if (info["error"] == 0) {
-            mostrarToast("Ventas no encontradas en este intervalo", "error");
-            return;
-        }
-        mostrarToast(info["error"], "error")
+        mostrarToast(info.message, info.type)
         return;
+
     }
 
-    llenarTablaVentas(info["ventas"]);
+    llenarTablaVentas(info.data);
+    mostrarToast(info.message, info.type);
     
 }

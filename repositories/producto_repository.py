@@ -11,8 +11,7 @@ class ProductoRepository:
         cursor.callproc("sp_agregar_producto", [
             producto.codigo, 
             producto.nombre, 
-            producto.stock, 
-            producto.stock_m, 
+            producto.stock,  
             producto.valor_unitario, 
             producto.costo, 
             producto.fecha_caducidad, 
@@ -124,7 +123,6 @@ class ProductoRepository:
                 "categoria": fila[7]
             })
         return productos   
-        
         
         
         
