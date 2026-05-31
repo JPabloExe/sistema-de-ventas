@@ -48,30 +48,31 @@ export function llenarTablaInventario(productos) {
         const fila = document.createElement("tr");
 
         fila.innerHTML = `
-        <td class="producto">
-            <div class="nombre">${producto["nombre"]}</div>
-        </td>
-        <td class="codigo">${producto["codigo"]}</td>
-        <td class="precio">COP ${formatearCOP(producto["valor_unitario"])}</td>
-        <td class="costo">COP ${formatearCOP(producto["costo"])}</td>
-        <td class="stock">
-            <div class="cantidad">${producto["stock"]} UNIDADES</div>
-        </td>
-        <td class="acciones">
-            <i id="btn-actualizar-producto" class="fa-solid fa-pen-to-square editar"
-                data-codigo="${producto["codigo"]}"
-                data-nombre="${producto["nombre"]}"
-                data-stock="${producto["stock"]}"
-                data-precio="${producto["valor_unitario"]}"
-                data-costo="${producto["costo"]}"
-                data-caducidad="${producto["fecha_caducidad"]}"
-                data-categoria="${producto["categoria"]}">
-            </i>
+            <td class="producto">
+                <div class="nombre">${producto["nombre"]}</div>
+            </td>
+            <td class="codigo">${producto["codigo"]}</td>
+            <td class="precio">COP ${formatearCOP(producto["valor_unitario"])}</td>
+            <td class="costo">COP ${formatearCOP(producto["costo"])}</td>
+            <td class="stock">
+                <div class="cantidad">${producto["stock"]} UNIDADES</div>
+            </td>
+            <td class="acciones">
+                <i id="btn-actualizar-producto" class="fa-solid fa-pen-to-square editar"
+                    data-codigo="${producto["codigo"]}"
+                    data-nombre="${producto["nombre"]}"
+                    data-stock="${producto["stock"]}"
+                    data-precio="${producto["valor_unitario"]}"
+                    data-costo="${producto["costo"]}"
+                    data-caducidad="${producto["fecha_caducidad"]}"
+                    data-categoria="${producto["categoria"]}">
+                </i>
 
-            <i id="btn-eliminar-producto" class="fa-solid fa-trash eliminar"
-                data-codigo="${producto["codigo"]}">
-            </i>
-            </td>`;
+                <i id="btn-eliminar-producto" class="fa-solid fa-trash eliminar"
+                    data-codigo="${producto["codigo"]}">
+                </i>
+                </td>
+            `;
 
         tbody.appendChild(fila);
     }

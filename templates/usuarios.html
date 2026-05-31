@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Gestión de Usuarios
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/usuarios.css') }}">
+{% endblock %}
+
+{% block contenido %}
+
+<div class="usuarios-container">
+
+    <!-- TABLA -->
+    <section class="panel">
+
+        <div class="panel-header">
+
+            <h2>Usuarios</h2>
+
+            <input type="text" class="input-busqueda" placeholder="Buscar usuario...">
+
+        </div>
+
+        <div class="tabla-contenedor">
+
+            <table class="tabla-usuarios">
+
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Cedula</th>
+                        <th>Teléfono</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tbody-usuarios"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- FORMULARIO -->
+
+    <aside class="panel formulario-panel">
+
+        <h2>Registrar Usuario</h2>
+
+        <form id="form-registrar-usuarios">
+
+            <div class="campo">
+                <label>Nombre</label>
+                <input id="input-nombre" type="text" placeholder="Ingrese nombre" required>
+            </div>
+
+            <div class="campo">
+                <label>Apellido</label>
+                <input id="input-apellido" type="text" placeholder="Ingrese apellido" required>
+            </div>
+            
+            <div class="campo">
+                <label>Cedula</label>
+                <input id="input-cedula" type="number" placeholder="Ingrese cedula" required>
+            </div>
+            
+            <div class="campo">
+                <label>Telefono</label>
+                <input id="input-telefono" type="number" placeholder="Ingrese teléfono" required>
+            </div>
+            
+            <div class="campo">
+                <label>Usuario</label>
+                <input id="input-usuario" type="text" placeholder="Ingrese usuario" required>
+            </div>
+
+            <div class="campo">
+                <label>Contraseña</label>
+                <input id="input-contrasena" type="password" placeholder="Ingrese contraseña" required>
+            </div>
+
+            <div class="campo">
+                <label>Cargo</label>
+
+                <select id="select-cargo">
+                    <option value="0">Seleccione cargo</option>
+                    <option value="1">Administrador</option>
+                    <option value="2">Empleado</option>
+                    <option value="3">Supervisor</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-registrar">
+                Registrar Usuario
+            </button>
+
+        </form>
+
+    </aside>
+
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script type="module" src="{{ url_for('static', filename='/js/pages/usuarios.js') }}"></script>
+{% endblock %}

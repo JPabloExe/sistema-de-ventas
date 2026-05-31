@@ -1,0 +1,240 @@
+/* =========================
+   GENERAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#f5f5f5;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body i, button {
+    cursor:pointer;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.usuarios-container{
+    display:grid;
+    grid-template-columns: 2.2fr 1fr;
+    gap:20px;
+    padding:20px;
+}
+
+/* =========================
+   PANEL
+========================= */
+
+.panel{
+    height: 550px;
+    background:#fff;
+    border:1px solid #d8d8d8;
+    padding: 24px;
+    animation:fadeIn .3s ease;
+}
+
+.formulario-panel {
+    overflow-y: auto;
+}
+
+.panel:hover{
+    transform:translateY(-2px);
+    transition:.2s;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.panel-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.panel-header h2,
+.formulario-panel h2{
+    font-size:2rem;
+    font-weight:600;
+    color:#111827;
+}
+
+/* =========================
+   BUSQUEDA
+========================= */
+
+.input-busqueda{
+    width:350px;
+    height:40px;
+    border:1px solid #d5d5d5;
+    padding:0 12px;
+    font-size:15px;
+    outline: none;
+}
+
+/* =========================
+   TABLA
+========================= */
+
+.tabla-usuarios{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.tabla-usuarios th{
+    text-align:left;
+    padding:16px 10px;
+    border-bottom:1px solid #ddd;
+    font-size:15px;
+}
+
+.tabla-usuarios td{
+    padding:18px 10px;
+    border-bottom:1px solid #eee;
+    font-size:15px;
+}
+
+.tabla-usuarios tbody tr{
+    transition:.2s;
+}
+
+.tabla-usuarios tbody tr:hover{
+    background:#fafafa;
+}
+
+/* =========================
+   BADGES
+========================= */
+
+.badge-admin{
+    background:#198754;
+    color:white;
+    padding:7px 12px;
+    border-radius:7px;
+    font-size:13px;
+}
+
+.badge-empleado{
+    background:#6c757d;
+    color:white;
+    padding:7px 12px;
+    border-radius:7px;
+    font-size:13px;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.btn-actualizar {
+    color:#4caf50;
+    padding-right: 10px;
+    transition:.2s;
+}
+
+.btn-eliminar {
+    color:#dc3545;
+    transition:.2s;
+}
+
+.btn-actualizar:hover {
+    color:#377739;
+}
+
+.btn-eliminar:hover {
+    color:#bb2d3b;
+}
+
+.btn-registrar{
+    width:100%;
+    height:44px;
+    border:none;
+    color: white;
+    background-color: #324154;
+    border-radius:8px;
+    font-size:15px;
+    transition:.2s;
+    margin-top: 15px;
+}
+
+.btn-registrar:hover{
+    background:#17263b;
+}
+
+/* =========================
+   FORMULARIO
+========================= */
+
+.formulario-panel form{
+    margin-top:20px;
+}
+
+.campo{
+    margin-bottom:10px;
+}
+
+.campo label{
+    display:block;
+    margin-bottom:6px;
+    font-size:15px;
+}
+
+.campo input,
+.campo select{
+    width:100%;
+    height:40px;
+    border:1px solid #d5d5d5;
+    border-radius:8px;
+    padding:0 12px;
+    font-size:14px;
+}
+
+.campo input:focus,
+.campo select:focus{
+    outline:none;
+}
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1100px){
+
+    .usuarios-container{
+        grid-template-columns:1fr;
+    }
+
+    .panel-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .input-busqueda{
+        width:100%;
+    }
+
+}

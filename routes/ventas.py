@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request
 from entities.venta import Venta
 from repositories.venta_repository import VentaRepository
 from utils.responses import api_response

@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const linkInventario = document.getElementById("link-inventario");
     const linkPVentas = document.getElementById("link-punto-ventas");
     const linkVentas = document.getElementById("link-ventas");
+    const linkUsuarios = document.getElementById("link-usuarios");
     const botonPVentas = document.getElementById("pVentas");
     const botonInventario = document.getElementById("inventario");
 
@@ -43,6 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
     
     linkVentas.addEventListener("click", () => {
         abrirVentanas("ventas")
+    });
+
+    linkUsuarios.addEventListener("click", () => {
+        abrirVentanas("usuarios")
     });
 
     botonPVentas.addEventListener("click", () => {

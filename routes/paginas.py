@@ -17,3 +17,7 @@ def puntoVentas():
 @paginas_bp.route('/ventas')
 def ventas():
     return render_template('ventas.html')
+
+@paginas_bp.route('/usuarios')
+def usuarios():
+    return render_template('usuarios.html')

@@ -58,4 +58,5 @@ export async function obtenerProductos(categoria) {
     const respuesta = await fetch(`${URL_API}/obtenerProductos?categoria=${categoria}`);
 
     return await respuesta.json();
+    
 }

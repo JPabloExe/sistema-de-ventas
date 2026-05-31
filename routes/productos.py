@@ -1,5 +1,5 @@
 from utils.responses import api_response
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request
 from entities.producto import Producto
 from repositories.producto_repository import ProductoRepository
 
