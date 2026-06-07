@@ -1,15 +1,35 @@
 import { 
-    obtenerDatosFormularioUsuarios,
-    limpiarFormulario,
-    llenarTablaUsuarios
-} from "../ui/usuariosUI.js"
+    llenarTablaUsuarios 
+} from "../ui/usuariosUI.js";
+
+import { 
+    obtenerDatosFormularioUsuarios 
+} from "../ui/usuariosUI.js";
 
 import { 
     registrarUsuario, 
-    obtenerUsuarios 
+    obtenerUsuarios,
+    eliminarUsuario
 } from "../api/usuariosApi.js";
 
+
 import { mostrarToast } from "../components/toast.js";
+
+export async function eliminarUsuarioController(cedula) {
+
+    const info = await eliminarUsuario(cedula);
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    mostrarToast(info.message, info.type);
+    cargarUsuarios();
+
+}
 
 export async function registrarUsuarioController() {
 
@@ -23,7 +43,6 @@ export async function registrarUsuarioController() {
     }
     
     mostrarToast(info.message, info.type);
-    limpiarFormulario();
 
 }
 

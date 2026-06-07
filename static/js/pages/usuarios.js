@@ -1,9 +1,25 @@
 import { activarSidebar } from "../components/sidebar.js";
 
+import { 
+    obtenerDatosFormularioUsuarios,
+    limpiarFormulario,
+    llenarTablaUsuarios,
+    inicializarDialogEliminar
+} from "../ui/usuariosUI.js"
+
 import {
     registrarUsuarioController,
-    cargarUsuarios
+    cargarUsuarios,
+    eliminarUsuarioController
 } from "../controllers/usuariosController.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    inicializarDialogEliminar(eliminarUsuarioController);
+    activarSidebar();
+    cargarUsuarios();
+    
+});
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -14,14 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         await registrarUsuarioController();
         await cargarUsuarios();
+        limpiarFormulario();
 
     });
-
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    activarSidebar();
-    cargarUsuarios();
 
 });

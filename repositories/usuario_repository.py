@@ -51,5 +51,17 @@ class UsuarioRepository:
             })
             
         return usuarios
+    
+    @staticmethod
+    def eliminarUsuario(cedula):
+        conexion = Conexion.get_conexion()
+        cursor = conexion.cursor()
+
+        cursor.callproc("sp_eliminar_usuario", [cedula])
+
+        cursor.close()
+        conexion.commit()
+        conexion.close()
+
 
         

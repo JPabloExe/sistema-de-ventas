@@ -63,6 +63,30 @@ def obtener_usuarios():
         return api_response(
             False,
             'exception',
-            str(e),
+            str(e.msg),
+            None
+        )
+
+@usuarios_bp.route('/eliminarUsuario', methods=['DELETE'])
+def eliminar_usuario():
+    
+    cedula = request.args.get('cedula')
+
+    try:
+
+        UsuarioRepository.eliminarUsuario(cedula)
+
+        return api_response(
+            True,
+            'success',
+            'Usuario eliminado',
+            None
+        )
+    
+    except Exception as e:
+        return api_response(
+            False,
+            'exception',
+            str(e.msg),
             None
         )

@@ -11,6 +11,7 @@
 body{
     background:#f5f5f5;
     font-family:"Segoe UI",sans-serif;
+    display: flex;
 }
 
 body i, button {
@@ -44,10 +45,6 @@ body i, button {
     overflow-y: auto;
 }
 
-.panel:hover{
-    transform:translateY(-2px);
-    transition:.2s;
-}
 
 /* =========================
    HEADER
@@ -237,4 +234,34 @@ body i, button {
         width:100%;
     }
 
+}
+
+.dialog-confirmacion {
+    background-color: #FEFEFE;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    margin: auto;
+}
+
+.dialog-confirmacion p {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.dialog-confirmacion div {
+    display: flex;
+    justify-content: space-around;
+}
+
+.dialog-confirmacion button {
+    border: none;
+    padding: 8px 12px 8px 12px; 
+    border-radius: 8px;
+    outline: none;
+}
+
+.btn-confirmar-borrado:hover {
+    color: white;
+    background-color: #8b2e2e;
 }

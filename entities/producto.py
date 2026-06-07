@@ -1,4 +1,7 @@
+from dataclasses import dataclass
+@dataclass
 class Producto:
+
     def __init__(self, codigo, nombre, stock, valor_unitario, costo, fecha_caducidad, categoria):
         self.codigo = codigo
         self.nombre = nombre

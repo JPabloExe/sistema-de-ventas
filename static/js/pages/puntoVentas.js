@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     botonProcesar.addEventListener("click", () => {
         realizarVentaController();
-        limpiarCarrito();
+        limpiarCarrito();   
         cantidad.textContent = `(${productosEnCarrito()} productos)`;
     });
     

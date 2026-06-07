@@ -8,14 +8,24 @@ export async function registrarUsuario(usuario) {
         body: JSON.stringify(usuario)
     });
 
-    return await respuesta.json()
+    return await respuesta.json();
     
 }
 
 export async function obtenerUsuarios() {
 
-    const respuesta = fetch(`${URL_API}/obtenerUsuarios`);
+    const respuesta = await fetch(`${URL_API}/obtenerUsuarios`);
 
-    return (await respuesta).json();
+    return await respuesta.json();
+    
+}
+
+export async function eliminarUsuario(cedula) {
+
+    const respuesta = await fetch(`${URL_API}/eliminarUsuario?cedula=${cedula}`, {
+        method: "DELETE"
+    });
+
+    return await respuesta.json();
     
 }

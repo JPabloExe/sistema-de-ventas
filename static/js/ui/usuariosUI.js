@@ -1,3 +1,35 @@
+let cedulaAEliminar = null;
+
+export function inicializarDialogEliminar(onConfirmar) {
+
+    const btnConfirmar = document.getElementById("btn-confirmar-borrado");
+    const btnCancelar = document.getElementById("btn-cancelar-confirmacion");
+    const dialogConfirmacion = document.getElementById("dialog-confirmacion");
+    const tbody = document.getElementById("tbody-usuarios");
+
+
+    tbody.addEventListener("click", (e) => {
+        const botonEliminar = e.target.closest(".btn-eliminar");
+
+        if (botonEliminar) {
+            cedulaAEliminar = botonEliminar.dataset.cedula;
+            dialogConfirmacion.showModal();
+        }
+    });
+
+    btnCancelar.addEventListener("click", () => {
+        dialogConfirmacion.close();
+    });
+
+    btnConfirmar.addEventListener("click", () => {
+        if (cedulaAEliminar) {
+            onConfirmar(cedulaAEliminar);
+            dialogConfirmacion.close();
+        }
+    });
+
+}
+
 export function llenarTablaUsuarios(usuarios) {
 
     const tbody = document.getElementById('tbody-usuarios');

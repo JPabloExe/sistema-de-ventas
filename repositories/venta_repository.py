@@ -17,8 +17,8 @@ class VentaRepository:
             conexion.commit()
 
         except Exception as e:
-            print("Error: ", e)
             conexion.rollback()
+            raise e
 
         finally:
             cursor.close()
