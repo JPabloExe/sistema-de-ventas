@@ -90,7 +90,7 @@ export async function actualizarProductoController(formulario) {
 export async function buscarProductoController(codigo) {
 
     const info = await buscarProducto(codigo);
-    const prodToList = [];
+    const productList = [];
 
     if (!info.ok) {
 
@@ -99,9 +99,9 @@ export async function buscarProductoController(codigo) {
 
     }
 
-    prodToList.push(info.data);
+    productList.push(info.data);
 
-    llenarTablaInventario(prodToList);
+    llenarTablaInventario(productList);
     mostrarToast(info.message, info.type);
 
 }

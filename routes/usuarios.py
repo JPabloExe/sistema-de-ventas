@@ -18,7 +18,7 @@ def registrar_usuario():
             datos['telefono'],
             datos['usuario'],
             datos['contrasena'],
-            datos['id_cargo']
+            datos['cargo']
         )
 
         UsuarioRepository.registrarUsuario(usuario)
@@ -52,13 +52,14 @@ def obtener_usuarios():
                 'No hay usuarios registrados',
                 None
             )
-        else:
-            return api_response(
-                True,
-                'success',
-                'Usuarios obtenidos',
-                usuarios
-            )
+     
+        return api_response(
+            True,
+            'success',
+            'Usuarios obtenidos',
+            usuarios
+        )
+    
     except Exception as e:
         return api_response(
             False,
@@ -83,6 +84,62 @@ def eliminar_usuario():
             None
         )
     
+    except Exception as e:
+        return api_response(
+            False,
+            'exception',
+            str(e.msg),
+            None
+        )
+    
+@usuarios_bp.route('/buscarUsuario', methods=['GET'])
+def buscar_usuario():
+    
+    cedula = request.args.get('cedula')
+
+    try:
+
+        usuario = UsuarioRepository.buscarUsuario(cedula)
+
+        if usuario == None:
+            return api_response(
+                False,
+                'error',
+                'Usuario no encontrado',
+                None
+            )
+        
+        return api_response(
+            True,
+            'success',
+            'Usuario encontrado',
+            usuario
+        )
+    
+    except Exception as e:
+        return api_response(
+            False,
+            'exception',
+            str(e.msg),
+            None
+        )
+
+@usuarios_bp.route('/actualizarUsuario', methods=['PUT'])
+def actualizar_usuario():
+    
+    datosActualizados = request.json
+
+    try:
+
+        UsuarioRepository.actualizarUsuario(datosActualizados)
+
+        return api_response(
+            True,
+            'success',
+            'Usuario actualizado',
+            None
+        )
+
     except Exception as e:
         return api_response(
             False,

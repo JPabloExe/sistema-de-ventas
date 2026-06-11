@@ -1,69 +1,60 @@
 /* =========================
    GENERAL
 ========================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+body button, a, i {
+    cursor: pointer;
 }
-
-body{
-    background:#f5f5f5;
-    font-family:"Segoe UI",sans-serif;
-    display: flex;
-}
-
-body i, button {
-    cursor:pointer;
-}
-
-/* =========================
-   LAYOUT
-========================= */
 
 .usuarios-container{
-    display:grid;
-    grid-template-columns: 2.2fr 1fr;
-    gap:20px;
-    padding:20px;
+    width:100%;
+    padding: 15px 20px 20px 20px;
 }
 
-/* =========================
-   PANEL
-========================= */
-
-.panel{
-    height: 550px;
-    background:#fff;
-    border:1px solid #d8d8d8;
-    padding: 24px;
-    animation:fadeIn .3s ease;
+.page-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.formulario-panel {
-    overflow-y: auto;
+.panel-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background: #FEFEFE;
+    padding: 20px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 }
 
-
-/* =========================
-   HEADER
-========================= */
-
-.panel-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:10px;
+.div-presentacion {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    gap: 5px;
 }
 
-.panel-header h2,
-.formulario-panel h2{
-    font-size:2rem;
-    font-weight:600;
-    color:#111827;
+.div-presentacion p {
+    margin-top: 0%;
+    color: gray;
+    font-size: small;
 }
 
+.div-presentacion h2 {
+    margin-bottom: 0;
+    margin-top: 5%;
+}
+
+.btn-nuevo-usuario{
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    color: #F8FAF9;
+    background-color: #2E3547;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.btn-nuevo-usuario:hover{
+    background:#1f2c43;
+}
 /* =========================
    BUSQUEDA
 ========================= */
@@ -82,29 +73,63 @@ body i, button {
 ========================= */
 
 .tabla-usuarios{
-    width:100%;
-    border-collapse:collapse;
+    width: 100%;
+    table-layout: fixed;
+    background: #FEFEFE;
+    font-family: Arial, sans-serif;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 10px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 }
 
 .tabla-usuarios th{
-    text-align:left;
-    padding:16px 10px;
-    border-bottom:1px solid #ddd;
-    font-size:15px;
+    padding: 14px;
+    text-align: left;
+    color: gray;
 }
 
-.tabla-usuarios td{
-    padding:18px 10px;
-    border-bottom:1px solid #eee;
-    font-size:15px;
+.tabla-usuarios thead {
+    display: table;
+    width: 100%;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+    background-color: #F8F8F8;
+}
+.tabla-usuarios tbody td {
+    font-weight: bolder;
+    padding-left: 14px;
 }
 
-.tabla-usuarios tbody tr{
-    transition:.2s;
+
+.tabla-usuarios thead tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 }
 
-.tabla-usuarios tbody tr:hover{
-    background:#fafafa;
+.tabla-usuarios th {
+    padding: 14px;
+    text-align: left;
+    color: gray;
+}
+
+/* TBODY CON SCROLL */
+.tabla-usuarios tbody {
+    display: block;
+    height: 290px;
+    overflow-y: auto;
+}
+
+/* FILAS */
+.tabla-usuarios tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    height: 60px;
+}
+
+.tabla-usuarios tbody tr:hover {
+    background-color: #f5f5f5;
 }
 
 /* =========================
@@ -148,22 +173,6 @@ body i, button {
 
 .btn-eliminar:hover {
     color:#bb2d3b;
-}
-
-.btn-registrar{
-    width:100%;
-    height:44px;
-    border:none;
-    color: white;
-    background-color: #324154;
-    border-radius:8px;
-    font-size:15px;
-    transition:.2s;
-    margin-top: 15px;
-}
-
-.btn-registrar:hover{
-    background:#17263b;
 }
 
 /* =========================
@@ -264,4 +273,65 @@ body i, button {
 .btn-confirmar-borrado:hover {
     color: white;
     background-color: #8b2e2e;
+}
+
+.div-input {
+    border: solid #DEDEDE 1px;
+    background-color: #FEFEFE;
+    width: 40%;
+    padding-left: 10px;
+    color: gray;
+}
+
+.input-buscar-usuarios {
+    width: 90%;
+    padding: 10px 10px 10px 0px;
+    border: none;
+    font-size: 14px;
+    outline: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.dialog-usuarios {
+    background-color: #FFFFFF;
+    padding: 20px 80px 30px;
+    height: 500px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+    border: none;
+}
+
+.dialog-botones {
+    display: flex;
+    padding-top: 20px;
+    justify-content: space-around;
+    gap: 10px;
+
+}
+
+.dialog-botones button {
+    color: black;
+    border: none;
+    padding: 8px 12px 8px 12px; 
+    border-radius: 8px;
+    font-size: medium;
+}
+
+.btn-accion-dialog {
+    background-color: #2E3547;
+    color: white !important;
+}
+
+.btn-accion-dialog:hover {
+    background:#1f2c43;
+}
+
+.btn-cancelar {
+    background-color: #cecece;
+
 }

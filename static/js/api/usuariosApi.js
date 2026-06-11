@@ -29,3 +29,25 @@ export async function eliminarUsuario(cedula) {
     return await respuesta.json();
     
 }
+
+export async function buscarUsuario(cedula) {
+
+    const respuesta = await fetch(`${URL_API}/buscarUsuario?cedula=${cedula}`, {
+        method: "GET"
+    });
+
+    return await respuesta.json();
+    
+}
+
+export async function actualizarUsuario(datosActualizados) {
+
+    const respuesta = await fetch(`${URL_API}/actualizarUsuario`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(datosActualizados)
+    });
+
+    return await respuesta.json();
+    
+}

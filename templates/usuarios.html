@@ -10,18 +10,43 @@ Gestión de Usuarios
 
 {% block contenido %}
 
+
+
 <div class="usuarios-container">
 
-    <!-- TABLA -->
-    <section class="panel">
+    <!-- CABECERA -->
+    <div class="page-header">
+
+        <div class="div-presentacion">
+            <h2>Gestión de Usuarios</h2>
+            <p>Administra los usuarios del sistema</p>
+        </div>
+
+        <button class="btn-nuevo-usuario" id="btn-nuevo-usuario">
+            <i class="fa-solid fa-plus"></i>
+            Nuevo Usuario
+        </button>
+
+    </div>
+
+    <!-- PANEL FILTROS -->
+    <section class="panel filtros-panel">
 
         <div class="panel-header">
 
-            <h2>Usuarios</h2>
+            <div class="div-input">
+                <i class="fa-solid fa-magnifying-glass"></i>
 
-            <input type="text" class="input-busqueda" placeholder="Buscar usuario...">
+                <input id="input-buscar-usuarios" class="input-buscar-usuarios" type="number"
+                    placeholder="Buscar usuario por cédula">
+            </div>
 
         </div>
+
+    </section>
+
+    <!-- TABLA -->
+    <section class="panel tabla-panel">
 
         <div class="tabla-contenedor">
 
@@ -30,7 +55,7 @@ Gestión de Usuarios
                 <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>Cedula</th>
+                        <th>Cédula</th>
                         <th>Teléfono</th>
                         <th>Rol</th>
                         <th>Acciones</th>
@@ -45,64 +70,70 @@ Gestión de Usuarios
 
     </section>
 
-    <!-- FORMULARIO -->
-
-    <aside class="panel formulario-panel">
-
-        <h2>Registrar Usuario</h2>
-
-        <form id="form-registrar-usuarios">
-
-            <div class="campo">
-                <label>Nombre</label>
-                <input id="input-nombre" type="text" placeholder="Ingrese nombre" required>
-            </div>
-
-            <div class="campo">
-                <label>Apellido</label>
-                <input id="input-apellido" type="text" placeholder="Ingrese apellido" required>
-            </div>
-            
-            <div class="campo">
-                <label>Cedula</label>
-                <input id="input-cedula" type="number" placeholder="Ingrese cedula" required>
-            </div>
-            
-            <div class="campo">
-                <label>Telefono</label>
-                <input id="input-telefono" type="number" placeholder="Ingrese teléfono" required>
-            </div>
-            
-            <div class="campo">
-                <label>Usuario</label>
-                <input id="input-usuario" type="text" placeholder="Ingrese usuario" required>
-            </div>
-
-            <div class="campo">
-                <label>Contraseña</label>
-                <input id="input-contrasena" type="password" placeholder="Ingrese contraseña" required>
-            </div>
-
-            <div class="campo">
-                <label>Cargo</label>
-
-                <select id="select-cargo">
-                    <option value="0">Seleccione cargo</option>
-                    <option value="1">Administrador</option>
-                    <option value="2">Empleado</option>
-                    <option value="3">Supervisor</option>
-                </select>
-            </div>
-
-            <button type="submit" class="btn-registrar">
-                Registrar Usuario
-            </button>
-
-        </form>
-
-    </aside>
-
 </div>
+
+
+
+<dialog id="dialog-usuarios" class="dialog-usuarios">
+    
+    <h2>Registrar Usuario</h2>
+    
+    <form id="form-usuarios">
+        
+        <div class="campo">
+            <label>Nombre</label>
+            <input id="input-nombre" type="text" placeholder="Ingrese nombre" required>
+        </div>
+        
+        <div class="campo">
+            <label>Apellido</label>
+            <input id="input-apellido" type="text" placeholder="Ingrese apellido" required>
+        </div>
+        
+        <div class="campo">
+            <label>Cedula</label>
+            <input id="input-cedula" type="number" placeholder="Ingrese cedula" required>
+        </div>
+        
+        <div class="campo">
+            <label>Telefono</label>
+            <input id="input-telefono" type="number" placeholder="Ingrese teléfono" required>
+        </div>
+        
+        <div class="campo">
+            <label>Usuario</label>
+            <input id="input-usuario" type="text" placeholder="Ingrese usuario" required>
+        </div>
+        
+        <div class="campo">
+            <label>Contraseña</label>
+            <input id="input-contrasena" type="password" placeholder="Ingrese contraseña" required>
+        </div>
+        
+        <div class="campo">
+            <label>Cargo</label>
+            
+            <select id="select-cargo">
+                <option value="0">Seleccione cargo</option>
+                <option value="1">Administrador</option>
+                <option value="2">Empleado</option>
+                <option value="3">Supervisor</option>
+            </select>
+        </div>
+        
+        <div class="dialog-botones">
+            <button type="button" class="btn-cancelar" id="btn-cancelar">
+                Cancelar
+            </button>
+            
+            <button type="submit" class="btn-accion-dialog" id="btn-accion-dialog">
+                
+            </button>
+        </div>
+        
+    </form>
+    
+</dialog>
 
 <dialog id="dialog-confirmacion" class="dialog-confirmacion">
     <p>¿Deseas borrar este producto?</p>

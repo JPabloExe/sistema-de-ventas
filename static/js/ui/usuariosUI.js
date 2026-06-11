@@ -49,7 +49,7 @@ export function llenarTablaUsuarios(usuarios) {
         fila.innerHTML = `
           
             <tr>
-                <td>${usuario.nombre}</td>
+                <td class="nombre">${usuario.nombre}</td>
                 <td>${usuario.cedula}</td>
                 <td>${usuario.telefono}</td>
 
@@ -94,19 +94,42 @@ export function obtenerDatosFormularioUsuarios() {
         'telefono': document.getElementById('input-telefono').value,
         'usuario': document.getElementById('input-usuario').value,
         'contrasena': document.getElementById('input-contrasena').value,
-        'id_cargo': document.getElementById('select-cargo').value,
+        'cargo': document.getElementById('select-cargo').value
     }
 
 }
 
-export function limpiarFormulario() {
+export function limpiarFormulario(form) {
 
-    document.getElementById('input-nombre').value = '';
-    document.getElementById('input-apellido').value = '';
-    document.getElementById('input-cedula').value = '';
-    document.getElementById('input-telefono').value = '';
-    document.getElementById('input-usuario').value = '';
-    document.getElementById('input-contrasena').value = '';
-    document.getElementById('select-cargo').value = '0';
+    form.reset();
+
+}
+
+export function llenarFormularioUsuarios(boton) {
+
+    document.getElementById('input-nombre').value = boton.dataset.nombre;
+    document.getElementById('input-apellido').value = boton.dataset.apellido;
+    document.getElementById('input-cedula').value = boton.dataset.cedula;
+    document.getElementById('input-telefono').value = boton.dataset.telefono;
+    document.getElementById('input-usuario').value = boton.dataset.usuario;
+
+    switch (boton.dataset.cargo) {
+
+        case 'Administrador':
+            document.getElementById('select-cargo').value = '1';
+            break;
+
+        case 'Empleado':
+            document.getElementById('select-cargo').value = '2';
+            break;
+
+        case 'Supervisor':
+            document.getElementById('select-cargo').value = '3';
+            break;
+
+        default:
+            document.getElementById('select-cargo').value = '0';
+
+    }
 
 }

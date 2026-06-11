@@ -39,15 +39,15 @@ class UsuarioRepository:
 
         usuarios = []
 
-        for fila in filas:
+        for usuario in filas:
             usuarios.append({
-                'nombre': fila[0],
-                'apellido': fila[1],
-                'cedula': fila[2],
-                'telefono': fila[3],
-                'usuario': fila[4],
-                'contrasena': fila[5],
-                'cargo': fila[6]
+                'nombre': usuario[0],
+                'apellido': usuario[1],
+                'cedula': usuario[2],
+                'telefono': usuario[3],
+                'usuario': usuario[4],
+                'contrasena': usuario[5],
+                'cargo': usuario[6]
             })
             
         return usuarios
@@ -61,6 +61,50 @@ class UsuarioRepository:
 
         cursor.close()
         conexion.commit()
+        conexion.close()
+
+    @staticmethod    
+    def buscarUsuario(cedula):
+        conexion = Conexion.get_conexion()
+        cursor = conexion.cursor()
+        cursor.callproc("sp_buscar_usuario", [cedula])
+       
+        usuario = None
+
+        for filas in cursor.stored_results():
+            usuario = filas.fetchone()
+        
+        cursor.close()
+        conexion.close()
+        
+        if usuario == None:
+            return usuario
+        
+        return {
+            'nombre': usuario[0],
+            'apellido': usuario[1],
+            'cedula': usuario[2],
+            'telefono': usuario[3],
+            'usuario': usuario[4],
+            'contrasena': usuario[5],
+            'cargo': usuario[6]
+        }
+        
+    @staticmethod
+    def actualizarUsuario(datosActualizados):
+        conexion = Conexion.get_conexion()
+        cursor = conexion.cursor()
+        cursor.callproc("sp_actualizar_usuario", [
+            datosActualizados['nombre'], 
+            datosActualizados['apellido'], 
+            datosActualizados['cedula'], 
+            datosActualizados['telefono'], 
+            datosActualizados['usuario'], 
+            datosActualizados['contrasena'], 
+            datosActualizados['cargo']
+        ])
+        conexion.commit()
+        cursor.close()
         conexion.close()
 
 
