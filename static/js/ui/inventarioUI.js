@@ -1,37 +1,5 @@
 import { formatearCOP } from "../utilities/moneda.js";
 
-let codigoAEliminar = null;
-
-export function inicializarDialogEliminar(onConfirmar) {
-
-    const btnConfirmar = document.getElementById("btn-confirmar-borrado");
-    const btnCancelar = document.getElementById("btn-cancelar-confirmacion");
-    const dialogConfirmacion = document.getElementById("dialog-confirmacion");
-    const tbody = document.getElementById("cuerpo-tabla-inventario");
-
-
-    tbody.addEventListener("click", (e) => {
-        const botonEliminar = e.target.closest(".eliminar");
-
-        if (botonEliminar) {
-            codigoAEliminar = botonEliminar.dataset.codigo;
-            dialogConfirmacion.showModal();
-        }
-    });
-
-    btnCancelar.addEventListener("click", () => {
-        dialogConfirmacion.close();
-    });
-
-    btnConfirmar.addEventListener("click", () => {
-        if (codigoAEliminar) {
-            onConfirmar(codigoAEliminar);
-            dialogConfirmacion.close();
-        }
-    });
-
-}
-
 export function llenarTablaInventario(productos) {
     const tbody = document.getElementById("cuerpo-tabla-inventario");
     const pCantidadProductosInventario = document.getElementById("p-cantidad-productos-inventario");

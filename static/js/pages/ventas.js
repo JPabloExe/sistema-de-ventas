@@ -1,11 +1,11 @@
+import { activarSidebar } from "../components/sidebar.js";
+
+import { inicializarDialogEliminarVenta } from "../ui/ventasUI.js";
+
 import { 
     eliminarVentaController,
     cargarVentas
 } from "../controllers/ventasController.js";
-
-import { inicializarDialogEliminarVenta } from "../ui/ventasUI.js";
-
-import { activarSidebar } from "../components/sidebar.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     

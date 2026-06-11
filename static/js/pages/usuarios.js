@@ -4,7 +4,6 @@ import {
     obtenerDatosFormularioUsuarios,
     limpiarFormulario,
     llenarTablaUsuarios,
-    inicializarDialogEliminar,
     llenarFormularioUsuarios
 } from "../ui/usuariosUI.js"
 
@@ -18,7 +17,6 @@ import {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    inicializarDialogEliminar(eliminarUsuarioController);
     activarSidebar();
     cargarUsuarios();
 
@@ -71,12 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (modo === "registrar") {
 
             await registrarUsuarioController();
-            console.log('entro a registrar');
 
         } else if (modo === "actualizar") {
 
             await actualizarUsuarioController();
-            console.log('entro a actualizar');
 
         }
 
@@ -86,18 +82,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+// Eliminar Usuarios
+document.addEventListener("DOMContentLoaded", () => {
 
-    const form = document.getElementById('form-usuarios');
-
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        await registrarUsuarioController();
-
+    const btnConfirmar = document.getElementById("btn-confirmar-borrado");
+    const btnCancelar = document.getElementById("btn-cancelar-confirmacion");
+    const dialogConfirmacion = document.getElementById("dialog-confirmacion");
+    const tbody = document.getElementById("tbody-usuarios");
+    
+    let cedulaAEliminar = null;
+    
+    tbody.addEventListener("click", (e) => {
+        const botonEliminar = e.target.closest(".btn-eliminar");
+    
+        if (botonEliminar) {
+            cedulaAEliminar = botonEliminar.dataset.cedula;
+            dialogConfirmacion.showModal();
+        }
     });
-
-});
+    
+    btnCancelar.addEventListener("click", () => {
+        dialogConfirmacion.close();
+    });
+    
+    btnConfirmar.addEventListener("click", () => {
+        if (cedulaAEliminar) {
+            eliminarUsuarioController(cedulaAEliminar);
+            cargarUsuarios();
+            dialogConfirmacion.close();
+        }
+    });
+}); 
 
 // Buscar usuario
 document.addEventListener("DOMContentLoaded", () => {

@@ -1,36 +1,44 @@
-let toastTimeout;
-
 export function mostrarToast(mensaje, tipo) {
-    const letrero = document.getElementById("letrero");
-    const texto = document.getElementById("texto-letrero")
-    const icono = document.getElementById("icono-letrero")
 
-    // quitar tipos anteriores
-    letrero.classList.remove('success', 'error', 'warning', 'show');
-    texto.textContent = mensaje;
+    const toast = document.createElement("div");
+    toast.className = 'toast';
+    toast.classList.add("toast", tipo);
 
-    if (tipo === "success") {
-        icono.className = 'fa-solid fa-circle-check'
-        letrero.classList.add(tipo)
-    }
+    toast.innerHTML = `
+        <i class="${obtenerIcono(tipo)}"></i>
+        <span>${mensaje}</span>
+    `;
 
-    if (tipo === "error") {
-        icono.className = "fa-solid fa-triangle-exclamation" 
-        letrero.classList.add(tipo)
-    }
-    if (tipo === "exception") {
-        icono.className = "fa-solid fa-circle-xmark"
-        letrero.classList.add(tipo)
-    }
+    const contenedor = document.getElementById("contenedor-toasts");
 
-    // forzar reflow para que la animación siempre se ejecute
-    letrero.offsetHeight;
+    contenedor.appendChild(toast);
 
-    letrero.classList.add("show");
+    requestAnimationFrame(() => {
+        toast.classList.add("show");
+    });
 
+    setTimeout(() => {
+        toast.classList.remove("show");
 
-    clearTimeout(toastTimeout);
-    toastTimeout = setTimeout(() => {
-        letrero.classList.remove('show');
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
     }, 2500);
+}
+
+function obtenerIcono(tipo) {
+
+    switch (tipo) {
+        case "success":
+            return "fa-solid fa-circle-check";
+
+        case "error":
+            return "fa-solid fa-circle-xmark";
+            
+            case "exception":
+            return "fa-solid fa-triangle-exclamation";
+
+        default:
+            return "";
+    }
 }

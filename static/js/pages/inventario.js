@@ -1,5 +1,6 @@
+import { activarSidebar } from "../components/sidebar.js";
+
 import { 
-    inicializarDialogEliminar,
     llenarFormularioProducto, 
     llenarTablaInventario
 } from "../ui/inventarioUI.js";
@@ -12,11 +13,8 @@ import {
     buscarProductoController
 } from "../controllers/inventarioController.js"; 
 
-import { activarSidebar } from "../components/sidebar.js";
-
 document.addEventListener("DOMContentLoaded", () => {
     
-    inicializarDialogEliminar(eliminarProductoController);
     activarSidebar();
     cargarInventario(0);
     
@@ -42,6 +40,39 @@ document.addEventListener("DOMContentLoaded", () => {
         agregarProductoController(formAgregar);
     });
     
+});
+
+// Eliminar Producto
+document.addEventListener("DOMContentLoaded", () => {
+
+    const btnConfirmar = document.getElementById("btn-confirmar-borrado");
+    const btnCancelar = document.getElementById("btn-cancelar-confirmacion");
+    const dialogConfirmacion = document.getElementById("dialog-confirmacion");
+    const tbody = document.getElementById("cuerpo-tabla-inventario");
+
+    let codigoAEliminar = null;
+
+    tbody.addEventListener("click", (e) => {
+        const botonEliminar = e.target.closest(".eliminar");
+
+        if (botonEliminar) {
+            codigoAEliminar = botonEliminar.dataset.codigo;
+            dialogConfirmacion.showModal();
+        }
+    });
+
+    btnCancelar.addEventListener("click", () => {
+        dialogConfirmacion.close();
+    });
+
+    btnConfirmar.addEventListener("click", () => {
+        if (codigoAEliminar) {
+            eliminarProductoController(codigoAEliminar);
+            cargarInventario(0);
+            dialogConfirmacion.close();
+        }
+    });
+
 });
 
 // Actualizar Producto

@@ -116,7 +116,7 @@ body button, a, i {
 /* TBODY CON SCROLL */
 .tabla-usuarios tbody {
     display: block;
-    height: 290px;
+    height: 310px;
     overflow-y: auto;
 }
 
@@ -335,3 +335,4 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: #cecece;
 
 }
+

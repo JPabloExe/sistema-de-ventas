@@ -6,7 +6,8 @@ body {
     padding-right: 60px;
 }
 
-body button, a {
+body button,
+a {
     cursor: pointer;
 }
 
@@ -41,11 +42,12 @@ body button, a {
     position: relative;
     margin-top: 0;
     top: 0;
-    left: -220px;      /* OCULTO */
+    left: -220px;
+    /* OCULTO */
     width: 0%;
     height: 100vh;
     background: #0F1629;
-    transition: left 0.3s ease;  
+    transition: left 0.3s ease;
 }
 
 .sidebar.active {
@@ -71,7 +73,7 @@ body button, a {
 
 #btn-cerrar-sesion {
     position: absolute;
-   
+
     text-align: left;
     font-size: 15px;
     padding: 15px 15px 15px 25px;
@@ -101,7 +103,7 @@ body button, a {
     border-radius: 8px;
 }
 
-.contenedor button{
+.contenedor button {
     cursor: pointer;
 }
 
@@ -126,7 +128,7 @@ body button, a {
 }
 
 .header {
-    padding-top: 10px;   
+    padding-top: 10px;
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -175,7 +177,7 @@ body button, a {
     margin: 0;
 }
 
-.div-resumenes{
+.div-resumenes {
     display: flex;
     flex-direction: row;
     gap: 50px;
@@ -226,7 +228,7 @@ body button, a {
 }
 
 .div-stock-bajo button {
-    color: #8e3939!important;
+    color: #8e3939 !important;
     background-color: #e6cdc9;
     border-radius: 4px;
     border: none;
@@ -266,7 +268,7 @@ body button, a {
 }
 
 .parrafos-divs-alertas-sistema {
-   font-weight: bold ;
+    font-weight: bold;
 }
 
 .divs {
@@ -354,44 +356,50 @@ body button, a {
     font-size: small;
 }
 
-.letrero {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  max-width: 280px;
-  padding: 12px 16px;
-  background-color: #FEFEFE;
-  color: black;
-  font-size: 14px;
-  border-radius: 6px;
-  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  z-index: 1000;
+.contenedor-toasts {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    max-width: 280px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9999;
+}
+
+.toast {
+    background-color: #FEFEFE;
+    color: black;
+    font-size: 14px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    padding: 10px;
 }
 
 /* cuando está visible */
-.letrero.show {
-  opacity: 1;
-  transform: translateY(0);
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* animación de salida hacia arriba */
-.letrero.hide {
-  opacity: 0;
-  transform: translateY(-20px);
+.toast.hide {
+    opacity: 0;
+    transform: translateY(-20px);
 }
 
-.letrero.success i {
+.toast.success i {
     color: #2e8b57;
 }
 
-.letrero.error i {
+.toast.error i {
     color: #8b2e2e;
 }
 
-
-
-
-
+.toast.exception i {
+    color: #c0ad31;
+}
