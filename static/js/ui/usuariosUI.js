@@ -22,7 +22,13 @@ export function llenarTablaUsuarios(usuarios) {
                 <td>${usuario.telefono}</td>
 
                 <td>
-                    <span class="badge-admin">
+                    <span class=${
+                        usuario.cargo === "Administrador" ?
+                            "badge-admin" :
+                            usuario.cargo === "Supervisor" ?
+                                "badge-supervisor" :
+                                "badge-empleado"}>
+
                         ${usuario.cargo}
                     </span>
                 </td>
@@ -80,6 +86,8 @@ export function llenarFormularioUsuarios(boton) {
     document.getElementById('input-cedula').value = boton.dataset.cedula;
     document.getElementById('input-telefono').value = boton.dataset.telefono;
     document.getElementById('input-usuario').value = boton.dataset.usuario;
+
+    console.log(document.getElementById("input-nombre").value);
 
     switch (boton.dataset.cargo) {
 

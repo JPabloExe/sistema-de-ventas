@@ -17,27 +17,27 @@ export function llenarTablaInventario(productos) {
 
         fila.innerHTML = `
             <td class="producto">
-                <div class="nombre">${producto["nombre"]}</div>
+                <div class="nombre">${producto.nombre}</div>
             </td>
-            <td class="codigo">${producto["codigo"]}</td>
-            <td class="precio">COP ${formatearCOP(producto["valor_unitario"])}</td>
-            <td class="costo">COP ${formatearCOP(producto["costo"])}</td>
+            <td class="codigo">${producto.codigo}</td>
+            <td class="precio">COP ${formatearCOP(producto.valor_unitario)}</td>
+            <td class="costo">COP ${formatearCOP(producto.costo)}</td>
             <td class="stock">
-                <div class="cantidad">${producto["stock"]} UNIDADES</div>
+                <div class="cantidad">${producto.stock} UNIDADES</div>
             </td>
             <td class="acciones">
                 <i id="btn-actualizar-producto" class="fa-solid fa-pen-to-square actualizar"
-                    data-codigo="${producto["codigo"]}"
-                    data-nombre="${producto["nombre"]}"
-                    data-stock="${producto["stock"]}"
-                    data-precio="${producto["valor_unitario"]}"
-                    data-costo="${producto["costo"]}"
-                    data-caducidad="${producto["fecha_caducidad"]}"
-                    data-categoria="${producto["categoria"]}">
+                    data-codigo="${producto.codigo}"
+                    data-nombre="${producto.nombre}"
+                    data-stock="${producto.stock}"
+                    data-precio="${producto.valor_unitario}"
+                    data-costo="${producto.costo}"
+                    data-caducidad="${producto.fecha_caducidad}"
+                    data-categoria="${producto.categoria}">
                 </i>
 
                 <i id="btn-eliminar-producto" class="fa-solid fa-trash eliminar"
-                    data-codigo="${producto["codigo"]}">
+                    data-codigo="${producto.codigo}">
                 </i>
                 </td>
             `;
@@ -54,7 +54,7 @@ export function obtenerDatosFormularioProducto() {
 
     return {
         "codigo": document.getElementById("input-codigo").value,
-        "nombre": document.getElementById("input-nombre").value,
+        "nombre": document.getElementById("input-producto").value,
         "stock": document.getElementById("input-cantidad").value,
         "valor_unitario": document.getElementById("input-precio").value,
         "costo": document.getElementById("input-costo").value,
@@ -83,8 +83,8 @@ export function mostrarInformeInventario(informe) {
 export function llenarFormularioProducto(boton) {
 
     document.getElementById("input-codigo").value = boton.dataset.codigo;
-    document.getElementById("input-nombre").value = boton.dataset.nombre;
-    document.getElementById("input-cantidad").value = boton.dataset.cantidad;
+    document.getElementById("input-producto").value = boton.dataset.nombre;
+    document.getElementById("input-cantidad").value = boton.dataset.stock;
     document.getElementById("input-precio").value = boton.dataset.precio;
     document.getElementById("input-costo").value = boton.dataset.costo;
     document.getElementById("input-caducidad").value = boton.dataset.caducidad;

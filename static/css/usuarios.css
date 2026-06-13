@@ -1,7 +1,4 @@
-/* =========================
-   GENERAL
-========================= */
-
+/*GENERAL*/
 body {
     display: flex;
     margin: 0;
@@ -64,10 +61,8 @@ body button, a, i {
 .btn-nuevo-usuario:hover{
     background:#1f2c43;
 }
-/* =========================
-   BUSQUEDA
-========================= */
 
+/*BUSQUEDA*/
 .input-busqueda{
     width:350px;
     height:40px;
@@ -77,74 +72,13 @@ body button, a, i {
     outline: none;
 }
 
-/* =========================
-   TABLA
-========================= */
-
-.tabla-usuarios{
-    width: 100%;
-    table-layout: fixed;
-    background: #FEFEFE;
-    font-family: Arial, sans-serif;
-    border-collapse: separate;
-    border-spacing: 0;
-    margin-top: 10px;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
-}
-
-.tabla-usuarios th{
-    padding: 14px;
-    text-align: left;
-    color: gray;
-}
-
-.tabla-usuarios thead {
-    display: table;
-    width: 100%;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
-    background-color: #F8F8F8;
-}
+/*TABLA*/
 .tabla-usuarios tbody td {
     font-weight: bolder;
     padding-left: 14px;
 }
 
-
-.tabla-usuarios thead tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-}
-
-.tabla-usuarios th {
-    padding: 14px;
-    text-align: left;
-    color: gray;
-}
-
-/* TBODY CON SCROLL */
-.tabla-usuarios tbody {
-    display: block;
-    height: 310px;
-    overflow-y: auto;
-}
-
-/* FILAS */
-.tabla-usuarios tbody tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-    height: 60px;
-}
-
-.tabla-usuarios tbody tr:hover {
-    background-color: #f5f5f5;
-}
-
-/* =========================
-   BADGES
-========================= */
-
+/*BADGES*/
 .badge-admin{
     background:#198754;
     color:white;
@@ -161,10 +95,7 @@ body button, a, i {
     font-size:13px;
 }
 
-/* =========================
-   BOTONES
-========================= */
-
+/*BOTONES*/
 .btn-actualizar {
     color:#4caf50;
     padding-right: 10px;
@@ -184,10 +115,7 @@ body button, a, i {
     color:#bb2d3b;
 }
 
-/* =========================
-   ANIMACIONES
-========================= */
-
+/*ANIMACIONES*/
 @keyframes fadeIn{
     from{
         opacity:0;
@@ -199,10 +127,7 @@ body button, a, i {
     }
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-
+/*RESPONSIVE*/
 @media(max-width:1100px){
 
     .contenedor{

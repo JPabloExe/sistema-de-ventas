@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const botonAbrir = document.getElementById("btn-nuevo-usuario");
     const botonCerrar = document.getElementById("btn-cancelar");
     const dialog = document.getElementById("dialog-usuarios");
-    const btnAccion = document.getElementById("btn-accion-dialog");
+    const btnAccion = document.getElementById("btn-accion-dialog-usuarios");
     const form = document.getElementById("form-usuarios");
     const tbody = document.getElementById("tbody-usuarios");
 

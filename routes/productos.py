@@ -42,6 +42,7 @@ def obtener_productos():
     categoria = request.args.get('categoria')
     
     try:
+
         productos = ProductoRepository.obtenerPorCategoria(categoria)
         
         if len(productos) == 0:
@@ -63,7 +64,7 @@ def obtener_productos():
         return api_response(
             False,
             "exception",
-            str(e.msg),
+            str(e),
             None
         ) 
     

@@ -117,10 +117,10 @@ class ProductoRepository:
                 "codigo": fila[0],
                 "nombre": fila[1],
                 "stock": fila[2],
-                "valor_unitario": fila[4],
-                "costo": fila[5],
-                "fecha_caducidad": fila[6].strftime("%Y-%m-%d"),
-                "categoria": fila[7]
+                "valor_unitario": fila[3],
+                "costo": fila[4],
+                "fecha_caducidad": fila[5].strftime("%Y-%m-%d"),
+                "categoria": fila[6]
             })
         return productos   
         

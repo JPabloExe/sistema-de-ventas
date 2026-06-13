@@ -85,59 +85,12 @@ body button, a, i {
     background-color: #324154;
 }
 
-.tabla-ventas {
-    width: 100%;
-    table-layout: fixed;
-    background: #FEFEFE;
-    font-family: Arial, sans-serif;
-    border-collapse: separate;
-    border-spacing: 0;
-    margin-top: 10px;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
-}
-
-.tabla-ventas thead {
-    display: table;
-    width: 100%;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
-    background-color: #F8F8F8;
-}
-
-.tabla-ventas thead tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-}
-
-.tabla-ventas th {
-    padding: 14px;
-    text-align: left;
-    color: gray;
-}
-
-/* TBODY CON SCROLL */
-.tabla-ventas tbody {
-    display: block;
-    height: 277px;
-    overflow-y: auto;
-}
-
-.tabla-ventas tbody tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-}
-
-.tabla-ventas tbody tr:hover {
-    background-color: #f5f5f5;
-}
-
 /* ESTILOS EXTRA */
 .numero {
     font-weight: bold;
     color: #333;
     font-size: medium;
-    text-align: center;
+    padding-left: 14px;
 }
 
 .fecha {
@@ -148,7 +101,6 @@ body button, a, i {
 .fecha p {
     color: gray;
     font-size: small;
-   
 }
 
 .usuario, .items {
@@ -159,7 +111,7 @@ body button, a, i {
 }
 
 .items {
-    padding-left: 30px;
+    padding-left: 15px;
 }
 
 .metodo {
@@ -187,17 +139,6 @@ body button, a, i {
     padding-left: 17px;
 }
 
-.p-estado {
-    padding: 10px;
-    background-color: #b3eac4;
-    border: solid #2e8b34 2px ;
-    color: #2e8b34;
-    font-weight: bold;
-    border-radius: 8px;
-    font-size: small;
-    width: fit-content;
-}
-
 .acciones {
     padding-left: 25px;
 }
@@ -217,72 +158,4 @@ body button, a, i {
 
 .acciones i:hover {
     opacity: 0.7;
-}
-
-.letrero {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  max-width: 280px;
-  padding: 12px 16px;
-  background-color: #FEFEFE;
-  color: black;
-  font-size: 14px;
-  border-radius: 6px;
-  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  z-index: 1000;
-}
-
-/* cuando está visible */
-.letrero.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* animación de salida hacia arriba */
-.letrero.hide {
-  opacity: 0;
-  transform: translateY(-20px);
-}
-
-.letrero.success i {
-    color: #2e8b57;
-}
-
-.letrero.error i {
-    color: #8b2e2e;
-}
-
-.dialog-confirmacion {
-    width: fit-content;
-    background-color: #FEFEFE;
-    border-radius: 10px;
-    border: none;
-}
-
-.dialog-confirmacion p {
-    margin-top: 0;
-}
-
-.dialog-confirmacion div {
-    display: flex;
-    justify-content: space-around;
-}
-
-.dialog-confirmacion button {
-    border: none;
-    padding: 8px 12px 8px 12px; 
-    border-radius: 8px;
-}
-
-.btn-confirmar-borrado:hover {
-    color: white;
-    background-color: #2E3547;
-}
-
-input[type="date"] {
-  font-family: 'Arial', sans-serif;
 }

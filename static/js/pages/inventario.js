@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
     
     const btnNuevoProducto = document.getElementById("btn-nuevo-producto");
-    const botonCerrar = document.getElementById("btn-cerrar-dialog");
+    const botonCerrar = document.getElementById("btn-cancelar");
     const dialog = document.getElementById("dialog-productos");
-    const btnAccion = document.getElementById("btn-accion-dialog");
+    const btnAccion = document.getElementById("btn-accion-dialog-productos");
     const form = document.getElementById("form-productos");
     const tbody = document.getElementById("tbody-productos");
     const inputCodigo = document.getElementById("input-codigo");
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btnNuevoProducto.addEventListener("click", () => {
         modo = "agregar"
         limpiarFormularioProducto(form);
-        btnAccion.textContent = "Agregar Producto";
+        btnAccion.textContent = "Agregar";
         inputCodigo.readOnly = false;
         
         dialog.showModal();
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (boton) {
             modo = "actualizar";
             llenarFormularioProducto(boton);
-            btnAccion.textContent = "Actualizar Producto";
+            btnAccion.textContent = "Actualizar";
             inputCodigo.readOnly = true;
     
             dialog.showModal();
