@@ -11,7 +11,7 @@ body button {
 
 .contenedor {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-around;  
 }
 .contenedor-carrito {
     width: 70%;

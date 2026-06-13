@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- CSS GLOBAL -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/general.css') }}">
 
     <!-- CSS POR VISTA -->
     {% block css %}{% endblock %}
@@ -17,55 +17,29 @@
 
 <body>
 
-    <!-- BOTÓN MENU -->
-    <div id="div-boton" class="div-boton">
-        <button id="btn-menu">☰</button>
-    </div>
+    <!-- BOTON SIDEBAR -->
+    {% include 'components/boton-sidebar.html' %}
 
-    <!-- SIDEBAR -->
-    <nav id="sidebar" class="sidebar">
-        <p id="parrafo-nombre-software">Sistema de Ventas</p>
+    <!-- SIDEBAR GLOBAL -->
+    {% include 'components/sidebar.html' %}
 
-        <div class="div-menu-lateral">
-            <a href="/" id="link-inicio">
-                <i class="fa-solid fa-house"></i>
-                Inicio
-            </a>
+    <!-- DIALOG PRODUCTOS -->
+    {% include 'components/dialog-productos.html' %}
+    
+    <!-- DIALOG USUARIOS -->
+    {% include 'components/dialog-usuarios.html' %}
 
-            <a href="/puntoVentas" id="link-punto-ventas">
-                <i class="fa-solid fa-cart-shopping"></i>
-                Punto de Venta
-            </a>
-
-            <a href="/ventas" id="link-ventas">
-                <i class="fa-solid fa-cash-register"></i>
-                Ventas
-            </a>
-
-            <a href="/inventario" id="link-inventario">
-                <i class="fa-solid fa-boxes-stacked"></i>
-                Inventario
-            </a>
-
-            <a href="/usuarios" id="link-usuarios">
-                <i class="fa-solid fa-user"></i>
-                Usuarios
-            </a>
-        </div>
-
-        <button id="btn-cerrar-sesion">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-            Cerrar Sesion
-        </button>
-    </nav>
+    <!-- DIALOG ELIMINAR -->
+    {% include 'components/dialog-eliminar.html' %}
 
     <!-- CONTENIDO DINÁMICO -->
-    <div id="contenedor" class="contenedor">
-        {% block contenido %}{% endblock %}
-    </div>
-
+    
+    {% block contenido %}{% endblock %}
+    
     <!-- TOAST GLOBAL -->
-    <div id="contenedor-toasts" class="contenedor-toasts"> </div>
+    <div id="contenedor-toasts" class="contenedor-toasts">
+        {% include 'components/toast.html' %}
+    </div>
 
     <!-- JS POR VISTA -->
     {% block js %}{% endblock %}

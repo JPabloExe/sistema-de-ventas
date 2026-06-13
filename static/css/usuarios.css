@@ -1,15 +1,22 @@
 /* =========================
    GENERAL
 ========================= */
+
+body {
+    display: flex;
+    margin: 0;
+    background-color: #F8FAF9;
+    font-family: sans-serif;
+}
+
 body button, a, i {
     cursor: pointer;
 }
 
-.usuarios-container{
-    width:100%;
-    padding: 15px 20px 20px 20px;
+.contenedor {
+    display: flex;
+    flex-direction: column;
 }
-
 .page-header{
     display: flex;
     justify-content: space-between;
@@ -30,12 +37,14 @@ body button, a, i {
     flex-direction: column;
     margin-bottom: 10px;
     gap: 5px;
+    padding: 8px 0px 0px 0px;
 }
 
 .div-presentacion p {
     margin-top: 0%;
     color: gray;
     font-size: small;
+    padding: 8px 0px 0px 0px;
 }
 
 .div-presentacion h2 {
@@ -176,39 +185,6 @@ body button, a, i {
 }
 
 /* =========================
-   FORMULARIO
-========================= */
-
-.formulario-panel form{
-    margin-top:20px;
-}
-
-.campo{
-    margin-bottom:10px;
-}
-
-.campo label{
-    display:block;
-    margin-bottom:6px;
-    font-size:15px;
-}
-
-.campo input,
-.campo select{
-    width:100%;
-    height:40px;
-    border:1px solid #d5d5d5;
-    border-radius:8px;
-    padding:0 12px;
-    font-size:14px;
-}
-
-.campo input:focus,
-.campo select:focus{
-    outline:none;
-}
-
-/* =========================
    ANIMACIONES
 ========================= */
 
@@ -229,7 +205,7 @@ body button, a, i {
 
 @media(max-width:1100px){
 
-    .usuarios-container{
+    .contenedor{
         grid-template-columns:1fr;
     }
 
@@ -243,36 +219,6 @@ body button, a, i {
         width:100%;
     }
 
-}
-
-.dialog-confirmacion {
-    background-color: #FEFEFE;
-    border-radius: 10px;
-    border: none;
-    padding: 10px;
-    margin: auto;
-}
-
-.dialog-confirmacion p {
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-.dialog-confirmacion div {
-    display: flex;
-    justify-content: space-around;
-}
-
-.dialog-confirmacion button {
-    border: none;
-    padding: 8px 12px 8px 12px; 
-    border-radius: 8px;
-    outline: none;
-}
-
-.btn-confirmar-borrado:hover {
-    color: white;
-    background-color: #8b2e2e;
 }
 
 .div-input {
@@ -289,50 +235,5 @@ body button, a, i {
     border: none;
     font-size: 14px;
     outline: none;
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.dialog-usuarios {
-    background-color: #FFFFFF;
-    padding: 20px 80px 30px;
-    height: 500px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
-    border: none;
-}
-
-.dialog-botones {
-    display: flex;
-    padding-top: 20px;
-    justify-content: space-around;
-    gap: 10px;
-
-}
-
-.dialog-botones button {
-    color: black;
-    border: none;
-    padding: 8px 12px 8px 12px; 
-    border-radius: 8px;
-    font-size: medium;
-}
-
-.btn-accion-dialog {
-    background-color: #2E3547;
-    color: white !important;
-}
-
-.btn-accion-dialog:hover {
-    background:#1f2c43;
-}
-
-.btn-cancelar {
-    background-color: #cecece;
-
 }
 

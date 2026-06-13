@@ -3,7 +3,6 @@ body {
     margin: 0;
     background-color: #F8FAF9;
     font-family: sans-serif;
-    padding-right: 60px;
 }
 
 body button,
@@ -11,120 +10,8 @@ a {
     cursor: pointer;
 }
 
-.div-boton {
-    width: 5%;
-}
-
-.div-boton.active {
-    width: 0%;
-}
-
-#btn-menu {
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    font-size: 22px;
-    background: none;
-    font-weight: bold;
-    color: black;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    z-index: 1001;
-    border-radius: 10px;
-}
-
-#btn-menu.active {
-    color: white
-}
-
-.sidebar {
-    position: relative;
-    margin-top: 0;
-    top: 0;
-    left: -220px;
-    /* OCULTO */
-    width: 0%;
-    height: 100vh;
-    background: #0F1629;
-    transition: left 0.3s ease;
-}
-
-.sidebar.active {
-    left: 0;
-    width: 20%;
-}
-
-#parrafo-nombre-software {
-    padding: 10px;
-    margin-left: 52px;
-    margin-top: 21px;
-    font-size: large;
-    font-weight: 600;
-    color: white;
-}
-
-#usuario {
-    padding: 10px;
-    font-size: 15px;
-    font-weight: 600;
-    color: white;
-}
-
-#btn-cerrar-sesion {
-    position: absolute;
-
-    text-align: left;
-    font-size: 15px;
-    padding: 15px 15px 15px 25px;
-    background-color: #0F1629;
-    color: #F02427;
-    border: none;
-    bottom: 10px;
-}
-
-#btn-cerrar-sesion:hover {
-    color: #AB859A;
-    font-weight: bold;
-}
-
-.div-menu-lateral {
-    padding: 20px;
-    background-color: #1B2336;
-}
-
-.div-menu-lateral a {
-    color: #9EA6B9;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
-    text-decoration: none;
-    border-radius: 8px;
-}
-
 .contenedor button {
     cursor: pointer;
-}
-
-.contenedor {
-    width: 95%;
-    transition: right 0.3s ease;
-}
-
-.contenedor.active {
-    width: 80%;
-}
-
-.sidebar h2 {
-    color: white;
-    text-align: center;
-}
-
-.sidebar a:hover {
-    background-color: #324154;
-    color: white;
-    font-weight: bold;
 }
 
 .header {
@@ -181,13 +68,13 @@ a {
     display: flex;
     flex-direction: row;
     gap: 50px;
-    padding: 20px 20px 20px 20px;
+    padding: 20px;
     color: black;
 }
 
 .div-resumenes div {
     display: flex;
-    width: 200px;
+    width: 50%;   
     padding: 20px;
     border: none;
     border-left: solid #FEFEFE 3px;
@@ -354,52 +241,4 @@ a {
     color: #0066FF;
     text-decoration: none;
     font-size: small;
-}
-
-.contenedor-toasts {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    max-width: 280px;
-    padding: 12px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 9999;
-}
-
-.toast {
-    background-color: #FEFEFE;
-    color: black;
-    font-size: 14px;
-    border-radius: 6px;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    padding: 10px;
-}
-
-/* cuando está visible */
-.toast.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* animación de salida hacia arriba */
-.toast.hide {
-    opacity: 0;
-    transform: translateY(-20px);
-}
-
-.toast.success i {
-    color: #2e8b57;
-}
-
-.toast.error i {
-    color: #8b2e2e;
-}
-
-.toast.exception i {
-    color: #c0ad31;
 }

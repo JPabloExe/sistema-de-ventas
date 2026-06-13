@@ -22,10 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-// Registrar usuarios
+// Registrar y actualizar usuarios
 document.addEventListener("DOMContentLoaded", () => {
 
-    const botonAbrirRegistrar = document.getElementById("btn-nuevo-usuario");
+    const botonAbrir = document.getElementById("btn-nuevo-usuario");
     const botonCerrar = document.getElementById("btn-cancelar");
     const dialog = document.getElementById("dialog-usuarios");
     const btnAccion = document.getElementById("btn-accion-dialog");
@@ -34,22 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let modo = null;
 
-    tbody.addEventListener("click", (e) => {
-        const boton = e.target.closest(".btn-actualizar");
-
-        if (boton) {
-            modo = "actualizar";
-
-            llenarFormularioUsuarios(boton);
-            
-            btnAccion.textContent = "Actualizar";
-
-            dialog.showModal();
-        }
-    });
-
-
-    botonAbrirRegistrar.addEventListener("click", () => {
+    botonAbrir.addEventListener("click", () => {
         modo = "registrar";
         limpiarFormulario(form);
         btnAccion.textContent = "Registrar";
@@ -57,11 +42,21 @@ document.addEventListener("DOMContentLoaded", () => {
         dialog.showModal();
     });
 
+    tbody.addEventListener("click", (e) => {
+        const boton = e.target.closest(".btn-actualizar");
 
+        if (boton) {
+            modo = "actualizar";
+            llenarFormularioUsuarios(boton);
+            btnAccion.textContent = "Actualizar";
+
+            dialog.showModal();
+        }
+    });
+    
     botonCerrar.addEventListener("click", () => {
         dialog.close();
     });
-
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -87,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const btnConfirmar = document.getElementById("btn-confirmar-borrado");
     const btnCancelar = document.getElementById("btn-cancelar-confirmacion");
-    const dialogConfirmacion = document.getElementById("dialog-confirmacion");
+    const dialogConfirmacion = document.getElementById("dialog-eliminar");
     const tbody = document.getElementById("tbody-usuarios");
     
     let cedulaAEliminar = null;

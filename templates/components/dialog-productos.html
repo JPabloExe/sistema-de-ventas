@@ -1,0 +1,58 @@
+<dialog id="dialog-productos" class="dialog-productos">
+    
+    <h2>Gestionar Productos</h2>
+    
+    <form id="form-productos">
+        
+        <div class="campo">
+            <label>Codigo</label>
+            <input id="input-codigo" type="number" placeholder="Ingrese codigo" required>
+        </div>
+        
+        <div class="campo">
+            <label>Producto</label>
+            <input id="input-nombre" type="text" placeholder="Ingrese nombre" required>
+        </div>
+        
+        <div class="campo">
+            <label>Cantidad</label>
+            <input id="input-cantidad" type="number" placeholder="Ingrese cantidad" required>
+        </div>
+        
+        <div class="campo">
+            <label>Precio</label>
+            <input id="input-precio" type="number" placeholder="Ingrese precio" required>
+        </div>
+        
+        <div class="campo">
+            <label>Costo</label>
+            <input id="input-costo" type="number" placeholder="Ingrese costo" required>
+        </div>
+        
+        <div class="campo">
+            <label>Fecha Caducidad</label>
+            <input id="input-caducidad" type="date" required>
+        </div>
+        
+        <div class="campo">
+            <label>Categoria</label>
+            
+            <select id="select-categorias">
+                <option value="0">Categorias</option>
+                <option value="1">Abarrotes</option>
+                <option value="2">Bebidas</option>
+                <option value="3">Limpieza</option>
+            </select>
+        </div>
+        
+        <div class="dialog-botones">
+            <button type="button" class="btn-cerrar-dialog" id="btn-cerrar-dialog">
+                Cancelar
+            </button>
+            
+            <button type="submit" class="btn-accion-dialog" id="btn-accion-dialog"></button>
+        </div>
+        
+    </form>
+    
+</dialog>

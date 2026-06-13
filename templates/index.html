@@ -4,125 +4,128 @@
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-{% endblock %}  
+{% endblock %}
 
 {% block contenido %}
 
-<header class="header">
+<div class="contenedor" id="contenedor">
 
-    <div class="cabezal">
-        <div class="div-presentacion">
-            <p id="lbl-saludo">Buenos dias,</p>
-            <p id="lbl-texto">Resumen de tu sistema de inventario</p>
+    <header class="header">
+
+        <div class="cabezal">
+            <div class="div-presentacion">
+                <p id="lbl-saludo">Buenos dias,</p>
+                <p id="lbl-texto">Resumen de tu sistema de inventario</p>
+            </div>
+
+            <button id="btn-actualizar-pagina">
+                <i class="fa-solid fa-arrows-rotate"></i>
+                Actualizar
+            </button>
         </div>
 
-        <button id="btn-actualizar-pagina">
-            <i class="fa-solid fa-arrows-rotate"></i>
-            Actualizar
-        </button>
-    </div>
+    </header>
 
-</header>
-
-<div class="div-resumenes">
-    <div class="div-valor-ventas">
-        <section>
-            <b>VENTAS HOY</b>
-            <button>
-                <i class="fa-solid fa-cart-shopping"></i>
-            </button>
-        </section>
-        <h2 id="lbl-valor-ventas-hoy"></h2>
-    </div>
-
-    <div class="div-productos">
-        <section>
-            <b>PRODUCTOS</b>
-            <button>
-                <i class="fa-solid fa-box"></i>
-            </button>
-        </section>
-        <h2 id="lbl-productos"></h2>
-        <b>En inventario</b>
-    </div>
-    
-    <div class="div-valor-inventario">
-        <section>
-            <b>VALOR INVENTARIO</b>
-            <button>
-                <i class="fa-solid fa-dollar-sign"></i>
-            </button>
-        </section>
-        <h2 id="lbl-valor-inventario"></h2>
-    </div>
-    
-    <div class="div-stock-bajo">
-        <section>
-            <b>STOCK BAJO</b>
-            <button>
-                <i class="fa-solid fa-triangle-exclamation"></i>
-            </button>
-        </section>
-        <h2 id="lbl-stock-bajo"></h2>
-        <b>Productos</b>
-    </div>
-</div>
-
-<div class="div-inferior">
-    <section class="seccion-inferior">
-
-        <div class="div-acciones-rapidas">
-            <h3>ACCIONES RAPIDAS</h3>
-
-            <div class="div-botones">
-                <button id="pVentas">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    Nueva Venta
-                </button>
-
-                <button id="inventario">
-                    <i class="fa-solid fa-boxes-stacked"></i>
-                    Gestionar Inventario
-                </button>
-
+    <div class="div-resumenes">
+        <div class="div-valor-ventas">
+            <section>
+                <b>VENTAS HOY</b>
                 <button>
-                    <i class="fa-solid fa-chart-pie"></i>
-                    Ver Reportes
+                    <i class="fa-solid fa-cart-shopping"></i>
                 </button>
-            </div>
+            </section>
+            <h2 id="lbl-valor-ventas-hoy"></h2>
         </div>
 
-        <div class="div">
-            <h3>ALERTAS DEL SISTEMA</h3>
-
-            <div class="divs">
-
-                <div class="div-alertas-sistema">
-                    <div class="div-ventas-hoy">
-                        <b class="parrafos-divs-alertas-sistema">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            Ventas Hoy
-                        </b>
-                        <p id="lbl-ventas-hoy"></p>
-                        <a href="#">Ver ventas →</a>
-                    </div>
-                </div>
-
-                <div class="div-alertas-sistema">
-                    <div class="div-pendiente">
-                        <b class="parrafos-divs-alertas-sistema">
-                            <i class="fa-regular fa-clock"></i>
-                            Productos por Vencer
-                        </b>
-                        <p>8 productos proximos a vencer</p>
-                        <a href="#">Ver productos →</a>
-                    </div>
-                </div>
-
-            </div>
+        <div class="div-productos">
+            <section>
+                <b>PRODUCTOS</b>
+                <button>
+                    <i class="fa-solid fa-box"></i>
+                </button>
+            </section>
+            <h2 id="lbl-productos"></h2>
+            <b>En inventario</b>
         </div>
 
-    </section>
+        <div class="div-valor-inventario">
+            <section>
+                <b>VALOR INVENTARIO</b>
+                <button>
+                    <i class="fa-solid fa-dollar-sign"></i>
+                </button>
+            </section>
+            <h2 id="lbl-valor-inventario"></h2>
+        </div>
+
+        <div class="div-stock-bajo">
+            <section>
+                <b>STOCK BAJO</b>
+                <button>
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </button>
+            </section>
+            <h2 id="lbl-stock-bajo"></h2>
+            <b>Productos</b>
+        </div>
+    </div>
+
+    <div class="div-inferior">
+        <section class="seccion-inferior">
+
+            <div class="div-acciones-rapidas">
+                <h3>ACCIONES RAPIDAS</h3>
+
+                <div class="div-botones">
+                    <button id="pVentas">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        Nueva Venta
+                    </button>
+
+                    <button id="inventario">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                        Gestionar Inventario
+                    </button>
+
+                    <button>
+                        <i class="fa-solid fa-chart-pie"></i>
+                        Ver Reportes
+                    </button>
+                </div>
+            </div>
+
+            <div class="div">
+                <h3>ALERTAS DEL SISTEMA</h3>
+
+                <div class="divs">
+
+                    <div class="div-alertas-sistema">
+                        <div class="div-ventas-hoy">
+                            <b class="parrafos-divs-alertas-sistema">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                Ventas Hoy
+                            </b>
+                            <p id="lbl-ventas-hoy"></p>
+                            <a href="#">Ver ventas →</a>
+                        </div>
+                    </div>
+
+                    <div class="div-alertas-sistema">
+                        <div class="div-pendiente">
+                            <b class="parrafos-divs-alertas-sistema">
+                                <i class="fa-regular fa-clock"></i>
+                                Productos por Vencer
+                            </b>
+                            <p>8 productos proximos a vencer</p>
+                            <a href="#">Ver productos →</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+    </div>
 </div>
 {% endblock %}
 

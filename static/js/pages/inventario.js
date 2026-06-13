@@ -2,43 +2,86 @@ import { activarSidebar } from "../components/sidebar.js";
 
 import { 
     llenarFormularioProducto, 
-    llenarTablaInventario
+    llenarTablaInventario,
+    limpiarFormularioProducto
 } from "../ui/inventarioUI.js";
 
 import { 
-    cargarInventario,
+    cargarInventarioController,
     eliminarProductoController,
     agregarProductoController,
     actualizarProductoController,
     buscarProductoController
 } from "../controllers/inventarioController.js"; 
 
+import { limpiarFormulario } from "../ui/usuariosUI.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     
     activarSidebar();
-    cargarInventario(0);
+    cargarInventarioController(0);
     
 });
 
-// Agregar Producto
+// Agregar y actualizar producto
 document.addEventListener("DOMContentLoaded", () => {
     
-    const botonAbrir = document.getElementById("btn-nuevo-producto");
-    const botonCerrar = document.getElementById("btn-cerrar-dialog-agregar");
-    const dialogAgregar = document.getElementById("dialog-agregar");
-    const btnAgregar = document.getElementById("btn-dialog-agregar");
-    const formAgregar = document.getElementById("form-agregar");
+    const btnNuevoProducto = document.getElementById("btn-nuevo-producto");
+    const botonCerrar = document.getElementById("btn-cerrar-dialog");
+    const dialog = document.getElementById("dialog-productos");
+    const btnAccion = document.getElementById("btn-accion-dialog");
+    const form = document.getElementById("form-productos");
+    const tbody = document.getElementById("tbody-productos");
+    const inputCodigo = document.getElementById("input-codigo");
 
-    botonAbrir.addEventListener("click", () => {
-        dialogAgregar.showModal();
+    let modo = null;
+
+    // Abrir dialog para agregar
+    btnNuevoProducto.addEventListener("click", () => {
+        modo = "agregar"
+        limpiarFormularioProducto(form);
+        btnAccion.textContent = "Agregar Producto";
+        inputCodigo.readOnly = false;
+        
+        dialog.showModal();
     });
+    
+    // Abrir dialog para actualizar
+    tbody.addEventListener("click", (e) => {
+        const boton = e.target.closest(".actualizar");
 
+        if (boton) {
+            modo = "actualizar";
+            llenarFormularioProducto(boton);
+            btnAccion.textContent = "Actualizar Producto";
+            inputCodigo.readOnly = true;
+    
+            dialog.showModal();
+        }
+    })
+
+    // Cerrar dialog
     botonCerrar.addEventListener("click", () => {
-        dialogAgregar.close()
+        dialog.close()
     });
-    btnAgregar.addEventListener("click", () => {
-        agregarProductoController(formAgregar);
-    });
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        if (modo === "agregar") {
+
+            await agregarProductoController();
+
+        } else if (modo === "actualizar") {
+
+            await actualizarProductoController();
+
+        }
+
+        await cargarInventarioController(0);
+        limpiarFormulario(form);
+
+    })
     
 });
 
@@ -47,8 +90,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const btnConfirmar = document.getElementById("btn-confirmar-borrado");
     const btnCancelar = document.getElementById("btn-cancelar-confirmacion");
-    const dialogConfirmacion = document.getElementById("dialog-confirmacion");
-    const tbody = document.getElementById("cuerpo-tabla-inventario");
+    const dialogConfirmacion = document.getElementById("dialog-eliminar");
+    const tbody = document.getElementById("tbody-productos");
 
     let codigoAEliminar = null;
 
@@ -68,40 +111,11 @@ document.addEventListener("DOMContentLoaded", () => {
     btnConfirmar.addEventListener("click", () => {
         if (codigoAEliminar) {
             eliminarProductoController(codigoAEliminar);
-            cargarInventario(0);
+            cargarInventarioController(0);
             dialogConfirmacion.close();
         }
     });
 
-});
-
-// Actualizar Producto
-document.addEventListener("DOMContentLoaded", () => {
-    
-    const tbody = document.getElementById("cuerpo-tabla-inventario");
-    const botonCerrar = document.getElementById("btn-cerrar-dialog-actualizar");
-    const botonActualizar = document.getElementById("btn-actualizar");
-    const dialogActualizar = document.getElementById("dialog-actualizar");
-    const formActualizar = document.getElementById("form-actualizar");
-    
-    tbody.addEventListener("click", (e) => {
-        const botonAbrir = e.target.closest(".editar");
-
-        if (botonAbrir) {
-            llenarFormularioProducto(formActualizar, botonAbrir);
-            dialogActualizar.showModal();
-        }
-    });
-
-    botonCerrar.addEventListener("click", () => {
-        dialogActualizar.close();
-    });
-    
-    botonActualizar.addEventListener("click", () => {
-        actualizarProductoController(formActualizar);
-        dialogActualizar.close();
-    });
-    
 });
 
 // Recargar Pagina
@@ -121,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
     input.addEventListener("input", () => {
 
         if (input.value.trim() === "") {
-            cargarInventario(0);
+            cargarInventarioController(0);
         }
         if (input.value.trim().length === 4) {
             buscarProductoController(input.value.trim());
@@ -135,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const select = document.getElementById("select-categorias-acciones");
 
     select.addEventListener("change", () => {
-        cargarInventario(parseInt(select.value));
+        cargarInventarioController(parseInt(select.value));
     });
 
 });

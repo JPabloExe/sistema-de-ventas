@@ -27,12 +27,11 @@ export async function eliminarProductoController(codigo) {
 
     }
 
-    cargarInventario("");
     mostrarToast(info.message, info.type);
 
 }
 
-export async function cargarInventario(categoria) {
+export async function cargarInventarioController(categoria) {
 
     const info = await obtenerProductos(categoria);
 
@@ -63,14 +62,12 @@ export async function agregarProductoController(formulario) {
     }
 
     mostrarToast(info.message, info.type);
-    limpiarFormularioProducto(formulario);
-    cargarInventario("");
 
 }
 
-export async function actualizarProductoController(formulario) {
+export async function actualizarProductoController() {
 
-    const productoActualizado = obtenerDatosFormularioProducto(formulario);
+    const productoActualizado = obtenerDatosFormularioProducto();
 
     const info = await actualizarProducto(productoActualizado);
 
@@ -82,8 +79,6 @@ export async function actualizarProductoController(formulario) {
     }
 
     mostrarToast(info.message, info.type);
-    limpiarFormularioProducto(formulario);
-    cargarInventario("");
 
 }
 

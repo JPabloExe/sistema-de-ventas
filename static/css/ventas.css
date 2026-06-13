@@ -9,10 +9,9 @@ body button, a, i {
     cursor: pointer;
 }
 
-.contenedor-ventas {
+.contenedor {
     display: flex;
     flex-direction: column;
-    padding: 5px 20px 20px 20px;
 }
 
 .header {
@@ -26,6 +25,7 @@ body button, a, i {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    padding: 8px 0px 0px 0px;
 }
 
 .div-presentacion p {

@@ -1,13 +1,16 @@
 export function mostrarToast(mensaje, tipo) {
 
-    const toast = document.createElement("div");
-    toast.className = 'toast';
-    toast.classList.add("toast", tipo);
+    const template = document.getElementById("toast-template");
 
-    toast.innerHTML = `
-        <i class="${obtenerIcono(tipo)}"></i>
-        <span>${mensaje}</span>
-    `;
+    const toast = template.content.firstElementChild.cloneNode(true);
+
+    const icono = toast.querySelector(".toast-icon");
+    const texto = toast.querySelector(".toast-message");
+
+    icono.className = `toast-icon ${obtenerIcono(tipo)}`;
+    texto.textContent = mensaje;
+
+    toast.classList.add(tipo);
 
     const contenedor = document.getElementById("contenedor-toasts");
 

@@ -1,0 +1,58 @@
+<dialog id="dialog-usuarios" class="dialog-usuarios">
+    
+    <h2>Gestionar Usuario</h2>
+    
+    <form id="form-usuarios">
+        
+        <div class="campo">
+            <label>Nombre</label>
+            <input id="input-nombre" type="text" placeholder="Ingrese nombre" required>
+        </div>
+        
+        <div class="campo">
+            <label>Apellido</label>
+            <input id="input-apellido" type="text" placeholder="Ingrese apellido" required>
+        </div>
+        
+        <div class="campo">
+            <label>Cedula</label>
+            <input id="input-cedula" type="number" placeholder="Ingrese cedula" required>
+        </div>
+        
+        <div class="campo">
+            <label>Telefono</label>
+            <input id="input-telefono" type="number" placeholder="Ingrese teléfono" required>
+        </div>
+        
+        <div class="campo">
+            <label>Usuario</label>
+            <input id="input-usuario" type="text" placeholder="Ingrese usuario" required>
+        </div>
+        
+        <div class="campo">
+            <label>Contraseña</label>
+            <input id="input-contrasena" type="password" placeholder="Ingrese contraseña" required>
+        </div>
+        
+        <div class="campo">
+            <label>Cargo</label>
+            
+            <select id="select-cargo">
+                <option value="0">Seleccione cargo</option>
+                <option value="1">Administrador</option>
+                <option value="2">Empleado</option>
+                <option value="3">Supervisor</option>
+            </select>
+        </div>
+        
+        <div class="dialog-botones">
+            <button type="button" class="btn-cancelar" id="btn-cancelar">
+                Cancelar
+            </button>
+            
+            <button type="submit" class="btn-accion-dialog" id="btn-accion-dialog"></button>
+        </div>
+        
+    </form>
+    
+</dialog>

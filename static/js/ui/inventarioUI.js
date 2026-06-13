@@ -1,7 +1,7 @@
 import { formatearCOP } from "../utilities/moneda.js";
 
 export function llenarTablaInventario(productos) {
-    const tbody = document.getElementById("cuerpo-tabla-inventario");
+    const tbody = document.getElementById("tbody-productos");
     const pCantidadProductosInventario = document.getElementById("p-cantidad-productos-inventario");
 
     if (productos === null) {    
@@ -26,7 +26,7 @@ export function llenarTablaInventario(productos) {
                 <div class="cantidad">${producto["stock"]} UNIDADES</div>
             </td>
             <td class="acciones">
-                <i id="btn-actualizar-producto" class="fa-solid fa-pen-to-square editar"
+                <i id="btn-actualizar-producto" class="fa-solid fa-pen-to-square actualizar"
                     data-codigo="${producto["codigo"]}"
                     data-nombre="${producto["nombre"]}"
                     data-stock="${producto["stock"]}"
@@ -50,21 +50,22 @@ export function llenarTablaInventario(productos) {
     pCantidadProductosInventario.textContent = productos.length;
 };
 
-export function obtenerDatosFormularioProducto(formulario) {
+export function obtenerDatosFormularioProducto() {
 
     return {
-        "codigo": formulario.codigo.value,
-        "nombre": formulario.nombre.value,
-        "stock": formulario.stock.value,
-        "valor_unitario": formulario.precio.value,
-        "costo": formulario.costo.value,
-        "fecha_caducidad": formulario.caducidad.value,
-        "categoria": parseInt(formulario.categorias.value)
+        "codigo": document.getElementById("input-codigo").value,
+        "nombre": document.getElementById("input-nombre").value,
+        "stock": document.getElementById("input-cantidad").value,
+        "valor_unitario": document.getElementById("input-precio").value,
+        "costo": document.getElementById("input-costo").value,
+        "fecha_caducidad": document.getElementById("input-caducidad").value,
+        "categoria": document.getElementById("select-categorias").value
     }
+
 }
 
-export function limpiarFormularioProducto(formulario) {
-    formulario.reset();
+export function limpiarFormularioProducto(form) {
+    form.reset();
 }
 
 export function mostrarInformeInventario(informe) {
@@ -79,14 +80,32 @@ export function mostrarInformeInventario(informe) {
 
 }
 
-export function llenarFormularioProducto(formulario, boton) {
+export function llenarFormularioProducto(boton) {
 
-    formulario.codigo.value = boton.dataset.codigo;
-    formulario.nombre.value = boton.dataset.nombre;
-    formulario.stock.value = boton.dataset.stock;
-    formulario.precio.value = boton.dataset.precio;
-    formulario.costo.value = boton.dataset.costo;
-    formulario.caducidad.value = boton.dataset.caducidad;
-    formulario.categorias.value = boton.dataset.categoria.toLowerCase();
+    document.getElementById("input-codigo").value = boton.dataset.codigo;
+    document.getElementById("input-nombre").value = boton.dataset.nombre;
+    document.getElementById("input-cantidad").value = boton.dataset.cantidad;
+    document.getElementById("input-precio").value = boton.dataset.precio;
+    document.getElementById("input-costo").value = boton.dataset.costo;
+    document.getElementById("input-caducidad").value = boton.dataset.caducidad;
+
+    switch (boton.dataset.categoria) {
+
+        case "Abarrotes":
+            document.getElementById("select-categorias").value = "1";
+            break;
+
+        case "Bebidas":
+            document.getElementById("select-categorias").value = "2";
+            break;
+
+        case "Limpieza":
+            document.getElementById("select-categorias").value = "3";
+            break;
+
+        default:
+            document.getElementById("select-categorias").value = "0";
+
+    }
 
 }

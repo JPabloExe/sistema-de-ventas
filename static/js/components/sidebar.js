@@ -6,10 +6,15 @@ export function activarSidebar() {
 
     if (btnMenu && sidebar) {
         btnMenu.addEventListener("click", () => {
+            console.log("click sidebar");
             btnMenu.classList.toggle("active");
             sidebar.classList.toggle("active");
             contenedor.classList.toggle("active");
             divboton.classList.toggle("active");
+
+            console.log(sidebar.className);
+            console.log(contenedor.className);
+            console.log(divboton.className);
         });
     }
 };

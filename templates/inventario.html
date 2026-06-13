@@ -8,7 +8,7 @@
 
 {% block contenido %}
 
-<div class="contenedor-inventario">
+<div class="contenedor" id="contenedor">
 
     <header class="header">
         <div class="div-presentacion">
@@ -71,89 +71,10 @@
             </tr>
         </thead>
 
-        <tbody id="cuerpo-tabla-inventario"></tbody>
+        <tbody id="tbody-productos"></tbody>
     </table>
 
 </div>
-
-<dialog id="dialog-actualizar" class="dialog-actualizar">
-    <form id="form-actualizar" class="form-actualizar">
-        <h2 class="titulo"> Actualizar Producto </h2>
-
-        <div class="inputs">
-            <input name="codigo" type="number" readonly>
-            <input name="nombre" type="text" required>
-            <input name="stock" type="number" required>
-            <input name="precio" type="number" required>
-            <input name="costo" type="number" required>
-            <input name="caducidad" type="date" required>
-
-            <select name="categorias" class="select-categorias">
-                <option value="0">Categorias</option>
-                <option value="1">Abarrotes</option>
-                <option value="2">Bebidas</option>
-                <option value="3">Limpieza</option>
-            </select>
-        </div>
-
-        <div class="dialog-botones">
-            <button id="btn-cerrar-dialog-actualizar" type="button">
-                Cancelar
-            </button>
-
-            <button id="btn-actualizar" type="button">
-                Actualizar
-            </button>
-        </div>
-    </form>
-</dialog>
-
-<dialog id="dialog-agregar" class="dialog-agregar">
-    <form id="form-agregar" class="form-agregar">
-        <h2 class="titulo"> Nuevo Producto </h2>
-
-        <div class="inputs">
-            <input name="codigo" type="number" placeholder="Codigo del producto" required>
-            <input name="nombre" type="text" placeholder="Nombre del producto" required>
-            <input name="stock" type="number" placeholder="Cantidad que se ingresa" required>
-            <input name="precio" type="number" placeholder="Valor unitario" required>
-            <input name="costo" type="number" placeholder="Costo del producto" required>
-            <input name="caducidad" type="date" required>
-
-            <select name="categorias" class="select-categorias">
-                <option value="0">Categorias</option>
-                <option value="1">Abarrotes</option>
-                <option value="2">Bebidas</option>
-                <option value="3">Limpieza</option>
-            </select>
-        </div>
-
-        <div class="dialog-botones">
-            <button id="btn-cerrar-dialog-agregar" type="button">
-                Cancelar
-            </button>
-
-            <button id="btn-dialog-agregar" type="button">
-                Agregar
-            </button>
-        </div>
-    </form>
-</dialog>
-
-
-<dialog id="dialog-confirmacion" class="dialog-confirmacion">
-    <p>¿Deseas borrar este producto?</p>
-
-    <div class="div-botones-confirmacion">
-        <button id="btn-cancelar-confirmacion">
-            Cancelar
-        </button>
-
-        <button id="btn-confirmar-borrado" class="btn-confirmar-borrado">
-            Confirmar
-        </button>
-    </div>
-</dialog>
 
 {% endblock %}
 

@@ -8,7 +8,7 @@
 
 {% block contenido %}
 
-<div class="contenedor-ventas">
+<div class="contenedor" id="contenedor">
     <header class="header">
         <div class="div-presentacion">
             <h2 id="lbl-saludo">Gestion de Ventas</h2>
@@ -59,28 +59,6 @@
 
         <tbody id="cuerpo-tabla-ventas"> </tbody>
     </table>
-</div>
-
-<dialog id="dialog-confirmacion" class="dialog-confirmacion">
-    <p>¿Deseas borrar esta venta?</p>
-
-    <div class="div-botones-confirmacion">
-        <button id="btn-cancelar-confirmacion" class="btn-cancelar-confirmacion">
-            <i class="fa-solid fa-x"></i>
-            Cancelar
-        </button>
-
-        <button id="btn-confirmar-borrado" class="btn-confirmar-borrado">
-            <i class="fa-solid fa-check"></i>
-            Confirmar
-        </button>
-    </div>
-</dialog>
-
-<div id="letrero" class="letrero"> 
-    <i id="icono-letrero"></i>
-    <span id="texto-letrero" class="texto-letrero"></span>
-
 </div>
 
 {% endblock %}
