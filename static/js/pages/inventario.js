@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
     
     const btnNuevoProducto = document.getElementById("btn-nuevo-producto");
-    const botonCerrar = document.getElementById("btn-cancelar");
+    const botonCerrar = document.getElementById("btn-cancelar-productos");
     const dialog = document.getElementById("dialog-productos");
     const btnAccion = document.getElementById("btn-accion-dialog-productos");
     const form = document.getElementById("form-productos");
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Buscar Producto
 document.addEventListener("DOMContentLoaded", () => {
     
-    const input = document.getElementById("input-producto");
+    const input = document.getElementById("input-buscar-producto");
 
     input.addEventListener("input", () => {
 

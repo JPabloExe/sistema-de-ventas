@@ -68,13 +68,13 @@ class ProductoRepository:
             return None
         
         return {
-            resultado_final[0], 
-            resultado_final[1], 
-            resultado_final[2], 
-            resultado_final[4], 
-            resultado_final[5], 
-            resultado_final[6].strftime("%Y-%m-%d"), 
-            resultado_final[7]
+            "codigo": resultado_final[0],
+            "nombre": resultado_final[1],
+            "stock": resultado_final[2],
+            "valor_unitario": resultado_final[3],
+            "costo": resultado_final[4],
+            "fecha_caducidad": resultado_final[5].strftime("%Y-%m-%d"),
+            "categoria": resultado_final[6]
         }
     
     @staticmethod

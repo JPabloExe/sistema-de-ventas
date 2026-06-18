@@ -1,15 +1,21 @@
 import { URL_API } from "../config/config.js";
 
+export async function obtenerVentas() {
+
+    const respuesta = await fetch(`${URL_API}/obtenerVentas`);
+
+    return await respuesta.json();
+
+};
+
 export async function buscarVentas(fechaInicial, fechaFinal) {
 
-    const respuesta = await fetch(`${URL_API}/obtenerVentas`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            "inicial": fechaInicial,
-            "final": fechaFinal
-        })
-    });
+    const intervalo = {
+        "inicial": fechaInicial,
+        "final": fechaFinal
+    }
+
+    const respuesta = await fetch(`${URL_API}/buscarVentas?intervalo=${intervalo}`);
 
     return await respuesta.json();
 

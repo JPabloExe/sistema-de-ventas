@@ -47,6 +47,8 @@ export function llenarTablaVentas(ventas) {
 
     const tBody = document.querySelector(".tabla-ventas tbody");
 
+
+
     tBody.innerHTML = "";
 
     for (const venta of ventas) {

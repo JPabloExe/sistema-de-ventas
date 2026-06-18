@@ -41,7 +41,7 @@ def obtener_productos():
             return api_response(
                 False, 
                 "error", 
-                "No hay productos registrados en esta categoria",
+                "No hay productos registrados",
                 None
             ) 
         else:
@@ -62,6 +62,7 @@ def obtener_productos():
     
 @productos_bp.route('/buscarProducto', methods=['POST'])
 def buscar_producto():
+    
     codigo = request.args.get('codigo')
 
     try:
@@ -120,7 +121,7 @@ def eliminar_producto():
 
     try:
 
-        ProductoRepository.eliminarProducto(int(codigo))
+        ProductoRepository.eliminarProducto(codigo)
 
         return api_response(
             True,

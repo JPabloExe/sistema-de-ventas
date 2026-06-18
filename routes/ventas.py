@@ -64,14 +64,44 @@ def realizar_venta():
             None
         )
         
-@ventas_bp.route('/obtenerVentas', methods=['POST'])
+@ventas_bp.route('/obtenerVentas', methods=['GET'])
 def obtener_ventas():
-    intervalo = request.get_json()
 
     try:
-        ventas = VentaRepository.obtenerVentas(intervalo['inicial'], intervalo['final'])
+        ventas = VentaRepository.obtenerVentas()
         
-        if ventas == 0:
+        if ventas == None:
+            return api_response(
+                False,
+                "error",
+                "No hay ventas registradas",
+                None
+            )
+        else:
+            return api_response(
+            True,
+            "success",
+            "Ventas encontradas",
+            ventas
+        )
+    
+    except Exception as e:
+        return api_response(
+            False,
+            "exception",
+            str(e.msg),
+            None
+        )
+
+@ventas_bp.route('/buscarVentas', methods=['GET'])
+def buscar_ventas():
+    
+    intervalo = request.args.get('intervalo')
+
+    try:
+        ventas = VentaRepository.buscarVentas(intervalo['inicial'], intervalo['final'])
+        
+        if ventas == None:
             return api_response(
                 False,
                 "error",

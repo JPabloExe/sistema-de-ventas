@@ -4,13 +4,14 @@ import { inicializarDialogEliminarVenta } from "../ui/ventasUI.js";
 
 import { 
     eliminarVentaController,
+    buscarVentasController,
     cargarVentas
 } from "../controllers/ventasController.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     
     inicializarDialogEliminarVenta(eliminarVentaController);
-    cargarVentas(null, null);
+    cargarVentas();
     activarSidebar();
     
 });
@@ -38,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         
-        cargarVentas(fechaInicial, fechaFinal);
+        buscarVentasController(fechaInicial, fechaFinal);
 
     });
 
