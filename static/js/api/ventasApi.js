@@ -18,7 +18,7 @@ export async function buscarVentas(fechaInicial, fechaFinal) {
 export async function eliminarVenta(numeroVenta) {
 
     const respuesta = await fetch(`${URL_API}/eliminarVenta?numero=${numeroVenta}`, {
-        method: "POST"
+        method: "DELETE"
     });
 
     return await respuesta.json();

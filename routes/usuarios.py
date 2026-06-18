@@ -1,6 +1,5 @@
 from utils.responses import api_response
 from flask import Blueprint, request
-from entities.usuario import Usuario
 from repositories.usuario_repository import UsuarioRepository
 
 usuarios_bp = Blueprint('usuarios_bp', __name__)
@@ -11,17 +10,8 @@ def registrar_usuario():
     datos = request.json
 
     try:
-        usuario = Usuario(
-            datos['nombre'],
-            datos['apellido'],
-            datos['cedula'],
-            datos['telefono'],
-            datos['usuario'],
-            datos['contrasena'],
-            datos['cargo']
-        )
-
-        UsuarioRepository.registrarUsuario(usuario)
+        
+        UsuarioRepository.registrarUsuario(datos)
 
         return api_response(
             True,

@@ -1,7 +1,7 @@
 import os
 import mysql.connector
 
-class Conexion:
+class ConexionDB:
     @staticmethod
     def get_conexion():
         return mysql.connector.connect(

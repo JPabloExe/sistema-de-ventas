@@ -1,6 +1,5 @@
 from utils.responses import api_response
 from flask import Blueprint, request
-from entities.producto import Producto
 from repositories.producto_repository import ProductoRepository
 
 productos_bp = Blueprint('productos_bp', __name__)
@@ -11,16 +10,8 @@ def agregar_producto():
     datos = request.json
 
     try:
-        nuevo_producto = Producto(
-            datos["codigo"],
-            datos["nombre"],
-            datos["stock"],
-            datos["valor_unitario"],
-            datos["costo"],
-            datos["fecha_caducidad"],
-            datos["categoria"]
-        )
-        ProductoRepository.agregarProducto(nuevo_producto)
+        
+        ProductoRepository.agregarProducto(datos)
 
         return api_response(
             True,
@@ -39,6 +30,7 @@ def agregar_producto():
 
 @productos_bp.route('/obtenerProductos', methods=['GET'])
 def obtener_productos():
+    
     categoria = request.args.get('categoria')
     
     try:
@@ -87,7 +79,7 @@ def buscar_producto():
                 True,
                 "success",
                 "Producto encontrado",
-                Producto.toDict(producto)
+                producto
             )
         
     except Exception as e:
@@ -98,22 +90,14 @@ def buscar_producto():
             None
         )
 
-@productos_bp.route('/actualizarProducto', methods=['POST'])
+@productos_bp.route('/actualizarProducto', methods=['PUT'])
 def actualizar_producto():
+    
     datos = request.json
     
     try:
 
-        producto_actualizado = Producto(
-            datos['codigo'], 
-            datos['nombre'], 
-            datos['stock'], 
-            datos['valor_unitario'], 
-            datos['costo'],
-            datos['fecha_caducidad'],
-            datos['categoria']
-        )
-        ProductoRepository.editarProducto(producto_actualizado)
+        ProductoRepository.editarProducto(datos)
 
         return api_response(
             True,
@@ -130,7 +114,7 @@ def actualizar_producto():
             None
         )
 
-@productos_bp.route('/eliminarProducto', methods=['POST'])
+@productos_bp.route('/eliminarProducto', methods=['DELETE'])
 def eliminar_producto():
     codigo = request.args.get('codigo')
 
@@ -182,4 +166,3 @@ def informe_inventario():
             str(e.msg),
             None
         )
-        

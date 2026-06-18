@@ -1,21 +1,20 @@
-from database.conexionBD import Conexion
-from entities.usuario import Usuario
+from config.db_config import ConexionDB
 
 class UsuarioRepository:
 
     @staticmethod
-    def registrarUsuario(usuario):
-        conexion = Conexion.get_conexion()
+    def registrarUsuario(datos):
+        conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
 
         cursor.callproc("sp_registrar_usuarios", [
-            usuario.nombre,
-            usuario.apellido,
-            usuario.cedula,
-            usuario.telefono,
-            usuario.usuario,
-            usuario.contrasena,
-            usuario.id_cargo
+            datos['nombre'],
+            datos['apellido'],
+            datos['cedula'],
+            datos['telefono'],
+            datos['usuario'],
+            datos['contrasena'],
+            datos['cargo']
         ])
 
         cursor.close()
@@ -24,7 +23,7 @@ class UsuarioRepository:
     
     @staticmethod
     def obtenerUsuarios():
-        conexion = Conexion.get_conexion()
+        conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
 
         cursor.callproc('sp_obtener_usuarios', [])
@@ -54,7 +53,7 @@ class UsuarioRepository:
     
     @staticmethod
     def eliminarUsuario(cedula):
-        conexion = Conexion.get_conexion()
+        conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
 
         cursor.callproc("sp_eliminar_usuario", [cedula])
@@ -65,7 +64,7 @@ class UsuarioRepository:
 
     @staticmethod    
     def buscarUsuario(cedula):
-        conexion = Conexion.get_conexion()
+        conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
         cursor.callproc("sp_buscar_usuario", [cedula])
        
@@ -92,7 +91,7 @@ class UsuarioRepository:
         
     @staticmethod
     def actualizarUsuario(datosActualizados):
-        conexion = Conexion.get_conexion()
+        conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
         cursor.callproc("sp_actualizar_usuario", [
             datosActualizados['nombre'], 

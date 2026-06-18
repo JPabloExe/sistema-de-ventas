@@ -16,7 +16,7 @@ export async function agregarProducto(producto) {
 export async function actualizarProducto(productoActualizado) {
 
     const respuesta = await fetch(`${URL_API}/actualizarProducto`, {
-        method: "POST",
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(productoActualizado)
     });
@@ -38,7 +38,7 @@ export async function buscarProducto(codigo) {
 export async function eliminarProducto(codigo) {
 
     const respuesta = await fetch(`${URL_API}/eliminarProducto?codigo=${codigo}`, {
-        method: "POST"
+        method: "DELETE"
     });
 
     return await respuesta.json();

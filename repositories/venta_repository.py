@@ -1,17 +1,16 @@
-from database.conexionBD import Conexion
-from entities.venta import Venta
+from config.db_config import ConexionDB
 
 class VentaRepository:
 
     @staticmethod
-    def realizarVenta(venta):
-        conexion = Conexion.get_conexion()
+    def realizarVenta(datos):
+        conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
 
         try:
             cursor.callproc("sp_realizar_venta", [
-                venta.metodo,
-                venta.items, 
+                datos["metodo"],
+                datos["items"] 
             ])
             
             conexion.commit()
@@ -24,20 +23,22 @@ class VentaRepository:
             cursor.close()
             conexion.close()
         
-    """@staticmethod
+    @staticmethod
     def eliminarVenta(numero):
-        conexion = sqlite3.connect(DB_RUTA)
-        conexion.execute("PRAGMA foreign_keys = ON;")
+        conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
-        cursor.execute('DELETE FROM ventas WHERE id_venta = ?;', (numero,))
+        
+        cursor.callproc('sp_eliminar_venta', [numero])
+        
         conexion.commit()
-        conexion.close()"""
+        conexion.close()
+        cursor.close()
 
     @staticmethod
     def obtenerVentas(fecha_inicial, fecha_final):
-        conexion = Conexion.get_conexion()
+        conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
-
+        
         try:
             cursor.callproc("sp_obtener_ventas", [fecha_inicial, fecha_final])
 
@@ -73,7 +74,7 @@ class VentaRepository:
 
     @staticmethod
     def obtenerInforme():
-        conexion = Conexion.get_conexion()
+        conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
 
         datos = cursor.callproc("sp_informe_ventas_hoy", [0, 0])

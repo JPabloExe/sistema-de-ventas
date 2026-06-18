@@ -1,21 +1,20 @@
-from database.conexionBD import Conexion
-from entities.producto import Producto
+from config.db_config import ConexionDB
 
 class ProductoRepository:
 
     @staticmethod    
-    def agregarProducto(producto):
-        conexion = Conexion.get_conexion()
+    def agregarProducto(datos):
+        conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
 
-        cursor.callproc("sp_agregar_producto", [
-            producto.codigo, 
-            producto.nombre, 
-            producto.stock,  
-            producto.valor_unitario, 
-            producto.costo, 
-            producto.fecha_caducidad, 
-            producto.categoria
+        cursor.callproc("sp_agregar_producto", [  
+            datos['codigo'], 
+            datos['nombre'], 
+            datos['stock'], 
+            datos['valor_unitario'], 
+            datos['costo'],
+            datos['fecha_caducidad'],
+            datos['categoria']
         ])
 
         conexion.commit()
@@ -24,7 +23,7 @@ class ProductoRepository:
 
     @staticmethod    
     def obtenerInforme():
-        conexion = Conexion.get_conexion()
+        conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
 
         datos = cursor.callproc("sp_informe_inventario", [0, 0, 0])
@@ -42,7 +41,7 @@ class ProductoRepository:
     
     @staticmethod
     def eliminarProducto(codigo):
-        conexion = Conexion.get_conexion()
+        conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
         
         cursor.callproc('sp_eliminar_producto', [codigo])
@@ -53,7 +52,7 @@ class ProductoRepository:
     
     @staticmethod    
     def buscarProducto(codigo):
-        conexion = Conexion.get_conexion()
+        conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
         cursor.callproc("sp_buscar_producto", [codigo])
        
@@ -68,7 +67,7 @@ class ProductoRepository:
         if resultado_final == None:
             return None
         
-        return Producto(
+        return {
             resultado_final[0], 
             resultado_final[1], 
             resultado_final[2], 
@@ -76,20 +75,20 @@ class ProductoRepository:
             resultado_final[5], 
             resultado_final[6].strftime("%Y-%m-%d"), 
             resultado_final[7]
-        )
+        }
     
     @staticmethod
-    def editarProducto(producto):
-        conexion = Conexion.get_conexion()
+    def editarProducto(datos):
+        conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
         cursor.callproc("sp_actualizar_producto", [
-            producto.codigo, 
-            producto.nombre, 
-            producto.stock, 
-            producto.valor_unitario, 
-            producto.costo, 
-            producto.fecha_caducidad, 
-            producto.categoria
+            datos['codigo'], 
+            datos['nombre'], 
+            datos['stock'], 
+            datos['valor_unitario'], 
+            datos['costo'],
+            datos['fecha_caducidad'],
+            datos['categoria']
         ])
         conexion.commit()
         cursor.close()
@@ -97,7 +96,7 @@ class ProductoRepository:
         
     @staticmethod
     def obtenerPorCategoria(categoria):
-        conexion = Conexion.get_conexion()
+        conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
         
         cursor.callproc("sp_obtener_productos_por_categoria", [categoria])

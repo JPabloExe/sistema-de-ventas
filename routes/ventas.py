@@ -1,5 +1,4 @@
 from flask import Blueprint, request
-from entities.venta import Venta
 from repositories.venta_repository import VentaRepository
 from utils.responses import api_response
 import json
@@ -38,15 +37,17 @@ def informe_ventas():
 
 @ventas_bp.route('/realizarVenta', methods=['POST'])
 def realizar_venta():
+    
     productosComprados = request.get_json()
     
     try:   
 
         productos_json = json.dumps(productosComprados)
         
-        nuevaVenta = Venta('Efectivo', productos_json) 
-        
-        VentaRepository.realizarVenta(nuevaVenta)
+        VentaRepository.realizarVenta({
+            "metodo": "Efectivo",
+            "items": productos_json,
+        })
         
         return api_response(
             True,
@@ -93,8 +94,9 @@ def obtener_ventas():
             None
         )
     
-@ventas_bp.route('/eliminarVenta', methods=['POST'])
+@ventas_bp.route('/eliminarVenta', methods=['DELETE'])
 def eliminar_venta():
+    
     numero = request.args.get('numero')
     
     try:
