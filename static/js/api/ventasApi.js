@@ -10,12 +10,7 @@ export async function obtenerVentas() {
 
 export async function buscarVentas(fechaInicial, fechaFinal) {
 
-    const intervalo = {
-        "inicial": fechaInicial,
-        "final": fechaFinal
-    }
-
-    const respuesta = await fetch(`${URL_API}/buscarVentas?intervalo=${intervalo}`);
+    const respuesta = await fetch(`${URL_API}/buscarVentas?inicial=${fechaInicial}&final=${fechaFinal}`);
 
     return await respuesta.json();
 

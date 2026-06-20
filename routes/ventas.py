@@ -96,10 +96,11 @@ def obtener_ventas():
 @ventas_bp.route('/buscarVentas', methods=['GET'])
 def buscar_ventas():
     
-    intervalo = request.args.get('intervalo')
+    fechaInicial = request.args.get('inicial') or None
+    fechaFinal = request.args.get('final') or None
 
     try:
-        ventas = VentaRepository.buscarVentas(intervalo['inicial'], intervalo['final'])
+        ventas = VentaRepository.buscarVentas(fechaInicial, fechaFinal)
         
         if ventas == None:
             return api_response(

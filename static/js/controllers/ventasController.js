@@ -39,8 +39,7 @@ export async function buscarVentasController(fechaInicial, fechaFinal) {
         
     }
     
-    cargarVentas("", "");
-    mostrarToast(info.message, info.type);
+    cargarVentas();
     
 }
 

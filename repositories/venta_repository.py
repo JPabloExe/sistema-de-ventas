@@ -77,38 +77,34 @@ class VentaRepository:
         conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
         
-        try:
-            cursor.callproc("sp_buscar_ventas", [fecha_inicial, fecha_final])
+        cursor.callproc("sp_buscar_ventas", [fecha_inicial, fecha_final])
 
-            ventas = []
+        ventas = []
 
-            for resultado in cursor.stored_results():
-                ventas = resultado.fetchall()
+        for resultado in cursor.stored_results():
+            ventas = resultado.fetchall()
 
-            if len(ventas) == 0:
-                return None
-            
-            conexion.commit()
-            cursor.close()
-            conexion.close()
-            
-            ventas_t = []
-
-            for venta in ventas:
-                ventas_t.append({
-                    "id": venta[0],
-                    "usuario": venta[1],
-                    "fecha": venta[2].strftime("%Y-%m-%d"),
-                    "hora": str(venta[3]),
-                    "items": venta[4],
-                    "metodo": venta[5],
-                    "total": venta[6]
-                })
-            
-            return ventas_t
+        if len(ventas) == 0:
+            return None
         
-        except Exception as e:
-            print("Error: ", e)
+        conexion.commit()
+        cursor.close()
+        conexion.close()
+        
+        ventas_t = []
+
+        for venta in ventas:
+            ventas_t.append({
+                "id": venta[0],
+                "usuario": venta[1],
+                "fecha": venta[2].strftime("%Y-%m-%d"),
+                "hora": str(venta[3]),
+                "items": venta[4],
+                "metodo": venta[5],
+                "total": venta[6]
+            })
+        
+        return ventas_t
 
     @staticmethod
     def obtenerInforme():

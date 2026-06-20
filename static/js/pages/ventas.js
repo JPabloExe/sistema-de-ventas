@@ -33,12 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btnBuscar.addEventListener("click", () => {
         const fechaInicial = document.getElementById("input-fecha-inicial").value;
         const fechaFinal = document.getElementById("input-fecha-final").value;
-
-        if (fechaInicial.trim() === "" && fechaFinal.trim() === "") {
-            cargarVentas(null, null);
-            return;
-        }
-        
+ 
         buscarVentasController(fechaInicial, fechaFinal);
 
     });
