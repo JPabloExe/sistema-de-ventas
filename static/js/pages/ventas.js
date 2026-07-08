@@ -5,7 +5,8 @@ import { inicializarDialogEliminarVenta } from "../ui/ventasUI.js";
 import { 
     eliminarVentaController,
     buscarVentasController,
-    cargarVentas
+    cargarVentas,
+    buscarDetallesController
 } from "../controllers/ventasController.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -14,6 +15,25 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarVentas();
     activarSidebar();
     
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const dialog = document.getElementById("dialog-detalles-ventas");
+    const tbody = document.getElementById("tbody-ventas");
+    const btnCerrar = document.getElementById("btn-cerrar-detalles");
+
+    tbody.addEventListener("click", (e) => {
+        const boton = e.target.closest(".detalles");
+
+        if (boton) {
+            buscarDetallesController(boton)
+            dialog.showModal();
+        }
+    });
+
+    btnCerrar.addEventListener("click", () => {
+        dialog.close();
+    }); 
 });
 
 // Recargar pagina

@@ -1,0 +1,66 @@
+<dialog id="dialog-detalles-ventas" class="dialog-detalles-ventas">
+
+        <h2>Detalles de la Venta</h2>
+
+        <div class="datos">
+
+            <div>
+                <span>N° Venta</span>
+                <p id="p-numero-venta"></p>
+            </div>
+
+            <div>
+                <span>Fecha</span>
+                <p id="p-fecha"></p>
+            </div>
+
+            <div>
+                <span>Hora</span>
+                <p id="p-hora"></p>
+            </div>
+
+            <div>
+                <span>Usuario</span>
+                <p id="p-usuario"></p>
+            </div>
+
+            <div>
+                <span>Método de pago</span>
+                <p id="p-metodo"></p>
+            </div>
+
+        </div>
+
+        <h3>Items</h3>
+
+        <div class="contenedor-tabla">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Valor U.</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tbody-detalles"></tbody>
+
+            </table>
+
+        </div>
+
+        <div class="pie-dialog">
+
+            <div class="total-pos">
+                Total:
+                <strong id="p-total"></strong>
+            </div>
+
+            <button id="btn-cerrar-detalles" type="button">Cerrar</button>
+
+        </div>
+
+    </dialog>

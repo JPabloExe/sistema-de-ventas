@@ -2,10 +2,12 @@ import {
     obtenerInformeVentas,
     obtenerVentas,
     eliminarVenta,
-    buscarVentas
+    buscarVentas,
+    buscarDetalles
 } from "../api/ventasApi.js"
 
 import { 
+    llenarDetalles,
     llenarTablaVentas,
     mostrarInformeVentas,
 } from "../ui/ventasUI.js";
@@ -40,6 +42,21 @@ export async function buscarVentasController(fechaInicial, fechaFinal) {
     }
     
     cargarVentas();
+    
+}
+
+export async function buscarDetallesController(boton) {
+    
+    const info = await buscarDetalles(boton.dataset.numero);
+
+    if(!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+        
+    }
+
+    llenarDetalles(boton, info.data);
     
 }
 

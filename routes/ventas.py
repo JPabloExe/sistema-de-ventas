@@ -124,7 +124,30 @@ def buscar_ventas():
             str(e.msg),
             None
         )
+        
+@ventas_bp.route('/buscarDetalles', methods=['GET'])
+def buscar_detalles():
     
+    numero = request.args.get('numero')
+    
+    try:
+        items = VentaRepository.buscarDetalles(numero)
+        
+        return api_response(
+            True,
+            "success",
+            "",
+            items            
+        )
+        
+    except Exception as e:
+        return api_response(
+            False,
+            "exception",
+            str(e.msg),
+            None
+        )
+        
 @ventas_bp.route('/eliminarVenta', methods=['DELETE'])
 def eliminar_venta():
     

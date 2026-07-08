@@ -16,6 +16,14 @@ export async function buscarVentas(fechaInicial, fechaFinal) {
 
 };
 
+export async function buscarDetalles(numeroVenta) {
+
+    const respuesta = await fetch(`${URL_API}/buscarDetalles?numero=${numeroVenta}`);
+
+    return await respuesta.json();
+
+};
+
 export async function eliminarVenta(numeroVenta) {
 
     const respuesta = await fetch(`${URL_API}/eliminarVenta?numero=${numeroVenta}`, {

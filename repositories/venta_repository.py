@@ -105,6 +105,32 @@ class VentaRepository:
             })
         
         return ventas_t
+    
+    def buscarDetalles(id_venta):
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
+        
+        cursor.callproc("sp_buscar_detalles_venta", [id_venta])
+        
+        items = []
+        
+        for resultado in cursor.stored_results():
+            items = resultado.fetchall()
+            
+        if len(items) == 0:
+            return None
+        
+        items_t = []
+        
+        for item in items:
+            items_t.append({
+                "nombre": item[0],    
+                "cantidad": item[1],    
+                "valorU": item[2],    
+                "subtotal": item[3],    
+            })
+            
+        return items_t
 
     @staticmethod
     def obtenerInforme():
