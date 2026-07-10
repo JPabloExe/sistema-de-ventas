@@ -27,6 +27,30 @@ def agregar_producto():
             str(e.msg),
             None
         )
+        
+@productos_bp.route('/crearCategoria', methods=['POST'])
+def crear_categoria():
+    
+    categoria = request.json
+    
+    try:
+        
+        ProductoRepository.crearCategoria(categoria)
+        
+        return api_response(
+            True,
+            "success",
+            "Categoria Creada",
+            None
+        )
+        
+    except Exception as e:
+        return api_response(
+            False,
+            "exception",
+            str(e.msg),
+            None
+        )
 
 @productos_bp.route('/obtenerProductos', methods=['GET'])
 def obtener_productos():
@@ -167,3 +191,34 @@ def informe_inventario():
             str(e.msg),
             None
         )
+
+@productos_bp.route('/obtenerCategorias', methods=['GET'])
+def obtener_categorias():
+    
+    
+    try:
+
+        categorias = ProductoRepository.obtenerCategorias()
+        
+        if len(categorias) == 0:
+            return api_response(
+                False, 
+                "error", 
+                "No hay categorias registradas",
+                None
+            ) 
+        else:
+            return api_response(
+                True,
+                "",
+                "",
+                categorias
+            ) 
+        
+    except Exception as e:
+        return api_response(
+            False,
+            "exception",
+            str(e),
+            None
+        ) 

@@ -33,7 +33,7 @@ export function llenarTablaInventario(productos) {
                     data-precio="${producto.valor_unitario}"
                     data-costo="${producto.costo}"
                     data-caducidad="${producto.fecha_caducidad}"
-                    data-categoria="${producto.categoria}">
+                    data-categoria="${producto.id_categoria}">
                 </i>
 
                 <i id="btn-eliminar-producto" class="fa-solid fa-trash eliminar"
@@ -59,7 +59,16 @@ export function obtenerDatosFormularioProducto() {
         "valor_unitario": document.getElementById("input-precio").value,
         "costo": document.getElementById("input-costo").value,
         "fecha_caducidad": document.getElementById("input-caducidad").value,
-        "categoria": document.getElementById("select-categorias").value
+        "categoria": document.getElementById("select-categorias-dialog").value
+    }
+
+}
+
+export function obtenerDatosFormularioCategoria() {
+    
+    return {
+        "nombre": document.getElementById("input-nombre-categoria").value,
+        "descripcion": document.getElementById("input-descripcion").value
     }
 
 }
@@ -88,23 +97,23 @@ export function llenarFormularioProducto(boton) {
     document.getElementById("input-precio").value = boton.dataset.precio;
     document.getElementById("input-costo").value = boton.dataset.costo;
     document.getElementById("input-caducidad").value = boton.dataset.caducidad;
+    document.getElementById("select-categorias-dialog").value = boton.dataset.categoria;
+  
+}
 
-    switch (boton.dataset.categoria) {
+export function cargarCategorias(categorias, select) {
 
-        case "Abarrotes":
-            document.getElementById("select-categorias").value = "1";
-            break;
+    select.innerHTML = '';
 
-        case "Bebidas":
-            document.getElementById("select-categorias").value = "2";
-            break;
+    select.innerHTML = '<option value="0">Todas las categorias</option>';   
 
-        case "Limpieza":
-            document.getElementById("select-categorias").value = "3";
-            break;
+    for (const categoria of categorias) {
 
-        default:
-            document.getElementById("select-categorias").value = "0";
+        select.innerHTML += `
+            <option value="${categoria.id}">
+                ${categoria.nombre}
+            </option>
+        `;
 
     }
 

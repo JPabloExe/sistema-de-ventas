@@ -20,6 +20,20 @@ class ProductoRepository:
         conexion.commit()
         cursor.close()
         conexion.close()
+        
+    @staticmethod
+    def crearCategoria(categoria):
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
+        
+        cursor.callproc("sp_crear_categoria", [
+            categoria["nombre"],
+            categoria["descripcion"]
+        ])
+        
+        cursor.close()
+        conexion.commit()
+        conexion.close()
 
     @staticmethod    
     def obtenerInforme():
@@ -119,9 +133,39 @@ class ProductoRepository:
                 "valor_unitario": fila[3],
                 "costo": fila[4],
                 "fecha_caducidad": fila[5].strftime("%Y-%m-%d"),
-                "categoria": fila[6]
+                "id_categoria": fila[6]
             })
-        return productos   
+            
+        return productos 
+    
+    @staticmethod
+    def obtenerCategorias():
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
+        
+        cursor.callproc("sp_obtener_categorias")
+        
+        filas = []
+
+        for resultado in cursor.stored_results():
+            filas.extend(resultado.fetchall())
+            
+        cursor.close()
+        conexion.close()
+        
+        categorias = []
+        
+        for fila in filas:
+            categorias.append({
+                "id": fila[0],
+                "nombre": fila[1]
+            })
+            
+        return categorias
+            
+        
+        
+          
         
         
         

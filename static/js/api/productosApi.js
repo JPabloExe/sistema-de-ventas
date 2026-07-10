@@ -13,6 +13,18 @@ export async function agregarProducto(producto) {
 
 };
 
+export async function crearCategoria(categoria) {
+   
+    const respuesta = await fetch(`${URL_API}/crearCategoria`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(categoria)
+    });
+
+    return await respuesta.json();
+
+};
+
 export async function actualizarProducto(productoActualizado) {
 
     const respuesta = await fetch(`${URL_API}/actualizarProducto`, {
@@ -56,6 +68,14 @@ export async function obtenerInformeInventario() {
 export async function obtenerProductos(categoria) {
 
     const respuesta = await fetch(`${URL_API}/obtenerProductos?categoria=${categoria}`);
+
+    return await respuesta.json();
+    
+}
+
+export async function obtenerCategorias() {
+
+    const respuesta = await fetch(`${URL_API}/obtenerCategorias`);
 
     return await respuesta.json();
     

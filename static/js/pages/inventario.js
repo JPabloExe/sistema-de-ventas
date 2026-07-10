@@ -11,14 +11,19 @@ import {
     eliminarProductoController,
     agregarProductoController,
     actualizarProductoController,
-    buscarProductoController
+    buscarProductoController,
+    crearCategoriaController,
+    cargarCategoriasController
 } from "../controllers/inventarioController.js"; 
 
 import { limpiarFormulario } from "../ui/usuariosUI.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     
+    const select = document.getElementById("select-categorias");
+
     activarSidebar();
+    cargarCategoriasController(select);
     cargarInventarioController(0);
     
 });
@@ -33,6 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("form-productos");
     const tbody = document.getElementById("tbody-productos");
     const inputCodigo = document.getElementById("input-codigo");
+    const select = document.getElementById("select-categorias-dialog");
+    
+    cargarCategoriasController(select);
 
     let modo = null;
 
@@ -42,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         limpiarFormularioProducto(form);
         btnAccion.textContent = "Agregar";
         inputCodigo.readOnly = false;
-        
+
         dialog.showModal();
     });
     
@@ -62,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Cerrar dialog
     botonCerrar.addEventListener("click", () => {
-        dialog.close()
+        dialog.close();
     });
 
     form.addEventListener("submit", async (e) => {
@@ -83,6 +91,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     })
     
+});
+
+// Crear Categoria
+document.addEventListener("DOMContentLoaded", () => {
+
+    const dialog = document.getElementById("dialog-categoria");
+    const btnNuevaCategoria = document.getElementById("btn-nueva-categoria");
+    const btnCancelar = document.getElementById("btn-cancelar-categoria");
+    const btnCrearCategoria = document.getElementById("btn-crear-categoria");
+    const form = document.getElementById("form-categoria");
+
+    btnNuevaCategoria.addEventListener("click", () => {
+        dialog.showModal();
+    });
+
+    btnCancelar.addEventListener("click", () => {
+        dialog.close();
+    });
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        await crearCategoriaController();
+        dialog.close();
+    });
+
 });
 
 // Eliminar Producto
@@ -146,10 +179,10 @@ document.addEventListener("DOMContentLoaded", () => {
 // Cargar inventario por categoria
 document.addEventListener("DOMContentLoaded", () => {
 
-    const select = document.getElementById("select-categorias-acciones");
+    const select = document.getElementById("select-categorias");
 
     select.addEventListener("change", () => {
-        cargarInventarioController(parseInt(select.value));
+        cargarInventarioController(select.value);
     });
 
 });

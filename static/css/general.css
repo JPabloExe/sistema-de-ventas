@@ -194,72 +194,115 @@
 }
 
 /*DIALOGS - FORMULARIOS*/
-.dialog-usuarios, .dialog-productos {
+.dialog-usuarios,
+.dialog-productos,
+.dialog-categoria {
     background-color: #FFFFFF;
-    padding: 20px 80px 30px;
-    height: 80%;
-    border-radius: 8px;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+    width: 850px;
+    max-width: 90vw;
     border: none;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 35px rgba(0,0,0,.2);
 }
 
-.formulario-panel form{
-    margin-top:20px;
+.dialog-usuarios::backdrop,
+.dialog-productos::backdrop,
+.dialog-categoria::backdrop {
+    background: rgba(0,0,0,.45);
+}
+
+.dialog-usuarios h2,
+.dialog-productos h2,
+.dialog-categoria h2{
+    margin: 0 0 25px;
+    text-align: center;
+    color: #333;
+    font-size: 25px;
+}
+
+.formulario-panel form,
+.dialog-usuarios form,
+.dialog-productos form{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 22px;
 }
 
 .campo{
-    margin-bottom:10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .campo label{
-    display:block;
-    margin-bottom:6px;
-    font-size:15px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
 }
 
 .campo input,
 .campo select{
-    width:100%;
-    height:40px;
-    border:1px solid #d5d5d5;
-    border-radius:8px;
-    padding:0 12px;
-    font-size:14px;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid #d6d6d6;
+    border-radius: 7px;
+    font-size: 15px;
+    outline: none;
+    transition: .2s;
+    background: white;
+    color: #555;
 }
 
 .campo input:focus,
 .campo select:focus{
-    outline:none;
+    outline: none;
+    border-color: #2E3547;
+    box-shadow: 0 0 0 3px rgba(46,53,71,.15);
 }
 
-.dialog-botones {
+.dialog-botones{
+    grid-column: 1 / -1;
     display: flex;
-    padding-top: 20px;
-    justify-content: space-around;
-    gap: 10px;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 15px;
 }
 
-.dialog-botones button {
-    color: black;
+.dialog-botones button{
+    padding: 10px 24px;
     border: none;
-    padding: 8px 12px 8px 12px; 
     border-radius: 8px;
-    font-size: medium;
+    font-size: 15px;
+    cursor: pointer;
+    transition: .2s;
 }
 
-.btn-accion-dialog-usuarios, 
-.btn-accion-dialog-productos{
+.btn-accion-dialog-usuarios,
+.btn-accion-dialog-productos,
+.btn-crear-categoria{
     background-color: #2E3547;
     color: white !important;
 }
 
-.btn-accion-dialog-usuarios:hover, 
-.btn-accion-dialog-productos:hover {
-    background:#1f2c43;
+.btn-accion-dialog-usuarios:hover,
+.btn-accion-dialog-productos:hover,
+.btn-crear-categoria:hover{
+    background: #1f2c43;
 }
 
-.btn-cancelar {
-    background-color: #cecece;
+.btn-cancelar,
+.btn-cancelar-productos,
+.btn-cancelar-usuarios,
+.btn-cancelar-categoria{
+    background-color: #d9d9d9;
+}
+
+.btn-cancelar:hover,
+.btn-cancelar-productos:hover,
+.btn-cancelar-usuarios:hover,
+.btn-cancelar-categoria:hover{
+    background-color: #c8c8c8;
 }
 
 /*TABLAS*/

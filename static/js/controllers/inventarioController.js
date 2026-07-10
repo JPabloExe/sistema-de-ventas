@@ -4,14 +4,18 @@ import {
     agregarProducto,
     actualizarProducto,
     buscarProducto,
-    obtenerInformeInventario
+    obtenerInformeInventario,
+    crearCategoria,
+    obtenerCategorias
 } from "../api/productosApi.js";
 
 import {
     llenarTablaInventario,
     obtenerDatosFormularioProducto,
     limpiarFormularioProducto,
-    mostrarInformeInventario
+    mostrarInformeInventario,
+    obtenerDatosFormularioCategoria,
+    cargarCategorias
 } from "../ui/inventarioUI.js";
 
 import { mostrarToast } from "../components/toast.js";
@@ -53,6 +57,23 @@ export async function agregarProductoController(formulario) {
     const producto = obtenerDatosFormularioProducto(formulario);
 
     const info = await agregarProducto(producto);
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+        
+    }
+
+    mostrarToast(info.message, info.type);
+
+}
+
+export async function crearCategoriaController() {
+
+    const categoria = obtenerDatosFormularioCategoria();
+
+    const info = await crearCategoria(categoria);
 
     if (!info.ok) {
 
@@ -114,5 +135,20 @@ export async function cargarInformeInventario() {
     
     mostrarInformeInventario(info.data);
     mostrarToast(info.message, info.type);
+
+}
+
+export async function cargarCategoriasController(select) {
+
+    const info = await obtenerCategorias();
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+        
+    }
+    
+    cargarCategorias(info.data, select);
 
 }

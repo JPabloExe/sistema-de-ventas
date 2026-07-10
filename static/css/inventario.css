@@ -179,3 +179,31 @@ body button, a, i {
 .acciones i:hover {
     opacity: 0.7;
 }
+
+.dialog-categoria {
+    width: 350px !important;
+}
+
+.dialog-categoria form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px 22px;
+}
+
+.campo textarea{
+    width: 100%;
+    min-height: 100px;
+    border: 1px solid #d5d5d5;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical; /* Permite cambiar solo la altura */
+    box-sizing: border-box;
+}
+
+.campo textarea:focus{
+    outline: none;
+    border-color: #2E3547;
+    box-shadow: 0 0 0 3px rgba(46,53,71,.15);
+}

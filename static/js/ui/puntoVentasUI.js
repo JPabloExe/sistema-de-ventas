@@ -87,7 +87,7 @@ export function agregarProductoAlCarrito(producto) {
 
 }
 
-let total = 0;
+export let total = 0;
 
 export function recalcularTotal() {
     let totalGeneral = 0;

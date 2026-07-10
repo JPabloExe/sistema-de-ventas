@@ -41,7 +41,7 @@ export async function buscarVentasController(fechaInicial, fechaFinal) {
         
     }
     
-    cargarVentas();
+    llenarTablaVentas(info.data);
     
 }
 

@@ -4,6 +4,8 @@ import { mostrarToast } from "../components/toast.js";
 
 import { formatearCOP } from "../utilities/moneda.js";
 
+import { total } from "../ui/puntoVentasUI.js";
+
 import {
     limpiarCarrito,
     productosEnCarrito,
@@ -26,8 +28,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const cantidad = document.getElementById("cantidad");
     const botonProcesar = document.getElementById("btn-procesar-venta");
     const botonLimpiar = document.getElementById("btn-limpiar-carrito");
+    const montoRecibido = document.getElementById("recibido");
 
     botonProcesar.addEventListener("click", () => {
+        if (montoRecibido.value === "") {
+            mostrarToast("Debe ingresar el monto", "exception");
+            return;
+        }
+        
+        if (montoRecibido.value < total) {
+            mostrarToast("Monto menor al total de la venta", "exception");
+            return;
+        }
+        
         realizarVentaController();
         limpiarCarrito();   
         cantidad.textContent = `(${productosEnCarrito()} productos)`;
