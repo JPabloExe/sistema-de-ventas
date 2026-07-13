@@ -32,6 +32,19 @@
         {% include 'components/toast.html' %}
     </div>
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <script type="module">
+                import { mostrarToast } from "{{ url_for('static', filename='js/components/toast.js') }}";
+                document.addEventListener("DOMContentLoaded", () => {
+                    {% for category, message in messages %}
+                        mostrarToast({{ message | tojson }}, {{ category | tojson }});
+                    {% endfor %}
+                });
+            </script>
+        {% endif %}
+    {% endwith %}
+
     <!-- CONTENIDO DINÁMICO -->
     {% block contenido %}{% endblock %}
 

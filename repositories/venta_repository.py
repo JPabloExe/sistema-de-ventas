@@ -9,12 +9,13 @@ class VentaRepository:
 
         try:
             cursor.callproc("sp_realizar_venta", [
+                datos["id_usuario"],
                 datos["metodo"],
                 datos["items"] 
             ])
             
             conexion.commit()
-
+    
         except Exception as e:
             conexion.rollback()
             raise e

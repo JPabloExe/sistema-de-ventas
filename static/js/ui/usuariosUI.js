@@ -22,12 +22,11 @@ export function llenarTablaUsuarios(usuarios) {
                 <td>${usuario.telefono}</td>
 
                 <td>
-                    <span class=${
-                        usuario.cargo === "Administrador" ?
-                            "badge-admin" :
-                            usuario.cargo === "Supervisor" ?
-                                "badge-supervisor" :
-                                "badge-empleado"}>
+                    <span class=${usuario.cargo === "Administrador" ?
+                "badge-admin" :
+                usuario.cargo === "Supervisor" ?
+                    "badge-supervisor" :
+                    "badge-empleado"}>
 
                         ${usuario.cargo}
                     </span>
@@ -105,5 +104,15 @@ export function llenarFormularioUsuarios(boton) {
             document.getElementById('select-cargo').value = '0';
 
     }
+
+}
+
+export function mostrarUsuarioActual(datos) {
+
+    const pSaludo = document.getElementById("lbl-saludo");
+
+    pSaludo.textContent = "Buenos dias,";
+
+    pSaludo.textContent += ` ${datos.usuario}`;
 
 }

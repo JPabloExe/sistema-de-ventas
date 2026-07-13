@@ -1,7 +1,8 @@
-from flask import Blueprint, request
-from flask_login import login_required
-from repositories.venta_repository import VentaRepository
 from utils.responses import api_response
+from utils.decorators import roles_required
+from flask import Blueprint, request
+from flask_login import login_required, current_user
+from repositories.venta_repository import VentaRepository
 import json
 
 ventas_bp = Blueprint('ventas_bp', __name__)
@@ -39,17 +40,19 @@ def informe_ventas():
 
 @ventas_bp.route('/realizarVenta', methods=['POST'])
 @login_required
+@roles_required("Administrador", "Supervisor", "Empleado")
 def realizar_venta():
     
-    productosComprados = request.get_json()
+    datosVenta = request.get_json()
     
     try:   
 
-        productos_json = json.dumps(productosComprados)
+        items_json = json.dumps(datosVenta["items"])
         
         VentaRepository.realizarVenta({
-            "metodo": "Efectivo",
-            "items": productos_json,
+            "id_usuario": current_user.id,
+            "metodo": datosVenta["metodo"],
+            "items": items_json
         })
         
         return api_response(
@@ -132,6 +135,7 @@ def buscar_ventas():
         
 @ventas_bp.route('/buscarDetalles', methods=['GET'])
 @login_required
+@roles_required("Administrador", "Supervisor")
 def buscar_detalles():
     
     numero = request.args.get('numero')
@@ -156,6 +160,7 @@ def buscar_detalles():
         
 @ventas_bp.route('/eliminarVenta', methods=['DELETE'])
 @login_required
+@roles_required("Administrador")
 def eliminar_venta():
     
     numero = request.args.get('numero')

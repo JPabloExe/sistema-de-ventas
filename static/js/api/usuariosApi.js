@@ -9,7 +9,7 @@ export async function registrarUsuario(usuario) {
     });
 
     return await respuesta.json();
-    
+
 }
 
 export async function obtenerUsuarios() {
@@ -17,7 +17,7 @@ export async function obtenerUsuarios() {
     const respuesta = await fetch(`${URL_API}/obtenerUsuarios`);
 
     return await respuesta.json();
-    
+
 }
 
 export async function eliminarUsuario(cedula) {
@@ -27,7 +27,7 @@ export async function eliminarUsuario(cedula) {
     });
 
     return await respuesta.json();
-    
+
 }
 
 export async function buscarUsuario(cedula) {
@@ -37,7 +37,7 @@ export async function buscarUsuario(cedula) {
     });
 
     return await respuesta.json();
-    
+
 }
 
 export async function actualizarUsuario(datosActualizados) {
@@ -49,5 +49,13 @@ export async function actualizarUsuario(datosActualizados) {
     });
 
     return await respuesta.json();
-    
+
+}
+
+export async function usuarioActual() {
+
+    const respuesta = await fetch(`${URL_API}/usuarioActual`);
+
+    return await respuesta.json();
+
 }

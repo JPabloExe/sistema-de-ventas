@@ -4,12 +4,15 @@ import { cargarInformeInventario } from "../controllers/inventarioController.js"
 
 import { cargarInformeVentas } from "../controllers/ventasController.js"
 
+import { usuarioActualController } from "../controllers/usuariosController.js";
+
 import { activarSidebar } from "../components/sidebar.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     activarSidebar();
     cargarInformeInventario();
     cargarInformeVentas();
+    usuarioActualController();
 });
 
 // Recargar pagina
@@ -37,11 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
     linkInventario.addEventListener("click", () => {
         abrirVentanas("inventario")
     });
-    
+
     linkPVentas.addEventListener("click", () => {
         abrirVentanas("puntoVentas")
     });
-    
+
     linkVentas.addEventListener("click", () => {
         abrirVentanas("ventas")
     });

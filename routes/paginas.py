@@ -1,9 +1,11 @@
 from flask import Blueprint, render_template
 from flask_login import login_required
+from utils.decorators import roles_required
 paginas_bp = Blueprint('paginas_bp', __name__)
 
 @paginas_bp.route('/')
 @login_required
+@roles_required("Administrador", "Supervisor", "Empleado")
 def index():
     return render_template('index.html')
 
@@ -13,20 +15,24 @@ def login():
 
 @paginas_bp.route('/inventario')
 @login_required
+@roles_required("Administrador")
 def inventario():
     return render_template('inventario.html')
 
 @paginas_bp.route('/puntoVentas')
 @login_required
+@roles_required("Administrador", "Supervisor", "Empleado")
 def puntoVentas():
     return render_template('puntoVentas.html')
 
 @paginas_bp.route('/ventas')
 @login_required
+@roles_required("Administrador", "Supervisor")
 def ventas():
     return render_template('ventas.html')
 
 @paginas_bp.route('/usuarios')
 @login_required
+@roles_required("Administrador")
 def usuarios():
     return render_template('usuarios.html')

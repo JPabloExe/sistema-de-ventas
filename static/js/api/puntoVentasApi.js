@@ -5,7 +5,10 @@ export async function realizarVenta(productosEncarrito) {
     const respuesta = await fetch(`${URL_API}/realizarVenta`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(productosEncarrito)
+        body: JSON.stringify({
+            "metodo": "Efectivo",
+            "items": productosEncarrito
+        })
     });
 
     return await respuesta.json();

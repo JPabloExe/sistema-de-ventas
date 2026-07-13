@@ -1,18 +1,18 @@
-import { URL_API } from "../config/config.js";
-
 import { mostrarToast } from "../components/toast.js";
 
-import { 
+import {
     llenarTablaUsuarios,
-    obtenerDatosFormularioUsuarios 
+    mostrarUsuarioActual,
+    obtenerDatosFormularioUsuarios
 } from "../ui/usuariosUI.js";
 
-import { 
-    registrarUsuario, 
+import {
+    registrarUsuario,
     obtenerUsuarios,
     eliminarUsuario,
     buscarUsuario,
-    actualizarUsuario
+    actualizarUsuario,
+    usuarioActual
 } from "../api/usuariosApi.js";
 
 export async function eliminarUsuarioController(cedula) {
@@ -40,7 +40,7 @@ export async function registrarUsuarioController() {
         mostrarToast(info.message, info.type);
         return;
     }
-    
+
     mostrarToast(info.message, info.type);
 
 }
@@ -58,7 +58,7 @@ export async function cargarUsuarios() {
 
     llenarTablaUsuarios(info.data);
     mostrarToast(info.message, info.type);
-    
+
 }
 
 export async function buscarUsuarioController(cedula) {
@@ -70,29 +70,37 @@ export async function buscarUsuarioController(cedula) {
 
         mostrarToast(info.message, info.type);
         return;
-        
+
     }
-    
+
     userList.push(info.data);
-    
+
     llenarTablaUsuarios(userList);
     mostrarToast(info.message, info.type);
-    
+
 }
 
 export async function actualizarUsuarioController() {
-    
+
     const datosActualizados = obtenerDatosFormularioUsuarios();
-    
+
     const info = await actualizarUsuario(datosActualizados);
-    
+
     if (!info.ok) {
 
         mostrarToast(info.message, info.type);
         return;
-        
+
     }
-    
+
     mostrarToast(info.message, info.type);
-    
+
+}
+
+export async function usuarioActualController() {
+
+    const info = await usuarioActual();
+
+    mostrarUsuarioActual(info.data);
+
 }

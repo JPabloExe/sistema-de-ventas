@@ -1,4 +1,5 @@
 from utils.responses import api_response
+from utils.decorators import roles_required
 from flask import Blueprint, request
 from flask_login import login_required
 from repositories.producto_repository import ProductoRepository
@@ -7,6 +8,7 @@ productos_bp = Blueprint('productos_bp', __name__)
 
 @productos_bp.route('/agregarProducto', methods=['POST'])
 @login_required
+@roles_required("Administrador", "Supervisor")
 def agregar_producto():
     
     datos = request.json
@@ -32,6 +34,7 @@ def agregar_producto():
         
 @productos_bp.route('/crearCategoria', methods=['POST'])
 @login_required
+@roles_required("Administrador", "Supervisor")
 def crear_categoria():
     
     categoria = request.json
@@ -122,6 +125,7 @@ def buscar_producto():
 
 @productos_bp.route('/actualizarProducto', methods=['PUT'])
 @login_required
+@roles_required("Administrador", "Supervisor")
 def actualizar_producto():
     
     datos = request.json
@@ -147,6 +151,7 @@ def actualizar_producto():
 
 @productos_bp.route('/eliminarProducto', methods=['DELETE'])
 @login_required
+@roles_required("Administrador", "Supervisor")
 def eliminar_producto():
     codigo = request.args.get('codigo')
 
