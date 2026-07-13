@@ -1,10 +1,12 @@
 from utils.responses import api_response
 from flask import Blueprint, request
+from flask_login import login_required
 from repositories.producto_repository import ProductoRepository
 
 productos_bp = Blueprint('productos_bp', __name__)
 
 @productos_bp.route('/agregarProducto', methods=['POST'])
+@login_required
 def agregar_producto():
     
     datos = request.json
@@ -29,6 +31,7 @@ def agregar_producto():
         )
         
 @productos_bp.route('/crearCategoria', methods=['POST'])
+@login_required
 def crear_categoria():
     
     categoria = request.json
@@ -53,6 +56,7 @@ def crear_categoria():
         )
 
 @productos_bp.route('/obtenerProductos', methods=['GET'])
+@login_required
 def obtener_productos():
     
     categoria = request.args.get('categoria')
@@ -85,6 +89,7 @@ def obtener_productos():
         ) 
     
 @productos_bp.route('/buscarProducto', methods=['POST'])
+@login_required
 def buscar_producto():
     
     codigo = request.args.get('codigo')
@@ -116,6 +121,7 @@ def buscar_producto():
         )
 
 @productos_bp.route('/actualizarProducto', methods=['PUT'])
+@login_required
 def actualizar_producto():
     
     datos = request.json
@@ -140,6 +146,7 @@ def actualizar_producto():
         )
 
 @productos_bp.route('/eliminarProducto', methods=['DELETE'])
+@login_required
 def eliminar_producto():
     codigo = request.args.get('codigo')
 
@@ -163,6 +170,7 @@ def eliminar_producto():
         )
     
 @productos_bp.route('/obtenerInformeInventario', methods=['GET'])
+@login_required
 def informe_inventario():
     
     try:
@@ -193,6 +201,7 @@ def informe_inventario():
         )
 
 @productos_bp.route('/obtenerCategorias', methods=['GET'])
+@login_required
 def obtener_categorias():
     
     

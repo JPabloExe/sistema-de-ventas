@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from flask_login import login_required
 from repositories.venta_repository import VentaRepository
 from utils.responses import api_response
 import json
@@ -6,6 +7,7 @@ import json
 ventas_bp = Blueprint('ventas_bp', __name__)
 
 @ventas_bp.route('/obtenerInformeVentas', methods=['GET'])
+@login_required
 def informe_ventas():
     
     try:
@@ -36,6 +38,7 @@ def informe_ventas():
         )
 
 @ventas_bp.route('/realizarVenta', methods=['POST'])
+@login_required
 def realizar_venta():
     
     productosComprados = request.get_json()
@@ -65,6 +68,7 @@ def realizar_venta():
         )
         
 @ventas_bp.route('/obtenerVentas', methods=['GET'])
+@login_required
 def obtener_ventas():
 
     try:
@@ -94,6 +98,7 @@ def obtener_ventas():
         )
 
 @ventas_bp.route('/buscarVentas', methods=['GET'])
+@login_required
 def buscar_ventas():
     
     fechaInicial = request.args.get('inicial') or None
@@ -126,6 +131,7 @@ def buscar_ventas():
         )
         
 @ventas_bp.route('/buscarDetalles', methods=['GET'])
+@login_required
 def buscar_detalles():
     
     numero = request.args.get('numero')
@@ -149,6 +155,7 @@ def buscar_detalles():
         )
         
 @ventas_bp.route('/eliminarVenta', methods=['DELETE'])
+@login_required
 def eliminar_venta():
     
     numero = request.args.get('numero')

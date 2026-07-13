@@ -80,13 +80,43 @@ class UsuarioRepository:
             return usuario
         
         return {
-            'nombre': usuario[0],
-            'apellido': usuario[1],
-            'cedula': usuario[2],
-            'telefono': usuario[3],
-            'usuario': usuario[4],
-            'contrasena': usuario[5],
-            'cargo': usuario[6]
+            'id': usuario[0],
+            'nombre': usuario[1],
+            'apellido': usuario[2],
+            'cedula': usuario[3],
+            'telefono': usuario[4],
+            'usuario': usuario[5],
+            'contrasena': usuario[6],
+            'cargo': usuario[7]
+        }
+        
+    @staticmethod    
+    def buscarUsuarioPorID(id):
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
+
+        cursor.callproc("sp_buscar_usuario_ID", [id])
+       
+        usuario = None
+
+        for filas in cursor.stored_results():
+            usuario = filas.fetchone()
+        
+        cursor.close()
+        conexion.close()
+        
+        if usuario == None:
+            return usuario
+        
+        return {
+            'id': usuario[0],
+            'nombre': usuario[1],
+            'apellido': usuario[2],
+            'cedula': usuario[3],
+            'telefono': usuario[4],
+            'usuario': usuario[5],
+            'contrasena': usuario[6],
+            'cargo': usuario[7]
         }
         
     @staticmethod

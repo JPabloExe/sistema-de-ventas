@@ -1,10 +1,12 @@
 from utils.responses import api_response
 from flask import Blueprint, request
+from flask_login import login_required, current_user
 from repositories.usuario_repository import UsuarioRepository
 
 usuarios_bp = Blueprint('usuarios_bp', __name__)
 
 @usuarios_bp.route('/registrarUsuario', methods=['POST'])
+@login_required
 def registrar_usuario():
 
     datos = request.json
@@ -29,6 +31,7 @@ def registrar_usuario():
         )
         
 @usuarios_bp.route('/obtenerUsuarios', methods=['GET'])
+@login_required
 def obtener_usuarios():
 
     try:
@@ -59,6 +62,7 @@ def obtener_usuarios():
         )
 
 @usuarios_bp.route('/eliminarUsuario', methods=['DELETE'])
+@login_required
 def eliminar_usuario():
     
     cedula = request.args.get('cedula')
@@ -83,6 +87,7 @@ def eliminar_usuario():
         )
     
 @usuarios_bp.route('/buscarUsuario', methods=['GET'])
+@login_required
 def buscar_usuario():
     
     cedula = request.args.get('cedula')
@@ -115,6 +120,7 @@ def buscar_usuario():
         )
 
 @usuarios_bp.route('/actualizarUsuario', methods=['PUT'])
+@login_required
 def actualizar_usuario():
     
     datosActualizados = request.json
@@ -137,3 +143,12 @@ def actualizar_usuario():
             str(e.msg),
             None
         )
+
+@usuarios_bp.route('/usuarioActual', methods=['GET'])
+@login_required
+def usuario_actual():
+    
+    return {
+        "usuario": current_user.usuario,
+        "cargo": current_user.cargo
+    }

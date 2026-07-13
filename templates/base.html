@@ -1,13 +1,14 @@
 <!-- templates/base.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Sistema{% endblock %}</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <!-- CSS GLOBAL -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/general.css') }}">
 
@@ -26,17 +27,19 @@
     <!-- DIALOG ELIMINAR -->
     {% include 'components/dialog-eliminar.html' %}
 
-    <!-- CONTENIDO DINÁMICO -->
-    
-    {% block contenido %}{% endblock %}
-    
     <!-- TOAST GLOBAL -->
     <div id="contenedor-toasts" class="contenedor-toasts">
         {% include 'components/toast.html' %}
     </div>
 
+    <!-- CONTENIDO DINÁMICO -->
+    {% block contenido %}{% endblock %}
+
+    <script type="module" src="{{ url_for('static', filename='js/pages/logout.js') }}"></script>
+
     <!-- JS POR VISTA -->
     {% block js %}{% endblock %}
 
 </body>
+
 </html>
