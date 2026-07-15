@@ -1,0 +1,35 @@
+# Caché de Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Entornos virtuales
+venv/
+.venv/
+env/
+
+# Git
+.git
+.gitignore
+
+# Archivos de VS Code
+.vscode/
+
+# Variables de entorno locales
+.env
+
+# Archivos de logs
+*.log
+
+# Caché de pytest
+.pytest_cache/
+
+# Archivos temporales
+*.tmp
+*.swp
+
+# Documentación
+README.md
+
+# Docker Compose (opcional)
+docker-compose.yml

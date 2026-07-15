@@ -8,7 +8,7 @@ def roles_required(*cargos):
 
     def decorador(funcion):
 
-        @wraps(funcion) #Copia toda la informacion de la funcion original
+        @wraps(funcion) 
         def nueva_funcion(*args, **kwargs):
 
             if not current_user.is_authenticated or current_user.cargo not in cargos:

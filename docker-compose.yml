@@ -1,0 +1,46 @@
+services:
+
+  web:
+    build: .
+
+    container_name: sistema_ventas_web
+
+    ports:
+      - "5000:5000"
+
+    depends_on:
+      - db
+
+    env_file:
+      - .env.docker
+
+    volumes:
+      - .:/app
+
+    command: python run.py
+
+  db:
+    image: mysql:8.4
+
+    container_name: sistema_ventas_db
+
+    restart: always
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+
+    ports:
+      - "3307:3306"
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/1_schema.sql
+      - ./database/procedures.sql:/docker-entrypoint-initdb.d/2_procedures.sql
+      - ./database/triggers.sql:/docker-entrypoint-initdb.d/3_triggers.sql
+      - ./database/data.sql:/docker-entrypoint-initdb.d/4_data.sql
+
+volumes:
+  mysql_data:

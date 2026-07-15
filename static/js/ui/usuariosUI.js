@@ -111,7 +111,7 @@ export function mostrarUsuarioActual(datos) {
 
     const pSaludo = document.getElementById("lbl-saludo");
 
-    pSaludo.textContent = "Buenos dias,";
+    pSaludo.textContent = "Bienvenido,";
 
     pSaludo.textContent += ` ${datos.usuario}`;
 

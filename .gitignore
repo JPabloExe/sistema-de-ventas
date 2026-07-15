@@ -1,10 +1,33 @@
 # Entornos virtuales
-venv/
+# Python
 __pycache__/
+*.py[cod]
+*.pyo
+
+# Entornos virtuales
+venv/
+.venv/
+env/
 
 # Variables de entorno
 .env
 
-# Archivo de base de datos o temporales
-*.sql
+# VSCode
+.vscode/
+
+# Pytest
+.pytest_cache/
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Docker
+mysql_data/
+
+# Sistema
 .DS_Store
+Thumbs.db
+
+# BD
+data.sql
