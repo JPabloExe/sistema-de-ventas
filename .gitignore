@@ -11,6 +11,7 @@ env/
 
 # Variables de entorno
 .env
+.env.docker
 
 # VSCode
 .vscode/
@@ -20,7 +21,7 @@ env/
 
 # Archivos temporales
 *.log
-*.tmp
+*.tmp   
 
 # Docker
 mysql_data/
