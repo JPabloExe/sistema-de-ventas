@@ -30,6 +30,3 @@ env/
 
 # Documentación
 README.md
-
-# Docker Compose (opcional)
-#docker-compose.yml

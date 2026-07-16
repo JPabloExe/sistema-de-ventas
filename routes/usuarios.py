@@ -129,11 +129,12 @@ def buscar_usuario():
 @roles_required("Administrador")
 def actualizar_usuario():
     
+    usuarioId = request.args.get('id')
     datosActualizados = request.json
 
     try:
 
-        UsuarioRepository.actualizarUsuario(datosActualizados)
+        UsuarioRepository.actualizarUsuario(datosActualizados, usuarioId)
 
         return api_response(
             True,

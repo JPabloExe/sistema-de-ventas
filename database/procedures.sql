@@ -341,6 +341,7 @@ DELIMITER ;
 DELIMITER //
 
 CREATE PROCEDURE sp_actualizar_usuario(
+     IN u_id INT,
     IN u_nombre VARCHAR(50),
     IN u_apellido VARCHAR(50),
     IN u_cedula VARCHAR(10),
@@ -354,17 +355,15 @@ BEGIN
     IF NOT EXISTS (
         SELECT *
         FROM usuarios AS u
-        WHERE u.cedula = u_cedula
+        WHERE u.id = u_id
     ) THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Este usuario no existe';
     END IF;
-
     IF CHAR_LENGTH(u_telefono) < 8 THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Longitud de telefono incorrecta';
     END IF;
-
     UPDATE usuarios AS u
     SET
         u.nombre = u_nombre,
@@ -374,8 +373,7 @@ BEGIN
         u.usuario = u_usuario,
         u.contrasena = u_contrasena,
         u.id_rol = u_id_rol
-    WHERE u.cedula = u_cedula;
-
+    WHERE u.id = u_id;
 END //
 
 DELIMITER ;
@@ -433,25 +431,22 @@ DELIMITER ;
 DELIMITER //
 
 CREATE PROCEDURE sp_eliminar_usuario(
-    IN u_cedula INT
+    IN u_id INT
 )
 BEGIN
     DECLARE u_existe INT DEFAULT 0;
     DECLARE mensaje_error VARCHAR(100);
-
     SELECT COUNT(*)
     INTO u_existe
-    FROM usuarios
-    WHERE cedula = u_cedula;
-
+    FROM usuarios AS u
+    WHERE u.id = u_id;
     IF u_existe = 0 THEN
         SET mensaje_error = CONCAT('El usuario con cedula [', u_cedula, '] no existe.');
         SIGNAL SQLSTATE '45000' -- Interrumpe o corta la operacion
         SET MESSAGE_TEXT = mensaje_error;
     END IF;
-
-    DELETE FROM usuarios
-    WHERE cedula = u_cedula;
+    DELETE FROM usuarios AS u
+    WHERE u.id = u_id;
 END //
 
 DELIMITER ;
@@ -471,7 +466,7 @@ BEGIN
         SET MESSAGE_TEXT = 'No hay usuarios registrados';
     END IF;
 
-    SELECT u.nombre, u.apellido, u.cedula, u.telefono, u.usuario, u.contrasena, r.nombre
+    SELECT u.id, u.nombre, u.apellido, u.cedula, u.telefono, u.usuario, u.contrasena, r.nombre
     FROM usuarios AS u
     INNER JOIN roles AS r 
     ON u.id_rol = r.id;

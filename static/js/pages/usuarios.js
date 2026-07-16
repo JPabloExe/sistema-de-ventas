@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("form-usuarios");
     const tbody = document.getElementById("tbody-usuarios");
 
+    let usuarioId = null;
     let modo = null;
 
     botonAbrir.addEventListener("click", () => {
@@ -47,13 +48,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (boton) {
             modo = "actualizar";
+            usuarioId = boton.dataset.id;
             llenarFormularioUsuarios(boton);
             btnAccion.textContent = "Actualizar";
 
             dialog.showModal();
         }
     });
-    
+
     botonCerrar.addEventListener("click", () => {
         dialog.close();
     });
@@ -67,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } else if (modo === "actualizar") {
 
-            await actualizarUsuarioController();
+            await actualizarUsuarioController(usuarioId);
 
         }
 
@@ -84,22 +86,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnCancelar = document.getElementById("btn-cancelar-confirmacion");
     const dialogConfirmacion = document.getElementById("dialog-eliminar");
     const tbody = document.getElementById("tbody-usuarios");
-    
+
     let cedulaAEliminar = null;
-    
+
     tbody.addEventListener("click", (e) => {
         const botonEliminar = e.target.closest(".btn-eliminar");
-    
+
         if (botonEliminar) {
             cedulaAEliminar = botonEliminar.dataset.cedula;
             dialogConfirmacion.showModal();
         }
     });
-    
+
     btnCancelar.addEventListener("click", () => {
         dialogConfirmacion.close();
     });
-    
+
     btnConfirmar.addEventListener("click", () => {
         if (cedulaAEliminar) {
             eliminarUsuarioController(cedulaAEliminar);
@@ -107,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
             dialogConfirmacion.close();
         }
     });
-}); 
+});
 
 // Buscar usuario
 document.addEventListener("DOMContentLoaded", () => {

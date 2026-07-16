@@ -80,11 +80,11 @@ export async function buscarUsuarioController(cedula) {
 
 }
 
-export async function actualizarUsuarioController() {
+export async function actualizarUsuarioController(usuarioId) {
 
     const datosActualizados = obtenerDatosFormularioUsuarios();
 
-    const info = await actualizarUsuario(datosActualizados);
+    const info = await actualizarUsuario(datosActualizados, usuarioId);
 
     if (!info.ok) {
 

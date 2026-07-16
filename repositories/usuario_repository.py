@@ -40,13 +40,14 @@ class UsuarioRepository:
 
         for usuario in filas:
             usuarios.append({
-                'nombre': usuario[0],
-                'apellido': usuario[1],
-                'cedula': usuario[2],
-                'telefono': usuario[3],
-                'usuario': usuario[4],
-                'contrasena': usuario[5],
-                'cargo': usuario[6]
+                'id': usuario[0],
+                'nombre': usuario[1],
+                'apellido': usuario[2],
+                'cedula': usuario[3],
+                'telefono': usuario[4],
+                'usuario': usuario[5],
+                'contrasena': usuario[6],
+                'cargo': usuario[7]
             })
             
         return usuarios
@@ -119,10 +120,11 @@ class UsuarioRepository:
         }
         
     @staticmethod
-    def actualizarUsuario(datosActualizados):
+    def actualizarUsuario(datosActualizados, usuarioId):
         conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
         cursor.callproc("sp_actualizar_usuario", [
+            usuarioId,
             datosActualizados['nombre'], 
             datosActualizados['apellido'], 
             datosActualizados['cedula'], 

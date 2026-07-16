@@ -40,9 +40,9 @@ export async function buscarUsuario(cedula) {
 
 }
 
-export async function actualizarUsuario(datosActualizados) {
+export async function actualizarUsuario(datosActualizados, usuarioId) {
 
-    const respuesta = await fetch(`${URL_API}/actualizarUsuario`, {
+    const respuesta = await fetch(`${URL_API}/actualizarUsuario?id=${usuarioId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datosActualizados)

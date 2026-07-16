@@ -34,6 +34,7 @@ export function llenarTablaUsuarios(usuarios) {
 
                 <td>
                     <i id="btn-actualizar" class="fa-solid fa-pen-to-square btn-actualizar"
+                        data-id="${usuario.id}"
                         data-nombre="${usuario.nombre}"
                         data-apellido="${usuario.apellido}"
                         data-cedula="${usuario.cedula}"
@@ -44,7 +45,7 @@ export function llenarTablaUsuarios(usuarios) {
                     </i>
 
                     <i id="btn-eliminar" class="fa-solid fa-trash btn-eliminar"
-                        data-cedula="${usuario.cedula}">  
+                        data-id="${usuario.id}">  
                     </i>
 
                 </td>
