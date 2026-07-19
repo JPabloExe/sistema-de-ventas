@@ -22,8 +22,8 @@ export function inicializarDialogEliminarVenta(onConfirmar) {
     btnCancelar.addEventListener("click", () => {
         dialogConfirmacion.close();
     });
-    
-    
+
+
     btnConfirmar.addEventListener("click", () => {
         if (ventaAEliminar) {
             onConfirmar(ventaAEliminar);
@@ -37,10 +37,10 @@ export function mostrarInformeVentas(informe) {
 
     const lblValorVentasHoy = document.getElementById("lbl-valor-ventas-hoy");
     const lblVentasHoy = document.getElementById("lbl-ventas-hoy");
-    
+
     lblValorVentasHoy.textContent = `COP ${formatearCOP(informe["valor_ventas"])}`;
     lblVentasHoy.textContent = `${informe["ventas"]} ventas - COP ${formatearCOP(informe["valor_ventas"])}`;
-    
+
 }
 
 export function llenarTablaVentas(ventas) {
@@ -95,7 +95,7 @@ export function llenarDetalles(boton, items) {
     document.getElementById("p-hora").textContent = boton.dataset.hora;
     document.getElementById("p-usuario").textContent = boton.dataset.usuario;
     document.getElementById("p-metodo").textContent = boton.dataset.metodo;
-    document.getElementById("p-total").textContent =  `COP ${formatearCOP(boton.dataset.total)}`;
+    document.getElementById("p-total").textContent = `COP ${formatearCOP(parseInt(boton.dataset.total))}`;
 
     llenarTablaItems(items);
 

@@ -183,7 +183,7 @@
 
 .dialog-eliminar button {
     border: none;
-    padding: 8px 12px 8px 12px; 
+    padding: 8px 12px 8px 12px;
     border-radius: 8px;
     outline: none;
 }
@@ -203,18 +203,18 @@
     border: none;
     border-radius: 12px;
     padding: 30px;
-    box-shadow: 0 10px 35px rgba(0,0,0,.2);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, .2);
 }
 
 .dialog-usuarios::backdrop,
 .dialog-productos::backdrop,
 .dialog-categoria::backdrop {
-    background: rgba(0,0,0,.45);
+    background: rgba(0, 0, 0, .45);
 }
 
 .dialog-usuarios h2,
 .dialog-productos h2,
-.dialog-categoria h2{
+.dialog-categoria h2 {
     margin: 0 0 25px;
     text-align: center;
     color: #333;
@@ -223,18 +223,18 @@
 
 .formulario-panel form,
 .dialog-usuarios form,
-.dialog-productos form{
+.dialog-productos form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 18px 22px;
 }
 
-.campo{
+.campo {
     display: flex;
     flex-direction: column;
 }
 
-.campo label{
+.campo label {
     margin-bottom: 6px;
     font-size: 14px;
     font-weight: 600;
@@ -242,7 +242,7 @@
 }
 
 .campo input,
-.campo select{
+.campo select {
     height: 42px;
     padding: 0 12px;
     border: 1px solid #d6d6d6;
@@ -255,13 +255,13 @@
 }
 
 .campo input:focus,
-.campo select:focus{
+.campo select:focus {
     outline: none;
     border-color: #2E3547;
-    box-shadow: 0 0 0 3px rgba(46,53,71,.15);
+    box-shadow: 0 0 0 3px rgba(46, 53, 71, .15);
 }
 
-.dialog-botones{
+.dialog-botones {
     grid-column: 1 / -1;
     display: flex;
     justify-content: flex-end;
@@ -269,7 +269,7 @@
     margin-top: 15px;
 }
 
-.dialog-botones button{
+.dialog-botones button {
     padding: 10px 24px;
     border: none;
     border-radius: 8px;
@@ -280,28 +280,33 @@
 
 .btn-accion-dialog-usuarios,
 .btn-accion-dialog-productos,
-.btn-crear-categoria{
+.btn-crear-categoria {
     background-color: #2E3547;
     color: white !important;
 }
 
 .btn-accion-dialog-usuarios:hover,
 .btn-accion-dialog-productos:hover,
-.btn-crear-categoria:hover{
+.btn-crear-categoria:hover {
     background: #1f2c43;
 }
 
 .btn-cancelar,
 .btn-cancelar-productos,
 .btn-cancelar-usuarios,
-.btn-cancelar-categoria{
-    background-color: #d9d9d9;
+.btn-cancelar-categoria,
+.btn-cerrar-detalles {
+    background: #f5f5f5 !important;
+    color: #444 !important;
+    border: 1px solid #d8d8d8 !important;
 }
+
+
 
 .btn-cancelar:hover,
 .btn-cancelar-productos:hover,
 .btn-cancelar-usuarios:hover,
-.btn-cancelar-categoria:hover{
+.btn-cancelar-categoria:hover {
     background-color: #c8c8c8;
 }
 
@@ -362,5 +367,5 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 input[type="date"] {
-  font-family: 'Arial', sans-serif;
+    font-family: 'Arial', sans-serif;
 }
