@@ -2,6 +2,8 @@ CREATE DATABASE IF NOT EXISTS bd_sistema_ventas CHARACTER SET utf8mb4 COLLATE ut
 
 USE bd_sistema_ventas; 
 
+DROP TABLE IF EXISTS detalles_compras;
+DROP TABLE IF EXISTS compras;
 DROP TABLE IF EXISTS detalles_ventas;
 DROP TABLE IF EXISTS ventas;
 DROP TABLE IF EXISTS usuarios;

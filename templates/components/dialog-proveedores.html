@@ -1,0 +1,57 @@
+<dialog id="dialog-proveedores" class="dialog-proveedores">
+
+    <h2>Gestionar Proveedor</h2>
+
+    <form id="form-proveedores">
+
+        <div class="campo">
+            <label>Nombre</label>
+            <input id="input-nombre" type="text" placeholder="Ingrese nombre" required>
+        </div>
+
+        <div class="campo">
+            <label>NIT</label>
+            <input id="input-nit" type="text" placeholder="Ingrese NIT" required>
+        </div>
+
+        <div class="campo">
+            <label>Telefono</label>
+            <input id="input-telefono" type="tel" inputmode="numeric" placeholder="Ingrese telefono" required>
+        </div>
+
+        <div class="campo">
+            <label>Correo</label>
+            <input id="input-correo" type="email" inputmode="email" placeholder="Ingrese correo" required>
+        </div>
+
+        <div class="campo">
+            <label>Direccion</label>
+            <input id="input-direccion" type="text" placeholder="Ingrese direccion" required>
+        </div>
+
+        <div class="campo">
+            <label>Ciudad</label>
+            <input id="input-ciudad" type="text" placeholder="Ingrese ciudad" required>
+        </div>
+
+        <div class="campo">
+            <label>Estado</label>
+
+            <select id="select-estado">
+                <option value="">Seleccione estado</option>
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+            </select>
+        </div>
+
+        <div class="dialog-botones">
+            <button type="button" class="btn-cancelar-proveedores" id="btn-cancelar-proveedores">
+                Cancelar
+            </button>
+
+            <button type="submit" class="btn-accion-dialog-proveedores" id="btn-accion-dialog-proveedores"></button>
+        </div>
+
+    </form>
+
+</dialog>

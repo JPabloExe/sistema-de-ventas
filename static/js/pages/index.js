@@ -6,10 +6,13 @@ import { cargarInformeVentas } from "../controllers/ventasController.js"
 
 import { usuarioActualController } from "../controllers/usuariosController.js";
 
+import { botonDesplegableCompras } from "../utilities/botonDesplegable.js";
+
 import { activarSidebar } from "../components/sidebar.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     activarSidebar();
+    botonDesplegableCompras();
     cargarInformeInventario();
     cargarInformeVentas();
     usuarioActualController();
@@ -25,33 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    const linkIndex = document.getElementById("link-inicio");
-    const linkInventario = document.getElementById("link-inventario");
-    const linkPVentas = document.getElementById("link-punto-ventas");
-    const linkVentas = document.getElementById("link-ventas");
-    const linkUsuarios = document.getElementById("link-usuarios");
-    const botonPVentas = document.getElementById("pVentas");
-    const botonInventario = document.getElementById("inventario");
 
-    linkIndex.addEventListener("click", () => {
-        abrirVentanas("")
-    });
-
-    linkInventario.addEventListener("click", () => {
-        abrirVentanas("inventario")
-    });
-
-    linkPVentas.addEventListener("click", () => {
-        abrirVentanas("puntoVentas")
-    });
-
-    linkVentas.addEventListener("click", () => {
-        abrirVentanas("ventas")
-    });
-
-    linkUsuarios.addEventListener("click", () => {
-        abrirVentanas("usuarios")
-    });
+    const botonPVentas = document.getElementById("btn-pos");
+    const botonInventario = document.getElementById("btn-inventario");
 
     botonPVentas.addEventListener("click", () => {
         abrirVentanas("puntoVentas")
@@ -60,4 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
     botonInventario.addEventListener("click", () => {
         abrirVentanas("inventario")
     });
+
+
 });

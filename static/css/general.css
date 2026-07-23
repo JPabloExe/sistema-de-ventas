@@ -1,3 +1,9 @@
+body button,
+i,
+li {
+    cursor: pointer;
+}
+
 /*CONTENEDOR GLOBAL*/
 .contenedor {
     width: 95%;
@@ -28,7 +34,6 @@
     color: black;
     border: none;
     padding: 8px 12px;
-    cursor: pointer;
     z-index: 1001;
     border-radius: 10px;
 }
@@ -60,10 +65,10 @@
     text-align: center;
 }
 
-.sidebar a:hover {
+.sidebar a:hover,
+.sidebar .menu-title:hover {
     background-color: #324154;
     color: white;
-    font-weight: bold;
 }
 
 #parrafo-nombre-software {
@@ -84,7 +89,6 @@
 
 #btn-cerrar-sesion {
     position: absolute;
-
     text-align: left;
     font-size: 15px;
     padding: 15px 15px 15px 25px;
@@ -112,6 +116,81 @@
     padding: 12px;
     text-decoration: none;
     border-radius: 8px;
+}
+
+/* Contenedor de Compras */
+.menu-item {
+    width: 100%;
+}
+
+/* Botón Compras */
+.menu-title {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    padding: 0 12px;
+    color: #9EA6B9;
+    cursor: pointer;
+    background-color: transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+/* Compras seleccionado */
+.menu-title.activo {
+    background-color: #324154;
+}
+
+/* Espacio entre icono y texto */
+.menu-title span {
+    margin-left: 10px;
+}
+
+/* Flecha */
+.menu-title .flecha {
+    margin-left: auto;
+}
+
+/* Submenú */
+.submenu {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 5px 5px;
+    background-color: #1B2336;
+    box-sizing: border-box;
+}
+
+/* Submenú abierto */
+.submenu.activo {
+    display: block;
+}
+
+/* Cada opción */
+.submenu li {
+    width: 100%;
+}
+
+/* Enlaces */
+.submenu li a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 40px;
+    padding: 12px;
+    box-sizing: border-box;
+    color: #9EA6B9;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 2px;
+    transition: background-color 0.2s ease;
+    border-radius: 8px;
+}
+
+/* Hover */
+.submenu li a:hover {
+    background-color: #324154;
 }
 
 /*TOAST*/
@@ -196,7 +275,8 @@
 /*DIALOGS - FORMULARIOS*/
 .dialog-usuarios,
 .dialog-productos,
-.dialog-categoria {
+.dialog-categoria,
+.dialog-proveedores {
     background-color: #FFFFFF;
     width: 850px;
     max-width: 90vw;
@@ -208,13 +288,15 @@
 
 .dialog-usuarios::backdrop,
 .dialog-productos::backdrop,
-.dialog-categoria::backdrop {
+.dialog-categoria::backdrop,
+.dialog-proveedores::backdrop {
     background: rgba(0, 0, 0, .45);
 }
 
 .dialog-usuarios h2,
 .dialog-productos h2,
-.dialog-categoria h2 {
+.dialog-categoria h2,
+.dialog-proveedores h2 {
     margin: 0 0 25px;
     text-align: center;
     color: #333;
@@ -223,7 +305,8 @@
 
 .formulario-panel form,
 .dialog-usuarios form,
-.dialog-productos form {
+.dialog-productos form,
+.dialog-proveedores form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 18px 22px;
@@ -280,6 +363,7 @@
 
 .btn-accion-dialog-usuarios,
 .btn-accion-dialog-productos,
+.btn-accion-dialog-proveedores,
 .btn-crear-categoria {
     background-color: #2E3547;
     color: white !important;
@@ -287,6 +371,7 @@
 
 .btn-accion-dialog-usuarios:hover,
 .btn-accion-dialog-productos:hover,
+.btn-accion-dialog-proveedores:hover,
 .btn-crear-categoria:hover {
     background: #1f2c43;
 }
@@ -295,17 +380,17 @@
 .btn-cancelar-productos,
 .btn-cancelar-usuarios,
 .btn-cancelar-categoria,
+.btn-cancelar-proveedores,
 .btn-cerrar-detalles {
     background: #f5f5f5 !important;
     color: #444 !important;
     border: 1px solid #d8d8d8 !important;
 }
 
-
-
 .btn-cancelar:hover,
 .btn-cancelar-productos:hover,
 .btn-cancelar-usuarios:hover,
+.btn-cancelar-proveedores:hover,
 .btn-cancelar-categoria:hover {
     background-color: #c8c8c8;
 }
@@ -344,7 +429,7 @@ body table th {
 /* TBODY CON SCROLL */
 body table tbody {
     display: block;
-    height: 277px;
+    height: 260px;
     overflow-y: auto;
 }
 
@@ -368,4 +453,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 input[type="date"] {
     font-family: 'Arial', sans-serif;
+}
+
+.submenu {
+    display: none;
+}
+
+.submenu.activo {
+    display: block;
 }

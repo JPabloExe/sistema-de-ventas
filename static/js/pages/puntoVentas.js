@@ -1,5 +1,7 @@
 import { activarSidebar } from "../components/sidebar.js";
 
+import { botonDesplegableCompras } from "../utilities/botonDesplegable.js";
+
 import { mostrarToast } from "../components/toast.js";
 
 import { formatearCOP } from "../utilities/moneda.js";
@@ -21,6 +23,7 @@ import {
 
 document.addEventListener("DOMContentLoaded", () => {
     activarSidebar();
+    botonDesplegableCompras();
 });
 
 // Realizar venta
@@ -35,17 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
             mostrarToast("Debe ingresar el monto", "exception");
             return;
         }
-        
+
         if (montoRecibido.value < total) {
             mostrarToast("Monto menor al total de la venta", "exception");
             return;
         }
-        
+
         realizarVentaController();
-        limpiarCarrito();   
+        limpiarCarrito();
         cantidad.textContent = `(${productosEnCarrito()} productos)`;
     });
-    
+
     botonLimpiar.addEventListener("click", () => {
         limpiarCarrito();
         limpiarInputsPago();

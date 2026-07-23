@@ -1,0 +1,200 @@
+body {
+    display: flex;
+    margin: 0;
+    background-color: #F8FAF9;
+    font-family: sans-serif;
+}
+
+body button,
+a,
+i {
+    cursor: pointer;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header button {
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    color: #F8FAF9;
+    background-color: #2E3547;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.header button:hover {
+    background-color: #324154;
+}
+
+.div-presentacion {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    gap: 5px;
+    padding: 8px 0px 0px 0px;
+}
+
+.div-presentacion p {
+    margin-top: 0;
+    color: gray;
+    font-size: small;
+}
+
+.div-presentacion h2 {
+    margin-bottom: 0;
+    margin-top: 5%;
+}
+
+.div-acciones {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background: #FEFEFE;
+    padding: 20px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.div-cantidad-proveedores {
+    display: flex;
+    gap: 5px;
+}
+
+.p-total-proveedores {
+    font-weight: bold;
+    color: gray;
+    margin-top: 0;
+}
+
+.p-proveedores {
+    color: gray;
+    margin-top: 0;
+}
+
+.p-cantidad-proveedores {
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.operaciones {
+    display: flex;
+    justify-content: space-between;
+}
+
+.operaciones button {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #2E3547;
+    color: #F8FAF9;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.operaciones button:hover {
+    background-color: #324154;
+}
+
+.div-input {
+    border: solid #DEDEDE 1px;
+    background-color: #FEFEFE;
+    width: 40%;
+    padding-left: 10px;
+    color: gray;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.input-buscar-proveedor {
+    width: 90%;
+    padding: 10px 10px 10px 0px;
+    border: none;
+    font-size: 14px;
+    outline: none;
+}
+
+/* ESTILOS EXTRA */
+.codigo,
+.nombre {
+    font-weight: bold;
+    color: #333;
+    padding-left: 15px;
+}
+
+.nombre {
+    padding-left: 14px !important;
+}
+
+.precio {
+    color: #2e8b57;
+    font-weight: bold;
+    padding-left: 15px;
+}
+
+.costo {
+    color: #8b6e2e;
+    font-weight: bold;
+    padding-left: 15px;
+}
+
+.stock .cantidad {
+    font-weight: bold;
+    padding-left: 17px;
+}
+
+.acciones {
+    padding-left: 25px;
+}
+
+td {
+    overflow-wrap: anywhere;
+}
+
+.acciones i {
+    margin-right: 10px;
+    font-size: medium;
+    font-weight: bold;
+
+}
+
+.btn-actualizar {
+    color: #4caf50;
+}
+
+.btn-eliminar {
+    color: #e53935;
+}
+
+.btn-actualizar:hover {
+    color: #377739;
+}
+
+.btn-eliminar:hover {
+    color: #bb2d3b;
+}
+
+.acciones i:hover {
+    opacity: 0.7;
+}
+
+.badge-active {
+    background: #198754;
+    color: white;
+    padding: 7px 12px;
+    border-radius: 7px;
+    font-size: 13px;
+}
+
+.badge-inactive {
+    background: #6c757d;
+    color: white;
+    padding: 7px 12px;
+    border-radius: 7px;
+    font-size: 13px;
+}

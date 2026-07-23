@@ -2,33 +2,72 @@
     <p id="parrafo-nombre-software">Sistema de Ventas</p>
 
     <div class="div-menu-lateral">
-        <a href="/" id="link-inicio">
+        <a href="/" class="sidebar-btn">
             <i class="fa-solid fa-house"></i>
             Inicio
         </a>
 
-        <a href="/puntoVentas" id="link-punto-ventas">
+        <a href="/puntoVentas" class="sidebar-btn">
             <i class="fa-solid fa-cart-shopping"></i>
             Punto de Venta
         </a>
 
-        <a href="/ventas" id="link-ventas">
+        <a href="/ventas" class="sidebar-btn">
             <i class="fa-solid fa-cash-register"></i>
             Ventas
         </a>
 
-        <a href="/inventario" id="link-inventario">
+        <a href="/inventario" class="sidebar-btn">
             <i class="fa-solid fa-boxes-stacked"></i>
             Inventario
         </a>
 
-        <a href="/usuarios" id="link-usuarios">
+        <a href="/usuarios" class="sidebar-btn">
             <i class="fa-solid fa-user"></i>
             Usuarios
         </a>
+
+        <div class="menu-item">
+
+            <!-- Botón Compras -->
+            <div class="menu-title activo" id="comprasBtn">
+
+                <i class="fa-solid fa-basket-shopping"></i>
+
+                <span>Compras</span>
+
+                <i class="fa-solid fa-chevron-up flecha" id="flechaCompras"></i>
+
+            </div>
+
+            <!-- Submenú -->
+            <ul class="submenu activo" id="submenuCompras">
+
+                <li>
+                    <a href="/compras/nueva">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Nueva compra</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/historial_compras">
+                        <i class="fa-solid fa-file-invoice"></i>
+                        <span>Compras realizadas</span>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <a href="/proveedores" class="sidebar-btn">
+            <i class="fa-solid fa-truck"></i>
+            Proveedores
+        </a>
     </div>
 
-    <button id="btn-cerrar-sesion">
+    <button id="btn-cerrar-sesion" class="sidebar-btn">
         <i class="fa-solid fa-arrow-right-from-bracket"></i>
         Cerrar Sesion
     </button>

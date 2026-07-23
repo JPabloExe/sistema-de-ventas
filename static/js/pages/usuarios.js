@@ -1,9 +1,9 @@
 import { activarSidebar } from "../components/sidebar.js";
 
+import { botonDesplegableCompras } from "../utilities/botonDesplegable.js";
+
 import {
-    obtenerDatosFormularioUsuarios,
     limpiarFormulario,
-    llenarTablaUsuarios,
     llenarFormularioUsuarios
 } from "../ui/usuariosUI.js"
 
@@ -18,6 +18,7 @@ import {
 document.addEventListener("DOMContentLoaded", () => {
 
     activarSidebar();
+    botonDesplegableCompras();
     cargarUsuarios();
 
 });

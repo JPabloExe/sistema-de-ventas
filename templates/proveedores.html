@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Proveedores{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/proveedores.css')}}">
+{% endblock %}
+
+{% block contenido %}
+
+<div class="contenedor" id="contenedor">
+
+    <header class="header">
+        <div class="div-presentacion">
+            <h2 id="lbl-saludo">Gestion de Proveedores</h2>
+            <p id="lbl-texto">Administra tus proveedores</p>
+        </div>
+
+        <button id="btn-nuevo-proveedor" class="btn-agregar-proveedor">
+            <i class="fa-solid fa-plus"></i>
+            Nuevo Proveedor
+        </button>
+    </header>
+
+    <div class="div-acciones">
+
+        <div class="div-productos-inventario">
+            <div class="div-cantidad-proveedores">
+                <p class="p-total-proveedores">Total:</p>
+                <p id="p-cantidad-proveedores" class="p-cantidad-proveedores">0</p>
+                <p class="p-proveedores">proveedores</p>
+            </div>
+        </div>
+
+        <div class="operaciones">
+
+            <div class="div-input">
+                <i id="icono-buscar" class="fa-solid fa-magnifying-glass"></i>
+                <input id="input-buscar-proveedor" class="input-buscar-proveedor" type="text"
+                    placeholder="Buscar proveedor por nombre">
+            </div>
+
+            </select>
+
+            <button id="btn-actualizar-pagina">
+                <i class="fa-solid fa-arrows-rotate"></i>
+                Actualizar
+            </button>
+
+            <button id="btn-nueva-categoria">
+                <i class="fa-solid fa-plus"></i>
+                Nueva Categoria
+            </button>
+        </div>
+    </div>
+
+    <table class="tabla-proveedores">
+        <thead>
+            <tr>
+                <th>NOMBRE</th>
+                <th>TELEFONO</th>
+                <th>CORREO</th>
+                <th>CIUDAD</th>
+                <th>ESTADO</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+
+        <tbody id="tbody-proveedores"></tbody>
+    </table>
+
+</div>
+
+<!-- DIALOG PRODUCTOS -->
+{% include 'components/dialog-proveedores.html' %}
+
+{% endblock %}
+
+{% block js %}
+<script type="module" src="{{ url_for('static', filename='js/pages/proveedores.js') }}"></script>
+{% endblock %}

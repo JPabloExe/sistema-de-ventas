@@ -166,7 +166,7 @@ i {
     opacity: 0.7;
 }
 
-.dialog-detalles-ventas {
+.dialog-detalles {
     width: 760px;
     max-width: 90%;
     padding: 0;
@@ -248,7 +248,7 @@ i {
 
 /* TITULO */
 
-.dialog-detalles-ventas h3 {
+.dialog-detalles h3 {
     margin: 0;
     padding: 0 20px 10px;
     font-size: 17px;

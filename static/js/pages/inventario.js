@@ -1,12 +1,13 @@
 import { activarSidebar } from "../components/sidebar.js";
 
-import { 
-    llenarFormularioProducto, 
-    llenarTablaInventario,
+import { botonDesplegableCompras } from "../utilities/botonDesplegable.js";
+
+import {
+    llenarFormularioProducto,
     limpiarFormularioProducto
 } from "../ui/inventarioUI.js";
 
-import { 
+import {
     cargarInventarioController,
     eliminarProductoController,
     agregarProductoController,
@@ -14,23 +15,24 @@ import {
     buscarProductoController,
     crearCategoriaController,
     cargarCategoriasController
-} from "../controllers/inventarioController.js"; 
+} from "../controllers/inventarioController.js";
 
 import { limpiarFormulario } from "../ui/usuariosUI.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     const select = document.getElementById("select-categorias");
 
     activarSidebar();
+    botonDesplegableCompras();
     cargarCategoriasController(select);
     cargarInventarioController(0);
-    
+
 });
 
 // Agregar y actualizar producto
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     const btnNuevoProducto = document.getElementById("btn-nuevo-producto");
     const botonCerrar = document.getElementById("btn-cancelar-productos");
     const dialog = document.getElementById("dialog-productos");
@@ -39,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tbody = document.getElementById("tbody-productos");
     const inputCodigo = document.getElementById("input-codigo");
     const select = document.getElementById("select-categorias-dialog");
-    
+
     cargarCategoriasController(select);
 
     let modo = null;
@@ -53,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         dialog.showModal();
     });
-    
+
     // Abrir dialog para actualizar
     tbody.addEventListener("click", (e) => {
         const boton = e.target.closest(".actualizar");
@@ -63,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
             llenarFormularioProducto(boton);
             btnAccion.textContent = "Actualizar";
             inputCodigo.readOnly = true;
-    
+
             dialog.showModal();
         }
     })
@@ -90,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
         limpiarFormulario(form);
 
     })
-    
+
 });
 
 // Crear Categoria
@@ -162,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Buscar Producto
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     const input = document.getElementById("input-buscar-producto");
 
     input.addEventListener("input", () => {

@@ -36,3 +36,15 @@ def ventas():
 @roles_required("Administrador")
 def usuarios():
     return render_template('usuarios.html')
+
+@paginas_bp.route('/historial_compras')
+@login_required
+@roles_required("Administrador", "Supervisor")
+def historial_compras():
+    return render_template('historial_compras.html')
+
+@paginas_bp.route('/proveedores')
+@login_required
+@roles_required("Administrador", "Supervisor")
+def proveedores():
+    return render_template('proveedores.html')
