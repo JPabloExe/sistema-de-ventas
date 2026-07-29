@@ -40,7 +40,7 @@
                     placeholder="Buscar compra por numero">
             </div>
 
-            <select id="select-proveedores-acciones" class="select-proveedores-acciones">
+            <select id="select-proveedores-acciones" class="select-proveedores-acciones" name="proveedores-acciones">
 
             </select>
 
@@ -69,6 +69,9 @@
 
 </div>
 {% endblock %}
+
+<!-- DIALOG DETALLES COMPRAS -->
+{% include 'components/dialog-detalles.html' %}
 
 {% block js %}
 <script type="module" src="{{ url_for('static', filename='js/pages/historial_compras.js') }}"></script>

@@ -1,38 +1,5 @@
 import { formatearCOP } from "../utilities/moneda.js";
 
-let ventaAEliminar = null;
-
-export function inicializarDialogEliminarVenta(onConfirmar) {
-
-    const btnConfirmar = document.getElementById("btn-confirmar-borrado");
-    const btnCancelar = document.getElementById("btn-cancelar-confirmacion");
-    const dialogConfirmacion = document.getElementById("dialog-confirmacion");
-    const tbody = document.getElementById("tbody-ventas");
-
-
-    tbody.addEventListener("click", (e) => {
-        const botonEliminar = e.target.closest(".eliminar");
-
-        if (botonEliminar) {
-            ventaAEliminar = botonEliminar.dataset.numero;
-            dialogConfirmacion.showModal();
-        }
-    });
-
-    btnCancelar.addEventListener("click", () => {
-        dialogConfirmacion.close();
-    });
-
-
-    btnConfirmar.addEventListener("click", () => {
-        if (ventaAEliminar) {
-            onConfirmar(ventaAEliminar);
-            dialogConfirmacion.close();
-        }
-    });
-
-}
-
 export function mostrarInformeVentas(informe) {
 
     const lblValorVentasHoy = document.getElementById("lbl-valor-ventas-hoy");
@@ -79,7 +46,7 @@ export function llenarTablaVentas(ventas) {
                         data-total="${venta.total}">
                     </i>
                     <i id="btn-eliminar-venta" class="fa-solid fa-trash eliminar"
-                        data-numero="${venta["numero"]}">
+                        data-numero="${venta.id}">
                     </i>
                 </td>
             </tr>

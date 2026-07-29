@@ -126,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnConfirmar = document.getElementById("btn-confirmar-borrado");
     const btnCancelar = document.getElementById("btn-cancelar-confirmacion");
     const dialogConfirmacion = document.getElementById("dialog-eliminar");
+    const tituloDialog = document.getElementById("titulo");
     const tbody = document.getElementById("tbody-productos");
 
     let codigoAEliminar = null;
@@ -134,6 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const botonEliminar = e.target.closest(".eliminar");
 
         if (botonEliminar) {
+            tituloDialog.textContent = "¿Deseas borrar este producto?";
             codigoAEliminar = botonEliminar.dataset.codigo;
             dialogConfirmacion.showModal();
         }

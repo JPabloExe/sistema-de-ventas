@@ -86,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnConfirmar = document.getElementById("btn-confirmar-borrado");
     const btnCancelar = document.getElementById("btn-cancelar-confirmacion");
     const dialogConfirmacion = document.getElementById("dialog-eliminar");
+    const tituloDialog = document.getElementById("titulo");
     const tbody = document.getElementById("tbody-usuarios");
 
     let cedulaAEliminar = null;
@@ -94,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const botonEliminar = e.target.closest(".btn-eliminar");
 
         if (botonEliminar) {
+            tituloDialog.textContent = "¿Deseas borrar este usuario?";
             cedulaAEliminar = botonEliminar.dataset.cedula;
             dialogConfirmacion.showModal();
         }

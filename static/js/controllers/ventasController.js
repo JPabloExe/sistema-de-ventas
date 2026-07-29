@@ -6,7 +6,7 @@ import {
     buscarDetalles
 } from "../api/ventasApi.js"
 
-import { 
+import {
     llenarDetalles,
     llenarTablaVentas,
     mostrarInformeVentas,
@@ -15,65 +15,64 @@ import {
 import { mostrarToast } from "../components/toast.js";
 
 export async function eliminarVentaController(numeroVenta) {
-    
+
     const info = await eliminarVenta(numeroVenta);
 
-    if(!info.ok) {
+    if (!info.ok) {
 
         mostrarToast(info.message, info.type);
         return;
-        
+
     }
-    
-    llenarTablaVentas(info.data);
+
     mostrarToast(info.message, info.type);
-    
+
 }
 
 export async function buscarVentasController(fechaInicial, fechaFinal) {
-    
+
     const info = await buscarVentas(fechaInicial, fechaFinal);
 
-    if(!info.ok) {
+    if (!info.ok) {
 
         mostrarToast(info.message, info.type);
         return;
-        
+
     }
-    
+
     llenarTablaVentas(info.data);
-    
+
 }
 
 export async function buscarDetallesController(boton) {
-    
+
     const info = await buscarDetalles(boton.dataset.numero);
 
-    if(!info.ok) {
+    if (!info.ok) {
 
         mostrarToast(info.message, info.type);
         return;
-        
+
     }
 
     llenarDetalles(boton, info.data);
-    
+
 }
 
 export async function cargarInformeVentas() {
-    
+
     const info = await obtenerInformeVentas();
-    
-    if(!info.ok) {
-    
+
+    if (!info.ok) {
+
         mostrarToast(info.message, info.type);
         return;
-        
+
     }
-    
+
     mostrarInformeVentas(info.data);
     mostrarToast(info.message, info.type);
-  
+
 }
 
 export async function cargarVentas() {
@@ -89,6 +88,6 @@ export async function cargarVentas() {
 
     llenarTablaVentas(info.data);
     mostrarToast(info.message, info.type);
-    
+
 }
 

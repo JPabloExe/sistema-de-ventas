@@ -267,7 +267,7 @@ li {
     outline: none;
 }
 
-.btn-confirmar-borrado:hover {
+#btn-confirmar-borrado:hover {
     color: white;
     background-color: #8b2e2e;
 }

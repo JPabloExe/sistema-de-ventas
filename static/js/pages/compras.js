@@ -16,11 +16,21 @@ import {
 } from "../ui/puntoVentasUI.js";
 
 import { recalcularTotal } from "../utilities/calcularTotal.js";
-import { realizarCompraController } from "../controllers/comprasController.js";
+import {
+    realizarCompraController,
+    cargarProveedoresController,
+    cargarMetodosPagoController
+} from "../controllers/comprasController.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+    const selectProveedor = document.getElementById("select-proveedor");
+    const selectMetodoPago = document.getElementById("select-metodo-pago");
+
     activarSidebar();
     botonDesplegableCompras();
+
+    cargarProveedoresController(selectProveedor);
+    cargarMetodosPagoController(selectMetodoPago);
 });
 
 document.addEventListener("DOMContentLoaded", () => {

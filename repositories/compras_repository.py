@@ -60,3 +60,59 @@ class ComprasRepository:
         finally:
             cursor.close()
             conexion.close()
+
+    @staticmethod
+    def obtenerDetalles(id_compra):
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
+
+        try:
+            cursor.callproc("sp_obtener_detalles_compra", [id_compra])
+
+            filas = []
+
+            for resultado in cursor.stored_results():
+                filas.extend(resultado.fetchall())
+
+            detalles = []
+
+            for detalle in filas:
+                detalles.append({
+                    "nombre": detalle[0],    
+                    "cantidad": detalle[1],    
+                    "valorU": detalle[2],    
+                    "subtotal": detalle[3],   
+                })
+
+            return detalles
+
+        except Exception as e:
+            raise e
+        finally:
+            cursor.close()
+            conexion.close()
+
+    @staticmethod
+    def obtenerMetodosPago():
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
+        
+        cursor.callproc("sp_obtener_metodos_pago")
+        
+        filas = []
+
+        for resultado in cursor.stored_results():
+            filas.extend(resultado.fetchall())
+            
+        cursor.close()
+        conexion.close()
+        
+        metodos = []
+        
+        for fila in filas:
+            metodos.append({
+                "id": fila[0],
+                "nombre": fila[1]
+            })
+            
+        return metodos

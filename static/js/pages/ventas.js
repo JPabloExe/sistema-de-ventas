@@ -2,8 +2,6 @@ import { activarSidebar } from "../components/sidebar.js";
 
 import { botonDesplegableCompras } from "../utilities/botonDesplegable.js";
 
-import { inicializarDialogEliminarVenta } from "../ui/ventasUI.js";
-
 import {
     eliminarVentaController,
     buscarVentasController,
@@ -15,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     activarSidebar();
     botonDesplegableCompras();
-    inicializarDialogEliminarVenta(eliminarVentaController);
     cargarVentas();
 
 });
@@ -77,3 +74,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+// Eliminar Venta
+document.addEventListener("DOMContentLoaded", () => {
+
+    const btnConfirmar = document.getElementById("btn-confirmar-borrado");
+    const btnCancelar = document.getElementById("btn-cancelar-confirmacion");
+    const dialog = document.getElementById("dialog-eliminar");
+    const tituloDialog = document.getElementById("titulo");
+    const tbody = document.getElementById("tbody-ventas");
+
+    let numeroVentaAEliminar = null;
+
+    tbody.addEventListener("click", (e) => {
+        const botonEliminar = e.target.closest(".eliminar");
+
+        if (botonEliminar) {
+            tituloDialog.textContent = "¿Deseas borrar esta venta?";
+            numeroVentaAEliminar = botonEliminar.dataset.numero;
+
+            dialog.showModal();
+        }
+    });
+
+    btnCancelar.addEventListener("click", () => {
+        dialog.close();
+    });
+
+    btnConfirmar.addEventListener("click", async () => {
+        if (numeroVentaAEliminar) {
+            await eliminarVentaController(numeroVentaAEliminar);
+            cargarVentas();
+            dialog.close();
+        }
+    });
+
+});

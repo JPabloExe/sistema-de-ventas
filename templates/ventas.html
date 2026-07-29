@@ -24,7 +24,7 @@
                 <p>FECHA INICIAL</p>
                 <input id="input-fecha-inicial" class="input-fecha-inicial" type="date">
             </div>
-            
+
             <div class="div-fecha-final">
                 <p>FECHA FINAL</p>
                 <input id="input-fecha-final" class="input-fecha-final" type="date">
@@ -62,13 +62,11 @@
 </div>
 
 <!-- DIALOG DETALLES VENTAS -->
-{% include 'components/dialog-detalles-ventas.html' %}
+{% include 'components/dialog-detalles.html' %}
 
 {% endblock %}
+
 
 {% block js %}
 <script type="module" src="{{ url_for('static', filename='js/pages/ventas.js') }}"></script>
 {% endblock %}
-
-
-

@@ -45,8 +45,6 @@ export function llenarTablaInventario(productos) {
         tbody.appendChild(fila);
     }
 
-    const divCantidad = document.createElement("div");
-
     pCantidadProductosInventario.textContent = productos.length;
 };
 

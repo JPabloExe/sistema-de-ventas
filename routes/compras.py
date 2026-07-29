@@ -64,3 +64,60 @@ def obtener_compras():
             str(e),
             None
         )
+
+@compras_bp.route('/obtenerDetalles', methods=['GET'])
+@login_required
+@roles_required('Administrador', 'Supervisor')
+def obtener_detalles():
+
+    id_compra = request.args.get('id_compra')
+
+    try:
+
+        detalles = ComprasRepository.obtenerDetalles(id_compra)
+
+        return api_response(
+            True,
+            "success",
+            "",
+            detalles
+        )
+
+    except Exception as e:
+        return api_response(
+            False,
+            "exception",
+            str(e),
+            None
+        )
+
+@compras_bp.route('/obtenerMetodosPago', methods=['GET'])
+@login_required
+def obtener_metodos_pago():
+    
+    try:
+
+        metodos = ComprasRepository.obtenerMetodosPago()
+        
+        if len(metodos) == 0:
+            return api_response(
+                False, 
+                "error", 
+                "No hay metodos de pago registrados",
+                None
+            ) 
+        else:
+            return api_response(
+                True,
+                "",
+                "",
+                metodos
+            ) 
+        
+    except Exception as e:
+        return api_response(
+            False,
+            "exception",
+            str(e),
+            None
+        ) 

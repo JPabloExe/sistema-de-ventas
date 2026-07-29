@@ -14,11 +14,32 @@ export async function realizarCompra(datos) {
 
 export async function obtenerCompras() {
 
-    const respuesta = await fetch(`${URL_API}/obtenerCompras`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-    })
+    const respuesta = await fetch(`${URL_API}/obtenerCompras`)
 
     return await respuesta.json()
+
+}
+
+export async function obtenerDetalles(id_compra) {
+
+    const respuesta = await fetch(`${URL_API}/obtenerDetalles?id_compra=${id_compra}`)
+
+    return await respuesta.json()
+
+}
+
+export async function obtenerMetodosPago() {
+
+    const respuesta = await fetch(`${URL_API}/obtenerMetodosPago`);
+
+    return await respuesta.json();
+
+}
+
+export async function obtenerEstadosCompra() {
+
+    const respuesta = await fetch(`${URL_API}/obtenerEstadosCompra`);
+
+    return await respuesta.json();
 
 }

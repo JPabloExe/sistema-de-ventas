@@ -3,9 +3,10 @@ import { formatearCOP } from "../utilities/moneda.js"
 export function llenarTablaCompras(compras) {
 
     const tbody = document.getElementById('tbody-compras');
+    const pCantidadCompras = document.getElementById("p-cantidad-compras");
 
     if (compras === null) {
-
+        pCantidadCompras.textContent = 0;
         tbody.innerHTML = '';
         return;
     }
@@ -19,10 +20,10 @@ export function llenarTablaCompras(compras) {
         fila.innerHTML = `
           
             <tr>
-                <td>${compra.compra}</td>
-                <td>${compra.proveedor}</td>
-                <td>${compra.fecha}</td>
-                <td>COP ${formatearCOP(compra.total)}</td>
+                <td class="numero">${compra.compra}</td>
+                <td class="proveedor">${compra.proveedor}</td>
+                <td class="fecha">${compra.fecha}</td>
+                <td class="total">COP ${formatearCOP(compra.total)}</td>
                 <td>
                     <span class=${compra.estado === 1
                 ? "badge-completed"
@@ -37,8 +38,8 @@ export function llenarTablaCompras(compras) {
                 </td>
 
 
-                <td>
-                    <i id="btn-detalles" class="fa-solid fa-circle-info detalles"
+                <td class="acciones">
+                    <i id="btn-detalles" class="fa-solid fa-circle-info detalles" title="Detalles de la compra"
                         data-compra="${compra.compra}"
                         data-proveedor="${compra.proveedor}"
                         data-usuario="${compra.usuario}"
@@ -50,11 +51,11 @@ export function llenarTablaCompras(compras) {
                         data-estado="${compra.estado}">
                     </i>
 
-                    <i class="fa-solid fa-box recibir"  title="Recibir mercancía"
+                    <i class="fa-solid fa-box recibir" title="Recibir mercancía"
                     data-id="${compra.compra}">  
                     </i>
 
-                    <i id="btn-eliminar" class="fa-solid fa-trash btn-eliminar"
+                    <i id="btn-eliminar" class="fa-solid fa-trash btn-eliminar" title="Eliminar compra"
                         data-id="${compra.compra}">  
                     </i>
 
@@ -66,6 +67,8 @@ export function llenarTablaCompras(compras) {
         tbody.appendChild(fila);
 
     }
+
+    pCantidadCompras.textContent = compras.length;
 
 }
 
@@ -94,4 +97,42 @@ function obtenerProductosDeCarrito() {
     });
 
     return productosEnCarrito;
+}
+
+export function llenarDetalles(boton, items) {
+
+    document.getElementById("p-numero-operacion").textContent = boton.dataset.factura;
+    document.getElementById("p-fecha").textContent = boton.dataset.fecha;
+    document.getElementById("p-hora").textContent = boton.dataset.hora;
+    document.getElementById("p-usuario").textContent = boton.dataset.proveedor;
+    document.getElementById("p-metodo").innerHTML = `
+        <i class="fa-solid fa-coins"></i> 
+        ${boton.dataset.metodo_pago}
+    `;
+    document.getElementById("p-total").textContent = `COP ${formatearCOP(parseInt(boton.dataset.total))}`;
+
+    llenarTablaItems(items);
+
+}
+
+function llenarTablaItems(items) {
+
+    const tbody = document.getElementById("tbody-detalles");
+
+    tbody.innerHTML = "";
+
+    for (const item of items) {
+        const fila = document.createElement("tr");
+
+        fila.innerHTML = `
+            <tr>
+                <td>${item.nombre}</td>
+                <td>${item.cantidad}</td>
+                <td>COP ${formatearCOP(item.valorU)}</td>
+                <td>COP ${formatearCOP(item.subtotal)}</td>
+            </tr>
+        `;
+        tbody.appendChild(fila);
+    }
+
 }

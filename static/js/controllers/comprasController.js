@@ -1,13 +1,20 @@
 import { mostrarToast } from "../components/toast.js";
 
+import { cargarSelect } from "../utilities/cargarSelects.js";
+
+import { obtenerProveedores } from "../api/proveedoresApi.js";
+
 import {
     realizarCompra,
-    obtenerCompras
+    obtenerCompras,
+    obtenerDetalles,
+    obtenerMetodosPago
 } from "../api/comprasApi.js";
 
 import {
     obtenerDatosFormularioCompras,
-    llenarTablaCompras
+    llenarTablaCompras,
+    llenarDetalles
 } from "../ui/comprasUI.js";
 
 export async function realizarCompraController() {
@@ -40,5 +47,50 @@ export async function cargarCompras() {
 
     llenarTablaCompras(info.data);
     mostrarToast(info.message, info.type);
+
+}
+
+export async function obtenerDetallesController(boton) {
+
+    const info = await obtenerDetalles(boton.dataset.compra);
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    llenarDetalles(boton, info.data)
+
+}
+
+export async function cargarProveedoresController(select) {
+
+    const info = await obtenerProveedores();
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    cargarSelect(info.data, select);
+
+}
+
+export async function cargarMetodosPagoController(select) {
+
+    const info = await obtenerMetodosPago();
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    cargarSelect(info.data, select);
 
 }
