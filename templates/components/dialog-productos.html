@@ -1,54 +1,64 @@
 <dialog id="dialog-productos" class="dialog-productos">
-    
+
     <h2>Gestionar Productos</h2>
-    
+
     <form id="form-productos">
-        
+
         <div class="campo">
             <label>Codigo</label>
             <input id="input-codigo" type="text" placeholder="Ingrese codigo" required>
         </div>
-        
+
         <div class="campo">
             <label>Producto</label>
             <input id="input-producto" type="text" placeholder="Ingrese nombre" required>
         </div>
-        
+
         <div class="campo">
             <label>Cantidad</label>
             <input id="input-cantidad" type="number" placeholder="Ingrese cantidad" required>
         </div>
-        
+
         <div class="campo">
             <label>Precio</label>
             <input id="input-precio" type="number" placeholder="Ingrese precio" required>
         </div>
-        
+
         <div class="campo">
             <label>Costo</label>
             <input id="input-costo" type="number" placeholder="Ingrese costo" required>
         </div>
-        
+
         <div class="campo">
             <label>Fecha Caducidad</label>
             <input id="input-caducidad" type="date" required>
         </div>
-        
+
         <div class="campo">
             <label>Categoria</label>
-            
+
             <select id="select-categorias-dialog"></select>
-            
+
         </div>
-        
+
+        <div class="campo">
+            <label>Proveedor</label>
+
+            <select id="select-proveedor-dialog">
+                <option value="">Seleccione un proveedor</option>
+                <option value="1">Distribuciones La Canasta S.A.S.</option>
+            </select>
+
+        </div>
+
         <div class="dialog-botones">
             <button type="button" class="btn-cancelar-productos" id="btn-cancelar-productos">
                 Cancelar
             </button>
-            
+
             <button type="submit" class="btn-accion-dialog-productos" id="btn-accion-dialog-productos"></button>
         </div>
-        
+
     </form>
-    
+
 </dialog>

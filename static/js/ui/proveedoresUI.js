@@ -12,29 +12,28 @@ export function llenarTablaProveedores(proveedores) {
 
     for (const proveedor of proveedores) {
 
-        const fila = document.createElement('tr')
+        const fila = document.createElement('tr');
 
         fila.innerHTML = `
           
             <tr>
-                <td class="nombre">${proveedor.nombre}</td>
+                <td>${proveedor.nombre}</td>
                 <td>${proveedor.telefono}</td>
                 <td>${proveedor.correo}</td>
                 <td>${proveedor.ciudad}</td>
-
                 <td>
                     <span class=${proveedor.estado === 1
                 ? "badge-active"
                 : "badge-inactive"}>
-
+                        
                         <i class="${proveedor.estado === 1
                 ? "fa-solid fa-user-check"
                 : "fa-solid fa-user-xmark"}">
                         </i>
-                        ${proveedor.estado === 1 ? "Activo" : "Inactivo"}
+
+                        ${proveedor.estado === 1 ? 'Activo' : 'Inactivo'}
                     </span>
                 </td>
-
                 <td>
                     <i id="btn-actualizar" class="fa-solid fa-pen-to-square btn-actualizar"
                         data-id="${proveedor.id}"

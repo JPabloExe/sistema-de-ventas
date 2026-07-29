@@ -1,0 +1,341 @@
+body {
+    display: flex;
+    margin: 0;
+    background-color: #F8FAF9;
+    font-family: sans-serif;
+}
+
+body button {
+    cursor: pointer;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: space-around;
+}
+
+.contenedor-carrito {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+
+.div-carrito p {
+    color: gray;
+    font-size: 3mm;
+}
+
+.div-buscar-producto {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+    background-color: #FEFEFE;
+}
+
+.div-input {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    border: solid #DEDEDE 1px;
+    padding-left: 10px;
+    color: gray;
+    align-items: center;
+}
+
+.div-productos {
+    display: flex;
+    flex-direction: column;
+    background-color: #FEFEFE;
+    height: 80%;
+    padding: 20px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.div-titulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.producto {
+    display: flex;
+    padding: 11.5px;
+    justify-content: space-between;
+    align-items: center;
+    border: solid #DEDEDE 1px;
+}
+
+.div-info p {
+    margin-bottom: 0%;
+}
+
+.div-carrito {
+    display: flex;
+    flex-direction: column;
+    height: 335px;
+    overflow-y: auto;
+}
+
+.div-cantidad button {
+    width: 20px;
+    padding: 3px;
+    background-color: #FBF9FA;
+    border: solid #DEDEDE 1px;
+}
+
+.div-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border: none;
+    border-top: solid #DEDEDE 1px;
+    margin-top: auto;
+}
+
+.input-cantidad {
+    width: 25px;
+    text-align: center;
+    outline: none;
+    padding: 3px;
+    border: solid #DEDEDE 1px;
+}
+
+.btn-borrar {
+    background-color: white !important;
+    border: none;
+    color: #dc143c !important;
+}
+
+.btn-borrar:hover {
+    color: #610000 !important;
+}
+
+.contenedor-datos-compra {
+    width: 38%;
+    height: 85%;
+    padding: 20px;
+}
+
+#input-producto-carrito {
+    width: 95%;
+    padding: 10px 10px 10px 0px;
+    border: none;
+    font-size: small;
+    outline: none;
+}
+
+.datos-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.datos-box input {
+    padding: 8px;
+    border-radius: 8px;
+    border: solid 1px;
+}
+
+.in_total {
+    border: none !important;
+}
+
+.quick-cash {
+    display: flex;
+    gap: 10px;
+}
+
+.quick-cash button {
+    flex: 1;
+    padding: 8px;
+    background: #ddd;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.estado {
+    font-weight: bold;
+}
+
+.datos-compra {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FEFEFE;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.datos-compra h2 {
+    margin: 0 0 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 24px;
+    font-weight: 500;
+    color: #222;
+}
+
+/* Contenedor de los campos */
+
+.formulario-compra {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Campo */
+
+.campo-compra {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-compra label {
+    font-size: 14px;
+    color: #888;
+}
+
+/* Input y Select */
+
+.campo-compra input,
+.campo-compra select {
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    border: none;
+    border-bottom: 1px solid #d8d8d8;
+    background-color: transparent;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+    color: #555;
+}
+
+.campo-compra input:focus,
+.campo-compra select:focus {
+    border-bottom: 2px solid #2E3547;
+}
+
+/* Placeholder del select */
+
+.campo-compra select:invalid {
+    color: #777;
+}
+
+/* Resumen */
+
+.resumen-compra {
+    margin-top: 20px;
+}
+
+/* Filas */
+
+.fila-resumen {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 5px;
+    font-size: 17px;
+    color: #555;
+}
+
+.fila-resumen span:last-child {
+    font-weight: 500;
+    color: #333;
+}
+
+/* Separador */
+
+.separador {
+    width: 100%;
+    height: 1px;
+    margin: 20px 0;
+    background-color: #e5e5e5;
+}
+
+/* Total */
+
+.fila-resumen.total {
+    padding-top: 5px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.fila-resumen.total span:last-child {
+    font-size: 22px;
+}
+
+.acciones-compra {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+/* Estilos generales de los botones */
+
+.acciones-compra button {
+    height: 45px;
+    padding: 0 22px;
+
+    border-radius: 8px;
+    border: none;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* Limpiar carrito */
+
+.btn-limpiar {
+    background-color: transparent;
+    color: #555;
+    border: 1px solid #d5d5d5 !important;
+}
+
+.btn-limpiar:hover {
+    background-color: #f5f5f5;
+}
+
+/* Confirmar compra */
+
+.btn-confirmar {
+    background-color: #2E3547;
+    color: white;
+}
+
+.btn-confirmar:hover {
+    background: #1f2c43;
+}
+
+.btn-confirmar:active,
+.btn-limpiar:active {
+    transform: scale(0.98);
+}
+
+.btn-actualizar {
+    color: #4caf50;
+}
+
+.btn-eliminar {
+    color: #e53935;
+}
+
+.btn-actualizar:hover {
+    color: #377739;
+}
+
+.btn-eliminar:hover {
+    color: #bb2d3b;
+}

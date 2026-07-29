@@ -48,3 +48,9 @@ def historial_compras():
 @roles_required("Administrador", "Supervisor")
 def proveedores():
     return render_template('proveedores.html')
+
+@paginas_bp.route('/compras')
+@login_required
+@roles_required("Administrador", "Supervisor")
+def compras():
+    return render_template('compras.html')

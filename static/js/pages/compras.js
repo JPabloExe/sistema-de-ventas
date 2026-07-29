@@ -2,69 +2,49 @@ import { activarSidebar } from "../components/sidebar.js";
 
 import { botonDesplegableCompras } from "../utilities/botonDesplegable.js";
 
-import { mostrarToast } from "../components/toast.js";
-
 import { formatearCOP } from "../utilities/moneda.js";
 
-import { total } from "../ui/puntoVentasUI.js";
+import {
+    agregarProductosAlcarritoController,
+} from "../controllers/puntoVentasController.js";
 
 import {
     limpiarCarrito,
     productosEnCarrito,
     calcularVueltos,
-    reCalcularTotal,
     limpiarInputsPago
 } from "../ui/puntoVentasUI.js";
 
-import {
-    agregarProductosAlcarritoController,
-    realizarVentaController
-} from "../controllers/puntoVentasController.js";
+import { recalcularTotal } from "../utilities/calcularTotal.js";
+import { realizarCompraController } from "../controllers/comprasController.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     activarSidebar();
     botonDesplegableCompras();
 });
 
-// Realizar venta
 document.addEventListener("DOMContentLoaded", () => {
-    const cantidad = document.getElementById("cantidad");
-    const botonProcesar = document.getElementById("btn-procesar-venta");
-    const botonLimpiar = document.getElementById("btn-limpiar-carrito");
-    const montoRecibido = document.getElementById("recibido");
 
-    botonProcesar.addEventListener("click", () => {
-        if (montoRecibido.value === "") {
-            mostrarToast("Debe ingresar el monto", "exception");
-            return;
-        }
+    const btnConfirmarCompra = document.getElementById("btnConfirmarCompra");
 
-        if (montoRecibido.value < total) {
-            mostrarToast("Monto menor al total de la venta", "exception");
-            return;
-        }
+    btnConfirmarCompra.addEventListener("click", async () => {
 
-        realizarVentaController();
-        limpiarCarrito();
-        cantidad.textContent = `(${productosEnCarrito()} productos)`;
+        await realizarCompraController();
+
     });
 
-    botonLimpiar.addEventListener("click", () => {
-        limpiarCarrito();
-        limpiarInputsPago();
-        cantidad.textContent = `(${productosEnCarrito()} productos)`;
-    });
 });
-
 
 // Agrega producto al carrito
 document.addEventListener("DOMContentLoaded", () => {
+    const lblTotal = document.getElementById("totalCompra");
     const input = document.getElementById("input-producto-carrito");
 
-    input.addEventListener("input", () => {
+    input.addEventListener("input", async () => {
 
         if (input.value.trim().length === 4) {
-            agregarProductosAlcarritoController(input.value.trim());
+            await agregarProductosAlcarritoController(input.value.trim());
+            recalcularTotal(lblTotal);
         }
     });
 });
@@ -72,7 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
 // Recalcula el subtotal de un producto dependiendo de la cantidad
 document.addEventListener("DOMContentLoaded", () => {
 
-    reCalcularTotal();
+    const lblTotal = document.getElementById("totalCompra");
+
+    recalcularTotal(lblTotal);
 
     const divCarrito = document.querySelector(".div-carrito");
     const cantidad = document.getElementById("cantidad");
@@ -90,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Actualizamos el <b> con clase .subtotal
         filaProducto.querySelector(".subtotal").textContent = `COP ${formatearCOP(subtotal)}`;
 
-        if (typeof reCalcularTotal === "function") reCalcularTotal();
+        if (typeof recalcularTotal === "function") recalcularTotal(lblTotal);
     });
 
     // 2. Escuchar clics en botones (+, -, borrar)
@@ -116,21 +98,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (btnBorrar) {
             e.target.closest(".producto").remove();
-            if (typeof reCalcularTotal === "function") reCalcularTotal();
+            if (typeof recalcularTotal === "function") recalcularTotal(lblTotal);
             cantidad.textContent = `(${productosEnCarrito()} productos)`;
 
         }
     });
-});
-
-
-// Calcular Vueltos
-document.addEventListener("DOMContentLoaded", () => {
-
-    const recibidoInput = document.getElementById("recibido");
-
-    recibidoInput.addEventListener("input", () => {
-        calcularVueltos();
-    });
-
 });

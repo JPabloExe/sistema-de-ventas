@@ -4,11 +4,11 @@ export function llenarTablaInventario(productos) {
     const tbody = document.getElementById("tbody-productos");
     const pCantidadProductosInventario = document.getElementById("p-cantidad-productos-inventario");
 
-    if (productos === null) {    
+    if (productos === null) {
         pCantidadProductosInventario.textContent = 0;
         tbody.innerHTML = "";
         return;
-    }    
+    }
 
     tbody.innerHTML = "";
 
@@ -59,13 +59,14 @@ export function obtenerDatosFormularioProducto() {
         "valor_unitario": document.getElementById("input-precio").value,
         "costo": document.getElementById("input-costo").value,
         "fecha_caducidad": document.getElementById("input-caducidad").value,
-        "categoria": document.getElementById("select-categorias-dialog").value
+        "categoria": document.getElementById("select-categorias-dialog").value,
+        "proveedor": document.getElementById("select-proveedor-dialog").value
     }
 
 }
 
 export function obtenerDatosFormularioCategoria() {
-    
+
     return {
         "nombre": document.getElementById("input-nombre-categoria").value,
         "descripcion": document.getElementById("input-descripcion").value
@@ -98,14 +99,14 @@ export function llenarFormularioProducto(boton) {
     document.getElementById("input-costo").value = boton.dataset.costo;
     document.getElementById("input-caducidad").value = boton.dataset.caducidad;
     document.getElementById("select-categorias-dialog").value = boton.dataset.categoria;
-  
+
 }
 
 export function cargarCategorias(categorias, select) {
 
     select.innerHTML = '';
 
-    select.innerHTML = '<option value="0">Todas las categorias</option>';   
+    select.innerHTML = '<option value="0">Todas las categorias</option>';
 
     for (const categoria of categorias) {
 

@@ -186,6 +186,7 @@ td {
 .badge-active {
     background: #198754;
     color: white;
+    font-weight: bold;
     padding: 7px 12px;
     border-radius: 7px;
     font-size: 13px;
@@ -194,6 +195,7 @@ td {
 .badge-inactive {
     background: #6c757d;
     color: white;
+    font-weight: bold;
     padding: 7px 12px;
     border-radius: 7px;
     font-size: 13px;

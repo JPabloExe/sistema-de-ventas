@@ -16,14 +16,13 @@ def realizar_compra():
 
     try:
     
-        items_json = json.dumps(datos['items'])
+        productos_json = json.dumps(datos['productos'])
 
-        ComprasRepository.realizar_compra({
-            'proveedor': datos['id_proveedor'],
+        ComprasRepository.realizarCompra({
+            'proveedor': datos['proveedor'] or None,
             'usuario': current_user.id,
-            'factura': datos['num_factura'],
-            'metodo': datos['metodo_pago'],
-            'productos': items_json
+            'metodo': datos['metodo_pago'] or None,
+            'productos': productos_json
         })
 
         return api_response(
@@ -38,5 +37,30 @@ def realizar_compra():
             False,
             "exception",
             str(e.msg),
+            None
+        )
+
+
+@compras_bp.route('/obtenerCompras')
+@login_required
+@roles_required('Administrador', 'Supervisor')
+def obtener_compras():
+
+    try:
+
+        compras = ComprasRepository.obtenerCompras()
+
+        return api_response(
+            True,
+            "success",
+            "Compras obtenidas",
+            compras
+        )
+
+    except Exception as e:
+        return api_response(
+            False,
+            "exception",
+            str(e),
             None
         )

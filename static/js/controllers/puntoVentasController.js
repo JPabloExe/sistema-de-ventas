@@ -1,7 +1,7 @@
 import {
     obtenerProductosDeCarrito,
     agregarProductoAlCarrito,
-    recalcularTotal,
+    reCalcularTotal,
     limpiarInputsPago
 } from "../ui/puntoVentasUI.js";
 
@@ -28,25 +28,25 @@ export async function realizarVentaController() {
 
     }
 
-    recalcularTotal();
+    reCalcularTotal();
     limpiarInputsPago();
     mostrarToast(info.message, info.type);
-    
+
 }
 
 export async function agregarProductosAlcarritoController(codigo) {
-    
+
     const info = await buscarProducto(codigo);
-    
+
     if (!info.ok) {
 
         mostrarToast(info.message, info.type);
         return;
 
     }
-    
+
     agregarProductoAlCarrito(info.data);
-    recalcularTotal();
+    reCalcularTotal();
     mostrarToast(info.message, info.type);
 
 }

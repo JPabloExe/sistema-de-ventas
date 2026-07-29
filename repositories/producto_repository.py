@@ -14,7 +14,8 @@ class ProductoRepository:
             datos['valor_unitario'], 
             datos['costo'],
             datos['fecha_caducidad'],
-            datos['categoria']
+            datos['categoria'],
+            datos['proveedor']
         ])
 
         conexion.commit()

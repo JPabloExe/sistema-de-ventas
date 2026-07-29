@@ -1,5 +1,7 @@
 import { formatearCOP } from "../utilities/moneda.js";
 
+import { recalcularTotal } from "../utilities/calcularTotal.js";
+
 export function obtenerProductosDeCarrito() {
 
     const productos = document.querySelectorAll(".producto");
@@ -89,23 +91,13 @@ export function agregarProductoAlCarrito(producto) {
 
 export let total = 0;
 
-export function recalcularTotal() {
-    let totalGeneral = 0;
-    // Seleccionamos todos los productos que existen en el carrito en este momento
-    const todosLosProductos = document.querySelectorAll(".div-carrito .producto");
+export function reCalcularTotal() {
 
-    todosLosProductos.forEach(producto => {
-        const precio = parseFloat(producto.dataset.precio);
-        const cantidad = parseInt(producto.querySelector(".input-cantidad").value) || 0;
-
-        totalGeneral += precio * cantidad;
-    });
 
     // Buscamos el elemento donde quieres mostrar el gran total
     const lblTotal = document.getElementById("totalPagar");
     if (lblTotal) {
-        lblTotal.value = `COP ${formatearCOP(totalGeneral)}`;
-        total = totalGeneral;
+        total = recalcularTotal(lblTotal);
         calcularVueltos();
     }
 }

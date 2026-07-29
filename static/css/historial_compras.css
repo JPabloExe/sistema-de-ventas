@@ -161,7 +161,7 @@ i {
 }
 
 .acciones {
-    padding-left: 25px;
+    padding-left: 350px;
 }
 
 .acciones i {
@@ -171,14 +171,44 @@ i {
 
 }
 
-.acciones .actualizar {
-    color: #4caf50;
+.detalles {
+    color: #6289f3;
 }
 
-.acciones .eliminar {
+.btn-eliminar {
     color: #e53935;
 }
 
-.acciones i:hover {
-    opacity: 0.7;
+.detalles:hover {
+    color: #4c6abc;
+}
+
+.btn-eliminar:hover {
+    color: #bb2d3b;
+}
+
+.recibir {
+    color: #4caf50;
+}
+
+.recibir:hover {
+    color: #377739;
+}
+
+.badge-completed {
+    background: #198754;
+    color: white;
+    font-weight: bold;
+    padding: 7px 12px;
+    border-radius: 7px;
+    font-size: 13px;
+}
+
+.badge-pending {
+    background: #6c757d;
+    color: white;
+    font-weight: bold;
+    padding: 7px 12px;
+    border-radius: 7px;
+    font-size: 13px;
 }
