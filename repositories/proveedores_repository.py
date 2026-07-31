@@ -91,3 +91,33 @@ class ProveedoresRepository:
         finally:
             cursor.close()
             conexion.close()
+
+    @staticmethod
+    def obtenerEstadosProveedores():
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
+
+        try:
+            cursor.callproc("sp_obtener_estados_proveedores")
+
+            filas = []
+
+            for resultado in cursor.stored_results():
+                filas.extend(resultado.fetchall())
+
+            estados = []
+
+            for estado in filas:
+                estados.append({
+                    "id": estado[0],
+                    "nombre": estado[1]
+                })
+
+            return estados
+
+        except Exception as e:
+            raise e
+
+        finally:
+            cursor.close()
+            conexion.close()

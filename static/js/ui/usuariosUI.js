@@ -3,7 +3,6 @@ export function llenarTablaUsuarios(usuarios) {
     const tbody = document.getElementById('tbody-usuarios');
 
     if (usuarios === null) {
-
         tbody.innerHTML = '';
         return;
     }

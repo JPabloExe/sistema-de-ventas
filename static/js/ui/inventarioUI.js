@@ -5,7 +5,6 @@ export function llenarTablaInventario(productos) {
     const pCantidadProductosInventario = document.getElementById("p-cantidad-productos-inventario");
 
     if (productos === null) {
-        pCantidadProductosInventario.textContent = 0;
         tbody.innerHTML = "";
         return;
     }

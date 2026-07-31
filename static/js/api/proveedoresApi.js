@@ -27,12 +27,15 @@ export async function actualizarProveedor(datosActualizados, proveedorId) {
 
 export async function obtenerProveedores() {
 
-    const respuesta = await fetch(`${URL_API}/obtenerProveedores`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    });
+    const respuesta = await fetch(`${URL_API}/obtenerProveedores`);
 
     return respuesta.json();
+}
+
+export async function obtenerEstadosProveedores() {
+
+    const respuesta = await fetch(`${URL_API}/obtenerEstadosProveedores`);
+
+    return respuesta.json();
+
 }

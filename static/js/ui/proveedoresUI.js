@@ -1,9 +1,9 @@
 export function llenarTablaProveedores(proveedores) {
 
     const tbody = document.getElementById('tbody-proveedores');
+    const pCantidadProveedores = document.getElementById("p-cantidad-proveedores");
 
     if (proveedores === null) {
-
         tbody.innerHTML = '';
         return;
     }
@@ -17,11 +17,11 @@ export function llenarTablaProveedores(proveedores) {
         fila.innerHTML = `
           
             <tr>
-                <td>${proveedor.nombre}</td>
-                <td>${proveedor.telefono}</td>
-                <td>${proveedor.correo}</td>
-                <td>${proveedor.ciudad}</td>
-                <td>
+                <td class="proveedor">${proveedor.nombre}</td>
+                <td class="telefono">${proveedor.telefono}</td>
+                <td class="correo">${proveedor.correo}</td>
+                <td class="ciudad">${proveedor.ciudad}</td>
+                <td class="estado">
                     <span class=${proveedor.estado === 1
                 ? "badge-active"
                 : "badge-inactive"}>
@@ -34,8 +34,8 @@ export function llenarTablaProveedores(proveedores) {
                         ${proveedor.estado === 1 ? 'Activo' : 'Inactivo'}
                     </span>
                 </td>
-                <td>
-                    <i id="btn-actualizar" class="fa-solid fa-pen-to-square btn-actualizar"
+                <td class="acciones">
+                    <i id="btn-actualizar" class="fa-solid fa-pen-to-square actualizar"
                         data-id="${proveedor.id}"
                         data-nombre="${proveedor.nombre}"
                         data-nit="${proveedor.nit}"
@@ -46,7 +46,7 @@ export function llenarTablaProveedores(proveedores) {
                         data-estado="${proveedor.estado}">
                     </i>
 
-                    <i id="btn-eliminar" class="fa-solid fa-trash btn-eliminar"
+                    <i id="btn-eliminar" class="fa-solid fa-trash eliminar"
                         data-id="${proveedor.id}">  
                     </i>
 
@@ -58,6 +58,8 @@ export function llenarTablaProveedores(proveedores) {
         tbody.appendChild(fila);
 
     }
+
+    pCantidadProveedores.textContent = proveedores.length;
 
 }
 

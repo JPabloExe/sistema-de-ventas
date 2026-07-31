@@ -98,3 +98,27 @@ def obtener_proveedores():
             str(e.msg),
             None
         )
+
+@proveedores_bp.route('/obtenerEstadosProveedores', methods=['GET'])
+@login_required
+@roles_required('Administrador', 'Supervisor')
+def obtener_estados_proveedores():
+    
+    try:
+
+        estados = ProveedoresRepository.obtenerEstadosProveedores()
+
+        return api_response(
+            True,
+            "",
+            "",
+            estados
+        )
+
+    except Exception as e:
+        return api_response(
+            False,
+            "exception",
+            str(e.msg),
+            None
+        )

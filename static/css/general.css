@@ -395,6 +395,11 @@ li {
     background-color: #c8c8c8;
 }
 
+
+button:active {
+    transform: scale(0.98);
+}
+
 /*TABLAS*/
 body table {
     width: 100%;

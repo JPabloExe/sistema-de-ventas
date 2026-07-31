@@ -120,36 +120,25 @@ i {
 }
 
 /* ESTILOS EXTRA */
-.codigo,
-.nombre {
+.proveedor,
+.telefono,
+.correo,
+.ciudad {
     font-weight: bold;
     color: #333;
-    padding-left: 15px;
+    padding-left: 10px;
 }
 
-.nombre {
-    padding-left: 14px !important;
+.ciudad {
+    padding-left: 13px !important;
 }
 
-.precio {
-    color: #2e8b57;
-    font-weight: bold;
-    padding-left: 15px;
-}
-
-.costo {
-    color: #8b6e2e;
-    font-weight: bold;
-    padding-left: 15px;
-}
-
-.stock .cantidad {
-    font-weight: bold;
-    padding-left: 17px;
+.estado {
+    padding-left: 10px;
 }
 
 .acciones {
-    padding-left: 25px;
+    padding-left: 10px;
 }
 
 td {
@@ -163,19 +152,19 @@ td {
 
 }
 
-.btn-actualizar {
+.actualizar {
     color: #4caf50;
 }
 
-.btn-eliminar {
+.eliminar {
     color: #e53935;
 }
 
-.btn-actualizar:hover {
+.actualizar:hover {
     color: #377739;
 }
 
-.btn-eliminar:hover {
+.eliminar:hover {
     color: #bb2d3b;
 }
 

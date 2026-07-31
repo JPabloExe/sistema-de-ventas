@@ -1,31 +1,18 @@
 export function cargarSelect(datos, select) {
 
-    select.innerHTML = '';
-
-
-    switch (select.name) {
-        case "proveedor":
-            select.innerHTML = '<option value="0">Seleccione un proveedor</option>';
-            break;
-        case "proveedores-acciones":
-            select.innerHTML = '<option value="0">Seleccione un proveedor</option>';
-            break;
-        case "metodo-pago":
-            select.innerHTML = '<option value="0">Seleccione un metodo</option>';
-            break;
-
-        default:
-            break;
+    // Borra las opciones y los indices se reorganizan 
+    // (borra siempre el indice 1 hasta que solo quede la opcion 0)
+    while (select.options.length > 1) {
+        select.remove(1);
     }
 
-    for (const dato of datos) {
+    datos.forEach(dato => {
+        const option = document.createElement("option");
 
-        select.innerHTML += `
-            <option value="${dato.id}">
-                ${dato.nombre}
-            </option>
-        `;
+        option.value = dato.id;
+        option.textContent = dato.nombre;
 
-    }
+        select.appendChild(option);
+    });
 
 }

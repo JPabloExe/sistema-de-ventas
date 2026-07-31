@@ -5,7 +5,8 @@ import { botonDesplegableCompras } from "../utilities/botonDesplegable.js";
 import {
     registrarProveedorController,
     actualizarProveedorController,
-    cargarProveedoresController
+    cargarProveedoresController,
+    cargarEstadosProveedoresController
 } from "../controllers/proveedoresController.js";
 
 import {
@@ -16,9 +17,12 @@ import {
 // Cargar proveedores
 document.addEventListener("DOMContentLoaded", () => {
 
+    const selectEstadosProveedores = document.getElementById("select-estado");
+
     activarSidebar();
     botonDesplegableCompras();
     cargarProveedoresController();
+    cargarEstadosProveedoresController(selectEstadosProveedores);
 
 });
 
@@ -44,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     tbody.addEventListener("click", (e) => {
-        const boton = e.target.closest(".btn-actualizar");
+        const boton = e.target.closest(".actualizar");
 
         if (boton) {
             modo = "actualizar";
@@ -66,10 +70,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (modo === "registrar") {
 
             await registrarProveedorController();
+            dialog.close();
 
         } else if (modo === "actualizar") {
 
             await actualizarProveedorController(proveedorId);
+            dialog.close();
 
         }
 

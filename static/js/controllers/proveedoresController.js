@@ -1,9 +1,12 @@
 import { mostrarToast } from "../components/toast.js";
 
+import { cargarSelect } from "../utilities/cargarSelects.js";
+
 import {
     obtenerProveedores,
     registrarProveedor,
-    actualizarProveedor
+    actualizarProveedor,
+    obtenerEstadosProveedores
 } from "../api/proveedoresApi.js";
 
 import {
@@ -58,6 +61,21 @@ export async function cargarProveedoresController() {
 
     llenarTablaProveedores(info.data);
     mostrarToast(info.message, info.type);
+
+}
+
+export async function cargarEstadosProveedoresController(select) {
+
+    const info = await obtenerEstadosProveedores();
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    cargarSelect(info.data, select);
 
 }
 

@@ -2,6 +2,8 @@ import { activarSidebar } from "../components/sidebar.js";
 
 import { botonDesplegableCompras } from "../utilities/botonDesplegable.js";
 
+import { cargarSelect } from "../utilities/cargarSelects.js";
+
 import {
     llenarFormularioProducto,
     limpiarFormularioProducto
@@ -17,16 +19,20 @@ import {
     cargarCategoriasController
 } from "../controllers/inventarioController.js";
 
+import { cargarProveedoresController } from "../controllers/proveedoresController.js";
+
 import { limpiarFormulario } from "../ui/usuariosUI.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const select = document.getElementById("select-categorias");
+    const selectCategorias = document.getElementById("select-categorias");
+    const selectProveedores = document.getElementById("select-proveedor-dialog");
 
     activarSidebar();
     botonDesplegableCompras();
-    cargarCategoriasController(select);
     cargarInventarioController(0);
+    cargarCategoriasController(selectCategorias);
+    cargarProveedoresController(selectProveedores);
 
 });
 

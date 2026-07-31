@@ -6,7 +6,6 @@ export function llenarTablaCompras(compras) {
     const pCantidadCompras = document.getElementById("p-cantidad-compras");
 
     if (compras === null) {
-        pCantidadCompras.textContent = 0;
         tbody.innerHTML = '';
         return;
     }
