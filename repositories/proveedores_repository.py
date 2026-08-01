@@ -57,6 +57,26 @@ class ProveedoresRepository:
             conexion.close()
 
     @staticmethod
+    def eliminarProveedor(proveedor_id):
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
+
+        try:
+            cursor.callproc("sp_eliminar_proveedor", [
+                proveedor_id
+            ])
+
+            conexion.commit()
+
+        except Exception as e:
+            conexion.rollback()
+            raise e
+
+        finally:
+            cursor.close()
+            conexion.close()
+
+    @staticmethod
     def obtenerProveedores():
         conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()

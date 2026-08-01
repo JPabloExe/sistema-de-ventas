@@ -6,6 +6,7 @@ import {
     obtenerProveedores,
     registrarProveedor,
     actualizarProveedor,
+    eliminarProveedor,
     obtenerEstadosProveedores
 } from "../api/proveedoresApi.js";
 
@@ -36,6 +37,21 @@ export async function actualizarProveedorController(proveedorId) {
     const datosActualizados = obtenerDatosFormularioProveedores();
 
     const info = await actualizarProveedor(datosActualizados, proveedorId);
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    mostrarToast(info.message, info.type);
+
+}
+
+export async function eliminarProveedorController(proveedorId) {
+
+    const info = await eliminarProveedor(proveedorId);
 
     if (!info.ok) {
 

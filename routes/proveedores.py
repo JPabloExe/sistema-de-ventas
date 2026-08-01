@@ -75,6 +75,31 @@ def actualizar_proveedor():
             None
         )
 
+@proveedores_bp.route('/eliminarProveedor', methods=['DELETE'])
+@login_required
+@roles_required('Administrador', 'Supervisor')
+def eliminar_proveedor():
+    
+    proveedor_id = request.args.get('id')
+
+    try:
+        ProveedoresRepository.eliminarProveedor(proveedor_id)
+
+        return api_response(
+            True,
+            "success",
+            "Proveedor eliminado",
+            None
+        )
+
+    except Exception as e:
+        return api_response(
+            False,
+            "exception",
+            str(e.msg),
+            None
+        )
+
 @proveedores_bp.route('/obtenerProveedores', methods=['GET'])
 @login_required
 @roles_required('Administrador', 'Supervisor')

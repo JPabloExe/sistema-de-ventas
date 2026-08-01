@@ -25,6 +25,15 @@ export async function actualizarProveedor(datosActualizados, proveedorId) {
 
 }
 
+export async function eliminarProveedor(proveedorId) {
+
+    const respuesta = await fetch(`${URL_API}/eliminarProveedor?id=${proveedorId}`, {
+        method: "DELETE"
+    });
+
+    return respuesta.json();
+}
+
 export async function obtenerProveedores() {
 
     const respuesta = await fetch(`${URL_API}/obtenerProveedores`);

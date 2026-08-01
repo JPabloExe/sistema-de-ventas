@@ -5,6 +5,7 @@ import { botonDesplegableCompras } from "../utilities/botonDesplegable.js";
 import {
     registrarProveedorController,
     actualizarProveedorController,
+    eliminarProveedorController,
     cargarProveedoresController,
     cargarEstadosProveedoresController
 } from "../controllers/proveedoresController.js";
@@ -85,6 +86,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+// Eliminar Proveedor
+document.addEventListener("DOMContentLoaded", () => {
+
+    const btnConfirmar = document.getElementById("btn-confirmar-borrado");
+    const btnCancelar = document.getElementById("btn-cancelar-confirmacion");
+    const dialogConfirmacion = document.getElementById("dialog-eliminar");
+    const tituloDialog = document.getElementById("titulo");
+    const tbody = document.getElementById("tbody-proveedores");
+
+    let proveedorId = null;
+
+    tbody.addEventListener("click", (e) => {
+        const botonEliminar = e.target.closest(".eliminar");
+
+        if (botonEliminar) {
+            tituloDialog.textContent = "¿Deseas eliminar a este proveedor?";
+            proveedorId = botonEliminar.dataset.id;
+            dialogConfirmacion.showModal();
+        }
+    });
+
+    btnCancelar.addEventListener("click", () => {
+        dialogConfirmacion.close();
+    });
+
+    btnConfirmar.addEventListener("click", async () => {
+        if (proveedorId) {
+            await eliminarProveedorController(proveedorId);
+            await cargarProveedoresController();
+            dialogConfirmacion.close();
+        }
+    });
+
+});
 
 // Recargar Pagina
 document.addEventListener("DOMContentLoaded", () => {
