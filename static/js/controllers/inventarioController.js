@@ -1,3 +1,11 @@
+import { mostrarToast } from "../components/toast.js";
+
+import { cargarInputBusqueda } from "../components/inputBusqueda.js";
+
+import { cargarSelect } from "../utilities/cargarSelects.js";
+
+import { obtenerProveedores } from "../api/proveedoresApi.js";
+
 import {
     eliminarProducto,
     obtenerProductos,
@@ -12,13 +20,11 @@ import {
 import {
     llenarTablaInventario,
     obtenerDatosFormularioProducto,
-    limpiarFormularioProducto,
     mostrarInformeInventario,
     obtenerDatosFormularioCategoria,
     cargarCategorias
 } from "../ui/inventarioUI.js";
 
-import { mostrarToast } from "../components/toast.js";
 
 export async function eliminarProductoController(codigo) {
 
@@ -62,7 +68,7 @@ export async function agregarProductoController(formulario) {
 
         mostrarToast(info.message, info.type);
         return;
-        
+
     }
 
     mostrarToast(info.message, info.type);
@@ -79,7 +85,7 @@ export async function crearCategoriaController() {
 
         mostrarToast(info.message, info.type);
         return;
-        
+
     }
 
     mostrarToast(info.message, info.type);
@@ -130,9 +136,9 @@ export async function cargarInformeInventario() {
 
         mostrarToast(info.message, info.type);
         return;
-        
+
     }
-    
+
     mostrarInformeInventario(info.data);
     mostrarToast(info.message, info.type);
 
@@ -146,9 +152,39 @@ export async function cargarCategoriasController(select) {
 
         mostrarToast(info.message, info.type);
         return;
-        
+
     }
-    
+
     cargarCategorias(info.data, select);
+
+}
+
+export async function cargarProveedoresController(select) {
+
+    const info = await obtenerProveedores();
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    cargarSelect(info.data, select);
+
+}
+
+export async function cargarInputBusquedaController() {
+
+    const info = await obtenerProductos(0);
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    cargarInputBusqueda(info.data);
 
 }

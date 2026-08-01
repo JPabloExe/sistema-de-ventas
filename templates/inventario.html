@@ -34,14 +34,10 @@
 
         <div class="operaciones">
 
-            <div class="div-input">
-                <i id="icono-buscar" class="fa-solid fa-magnifying-glass"></i>
-                <input id="input-buscar-producto" class="input-buscar-producto" type="text"
-                    placeholder="Buscar producto por codigo">
-            </div>
+            {% include 'components/input-buscar.html' %}
 
             <select id="select-categorias" class="select-categorias">
-                
+
             </select>
 
             <button id="btn-actualizar-pagina">

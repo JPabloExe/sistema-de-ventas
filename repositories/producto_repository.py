@@ -83,13 +83,14 @@ class ProductoRepository:
             return None
         
         return {
-            "codigo": resultado_final[0],
-            "nombre": resultado_final[1],
-            "stock": resultado_final[2],
-            "valor_unitario": resultado_final[3],
-            "costo": resultado_final[4],
-            "fecha_caducidad": resultado_final[5].strftime("%Y-%m-%d"),
-            "categoria": resultado_final[6]
+            "id": resultado_final[0],
+            "codigo": resultado_final[1],
+            "nombre": resultado_final[2],
+            "stock": resultado_final[3],
+            "valor_unitario": resultado_final[4],
+            "costo": resultado_final[5],
+            "fecha_caducidad": resultado_final[6].strftime("%Y-%m-%d"),
+            "categoria": resultado_final[7]
         }
     
     @staticmethod
@@ -128,13 +129,15 @@ class ProductoRepository:
         
         for fila in filas:
             productos.append({
-                "codigo": fila[0],
-                "nombre": fila[1],
-                "stock": fila[2],
-                "valor_unitario": fila[3],
-                "costo": fila[4],
-                "fecha_caducidad": fila[5].strftime("%Y-%m-%d"),
-                "id_categoria": fila[6]
+                "id": fila[0],
+                "codigo": fila[1],
+                "nombre": fila[2],
+                "stock": fila[3],
+                "valor_unitario": fila[4],
+                "costo": fila[5],
+                "fecha_caducidad": fila[6].strftime("%Y-%m-%d"),
+                "id_categoria": fila[7],
+                "id_busqueda": fila[1]
             })
             
         return productos 

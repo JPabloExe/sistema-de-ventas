@@ -16,10 +16,10 @@ import {
     actualizarProductoController,
     buscarProductoController,
     crearCategoriaController,
-    cargarCategoriasController
+    cargarCategoriasController,
+    cargarInputBusquedaController,
+    cargarProveedoresController
 } from "../controllers/inventarioController.js";
-
-import { cargarProveedoresController } from "../controllers/proveedoresController.js";
 
 import { limpiarFormulario } from "../ui/usuariosUI.js";
 
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarInventarioController(0);
     cargarCategoriasController(selectCategorias);
     cargarProveedoresController(selectProveedores);
+    cargarInputBusquedaController();
 
 });
 
@@ -173,7 +174,8 @@ document.addEventListener("DOMContentLoaded", () => {
 // Buscar Producto
 document.addEventListener("DOMContentLoaded", () => {
 
-    const input = document.getElementById("input-buscar-producto");
+    const input = document.getElementById("input-buscar");
+    input.setAttribute("placeholder", "Buscar producto por codigo");
 
     input.addEventListener("input", () => {
 
