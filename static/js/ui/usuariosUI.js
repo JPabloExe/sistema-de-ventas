@@ -16,7 +16,7 @@ export function llenarTablaUsuarios(usuarios) {
         fila.innerHTML = `
           
             <tr>
-                <td class="nombre">${usuario.nombre}</td>
+                <td class="nombre">${usuario.nombre} ${usuario.apellido}</td>
                 <td>${usuario.cedula}</td>
                 <td>${usuario.telefono}</td>
 

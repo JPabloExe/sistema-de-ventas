@@ -16,6 +16,9 @@ import {
 } from "../ui/puntoVentasUI.js";
 
 import { recalcularTotal } from "../utilities/calcularTotal.js";
+
+import { cargarInputBusquedaController } from "../controllers/puntoVentasController.js";
+
 import {
     realizarCompraController,
     cargarProveedoresController,
@@ -31,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cargarProveedoresController(selectProveedor);
     cargarMetodosPagoController(selectMetodoPago);
+    cargarInputBusquedaController();
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -48,11 +52,12 @@ document.addEventListener("DOMContentLoaded", () => {
 // Agrega producto al carrito
 document.addEventListener("DOMContentLoaded", () => {
     const lblTotal = document.getElementById("totalCompra");
-    const input = document.getElementById("input-producto-carrito");
+    const input = document.getElementById("input-buscar");
+    input.setAttribute("placeholder", "Buscar producto por codigo");
 
     input.addEventListener("input", async () => {
 
-        if (input.value.trim().length === 4) {
+        if (input.value.trim().length > 3) {
             await agregarProductosAlcarritoController(input.value.trim());
             recalcularTotal(lblTotal);
         }

@@ -18,12 +18,14 @@ import {
 
 import {
     agregarProductosAlcarritoController,
-    realizarVentaController
+    realizarVentaController,
+    cargarInputBusquedaController
 } from "../controllers/puntoVentasController.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     activarSidebar();
     botonDesplegableCompras();
+    cargarInputBusquedaController();
 });
 
 // Realizar venta
@@ -59,11 +61,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Agrega producto al carrito
 document.addEventListener("DOMContentLoaded", () => {
-    const input = document.getElementById("input-producto-carrito");
+    const input = document.getElementById("input-buscar");
+    input.setAttribute("placeholder", "Buscar producto por codigo");
 
     input.addEventListener("input", () => {
 
-        if (input.value.trim().length === 4) {
+        if (input.value.trim().length > 3) {
             agregarProductosAlcarritoController(input.value.trim());
         }
     });

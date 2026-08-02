@@ -29,12 +29,7 @@
 
         <div class="panel-header">
 
-            <div class="div-input">
-                <i class="fa-solid fa-magnifying-glass"></i>
-
-                <input id="input-buscar-usuarios" class="input-buscar-usuarios" type="number"
-                    placeholder="Buscar usuario por cédula">
-            </div>
+            {% include 'components/input-buscar.html' %}
 
         </div>
 
@@ -56,15 +51,15 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                
+
                 <tbody id="tbody-usuarios"></tbody>
-                
+
             </table>
-            
+
         </div>
-        
+
     </section>
-    
+
 </div>
 
 <!-- DIALOG USUARIOS -->

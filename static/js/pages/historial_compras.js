@@ -5,7 +5,8 @@ import { botonDesplegableCompras } from "../utilities/botonDesplegable.js";
 import {
     cargarCompras,
     obtenerDetallesController,
-    cargarProveedoresController
+    cargarProveedoresController,
+    cargarInputBusquedaController
 } from "../controllers/comprasController.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,6 +17,24 @@ document.addEventListener('DOMContentLoaded', () => {
     botonDesplegableCompras();
     cargarCompras();
     cargarProveedoresController(selectProveedoresAcciones);
+    cargarInputBusquedaController();
+});
+
+// Buscar Compra
+document.addEventListener("DOMContentLoaded", () => {
+
+    const input = document.getElementById("input-buscar");
+    input.setAttribute("placeholder", "Buscar compra por numero");
+
+    input.addEventListener("input", () => {
+
+        if (input.value.trim() === "") {
+            cargarCompras();
+        }
+        if (input.value.trim().length >= 1) {
+            buscarCompraController(input.value.trim());
+        }
+    });
 });
 
 document.addEventListener("DOMContentLoaded", () => {

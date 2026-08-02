@@ -42,7 +42,7 @@ class ComprasRepository:
 
             for compra in filas:
                 compras.append({
-                    "compra": compra[0],
+                    "id": compra[0],
                     "proveedor": compra[1],
                     "usuario": compra[2],
                     "fecha": compra[3].strftime("%Y-%m-%d"),
@@ -50,7 +50,8 @@ class ComprasRepository:
                     "factura": compra[5],
                     "metodo_pago": compra[6],
                     "total": compra[7],
-                    "estado": compra[8]
+                    "estado": compra[8],
+                    "id_busqueda": compra[5]
                 })
 
             return compras

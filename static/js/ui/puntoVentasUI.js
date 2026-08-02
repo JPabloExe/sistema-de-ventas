@@ -50,7 +50,7 @@ export function limpiarInputsPago() {
 
 export function agregarProductoAlCarrito(producto) {
 
-    const input = document.getElementById("input-producto-carrito");
+    const input = document.getElementById("input-buscar");
     const divCarrito = document.querySelector(".div-carrito");
     const cantidad = document.getElementById("cantidad");
 

@@ -2,6 +2,8 @@ import { mostrarToast } from "../components/toast.js";
 
 import { cargarSelect } from "../utilities/cargarSelects.js";
 
+import { cargarInputBusqueda } from "../components/inputBusqueda.js";
+
 import { obtenerProveedores } from "../api/proveedoresApi.js";
 
 import {
@@ -92,5 +94,20 @@ export async function cargarMetodosPagoController(select) {
     }
 
     cargarSelect(info.data, select);
+
+}
+
+export async function cargarInputBusquedaController() {
+
+    const info = await obtenerCompras();
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    cargarInputBusqueda(info.data);
 
 }

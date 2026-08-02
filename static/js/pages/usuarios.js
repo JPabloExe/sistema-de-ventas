@@ -12,7 +12,8 @@ import {
     cargarUsuarios,
     eliminarUsuarioController,
     buscarUsuarioController,
-    actualizarUsuarioController
+    actualizarUsuarioController,
+    cargarInputBusquedaController
 } from "../controllers/usuariosController.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -20,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     activarSidebar();
     botonDesplegableCompras();
     cargarUsuarios();
+    cargarInputBusquedaController();
 
 });
 
@@ -117,7 +119,8 @@ document.addEventListener("DOMContentLoaded", () => {
 // Buscar usuario
 document.addEventListener("DOMContentLoaded", () => {
 
-    const input = document.getElementById("input-buscar-usuarios");
+    const input = document.getElementById("input-buscar");
+    input.setAttribute("placeholder", "Buscar usuario por cédula");
 
     input.addEventListener("input", () => {
 
@@ -125,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
             cargarUsuarios();
         }
 
-        if (input.value.trim().length < 8) {
+        if (input.value.trim().length < 6) {
             return;
         }
 

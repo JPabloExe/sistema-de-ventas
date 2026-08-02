@@ -1,5 +1,6 @@
 import { mostrarToast } from "../components/toast.js";
 
+import { cargarInputBusqueda } from "../components/inputBusqueda.js";
 import {
     llenarTablaUsuarios,
     mostrarUsuarioActual,
@@ -102,5 +103,20 @@ export async function usuarioActualController() {
     const info = await usuarioActual();
 
     mostrarUsuarioActual(info.data);
+
+}
+
+export async function cargarInputBusquedaController() {
+
+    const info = await obtenerUsuarios();
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    cargarInputBusqueda(info.data);
 
 }

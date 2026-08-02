@@ -7,7 +7,8 @@ import {
     actualizarProveedorController,
     eliminarProveedorController,
     cargarProveedoresController,
-    cargarEstadosProveedoresController
+    cargarEstadosProveedoresController,
+    cargarInputBusquedaController
 } from "../controllers/proveedoresController.js";
 
 import {
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     activarSidebar();
     botonDesplegableCompras();
     cargarProveedoresController();
+    cargarInputBusquedaController();
     cargarEstadosProveedoresController(selectEstadosProveedores);
 
 });
@@ -119,6 +121,26 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+});
+
+// Buscar proveedor
+document.addEventListener("DOMContentLoaded", () => {
+
+    const input = document.getElementById("input-buscar");
+    input.setAttribute("placeholder", "Buscar proveedor por nit");
+
+    input.addEventListener("input", () => {
+
+        if (input.value.trim() === "") {
+            cargarProveedoresController();
+        }
+
+        if (input.value.trim().length < 6) {
+            return;
+        }
+
+        //buscarProveedorController(input.value.trim());
+    });
 });
 
 // Recargar Pagina

@@ -5,7 +5,9 @@ body {
     font-family: sans-serif;
 }
 
-body button, a, i {
+body button,
+a,
+i {
     cursor: pointer;
 }
 
@@ -13,7 +15,7 @@ body button, a, i {
     display: flex;
     flex-direction: column;
 }
-    
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -100,24 +102,8 @@ body button, a, i {
     background-color: #324154;
 }
 
-.div-input {
-    border: solid #DEDEDE 1px;
-    background-color: #FEFEFE;
-    width: 40%;
-    padding-left: 10px;
-    color: gray;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
-}
-
-.input-buscar-producto {
-    width: 90%;
-    padding: 10px 10px 10px 0px;
-    border: none;
-    font-size: 14px;
-    outline: none;
-}
-
-.select-categorias, .select-categorias-acciones {
+.select-categorias,
+.select-categorias-acciones {
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #FEFEFE;
@@ -130,7 +116,8 @@ body button, a, i {
 }
 
 /* ESTILOS EXTRA */
-.codigo, .nombre {
+.codigo,
+.nombre {
     font-weight: bold;
     color: #333;
     padding-left: 15px;
@@ -165,7 +152,7 @@ body button, a, i {
     margin-right: 10px;
     font-size: medium;
     font-weight: bold;
-    
+
 }
 
 .acciones .actualizar {
@@ -190,7 +177,7 @@ body button, a, i {
     gap: 18px 22px;
 }
 
-.campo textarea{
+.campo textarea {
     width: 100%;
     min-height: 100px;
     border: 1px solid #d5d5d5;
@@ -198,12 +185,13 @@ body button, a, i {
     padding: 12px;
     font-size: 14px;
     font-family: inherit;
-    resize: vertical; /* Permite cambiar solo la altura */
+    resize: vertical;
+    /* Permite cambiar solo la altura */
     box-sizing: border-box;
 }
 
-.campo textarea:focus{
+.campo textarea:focus {
     outline: none;
     border-color: #2E3547;
-    box-shadow: 0 0 0 3px rgba(46,53,71,.15);
+    box-shadow: 0 0 0 3px rgba(46, 53, 71, .15);
 }

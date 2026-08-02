@@ -19,7 +19,7 @@ export function llenarTablaCompras(compras) {
         fila.innerHTML = `
           
             <tr>
-                <td class="numero">${compra.compra}</td>
+                <td class="numero">${compra.id}</td>
                 <td class="proveedor">${compra.proveedor}</td>
                 <td class="fecha">${compra.fecha}</td>
                 <td class="total">COP ${formatearCOP(compra.total)}</td>
@@ -39,7 +39,7 @@ export function llenarTablaCompras(compras) {
 
                 <td class="acciones">
                     <i id="btn-detalles" class="fa-solid fa-circle-info detalles" title="Detalles de la compra"
-                        data-compra="${compra.compra}"
+                        data-compra="${compra.id}"
                         data-proveedor="${compra.proveedor}"
                         data-usuario="${compra.usuario}"
                         data-fecha="${compra.fecha}"
@@ -51,11 +51,11 @@ export function llenarTablaCompras(compras) {
                     </i>
 
                     <i class="fa-solid fa-box recibir" title="Recibir mercancía"
-                    data-id="${compra.compra}">  
+                    data-id="${compra.id}">  
                     </i>
 
                     <i id="btn-eliminar" class="fa-solid fa-trash btn-eliminar" title="Eliminar compra"
-                        data-id="${compra.compra}">  
+                        data-id="${compra.id}">  
                     </i>
 
                 </td>

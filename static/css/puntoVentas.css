@@ -11,8 +11,9 @@ body button {
 
 .contenedor {
     display: flex;
-    justify-content: space-around;  
+    justify-content: space-around;
 }
+
 .contenedor-carrito {
     width: 70%;
     display: flex;
@@ -26,22 +27,14 @@ body button {
     font-size: 3mm;
 }
 
+.contenedor-input-buscar {
+    width: 95% !important;
+}
+
 .div-buscar-producto {
-    display: flex;
-    align-items: center;
     padding: 20px;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
     background-color: #FEFEFE;
-}
-
-.div-input {
-    display: flex;
-    width: 100%;
-    gap: 10px;
-    border: solid #DEDEDE 1px;
-    padding-left: 10px;
-    color: gray;
-    align-items: center;
 }
 
 .div-productos {
@@ -76,14 +69,14 @@ body button {
     display: flex;
     flex-direction: column;
     height: 335px;
-    overflow-y: auto; 
+    overflow-y: auto;
 }
 
 .div-cantidad button {
     width: 20px;
     padding: 3px;
     background-color: #FBF9FA;
-    border: solid #DEDEDE 1px;  
+    border: solid #DEDEDE 1px;
 }
 
 .div-total {
@@ -95,7 +88,7 @@ body button {
     margin-top: auto;
 }
 
-.div-pagos-contenedor{
+.div-pagos-contenedor {
     width: 38%;
     height: 85%;
     padding: 20px;
@@ -195,7 +188,7 @@ body button {
     border-radius: 8px;
     border: solid gray 1px;
     margin-bottom: 5px;
-    
+
 }
 
 .div-vueltos {
@@ -209,7 +202,7 @@ body button {
 }
 
 .div-botones-pagos {
-    display: flex;  
+    display: flex;
     gap: 10px;
     justify-content: center;
 }
@@ -256,32 +249,32 @@ body button {
 }
 
 .letrero {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  max-width: 280px;
-  padding: 12px 16px;
-  background-color: #FEFEFE;
-  color: black;
-  font-size: 14px;
-  border-radius: 6px;
-  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  z-index: 1000;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    max-width: 280px;
+    padding: 12px 16px;
+    background-color: #FEFEFE;
+    color: black;
+    font-size: 14px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: 1000;
 }
 
 /* cuando está visible */
 .letrero.show {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* animación de salida hacia arriba */
 .letrero.hide {
-  opacity: 0;
-  transform: translateY(-20px);
+    opacity: 0;
+    transform: translateY(-20px);
 }
 
 .letrero.success i {
@@ -305,7 +298,7 @@ body button {
 }
 
 .in_total {
-    border: none !important; 
+    border: none !important;
 }
 
 .quick-cash {
@@ -324,10 +317,4 @@ body button {
 
 .estado {
     font-weight: bold;
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
 }

@@ -1,3 +1,7 @@
+import { mostrarToast } from "../components/toast.js";
+
+import { cargarInputBusqueda } from "../components/inputBusqueda.js";
+
 import {
     obtenerProductosDeCarrito,
     agregarProductoAlCarrito,
@@ -10,10 +14,10 @@ import {
 } from "../api/puntoVentasApi.js";
 
 import {
-    buscarProducto
+    buscarProducto,
+    obtenerProductos
 } from "../api/productosApi.js";
 
-import { mostrarToast } from "../components/toast.js";
 
 export async function realizarVentaController() {
 
@@ -48,5 +52,20 @@ export async function agregarProductosAlcarritoController(codigo) {
     agregarProductoAlCarrito(info.data);
     reCalcularTotal();
     mostrarToast(info.message, info.type);
+
+}
+
+export async function cargarInputBusquedaController() {
+
+    const info = await obtenerProductos(0);
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    cargarInputBusqueda(info.data);
 
 }

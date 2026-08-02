@@ -100,7 +100,8 @@ class ProveedoresRepository:
                     "correo": proveedor[4],
                     "direccion": proveedor[5],
                     "ciudad": proveedor[6],
-                    "estado": proveedor[7]
+                    "estado": proveedor[7],
+                    "id_busqueda": proveedor[2]
                 })
 
             return proveedores

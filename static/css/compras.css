@@ -35,6 +35,10 @@ body button {
     background-color: #FEFEFE;
 }
 
+.contenedor-input-buscar {
+    width: 95% !important;
+}
+
 .div-input {
     display: flex;
     width: 100%;

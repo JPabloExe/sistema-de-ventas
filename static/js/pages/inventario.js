@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (input.value.trim() === "") {
             cargarInventarioController(0);
         }
-        if (input.value.trim().length === 4) {
+        if (input.value.trim().length > 3) {
             buscarProductoController(input.value.trim());
         }
     });
