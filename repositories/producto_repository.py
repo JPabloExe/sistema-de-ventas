@@ -14,8 +14,8 @@ class ProductoRepository:
             datos['valor_unitario'], 
             datos['costo'],
             datos['fecha_caducidad'],
-            datos['categoria'],
-            datos['proveedor']
+            datos['id_categoria'],
+            datos['id_proveedor']
         ])
 
         conexion.commit()
@@ -90,7 +90,8 @@ class ProductoRepository:
             "valor_unitario": resultado_final[4],
             "costo": resultado_final[5],
             "fecha_caducidad": resultado_final[6].strftime("%Y-%m-%d"),
-            "categoria": resultado_final[7]
+            "id_categoria": resultado_final[7],
+            "id_proveedor": resultado_final[8]
         }
     
     @staticmethod
@@ -104,7 +105,8 @@ class ProductoRepository:
             datos['valor_unitario'], 
             datos['costo'],
             datos['fecha_caducidad'],
-            datos['categoria']
+            datos['id_categoria'],
+            datos['id_proveedor']
         ])
         conexion.commit()
         cursor.close()
@@ -137,6 +139,7 @@ class ProductoRepository:
                 "costo": fila[5],
                 "fecha_caducidad": fila[6].strftime("%Y-%m-%d"),
                 "id_categoria": fila[7],
+                "id_proveedor": fila[8],
                 "id_busqueda": fila[1]
             })
             

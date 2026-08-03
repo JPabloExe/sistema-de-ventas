@@ -155,7 +155,7 @@ export async function cargarCategoriasController(select) {
 
     }
 
-    cargarCategorias(info.data, select);
+    cargarSelect(info.data, select);
 
 }
 

@@ -26,16 +26,19 @@ export function llenarTablaInventario(productos) {
             </td>
             <td class="acciones">
                 <i id="btn-actualizar-producto" class="fa-solid fa-pen-to-square actualizar"
+                    data-id="${producto.id}"
                     data-codigo="${producto.codigo}"
                     data-nombre="${producto.nombre}"
                     data-stock="${producto.stock}"
                     data-precio="${producto.valor_unitario}"
                     data-costo="${producto.costo}"
                     data-caducidad="${producto.fecha_caducidad}"
-                    data-categoria="${producto.id_categoria}">
+                    data-categoria="${producto.id_categoria}"
+                    data-proveedor="${producto.id_proveedor}">
                 </i>
 
                 <i id="btn-eliminar-producto" class="fa-solid fa-trash eliminar"
+                    data-id="${producto.id}"
                     data-codigo="${producto.codigo}">
                 </i>
                 </td>
@@ -56,8 +59,8 @@ export function obtenerDatosFormularioProducto() {
         "valor_unitario": document.getElementById("input-precio").value,
         "costo": document.getElementById("input-costo").value,
         "fecha_caducidad": document.getElementById("input-caducidad").value,
-        "categoria": document.getElementById("select-categorias-dialog").value,
-        "proveedor": document.getElementById("select-proveedor-dialog").value
+        "id_categoria": document.getElementById("select-categorias-dialog").value,
+        "id_proveedor": document.getElementById("select-proveedor-dialog").value
     }
 
 }
@@ -96,6 +99,7 @@ export function llenarFormularioProducto(boton) {
     document.getElementById("input-costo").value = boton.dataset.costo;
     document.getElementById("input-caducidad").value = boton.dataset.caducidad;
     document.getElementById("select-categorias-dialog").value = boton.dataset.categoria;
+    document.getElementById("select-proveedor-dialog").value = boton.dataset.proveedor;
 
 }
 
