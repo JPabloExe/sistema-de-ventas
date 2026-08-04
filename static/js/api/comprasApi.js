@@ -12,9 +12,18 @@ export async function realizarCompra(datos) {
 
 }
 
-export async function obtenerCompras() {
+export async function obtenerCompras(datos) {
 
-    const respuesta = await fetch(`${URL_API}/obtenerCompras`)
+    const respuesta = await
+        fetch(`${URL_API}/obtenerCompras?id_proveedor=${datos.id_proveedor}&id_estado=${datos.id_estado}`)
+
+    return await respuesta.json()
+
+}
+
+export async function buscarCompra(num_factura) {
+
+    const respuesta = await fetch(`${URL_API}/buscarCompra?num_factura=${num_factura}`)
 
     return await respuesta.json()
 

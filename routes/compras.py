@@ -46,14 +46,43 @@ def realizar_compra():
 @roles_required('Administrador', 'Supervisor')
 def obtener_compras():
 
+    id_proveedor = request.args.get('id_proveedor')
+    id_estado = request.args.get('id_estado')
+
     try:
 
-        compras = ComprasRepository.obtenerCompras()
+        compras = ComprasRepository.obtenerCompras(id_proveedor, id_estado)
 
         return api_response(
             True,
             "success",
             "Compras obtenidas",
+            compras
+        )
+
+    except Exception as e:
+        return api_response(
+            False,
+            "exception",
+            str(e),
+            None
+        )
+
+@compras_bp.route('/buscarCompra', methods=['GET'])
+@login_required
+@roles_required('Administrador', 'Supervisor')
+def buscar_compra():
+
+    num_factura = request.args.get('num_factura')
+
+    try:
+
+        compras = ComprasRepository.buscarCompra(num_factura)
+
+        return api_response(
+            True,
+            "success",
+            "Compra encontrada",
             compras
         )
 

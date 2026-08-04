@@ -26,12 +26,15 @@ class ComprasRepository:
             conexion.close()
 
     @staticmethod
-    def obtenerCompras():     
+    def obtenerCompras(id_proveedor, id_estado):     
         conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
 
         try:
-            cursor.callproc("sp_obtener_compras")
+            cursor.callproc("sp_obtener_compras", [
+                id_proveedor,
+                id_estado
+            ])
 
             filas = []
 
@@ -56,6 +59,38 @@ class ComprasRepository:
 
             return compras
             
+        except Exception as e:
+            raise e
+        finally:
+            cursor.close()
+            conexion.close()
+
+    @staticmethod
+    def buscarCompra(num_factura):
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
+
+        try:
+            cursor.callproc("sp_buscar_compra", [num_factura])
+
+            resultado_final = []
+
+            for resultado in cursor.stored_results():
+                resultado_final = resultado.fetchone()
+
+            return {
+                "id": resultado_final[0],
+                "proveedor": resultado_final[1],
+                "usuario": resultado_final[2],
+                "fecha": resultado_final[3].strftime("%Y-%m-%d"),
+                "hora": str(resultado_final[4]),
+                "factura": resultado_final[5],
+                "metodo_pago": resultado_final[6],
+                "total": resultado_final[7],
+                "estado": resultado_final[8],
+                "id_busqueda": resultado_final[5]
+            }
+
         except Exception as e:
             raise e
         finally:

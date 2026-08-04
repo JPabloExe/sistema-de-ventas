@@ -149,3 +149,18 @@ function llenarTablaItems(items) {
     }
 
 }
+
+export function obtenerDatosSelectAcciones() {
+
+    return {
+        'id_proveedor': document.getElementById('select-proveedores-acciones').value,
+        'id_estado': document.getElementById('select-estados-acciones').value
+    }
+
+}
+
+export function obtenerNumFactura() {
+
+    return document.getElementById('input-buscar').value;
+
+}

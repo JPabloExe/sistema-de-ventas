@@ -10,13 +10,16 @@ import {
     realizarCompra,
     obtenerCompras,
     obtenerDetalles,
-    obtenerMetodosPago
+    obtenerMetodosPago,
+    buscarCompra
 } from "../api/comprasApi.js";
 
 import {
     obtenerDatosFormularioCompras,
     llenarTablaCompras,
-    llenarDetalles
+    llenarDetalles,
+    obtenerDatosSelectAcciones,
+    obtenerNumFactura
 } from "../ui/comprasUI.js";
 
 export async function realizarCompraController() {
@@ -38,7 +41,9 @@ export async function realizarCompraController() {
 
 export async function cargarCompras() {
 
-    const info = await obtenerCompras();
+    const datos = obtenerDatosSelectAcciones();
+
+    const info = await obtenerCompras(datos);
 
     if (!info.ok) {
 
@@ -48,6 +53,26 @@ export async function cargarCompras() {
     }
 
     llenarTablaCompras(info.data);
+    mostrarToast(info.message, info.type);
+
+}
+
+export async function buscarComprasController() {
+
+    const numFactura = obtenerNumFactura();
+    const info = await buscarCompra(numFactura);
+    const comprasList = [];
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    comprasList.push(info.data);
+
+    llenarTablaCompras(comprasList);
     mostrarToast(info.message, info.type);
 
 }
@@ -99,7 +124,9 @@ export async function cargarMetodosPagoController(select) {
 
 export async function cargarInputBusquedaController() {
 
-    const info = await obtenerCompras();
+    const datos = obtenerDatosSelectAcciones();
+
+    const info = await obtenerCompras(datos);
 
     if (!info.ok) {
 

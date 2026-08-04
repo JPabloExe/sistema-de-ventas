@@ -6,7 +6,8 @@ import {
     cargarCompras,
     obtenerDetallesController,
     cargarProveedoresController,
-    cargarInputBusquedaController
+    cargarInputBusquedaController,
+    buscarComprasController
 } from "../controllers/comprasController.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener("DOMContentLoaded", () => {
 
     const input = document.getElementById("input-buscar");
-    input.setAttribute("placeholder", "Buscar compra por numero");
+    input.setAttribute("placeholder", "Buscar compra por factura");
 
     input.addEventListener("input", () => {
 
@@ -32,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
             cargarCompras();
         }
         if (input.value.trim().length >= 1) {
-            buscarCompraController(input.value.trim());
+            buscarComprasController(input.value.trim());
         }
     });
 });
@@ -66,4 +67,18 @@ document.addEventListener("DOMContentLoaded", () => {
     btnCerrar.addEventListener("click", () => {
         dialog.close();
     });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const selectProveedoresAcciones = document.getElementById("select-proveedores-acciones");
+    const selectEstadoAcciones = document.getElementById("select-estados-acciones");
+
+    selectEstadoAcciones.addEventListener("change", () => {
+        cargarCompras();
+    });
+
+    selectProveedoresAcciones.addEventListener("change", () => {
+        cargarCompras();
+    });
+
 });
