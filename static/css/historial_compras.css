@@ -186,7 +186,8 @@ i {
 
 .badge-completed {
     background: #198754;
-    color: white;
+    color: white !important;
+    width: fit-content;
     font-weight: bold;
     padding: 7px 12px;
     border-radius: 7px;
@@ -195,7 +196,8 @@ i {
 
 .badge-pending {
     background: #6c757d;
-    color: white;
+    color: white !important;
+    width: fit-content;
     font-weight: bold;
     padding: 7px 12px;
     border-radius: 7px;

@@ -24,15 +24,15 @@ export function llenarTablaCompras(compras) {
                 <td class="fecha">${compra.fecha}</td>
                 <td class="total">COP ${formatearCOP(compra.total)}</td>
                 <td>
-                    <span class=${compra.estado === 1
+                    <span class=${compra.estado === "Completada"
                 ? "badge-completed"
                 : "badge-pending"}>
 
-                        <i class="${compra.estado === 1
+                        <i class="${compra.estado === "Completada"
                 ? "fa-solid fa-circle-check"
                 : "fa-solid fa-clock"}">
                         </i>
-                        ${compra.estado === 1 ? "Completada" : "Pendiente"}
+                        ${compra.estado}
                     </span>
                 </td>
 
@@ -90,7 +90,7 @@ function obtenerProductosDeCarrito() {
 
     productos.forEach(producto => {
         productosEnCarrito.push({
-            "codigo": producto.dataset.codigo,
+            "id": producto.dataset.id,
             "cantidad": Number(producto.querySelector(".input-cantidad").value)
         });
     });
@@ -107,6 +107,20 @@ export function llenarDetalles(boton, items) {
     document.getElementById("p-metodo").innerHTML = `
         <i class="fa-solid fa-coins"></i> 
         ${boton.dataset.metodo_pago}
+    `;
+    document.getElementById("p-estado").innerHTML = `
+        <span class=${boton.dataset.estado === "Completada"
+            ? "badge-completed"
+            : "badge-pending"}>
+            
+            <i class="${boton.dataset.estado === "Completada"
+            ? "fa-solid fa-circle-check"
+            : "fa-solid fa-clock"}">
+            </i> 
+            
+            ${boton.dataset.estado}
+
+        </span>
     `;
     document.getElementById("p-total").textContent = `COP ${formatearCOP(parseInt(boton.dataset.total))}`;
 

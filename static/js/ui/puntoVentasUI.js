@@ -59,7 +59,8 @@ export function agregarProductoAlCarrito(producto) {
     const contenedor = document.createElement("div")
 
     contenedor.innerHTML = `
-        <div class="producto" 
+        <div class="producto"
+        data-id="${producto['id']}"
         data-codigo="${producto['codigo']}"
         data-precio="${producto['valor_unitario']}">
 
