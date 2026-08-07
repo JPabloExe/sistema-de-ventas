@@ -98,6 +98,27 @@ class ComprasRepository:
             conexion.close()
 
     @staticmethod
+    def recibirCompra(datos):
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
+
+        try:
+            cursor.callproc("sp_recibir_compra", [
+                datos["compra"],
+                datos["productos"]
+            ])
+
+            conexion.commit()
+
+        except Exception as e:
+            conexion.rollback()
+            raise e
+
+        finally:
+            cursor.close()
+            conexion.close()
+
+    @staticmethod
     def obtenerDetalles(id_compra):
         conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
@@ -114,10 +135,11 @@ class ComprasRepository:
 
             for detalle in filas:
                 detalles.append({
-                    "nombre": detalle[0],    
-                    "cantidad": detalle[1],    
-                    "valorU": detalle[2],    
-                    "subtotal": detalle[3],   
+                    "id_producto": detalle[0],    
+                    "nombre": detalle[1],    
+                    "cantidad": detalle[2],    
+                    "valorU": detalle[3],    
+                    "subtotal": detalle[4],   
                 })
 
             return detalles

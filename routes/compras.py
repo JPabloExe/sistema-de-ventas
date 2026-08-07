@@ -94,6 +94,37 @@ def buscar_compra():
             None
         )
 
+@compras_bp.route('/recibirCompra', methods=['POST'])
+@login_required
+@roles_required('Administrador', 'Supervisor')
+def recibir_compra():
+
+    datos = request.get_json()
+
+    try:
+
+        productos_json = json.dumps(datos['productos'])
+
+        ComprasRepository.recibirCompra({
+            'compra': datos['compra'],
+            'productos': productos_json
+        })
+
+        return api_response(
+            True,
+            "success",
+            "Compra recibida",
+            None
+        )
+
+    except Exception as e:
+        return api_response(
+            False,
+            "exception",
+            str(e.msg),
+            None
+        )
+
 @compras_bp.route('/obtenerDetalles', methods=['GET'])
 @login_required
 @roles_required('Administrador', 'Supervisor')

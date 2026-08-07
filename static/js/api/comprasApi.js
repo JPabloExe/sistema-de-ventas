@@ -52,3 +52,15 @@ export async function obtenerEstadosCompra() {
     return await respuesta.json();
 
 }
+
+export async function recibirCompra(datos) {
+
+    const respuesta = await fetch(`${URL_API}/recibirCompra`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos)
+    })
+
+    return await respuesta.json();
+
+}

@@ -7,7 +7,8 @@ import {
     obtenerDetallesController,
     cargarProveedoresController,
     cargarInputBusquedaController,
-    buscarComprasController
+    buscarComprasController,
+    recibirCompraController
 } from "../controllers/comprasController.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -78,11 +79,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const tbody = document.getElementById("tbody-compras");
     const btnCerrar = document.getElementById("btn-cancelar-recepcion");
     const btnX = document.getElementById("btn-x-recibir");
+    const btnConfirmar = document.getElementById("btn-confirmar-recepcion");
+    let botonTemp = null;
 
     tbody.addEventListener("click", (e) => {
         const boton = e.target.closest(".recibir");
 
         if (boton) {
+            botonTemp = boton;
             obtenerDetallesController(boton);
 
             dialog.showModal();
@@ -97,10 +101,14 @@ document.addEventListener("DOMContentLoaded", () => {
         dialog.close();
     });
 
+    btnConfirmar.addEventListener("click", async () => {
+        await recibirCompraController(botonTemp);
+        await cargarCompras();
 
+        dialog.close();
+    });
 
 });
-
 
 // Filtrar compras por proveedores
 document.addEventListener("DOMContentLoaded", () => {

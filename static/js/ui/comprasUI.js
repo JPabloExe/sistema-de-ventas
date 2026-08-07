@@ -95,7 +95,14 @@ function llenarTablaRecepcion(recibidos) {
             <tr>
                 <td>${recibido.nombre}</td>
                 <td>${recibido.cantidad}</td>
-                <td><input type="number" min="0" id="input-recibido" class="input-recibido"></td>
+                <td>
+                    <input 
+                        type="number" 
+                        min="0" 
+                        id="input-recibido" 
+                        class="input-recibido"
+                        data-producto="${recibido.id_producto}">
+                </td>
             </tr>
         `;
         tbody.appendChild(fila);
@@ -103,6 +110,29 @@ function llenarTablaRecepcion(recibidos) {
 
 }
 
+export function obtenerDatosRecepcion(boton) {
+
+    const inputs = document.querySelectorAll(".input-recibido");
+
+    const datos = [];
+
+    inputs.forEach(input => {
+
+        if (input.value > 0) {
+            datos.push({
+                'id_producto': input.dataset.producto,
+                'cantidad': Number(input.value)
+            });
+        }
+
+    });
+
+    return {
+        "compra": boton.dataset.compra,
+        "productos": datos
+    }
+
+}
 
 export function obtenerDatosFormularioCompras() {
 

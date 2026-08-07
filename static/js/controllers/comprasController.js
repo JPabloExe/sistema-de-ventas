@@ -11,7 +11,8 @@ import {
     obtenerCompras,
     obtenerDetalles,
     obtenerMetodosPago,
-    buscarCompra
+    buscarCompra,
+    recibirCompra
 } from "../api/comprasApi.js";
 
 import {
@@ -20,7 +21,8 @@ import {
     llenarDetalles,
     obtenerDatosSelectAcciones,
     obtenerNumFactura,
-    llenarRecepcion
+    llenarRecepcion,
+    obtenerDatosRecepcion
 } from "../ui/comprasUI.js";
 
 export async function realizarCompraController() {
@@ -139,5 +141,22 @@ export async function cargarInputBusquedaController() {
     }
 
     cargarInputBusqueda(info.data);
+
+}
+
+export async function recibirCompraController(boton) {
+
+    const datos = obtenerDatosRecepcion(boton);
+
+    const info = await recibirCompra(datos);
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    mostrarToast(info.message, info.type);
 
 }
