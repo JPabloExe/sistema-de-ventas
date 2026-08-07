@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+
+// Ver detalles de una compra
 document.addEventListener("DOMContentLoaded", () => {
     const dialog = document.getElementById("dialog-detalles");
     const tbody = document.getElementById("tbody-compras");
@@ -69,6 +71,38 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// Recibir mercancia(compras)
+document.addEventListener("DOMContentLoaded", () => {
+
+    const dialog = document.getElementById("dialog-recibir-mercancia");
+    const tbody = document.getElementById("tbody-compras");
+    const btnCerrar = document.getElementById("btn-cancelar-recepcion");
+    const btnX = document.getElementById("btn-x-recibir");
+
+    tbody.addEventListener("click", (e) => {
+        const boton = e.target.closest(".recibir");
+
+        if (boton) {
+            obtenerDetallesController(boton);
+
+            dialog.showModal();
+        }
+    });
+
+    btnX.addEventListener("click", () => {
+        dialog.close();
+    });
+
+    btnCerrar.addEventListener("click", () => {
+        dialog.close();
+    });
+
+
+
+});
+
+
+// Filtrar compras por proveedores
 document.addEventListener("DOMContentLoaded", () => {
     const selectProveedoresAcciones = document.getElementById("select-proveedores-acciones");
     const selectEstadoAcciones = document.getElementById("select-estados-acciones");

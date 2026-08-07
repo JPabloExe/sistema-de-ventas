@@ -69,10 +69,14 @@
     </table>
 
 </div>
-{% endblock %}
 
 <!-- DIALOG DETALLES COMPRAS -->
 {% include 'components/dialog-detalles.html' %}
+
+<!-- DIALOG RECIBIR MERCANCIA -->
+{% include 'components/dialog-recibir-mercancia.html' %}
+
+{% endblock %}
 
 {% block js %}
 <script type="module" src="{{ url_for('static', filename='js/pages/historial_compras.js') }}"></script>

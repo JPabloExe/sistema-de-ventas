@@ -2,6 +2,7 @@ body button,
 i,
 li {
     cursor: pointer;
+    outline: none;
 }
 
 /*CONTENEDOR GLOBAL*/
@@ -388,7 +389,8 @@ li {
 .btn-accion-dialog-usuarios,
 .btn-accion-dialog-productos,
 .btn-accion-dialog-proveedores,
-.btn-crear-categoria {
+.btn-crear-categoria,
+.btn-confirmar-recepcion {
     background-color: #2E3547;
     color: white !important;
 }
@@ -396,7 +398,8 @@ li {
 .btn-accion-dialog-usuarios:hover,
 .btn-accion-dialog-productos:hover,
 .btn-accion-dialog-proveedores:hover,
-.btn-crear-categoria:hover {
+.btn-crear-categoria:hover,
+.btn-confirmar-recepcion:hover {
     background: #1f2c43;
 }
 
@@ -405,7 +408,8 @@ li {
 .btn-cancelar-usuarios,
 .btn-cancelar-categoria,
 .btn-cancelar-proveedores,
-.btn-cerrar-detalles {
+.btn-cerrar-detalles,
+.btn-cancelar-recepcion {
     background: #f5f5f5 !important;
     color: #444 !important;
     border: 1px solid #d8d8d8 !important;
@@ -415,7 +419,8 @@ li {
 .btn-cancelar-productos:hover,
 .btn-cancelar-usuarios:hover,
 .btn-cancelar-proveedores:hover,
-.btn-cancelar-categoria:hover {
+.btn-cancelar-categoria:hover,
+.btn-cancelar-recepcion:hover {
     background-color: #c8c8c8;
 }
 

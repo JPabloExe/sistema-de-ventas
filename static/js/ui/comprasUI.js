@@ -51,11 +51,12 @@ export function llenarTablaCompras(compras) {
                     </i>
 
                     <i class="fa-solid fa-box recibir" title="Recibir mercancía"
-                    data-id="${compra.id}">  
+                    data-compra="${compra.id}"  
+                    data-proveedor="${compra.proveedor}">  
                     </i>
 
                     <i id="btn-eliminar" class="fa-solid fa-trash btn-eliminar" title="Eliminar compra"
-                        data-id="${compra.id}">  
+                        data-compra="${compra.id}">  
                     </i>
 
                 </td>
@@ -68,6 +69,37 @@ export function llenarTablaCompras(compras) {
     }
 
     pCantidadCompras.textContent = compras.length;
+
+}
+
+export function llenarRecepcion(boton, items) {
+
+    document.getElementById("lbl-recibir-titulo").textContent = `Recibir compra N°: ${boton.dataset.compra}`;
+    document.getElementById("lbl-recibir-usuario").textContent = "Proveedor";
+    document.getElementById("p-recibir-usuario").textContent = boton.dataset.proveedor;
+
+    llenarTablaRecepcion(items);
+
+}
+
+function llenarTablaRecepcion(recibidos) {
+
+    const tbody = document.getElementById("tbody-recepcion");
+
+    tbody.innerHTML = "";
+
+    for (const recibido of recibidos) {
+        const fila = document.createElement("tr");
+
+        fila.innerHTML = `
+            <tr>
+                <td>${recibido.nombre}</td>
+                <td>${recibido.cantidad}</td>
+                <td><input type="number" min="0" id="input-recibido" class="input-recibido"></td>
+            </tr>
+        `;
+        tbody.appendChild(fila);
+    }
 
 }
 

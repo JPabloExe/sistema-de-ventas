@@ -19,7 +19,8 @@ import {
     llenarTablaCompras,
     llenarDetalles,
     obtenerDatosSelectAcciones,
-    obtenerNumFactura
+    obtenerNumFactura,
+    llenarRecepcion
 } from "../ui/comprasUI.js";
 
 export async function realizarCompraController() {
@@ -88,7 +89,9 @@ export async function obtenerDetallesController(boton) {
 
     }
 
-    llenarDetalles(boton, info.data)
+    boton.classList.contains("detalles")
+        ? llenarDetalles(boton, info.data)
+        : llenarRecepcion(boton, info.data)
 
 }
 
