@@ -65,7 +65,8 @@ class VentaRepository:
                     "hora": str(venta[3]),
                     "items": venta[4],
                     "metodo": venta[5],
-                    "total": venta[6]
+                    "total": venta[6],
+                    "num_venta": venta[7]
                 })
             
             return ventas_t
@@ -102,7 +103,8 @@ class VentaRepository:
                 "hora": str(venta[3]),
                 "items": venta[4],
                 "metodo": venta[5],
-                "total": venta[6]
+                "total": venta[6],
+                "num_venta": venta[7]
             })
         
         return ventas_t

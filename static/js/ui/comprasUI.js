@@ -19,7 +19,7 @@ export function llenarTablaCompras(compras) {
         fila.innerHTML = `
           
             <tr>
-                <td class="numero">${compra.id}</td>
+                <td class="numero">${compra.num_compra}</td>
                 <td class="proveedor">${compra.proveedor}</td>
                 <td class="fecha">${compra.fecha}</td>
                 <td class="total">COP ${formatearCOP(compra.total)}</td>
@@ -44,7 +44,7 @@ export function llenarTablaCompras(compras) {
                         data-usuario="${compra.usuario}"
                         data-fecha="${compra.fecha}"
                         data-hora="${compra.hora}"
-                        data-factura="${compra.factura}"
+                        data-factura="${compra.num_factura}"
                         data-metodo_pago="${compra.metodo_pago}"
                         data-total="${compra.total}"
                         data-estado="${compra.estado}">
@@ -98,7 +98,8 @@ function llenarTablaRecepcion(recibidos) {
                 <td>
                     <input 
                         type="number" 
-                        min="0" 
+                        min="0"
+                        max="${recibido.cantidad}" 
                         id="input-recibido" 
                         class="input-recibido"
                         data-producto="${recibido.id_producto}">

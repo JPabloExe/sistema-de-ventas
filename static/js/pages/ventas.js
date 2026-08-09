@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (botonEliminar) {
             tituloDialog.textContent = "¿Deseas borrar esta venta?";
-            numeroVentaAEliminar = botonEliminar.dataset.numero;
+            numeroVentaAEliminar = botonEliminar.dataset.id;
 
             dialog.showModal();
         }

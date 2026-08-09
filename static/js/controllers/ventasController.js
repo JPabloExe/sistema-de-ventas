@@ -46,7 +46,7 @@ export async function buscarVentasController(fechaInicial, fechaFinal) {
 
 export async function buscarDetallesController(boton) {
 
-    const info = await buscarDetalles(boton.dataset.numero);
+    const info = await buscarDetalles(boton.dataset.id);
 
     if (!info.ok) {
 

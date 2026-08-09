@@ -50,10 +50,11 @@ class ComprasRepository:
                     "usuario": compra[2],
                     "fecha": compra[3].strftime("%Y-%m-%d"),
                     "hora": str(compra[4]),
-                    "factura": compra[5],
+                    "num_factura": compra[5],
                     "metodo_pago": compra[6],
                     "total": compra[7],
                     "estado": compra[8],
+                    "num_compra": compra[9],
                     "id_busqueda": compra[5]
                 })
 
@@ -84,10 +85,11 @@ class ComprasRepository:
                 "usuario": resultado_final[2],
                 "fecha": resultado_final[3].strftime("%Y-%m-%d"),
                 "hora": str(resultado_final[4]),
-                "factura": resultado_final[5],
+                "num_factura": resultado_final[5],
                 "metodo_pago": resultado_final[6],
                 "total": resultado_final[7],
                 "estado": resultado_final[8],
+                "num_compra": resultado_final[9],
                 "id_busqueda": resultado_final[5]
             }
 

@@ -21,7 +21,7 @@ export function llenarTablaVentas(ventas) {
 
         fila.innerHTML = `
             <tr>
-                <td class="numero">#${venta.id}</td>
+                <td class="numero">#${venta.num_venta}</td>
 
                 <td class="fecha">
                     <div>
@@ -38,7 +38,8 @@ export function llenarTablaVentas(ventas) {
                 
                 <td class="acciones">
                     <i id="btn-detalles" class="fa-solid fa-circle-info detalles"
-                        data-numero="${venta.id}"
+                        data-id="${venta.id}"
+                        data-numero="${venta.num_venta}"
                         data-fecha="${venta.fecha}"
                         data-hora="${venta.hora}"
                         data-usuario="${venta.usuario}"
