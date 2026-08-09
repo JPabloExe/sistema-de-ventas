@@ -6,7 +6,7 @@ import {
     eliminarVentaController,
     buscarVentasController,
     cargarVentas,
-    buscarDetallesController
+    obtenerDetallesController
 } from "../controllers/ventasController.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const boton = e.target.closest(".detalles");
 
         if (boton) {
-            buscarDetallesController(boton)
+            obtenerDetallesController(boton)
             lblTituloOperacion.textContent = "Detalles de la Venta";
             lblNumeroOperacion.textContent = "N° Venta";
             lblUsuario.textContent = "Usuario";

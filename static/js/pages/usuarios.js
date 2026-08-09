@@ -91,14 +91,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const tituloDialog = document.getElementById("titulo");
     const tbody = document.getElementById("tbody-usuarios");
 
-    let cedulaAEliminar = null;
+    let idAEliminar = null;
 
     tbody.addEventListener("click", (e) => {
         const botonEliminar = e.target.closest(".btn-eliminar");
 
         if (botonEliminar) {
             tituloDialog.textContent = "¿Deseas borrar este usuario?";
-            cedulaAEliminar = botonEliminar.dataset.cedula;
+            idAEliminar = botonEliminar.dataset.id;
             dialogConfirmacion.showModal();
         }
     });
@@ -108,8 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     btnConfirmar.addEventListener("click", () => {
-        if (cedulaAEliminar) {
-            eliminarUsuarioController(cedulaAEliminar);
+        if (idAEliminar) {
+            eliminarUsuarioController(idAEliminar);
             cargarUsuarios();
             dialogConfirmacion.close();
         }

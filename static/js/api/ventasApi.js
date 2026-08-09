@@ -16,9 +16,9 @@ export async function buscarVentas(fechaInicial, fechaFinal) {
 
 };
 
-export async function buscarDetalles(numeroVenta) {
+export async function obtenerDetalles(numeroVenta) {
 
-    const respuesta = await fetch(`${URL_API}/buscarDetalles?numero=${numeroVenta}`);
+    const respuesta = await fetch(`${URL_API}/obtenerDetalles?numero=${numeroVenta}`);
 
     return await respuesta.json();
 

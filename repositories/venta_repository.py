@@ -109,11 +109,11 @@ class VentaRepository:
         
         return ventas_t
     
-    def buscarDetalles(id_venta):
+    def obtenerDetalles(id_venta):
         conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
         
-        cursor.callproc("sp_buscar_detalles_venta", [id_venta])
+        cursor.callproc("sp_obtener_detalles_venta", [id_venta])
         
         items = []
         

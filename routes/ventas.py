@@ -133,15 +133,15 @@ def buscar_ventas():
             None
         )
         
-@ventas_bp.route('/buscarDetalles', methods=['GET'])
+@ventas_bp.route('/obtenerDetalles', methods=['GET'])
 @login_required
 @roles_required("Administrador", "Supervisor")
-def buscar_detalles():
+def obtener_detalles():
     
     numero = request.args.get('numero')
     
     try:
-        items = VentaRepository.buscarDetalles(numero)
+        items = VentaRepository.obtenerDetalles(numero)
         
         return api_response(
             True,

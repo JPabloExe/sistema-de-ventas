@@ -21,7 +21,7 @@ export function llenarTablaVentas(ventas) {
 
         fila.innerHTML = `
             <tr>
-                <td class="numero">#${venta.num_venta}</td>
+                <td class="numero">${venta.num_venta}</td>
 
                 <td class="fecha">
                     <div>
@@ -47,7 +47,7 @@ export function llenarTablaVentas(ventas) {
                         data-total="${venta.total}">
                     </i>
                     <i id="btn-eliminar-venta" class="fa-solid fa-trash eliminar"
-                        data-numero="${venta.id}">
+                        data-id="${venta.id}">
                     </i>
                 </td>
             </tr>
@@ -58,7 +58,7 @@ export function llenarTablaVentas(ventas) {
 
 export function llenarDetalles(boton, items) {
 
-    document.getElementById("p-numero-venta").textContent = boton.dataset.numero;
+    document.getElementById("p-numero-operacion").textContent = boton.dataset.numero;
     document.getElementById("p-fecha").textContent = boton.dataset.fecha;
     document.getElementById("p-hora").textContent = boton.dataset.hora;
     document.getElementById("p-usuario").textContent = boton.dataset.usuario;

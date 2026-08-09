@@ -10,7 +10,7 @@ export function obtenerProductosDeCarrito() {
 
     productos.forEach(producto => {
         productosEnCarrito.push({
-            "codigo": producto.dataset.codigo,
+            "id_producto": producto.dataset.id,
             "cantidad": Number(producto.querySelector(".input-cantidad").value)
         });
     });
@@ -32,11 +32,13 @@ export function productosEnCarrito() {
 
 export function limpiarCarrito() {
     const carrito = document.querySelectorAll(".div-carrito .producto");
+    const cantidadProductos = document.getElementById("cantidad");
 
     carrito.forEach(producto => {
         producto.remove();
     });
 
+    cantidadProductos.textContent = "";
     recalcularTotal();
 };
 

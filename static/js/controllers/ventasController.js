@@ -3,7 +3,7 @@ import {
     obtenerVentas,
     eliminarVenta,
     buscarVentas,
-    buscarDetalles
+    obtenerDetalles
 } from "../api/ventasApi.js"
 
 import {
@@ -44,9 +44,9 @@ export async function buscarVentasController(fechaInicial, fechaFinal) {
 
 }
 
-export async function buscarDetallesController(boton) {
+export async function obtenerDetallesController(boton) {
 
-    const info = await buscarDetalles(boton.dataset.id);
+    const info = await obtenerDetalles(boton.dataset.id);
 
     if (!info.ok) {
 
