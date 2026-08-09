@@ -29,9 +29,19 @@ export async function buscarCompra(num_factura) {
 
 }
 
+export async function eliminarCompra(id_compra) {
+
+    const respuesta = await fetch(`${URL_API}/eliminarCompra?id_compra=${id_compra}`, {
+        method: 'DELETE'
+    })
+
+    return await respuesta.json();
+
+}
+
 export async function obtenerDetalles(id_compra) {
 
-    const respuesta = await fetch(`${URL_API}/obtenerDetalles?id_compra=${id_compra}`)
+    const respuesta = await fetch(`${URL_API}/obtenerDetallesCompra?id_compra=${id_compra}`)
 
     return await respuesta.json()
 

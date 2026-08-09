@@ -12,7 +12,8 @@ import {
     obtenerDetalles,
     obtenerMetodosPago,
     buscarCompra,
-    recibirCompra
+    recibirCompra,
+    eliminarCompra
 } from "../api/comprasApi.js";
 
 import {
@@ -82,7 +83,7 @@ export async function buscarComprasController() {
 
 export async function obtenerDetallesController(boton) {
 
-    const info = await obtenerDetalles(boton.dataset.compra);
+    const info = await obtenerDetalles(boton.dataset.id);
 
     if (!info.ok) {
 
@@ -94,6 +95,21 @@ export async function obtenerDetallesController(boton) {
     boton.classList.contains("detalles")
         ? llenarDetalles(boton, info.data)
         : llenarRecepcion(boton, info.data)
+
+}
+
+export async function eliminarCompraController(id_compra) {
+
+    const info = await eliminarCompra(id_compra);
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    mostrarToast(info.message, info.type);
 
 }
 

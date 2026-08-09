@@ -94,6 +94,32 @@ def buscar_compra():
             None
         )
 
+@compras_bp.route('/eliminarCompra', methods=['DELETE'])
+@login_required
+@roles_required('Administrador', 'Supervisor')
+def eliminar_compra():
+
+    id_compra = request.args.get('id_compra')
+
+    try:
+
+        ComprasRepository.eliminarCompra(id_compra)
+
+        return api_response(
+            True,
+            "success",
+            "Compra eliminada",
+            None
+        )
+
+    except Exception as e:
+        return api_response(
+            False,
+            "exception",
+            str(e),
+            None
+        )
+
 @compras_bp.route('/recibirCompra', methods=['POST'])
 @login_required
 @roles_required('Administrador', 'Supervisor')
@@ -125,10 +151,10 @@ def recibir_compra():
             None
         )
 
-@compras_bp.route('/obtenerDetalles', methods=['GET'])
+@compras_bp.route('/obtenerDetallesCompra', methods=['GET'])
 @login_required
 @roles_required('Administrador', 'Supervisor')
-def obtener_detalles():
+def obtener_detalles_compra():
 
     id_compra = request.args.get('id_compra')
 

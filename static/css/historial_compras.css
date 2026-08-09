@@ -164,7 +164,7 @@ i {
     color: #6289f3;
 }
 
-.btn-eliminar {
+.eliminar {
     color: #e53935;
 }
 
@@ -172,7 +172,7 @@ i {
     color: #4c6abc;
 }
 
-.btn-eliminar:hover {
+.eliminar:hover {
     color: #bb2d3b;
 }
 

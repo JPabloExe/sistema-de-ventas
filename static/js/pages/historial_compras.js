@@ -8,7 +8,8 @@ import {
     cargarProveedoresController,
     cargarInputBusquedaController,
     buscarComprasController,
-    recibirCompraController
+    recibirCompraController,
+    eliminarCompraController
 } from "../controllers/comprasController.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -106,6 +107,41 @@ document.addEventListener("DOMContentLoaded", () => {
         await cargarCompras();
 
         dialog.close();
+    });
+
+});
+
+// Eliminar Compra
+document.addEventListener("DOMContentLoaded", () => {
+
+    const btnConfirmar = document.getElementById("btn-confirmar-borrado");
+    const btnCancelar = document.getElementById("btn-cancelar-confirmacion");
+    const dialogEliminar = document.getElementById("dialog-eliminar");
+    const tituloDialog = document.getElementById("titulo");
+    const tbody = document.getElementById("tbody-compras");
+
+    let idAEliminar = null;
+
+    tbody.addEventListener("click", (e) => {
+        const botonEliminar = e.target.closest(".eliminar");
+
+        if (botonEliminar) {
+            tituloDialog.textContent = "¿Deseas borrar esta compra?";
+            idAEliminar = botonEliminar.dataset.id;
+            dialogEliminar.showModal();
+        }
+    });
+
+    btnCancelar.addEventListener("click", () => {
+        dialogEliminar.close();
+    });
+
+    btnConfirmar.addEventListener("click", async () => {
+        if (idAEliminar) {
+            await eliminarCompraController(idAEliminar);
+            await cargarCompras();
+            dialogEliminar.close();
+        }
     });
 
 });

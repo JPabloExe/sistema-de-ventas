@@ -133,10 +133,10 @@ def buscar_ventas():
             None
         )
         
-@ventas_bp.route('/obtenerDetalles', methods=['GET'])
+@ventas_bp.route('/obtenerDetallesVenta', methods=['GET'])
 @login_required
 @roles_required("Administrador", "Supervisor")
-def obtener_detalles():
+def obtener_detalles_ventas():
     
     numero = request.args.get('numero')
     

@@ -39,24 +39,26 @@ export function llenarTablaCompras(compras) {
 
                 <td class="acciones">
                     <i id="btn-detalles" class="fa-solid fa-circle-info detalles" title="Detalles de la compra"
-                        data-compra="${compra.id}"
+                        data-id="${compra.id}"
                         data-proveedor="${compra.proveedor}"
                         data-usuario="${compra.usuario}"
                         data-fecha="${compra.fecha}"
                         data-hora="${compra.hora}"
                         data-factura="${compra.num_factura}"
+                        data-compra="${compra.num_compra}"
                         data-metodo_pago="${compra.metodo_pago}"
                         data-total="${compra.total}"
                         data-estado="${compra.estado}">
                     </i>
 
                     <i class="fa-solid fa-box recibir" title="Recibir mercancía"
-                    data-compra="${compra.id}"  
+                    data-id="${compra.id}"  
+                    data-compra="${compra.num_compra}"
                     data-proveedor="${compra.proveedor}">  
                     </i>
 
-                    <i id="btn-eliminar" class="fa-solid fa-trash btn-eliminar" title="Eliminar compra"
-                        data-compra="${compra.id}">  
+                    <i id="btn-eliminar" class="fa-solid fa-trash eliminar" title="Eliminar compra"
+                        data-id="${compra.id}">  
                     </i>
 
                 </td>
@@ -129,7 +131,7 @@ export function obtenerDatosRecepcion(boton) {
     });
 
     return {
-        "compra": boton.dataset.compra,
+        "compra": boton.dataset.id,
         "productos": datos
     }
 
@@ -186,6 +188,7 @@ export function llenarDetalles(boton, items) {
         </span>
     `;
     document.getElementById("p-total").textContent = `COP ${formatearCOP(parseInt(boton.dataset.total))}`;
+
 
     llenarTablaItems(items);
 

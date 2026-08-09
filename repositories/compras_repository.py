@@ -100,6 +100,24 @@ class ComprasRepository:
             conexion.close()
 
     @staticmethod
+    def eliminarCompra(id_compra):
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
+
+        try:
+            cursor.callproc("sp_eliminar_compra", [id_compra])
+            
+            conexion.commit()
+        
+        except Exception as e:
+            conexion.rollback()
+            raise e
+        
+        finally:
+            cursor.close()
+            conexion.close()
+
+    @staticmethod
     def recibirCompra(datos):
         conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
