@@ -77,6 +77,44 @@ class ProveedoresRepository:
             conexion.close()
 
     @staticmethod
+    def buscarProveedor(nit_proveedor):
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
+
+        try:
+            cursor.callproc("sp_buscar_proveedor", [
+                nit_proveedor
+            ])
+
+            fila = []
+
+            for resultado in cursor.stored_results():
+                fila = resultado.fetchone()
+
+            proveedores = []
+
+            proveedores.append({
+                "id": fila[0],
+                "nombre": fila[1],
+                "nit": fila[2],
+                "telefono": fila[3],
+                "correo": fila[4],
+                "direccion": fila[5],
+                "ciudad": fila[6],
+                "estado": fila[7],
+                "id_busqueda": fila[2]
+            })
+
+            return proveedores
+
+        except Exception as e:
+            raise e
+
+        finally:
+            cursor.close()
+            conexion.close()
+
+    @staticmethod
     def obtenerProveedores():
         conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()

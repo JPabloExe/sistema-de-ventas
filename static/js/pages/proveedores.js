@@ -8,7 +8,8 @@ import {
     eliminarProveedorController,
     cargarProveedoresController,
     cargarEstadosProveedoresController,
-    cargarInputBusquedaController
+    cargarInputBusquedaController,
+    buscarProveedorController
 } from "../controllers/proveedoresController.js";
 
 import {
@@ -139,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        //buscarProveedorController(input.value.trim());
+        buscarProveedorController();
     });
 });
 

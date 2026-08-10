@@ -100,6 +100,32 @@ def eliminar_proveedor():
             None
         )
 
+@proveedores_bp.route('/buscarProveedor', methods=['GET'])
+@login_required
+@roles_required('Administrador', 'Supervisor')
+def buscar_proveedor():
+    
+    nit_proveedor = request.args.get('nit')
+
+    try:
+
+        proveedor = ProveedoresRepository.buscarProveedor(nit_proveedor)
+
+        return api_response(
+            True,
+            "success",
+            "Proveedor obtenido",
+            proveedor
+        )
+
+    except Exception as e:
+        return api_response(
+            False,
+            "exception",
+            str(e.msg),
+            None
+        )
+
 @proveedores_bp.route('/obtenerProveedores', methods=['GET'])
 @login_required
 @roles_required('Administrador', 'Supervisor')

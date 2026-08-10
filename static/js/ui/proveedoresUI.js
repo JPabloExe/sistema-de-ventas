@@ -94,3 +94,9 @@ export function llenarFormularioProveedores(boton) {
     document.getElementById('select-estado').value = boton.dataset.estado;
 
 }
+
+export function obtenerNitProveedor() {
+
+    return document.getElementById('input-buscar').value;
+
+}

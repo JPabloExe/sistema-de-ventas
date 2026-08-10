@@ -34,6 +34,14 @@ export async function eliminarProveedor(proveedorId) {
     return respuesta.json();
 }
 
+export async function buscarProveedor(nit_proveedor) {
+
+    const respuesta = await fetch(`${URL_API}/buscarProveedor?nit=${nit_proveedor}`);
+
+    return respuesta.json();
+
+}
+
 export async function obtenerProveedores() {
 
     const respuesta = await fetch(`${URL_API}/obtenerProveedores`);

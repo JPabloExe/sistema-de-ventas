@@ -9,12 +9,14 @@ import {
     registrarProveedor,
     actualizarProveedor,
     eliminarProveedor,
-    obtenerEstadosProveedores
+    obtenerEstadosProveedores,
+    buscarProveedor
 } from "../api/proveedoresApi.js";
 
 import {
     llenarTablaProveedores,
-    obtenerDatosFormularioProveedores
+    obtenerDatosFormularioProveedores,
+    obtenerNitProveedor
 } from "../ui/proveedoresUI.js";
 
 export async function registrarProveedorController() {
@@ -62,6 +64,24 @@ export async function eliminarProveedorController(proveedorId) {
 
     }
 
+    mostrarToast(info.message, info.type);
+
+}
+
+export async function buscarProveedorController() {
+
+    const nitProveedor = obtenerNitProveedor();
+
+    const info = await buscarProveedor(nitProveedor);
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    llenarTablaProveedores(info.data);
     mostrarToast(info.message, info.type);
 
 }
