@@ -41,7 +41,7 @@ class ProductoRepository:
         conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()
 
-        datos = cursor.callproc("sp_informe_inventario", [0, 0, 0])
+        datos = cursor.callproc("sp_informe_inventario", [0, 0, 0, 0])
             
         cursor.close()
         conexion.close()
@@ -49,7 +49,8 @@ class ProductoRepository:
         informe = {
             "productos": datos[0],
             "valor_total": datos[1],
-            "stock_bajo": datos[2]
+            "stock_bajo": datos[2],
+            "productos_vencer": datos[3]
         }
     
         return informe 

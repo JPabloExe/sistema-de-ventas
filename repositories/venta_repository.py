@@ -66,7 +66,8 @@ class VentaRepository:
                     "items": venta[4],
                     "metodo": venta[5],
                     "total": venta[6],
-                    "num_venta": venta[7]
+                    "num_venta": venta[7],
+                    "estado": venta[8]
                 })
             
             return ventas_t
@@ -104,7 +105,8 @@ class VentaRepository:
                 "items": venta[4],
                 "metodo": venta[5],
                 "total": venta[6],
-                "num_venta": venta[7]
+                "num_venta": venta[7],
+                "estado": venta[8]
             })
         
         return ventas_t

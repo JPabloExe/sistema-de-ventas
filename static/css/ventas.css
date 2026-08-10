@@ -317,3 +317,23 @@ i {
 .btn-imprimir:hover {
     background: #324154;
 }
+
+.badge-completed {
+    background: #198754;
+    color: white !important;
+    width: fit-content;
+    font-weight: bold;
+    padding: 7px 12px;
+    border-radius: 7px;
+    font-size: 13px;
+}
+
+.badge-pending {
+    background: #6c757d;
+    color: white !important;
+    width: fit-content;
+    font-weight: bold;
+    padding: 7px 12px;
+    border-radius: 7px;
+    font-size: 13px;
+}

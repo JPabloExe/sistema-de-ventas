@@ -30,11 +30,22 @@ export function llenarTablaVentas(ventas) {
                     </div>
                 </td>
                 <td class="usuario">${venta.usuario}</td>
-                <td class="items">${venta.items}</td>
-                <td class="metodo">     
-                    <p class="p-metodo">${venta.metodo}</p>
-                </td>
                 <td class="total">COP ${formatearCOP(venta.total)}</td>
+                <td class="metodo">     
+                <p class="p-metodo">${venta.metodo}</p>
+                </td>
+                <td>
+                    <span class=${venta.estado === "Completada"
+                ? "badge-completed"
+                : "badge-pending"}>
+
+                        <i class="${venta.estado === "Completada"
+                ? "fa-solid fa-circle-check"
+                : "fa-solid fa-clock"}">
+                        </i>
+                        ${venta.estado}
+                    </span>
+                </td>
                 
                 <td class="acciones">
                     <i id="btn-detalles" class="fa-solid fa-circle-info detalles"
@@ -44,6 +55,7 @@ export function llenarTablaVentas(ventas) {
                         data-hora="${venta.hora}"
                         data-usuario="${venta.usuario}"
                         data-metodo="${venta.metodo}"
+                        data-estado="${venta.estado}"
                         data-total="${venta.total}">
                     </i>
                     <i id="btn-eliminar-venta" class="fa-solid fa-trash eliminar"
@@ -64,6 +76,17 @@ export function llenarDetalles(boton, items) {
     document.getElementById("p-usuario").textContent = boton.dataset.usuario;
     document.getElementById("p-metodo").textContent = boton.dataset.metodo;
     document.getElementById("p-total").textContent = `COP ${formatearCOP(parseInt(boton.dataset.total))}`;
+    document.getElementById("p-estado").innerHTML = `
+        <span class=${boton.dataset.estado === "Completada"
+            ? "badge-completed"
+            : "badge-pending"}>
+
+            <i class="${boton.dataset.estado === "Completada"
+            ? "fa-solid fa-circle-check"
+            : "fa-solid fa-clock"}">
+            </i>
+            ${boton.dataset.estado}
+        </span>`;
 
     llenarTablaItems(items);
 

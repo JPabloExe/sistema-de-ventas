@@ -83,10 +83,12 @@ export function mostrarInformeInventario(informe) {
     const lblProductos = document.getElementById("lbl-productos");
     const lblValorInventario = document.getElementById("lbl-valor-inventario");
     const lblStockBajo = document.getElementById("lbl-stock-bajo");
+    const lblProductosVencer = document.getElementById("lbl-productos-vencer");
 
-    lblProductos.textContent = `${informe["productos"]}`;
-    lblStockBajo.textContent = `${informe["stock_bajo"]}`;
-    lblValorInventario.textContent = `COP ${formatearCOP(informe["valor_total"])}`;
+    lblProductos.textContent = `${informe.productos}`;
+    lblStockBajo.textContent = `${informe.stock_bajo}`;
+    lblValorInventario.textContent = `COP ${formatearCOP(informe.valor_total)}`;
+    lblProductosVencer.textContent = `${informe.productos_vencer} Productos proximos a vencer`;
 
 }
 
