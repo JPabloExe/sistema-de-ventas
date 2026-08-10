@@ -27,6 +27,10 @@ body button {
     font-size: 3mm;
 }
 
+#cantidad {
+    color: gray;
+}
+
 .div-buscar-producto {
     display: flex;
     align-items: center;

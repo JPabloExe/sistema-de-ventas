@@ -9,11 +9,13 @@ import {
 } from "../controllers/puntoVentasController.js";
 
 import {
-    limpiarCarrito,
     productosEnCarrito,
-    calcularVueltos,
-    limpiarInputsPago
 } from "../ui/puntoVentasUI.js";
+
+import {
+    limpiarCarrito,
+    limpiarSelectsCompra
+} from "../ui/comprasUI.js";
 
 import { recalcularTotal } from "../utilities/calcularTotal.js";
 
@@ -40,11 +42,17 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
 
     const btnConfirmarCompra = document.getElementById("btnConfirmarCompra");
+    const botonLimpiar = document.getElementById("btnLimpiarCarrito");
 
     btnConfirmarCompra.addEventListener("click", async () => {
 
         await realizarCompraController();
 
+    });
+
+    botonLimpiar.addEventListener("click", () => {
+        limpiarCarrito();
+        limpiarSelectsCompra();
     });
 
 });

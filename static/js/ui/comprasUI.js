@@ -1,5 +1,7 @@
 import { formatearCOP } from "../utilities/moneda.js"
 
+import { recalcularTotal } from "../utilities/calcularTotal.js";
+
 export function llenarTablaCompras(compras) {
 
     const tbody = document.getElementById('tbody-compras');
@@ -228,5 +230,25 @@ export function obtenerDatosSelectAcciones() {
 export function obtenerNumFactura() {
 
     return document.getElementById('input-buscar').value;
+
+}
+
+export function limpiarCarrito() {
+    const carrito = document.querySelectorAll(".div-carrito .producto");
+    const cantidadProductos = document.getElementById("cantidad");
+    const lblTotal = document.getElementById("totalCompra");
+
+    carrito.forEach(producto => {
+        producto.remove();
+    });
+
+    cantidadProductos.textContent = "(0 productos)";
+    lblTotal.textContent = `COP ${formatearCOP(0)}`;
+};
+
+export function limpiarSelectsCompra() {
+
+    document.getElementById("select-proveedor").value = "0";
+    document.getElementById("select-metodo-pago").value = "0";
 
 }

@@ -33,13 +33,14 @@ export function productosEnCarrito() {
 export function limpiarCarrito() {
     const carrito = document.querySelectorAll(".div-carrito .producto");
     const cantidadProductos = document.getElementById("cantidad");
+    const lblTotal = document.getElementById("totalPagar");
 
     carrito.forEach(producto => {
         producto.remove();
     });
 
-    cantidadProductos.textContent = "";
-    recalcularTotal();
+    cantidadProductos.textContent = "(0 productos)";
+    lblTotal.textContent = `COP ${formatearCOP(0)}`;
 };
 
 export function limpiarInputsPago() {

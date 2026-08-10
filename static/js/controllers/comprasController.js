@@ -23,7 +23,9 @@ import {
     obtenerDatosSelectAcciones,
     obtenerNumFactura,
     llenarRecepcion,
-    obtenerDatosRecepcion
+    obtenerDatosRecepcion,
+    limpiarCarrito,
+    limpiarSelectsCompra
 } from "../ui/comprasUI.js";
 
 export async function realizarCompraController() {
@@ -39,6 +41,8 @@ export async function realizarCompraController() {
 
     }
 
+    limpiarCarrito();
+    limpiarSelectsCompra();
     mostrarToast(info.message, info.type);
 
 }

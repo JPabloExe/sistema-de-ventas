@@ -27,6 +27,10 @@ body button {
     font-size: 3mm;
 }
 
+#cantidad {
+    color: gray;
+}
+
 .contenedor-input-buscar {
     width: 95% !important;
 }
