@@ -491,3 +491,9 @@ i {
     background: white;
     text-align: center;
 }
+
+.text-center {
+    text-align: center;
+    color: #555;
+    font-size: small;
+}

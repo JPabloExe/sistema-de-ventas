@@ -47,6 +47,14 @@ export async function obtenerDetalles(id_compra) {
 
 }
 
+export async function obtenerProductosRecepcion(id_compra) {
+
+    const respuesta = await fetch(`${URL_API}/obtenerProductosRecepcion?id_compra=${id_compra}`)
+
+    return await respuesta.json()
+
+}
+
 export async function obtenerMetodosPago() {
 
     const respuesta = await fetch(`${URL_API}/obtenerMetodosPago`);

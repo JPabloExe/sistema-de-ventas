@@ -13,7 +13,8 @@ import {
     obtenerMetodosPago,
     buscarCompra,
     recibirCompra,
-    eliminarCompra
+    eliminarCompra,
+    obtenerProductosRecepcion
 } from "../api/comprasApi.js";
 
 import {
@@ -96,9 +97,15 @@ export async function obtenerDetallesController(boton) {
 
     }
 
-    boton.classList.contains("detalles")
-        ? llenarDetalles(boton, info.data)
-        : llenarRecepcion(boton, info.data)
+    llenarDetalles(boton, info.data);
+
+}
+
+export async function obtenerProductosRecepcionController(boton) {
+
+    const info = await obtenerProductosRecepcion(boton.dataset.id);
+
+    llenarRecepcion(boton, info.data);
 
 }
 

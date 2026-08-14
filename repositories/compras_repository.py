@@ -171,6 +171,42 @@ class ComprasRepository:
             conexion.close()
 
     @staticmethod
+    def obtenerProductosRecepcion(id_compra):
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
+
+        try:
+            cursor.callproc("sp_obtener_productos_recepcion", [id_compra])
+
+            filas = []
+
+            for resultado in cursor.stored_results():
+                filas.extend(resultado.fetchall())
+
+            if filas == []:
+                return None
+
+            detalles = []
+
+            for detalle in filas:
+                detalles.append({
+                    "id_producto": detalle[0],    
+                    "nombre": detalle[1],    
+                    "cantidad": detalle[2],    
+                    "valorU": detalle[3],    
+                    "subtotal": detalle[4],   
+                    "faltante": detalle[5]
+                })
+
+            return detalles
+
+        except Exception as e:
+            raise e
+        finally:
+            cursor.close()
+            conexion.close()
+
+    @staticmethod
     def obtenerMetodosPago():
         conexion = ConexionDB.get_conexion()
         cursor = conexion.cursor()

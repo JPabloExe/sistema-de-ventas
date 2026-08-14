@@ -56,7 +56,8 @@ export function llenarTablaCompras(compras) {
                     <i class="fa-solid fa-box recibir" title="Recibir mercancía"
                     data-id="${compra.id}"  
                     data-compra="${compra.num_compra}"
-                    data-proveedor="${compra.proveedor}">  
+                    data-proveedor="${compra.proveedor}"  
+                    data-faltante="${compra.faltante}">  
                     </i>
 
                     <i id="btn-eliminar" class="fa-solid fa-trash eliminar" title="Eliminar compra"
@@ -90,6 +91,23 @@ function llenarTablaRecepcion(recibidos) {
 
     const tbody = document.getElementById("tbody-recepcion");
 
+    if (recibidos == null) {
+
+        tbody.innerHTML = "";
+
+        const fila = document.createElement("tr");
+
+        fila.innerHTML = `
+            <tr>
+                <td colspan="4" class="text-center">No se encontraron productos por recibir</td>
+            </tr>
+        `;
+
+        tbody.appendChild(fila);
+        return;
+
+    }
+
     tbody.innerHTML = "";
 
     for (const recibido of recibidos) {
@@ -103,12 +121,20 @@ function llenarTablaRecepcion(recibidos) {
                     <input 
                         type="number" 
                         min="0"
-                        max="${recibido.cantidad}" 
+                        max="${recibido.faltante}" 
                         id="input-recibido" 
                         class="input-recibido"
-                        data-producto="${recibido.id_producto}">
+                        data-producto="${recibido.id_producto}"
+                        data-faltante="${recibido.faltante}">
                 </td>
-            </tr>
+                <td>
+                    <span 
+                        id="lbl-faltante"
+                        class="lbl-faltante">
+                        ${recibido.faltante}
+                    </span>
+                </td>
+            </tr> 
         `;
         tbody.appendChild(fila);
     }

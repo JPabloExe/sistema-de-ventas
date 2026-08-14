@@ -177,6 +177,40 @@ def obtener_detalles_compra():
             None
         )
 
+@compras_bp.route('/obtenerProductosRecepcion', methods=['GET'])
+@login_required
+@roles_required('Administrador', 'Supervisor')
+def obtener_productos_recepcion():
+
+    id_compra = request.args.get('id_compra')
+
+    try:
+
+        productos = ComprasRepository.obtenerProductosRecepcion(id_compra)
+
+        if productos == None:
+            return api_response(
+                False,
+                "error",
+                "",
+                None
+            )
+        
+        return api_response(
+            True,
+            "success",
+            "", 
+            productos
+        )
+
+    except Exception as e:
+        return api_response(
+            False,
+            "exception",
+            str(e),
+            None
+        )
+
 @compras_bp.route('/obtenerMetodosPago', methods=['GET'])
 @login_required
 def obtener_metodos_pago():

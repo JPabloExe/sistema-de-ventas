@@ -9,7 +9,8 @@ import {
     cargarInputBusquedaController,
     buscarComprasController,
     recibirCompraController,
-    eliminarCompraController
+    eliminarCompraController,
+    obtenerProductosRecepcionController
 } from "../controllers/comprasController.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -88,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (boton) {
             botonTemp = boton;
-            obtenerDetallesController(boton);
+            obtenerProductosRecepcionController(boton);
 
             dialog.showModal();
         }
@@ -158,5 +159,35 @@ document.addEventListener("DOMContentLoaded", () => {
     selectProveedoresAcciones.addEventListener("change", () => {
         cargarCompras();
     });
+
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const tbody = document.getElementById("tbody-recepcion");
+
+    tbody.addEventListener("input", (e) => {
+        const input = e.target.closest(".input-recibido")
+
+        if (!input) return;
+
+        const fila = input.closest("tr");
+        const lblFaltante = fila.querySelector(".lbl-faltante")
+
+        const faltante = parseInt(input.dataset.faltante);
+        let valor = parseInt(input.value) || 0;
+
+        if (valor > faltante) {
+            valor = faltante;
+            input.value = faltante;
+        }
+
+        lblFaltante.textContent = Math.max(0, faltante - valor);
+
+
+
+
+    });
+
 
 });
