@@ -1,10 +1,14 @@
+import { mostrarEstadoVacio } from "../components/estadoVacio.js";
+
 export function llenarTablaUsuarios(usuarios) {
 
     const tbody = document.getElementById('tbody-usuarios');
 
-    if (usuarios === null) {
-        tbody.innerHTML = '';
+    if (usuarios === null || usuarios[0] === null) {
+
+        mostrarEstadoVacio(tbody, "No se encontraron usuarios en la base de datos");
         return;
+
     }
 
     tbody.innerHTML = '';

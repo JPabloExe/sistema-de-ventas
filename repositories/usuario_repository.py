@@ -33,6 +33,9 @@ class UsuarioRepository:
         for resultado in cursor.stored_results():
             filas.extend(resultado.fetchall())
 
+        if filas == []:
+            return None
+
         cursor.close()
         conexion.close()
 
@@ -70,26 +73,26 @@ class UsuarioRepository:
         cursor = conexion.cursor()
         cursor.callproc("sp_buscar_usuario", [cedula])
        
-        usuario = None
+        fila = []
 
-        for filas in cursor.stored_results():
-            usuario = filas.fetchone()
+        for resultado in cursor.stored_results():
+            fila = resultado.fetchone()
         
         cursor.close()
         conexion.close()
         
-        if usuario == None:
-            return usuario
+        if fila == []:
+            return None
         
         return {
-            'id': usuario[0],
-            'nombre': usuario[1],
-            'apellido': usuario[2],
-            'cedula': usuario[3],
-            'telefono': usuario[4],
-            'usuario': usuario[5],
-            'contrasena': usuario[6],
-            'cargo': usuario[7]
+            'id': fila[0],
+            'nombre': fila[1],
+            'apellido': fila[2],
+            'cedula': fila[3],
+            'telefono': fila[4],
+            'usuario': fila[5],
+            'contrasena': fila[6],
+            'cargo': fila[7]
         }
         
     @staticmethod    

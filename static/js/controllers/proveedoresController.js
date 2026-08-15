@@ -74,13 +74,6 @@ export async function buscarProveedorController() {
 
     const info = await buscarProveedor(nitProveedor);
 
-    if (!info.ok) {
-
-        mostrarToast(info.message, info.type);
-        return;
-
-    }
-
     llenarTablaProveedores(info.data);
     mostrarToast(info.message, info.type);
 
@@ -89,13 +82,6 @@ export async function buscarProveedorController() {
 export async function cargarProveedoresController() {
 
     const info = await obtenerProveedores();
-
-    if (!info.ok) {
-
-        mostrarToast(info.message, info.type);
-        return;
-
-    }
 
     llenarTablaProveedores(info.data);
     mostrarToast(info.message, info.type);

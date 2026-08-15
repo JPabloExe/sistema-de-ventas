@@ -33,7 +33,7 @@ def informe_ventas():
     except Exception as e:
         return api_response(
             False,
-            "exception",
+            "error",
             str(e.msg),
             None
         )
@@ -65,7 +65,7 @@ def realizar_venta():
     except Exception as e:
         return api_response(
             False,
-            "exception",
+            "error",
             str(e.msg),
             None
         )
@@ -81,7 +81,7 @@ def obtener_ventas():
             return api_response(
                 False,
                 "error",
-                "No hay ventas registradas",
+                "No se han registrado ventas",
                 None
             )
         else:
@@ -95,7 +95,7 @@ def obtener_ventas():
     except Exception as e:
         return api_response(
             False,
-            "exception",
+            "error",
             str(e.msg),
             None
         )
@@ -128,7 +128,7 @@ def buscar_ventas():
     except Exception as e:
         return api_response(
             False,
-            "exception",
+            "error",
             str(e.msg),
             None
         )
@@ -153,7 +153,7 @@ def obtener_detalles_ventas():
     except Exception as e:
         return api_response(
             False,
-            "exception",
+            "error",
             str(e.msg),
             None
         )
@@ -177,7 +177,7 @@ def eliminar_venta():
     except Exception as e:
         return api_response(
             False,
-            "exception",
+            "error",
             str(e.msg),
             None
         )

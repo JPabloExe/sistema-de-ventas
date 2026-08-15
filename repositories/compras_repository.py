@@ -41,6 +41,9 @@ class ComprasRepository:
             for resultado in cursor.stored_results():
                 filas.extend(resultado.fetchall())
 
+            if filas == []:
+                return None
+
             compras = []
 
             for compra in filas:
@@ -78,6 +81,9 @@ class ComprasRepository:
 
             for resultado in cursor.stored_results():
                 resultado_final = resultado.fetchone()
+
+            if resultado_final == []:    
+                return None
 
             return {
                 "id": resultado_final[0],
@@ -150,6 +156,9 @@ class ComprasRepository:
 
             for resultado in cursor.stored_results():
                 filas.extend(resultado.fetchall())
+
+            if filas == []:
+                return None
 
             detalles = []
 

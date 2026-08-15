@@ -33,14 +33,8 @@ export async function buscarVentasController(fechaInicial, fechaFinal) {
 
     const info = await buscarVentas(fechaInicial, fechaFinal);
 
-    if (!info.ok) {
-
-        mostrarToast(info.message, info.type);
-        return;
-
-    }
-
     llenarTablaVentas(info.data);
+    mostrarToast(info.message, info.type);
 
 }
 
@@ -48,13 +42,7 @@ export async function obtenerDetallesController(boton) {
 
     const info = await obtenerDetalles(boton.dataset.id);
 
-    if (!info.ok) {
-
-        mostrarToast(info.message, info.type);
-        return;
-
-    }
-
+    mostrarToast(info.message, info.type);
     llenarDetalles(boton, info.data);
 
 }
@@ -78,13 +66,6 @@ export async function cargarInformeVentas() {
 export async function cargarVentas() {
 
     const info = await obtenerVentas();
-
-    if (!info.ok) {
-
-        mostrarToast(info.message, info.type)
-        return;
-
-    }
 
     llenarTablaVentas(info.data);
     mostrarToast(info.message, info.type);

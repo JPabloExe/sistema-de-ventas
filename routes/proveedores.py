@@ -35,7 +35,7 @@ def registrar_proveedor():
     except Exception as e:
         return api_response(
             False,
-            "exception",
+            "error",
             str(e.msg),
             None
         )
@@ -70,7 +70,7 @@ def actualizar_proveedor():
     except Exception as e:
         return api_response(
             False,
-            "exception",
+            "error",
             str(e.msg),
             None
         )
@@ -95,7 +95,7 @@ def eliminar_proveedor():
     except Exception as e:
         return api_response(
             False,
-            "exception",
+            "error",
             str(e.msg),
             None
         )
@@ -111,6 +111,14 @@ def buscar_proveedor():
 
         proveedor = ProveedoresRepository.buscarProveedor(nit_proveedor)
 
+        if proveedor == None:
+            return api_response(
+                False,
+                "error",
+                "Proveedor no encontrado",
+                None
+            ) 
+
         return api_response(
             True,
             "success",
@@ -121,7 +129,7 @@ def buscar_proveedor():
     except Exception as e:
         return api_response(
             False,
-            "exception",
+            "error",
             str(e.msg),
             None
         )
@@ -135,6 +143,14 @@ def obtener_proveedores():
 
         proveedores = ProveedoresRepository.obtenerProveedores()
 
+        if proveedores == None:
+            return api_response(
+                False,
+                "error",
+                "No se han registrado proveedores",
+                None
+            ) 
+
         return api_response(
             True,
             "success",
@@ -145,7 +161,7 @@ def obtener_proveedores():
     except Exception as e:
         return api_response(
             False,
-            "exception",
+            "error",
             str(e.msg),
             None
         )
@@ -169,7 +185,7 @@ def obtener_estados_proveedores():
     except Exception as e:
         return api_response(
             False,
-            "exception",
+            "error",
             str(e.msg),
             None
         )

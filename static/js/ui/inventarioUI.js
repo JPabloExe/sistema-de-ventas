@@ -1,12 +1,16 @@
 import { formatearCOP } from "../utilities/moneda.js";
 
+import { mostrarEstadoVacio } from "../components/estadoVacio.js";
+
 export function llenarTablaInventario(productos) {
     const tbody = document.getElementById("tbody-productos");
     const pCantidadProductosInventario = document.getElementById("p-cantidad-productos-inventario");
 
-    if (productos === null) {
-        tbody.innerHTML = "";
+    if (productos === null || productos[0] === null) {
+
+        mostrarEstadoVacio(tbody, "No se encontraron productos en el inventario");
         return;
+
     }
 
     tbody.innerHTML = "";

@@ -27,7 +27,7 @@ def registrar_usuario():
     except Exception as e:
         return api_response(
             False,
-            'exception',
+            'error',
             str(e.msg),
             None
         )
@@ -59,7 +59,7 @@ def obtener_usuarios():
     except Exception as e:
         return api_response(
             False,
-            'exception',
+            'error',
             str(e.msg),
             None
         )
@@ -85,7 +85,7 @@ def eliminar_usuario():
     except Exception as e:
         return api_response(
             False,
-            'exception',
+            'error',
             str(e.msg),
             None
         )
@@ -119,7 +119,7 @@ def buscar_usuario():
     except Exception as e:
         return api_response(
             False,
-            'exception',
+            'error',
             str(e.msg),
             None
         )
@@ -146,7 +146,7 @@ def actualizar_usuario():
     except Exception as e:
         return api_response(
             False,
-            'exception',
+            'error',
             str(e.msg),
             None
         )

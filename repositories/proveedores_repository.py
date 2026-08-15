@@ -91,6 +91,9 @@ class ProveedoresRepository:
             for resultado in cursor.stored_results():
                 fila = resultado.fetchone()
 
+            if fila == []:
+                return None
+
             proveedores = []
 
             proveedores.append({
@@ -126,6 +129,9 @@ class ProveedoresRepository:
 
             for resultado in cursor.stored_results():
                 filas.extend(resultado.fetchall())
+
+            if filas == []:
+                return None
 
             proveedores = []
 

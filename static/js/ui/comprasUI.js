@@ -1,5 +1,7 @@
 import { formatearCOP } from "../utilities/moneda.js"
 
+import { mostrarEstadoVacio } from "../components/estadoVacio.js";
+
 import { recalcularTotal } from "../utilities/calcularTotal.js";
 
 export function llenarTablaCompras(compras) {
@@ -7,9 +9,11 @@ export function llenarTablaCompras(compras) {
     const tbody = document.getElementById('tbody-compras');
     const pCantidadCompras = document.getElementById("p-cantidad-compras");
 
-    if (compras === null) {
-        tbody.innerHTML = '';
+    if (compras === null || compras[0] === null) {
+
+        mostrarEstadoVacio(tbody, "No se encontraron compras en la base de datos");
         return;
+
     }
 
     tbody.innerHTML = '';
@@ -91,19 +95,9 @@ function llenarTablaRecepcion(recibidos) {
 
     const tbody = document.getElementById("tbody-recepcion");
 
-    if (recibidos == null) {
+    if (recibidos === null) {
 
-        tbody.innerHTML = "";
-
-        const fila = document.createElement("tr");
-
-        fila.innerHTML = `
-            <tr>
-                <td colspan="4" class="text-center">No se encontraron productos por recibir</td>
-            </tr>
-        `;
-
-        tbody.appendChild(fila);
+        mostrarEstadoVacio(tbody, "No se encontraron productos por recibir");
         return;
 
     }
@@ -225,6 +219,13 @@ export function llenarDetalles(boton, items) {
 function llenarTablaItems(items) {
 
     const tbody = document.getElementById("tbody-detalles");
+
+    if (items === null) {
+
+        mostrarEstadoVacio(tbody, "No se encontraron los detalles de la compra");
+        return;
+
+    }
 
     tbody.innerHTML = "";
 

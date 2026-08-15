@@ -53,6 +53,13 @@ def obtener_compras():
 
         compras = ComprasRepository.obtenerCompras(id_proveedor, id_estado)
 
+        if compras == None:
+            return api_response(
+                False,
+                "error",
+                "No se han registrado compras",
+                None
+            )
         return api_response(
             True,
             "success",
@@ -63,7 +70,7 @@ def obtener_compras():
     except Exception as e:
         return api_response(
             False,
-            "exception",
+            "error",
             str(e),
             None
         )
@@ -79,6 +86,14 @@ def buscar_compra():
 
         compras = ComprasRepository.buscarCompra(num_factura)
 
+        if compras == None:
+            return api_response(
+                False,
+                "error",
+                "Compra no encontrada",
+                None
+            )
+
         return api_response(
             True,
             "success",
@@ -89,7 +104,7 @@ def buscar_compra():
     except Exception as e:
         return api_response(
             False,
-            "exception",
+            "error",
             str(e),
             None
         )

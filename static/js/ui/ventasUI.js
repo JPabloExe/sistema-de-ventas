@@ -1,5 +1,7 @@
 import { formatearCOP } from "../utilities/moneda.js";
 
+import { mostrarEstadoVacio } from "../components/estadoVacio.js";
+
 export function mostrarInformeVentas(informe) {
 
     const lblValorVentasHoy = document.getElementById("lbl-valor-ventas-hoy");
@@ -13,6 +15,13 @@ export function mostrarInformeVentas(informe) {
 export function llenarTablaVentas(ventas) {
 
     const tbody = document.getElementById("tbody-ventas");
+
+    if (ventas === null || ventas[0] === null) {
+
+        mostrarEstadoVacio(tbody, "No se encontraron ventas registradas");
+        return;
+
+    }
 
     tbody.innerHTML = "";
 
@@ -95,6 +104,13 @@ export function llenarDetalles(boton, items) {
 function llenarTablaItems(items) {
 
     const tbody = document.getElementById("tbody-detalles");
+
+    if (items === null) {
+
+        mostrarEstadoVacio(tbody, "No se encontraron los detalles de la venta");
+        return;
+
+    }
 
     tbody.innerHTML = "";
 

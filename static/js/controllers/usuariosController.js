@@ -50,13 +50,6 @@ export async function cargarUsuarios() {
 
     const info = await obtenerUsuarios();
 
-    if (!info.ok) {
-
-        mostrarToast(info.message, info.type);
-        return;
-
-    }
-
     llenarTablaUsuarios(info.data);
     mostrarToast(info.message, info.type);
 
@@ -66,13 +59,6 @@ export async function buscarUsuarioController(cedula) {
 
     const info = await buscarUsuario(cedula);
     const userList = [];
-
-    if (!info.ok) {
-
-        mostrarToast(info.message, info.type);
-        return;
-
-    }
 
     userList.push(info.data);
 

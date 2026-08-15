@@ -496,3 +496,9 @@ input[type="date"] {
 .submenu.activo {
     display: block;
 }
+
+.text-center {
+    text-align: center;
+    color: #555;
+    font-size: small;
+}

@@ -114,13 +114,6 @@ export async function buscarProductoController(codigo) {
     const info = await buscarProducto(codigo);
     const productList = [];
 
-    if (!info.ok) {
-
-        mostrarToast(info.message, info.type);
-        return;
-
-    }
-
     productList.push(info.data);
 
     llenarTablaInventario(productList);

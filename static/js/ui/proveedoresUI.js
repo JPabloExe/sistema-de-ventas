@@ -1,11 +1,15 @@
+import { mostrarEstadoVacio } from "../components/estadoVacio.js";
+
 export function llenarTablaProveedores(proveedores) {
 
     const tbody = document.getElementById('tbody-proveedores');
     const pCantidadProveedores = document.getElementById("p-cantidad-proveedores");
 
-    if (proveedores === null) {
-        tbody.innerHTML = '';
+    if (proveedores === null || proveedores[0] === null) {
+
+        mostrarEstadoVacio(tbody, "No se encontraron proveedores en la base de datos");
         return;
+
     }
 
     tbody.innerHTML = '';

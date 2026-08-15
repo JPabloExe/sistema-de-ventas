@@ -86,7 +86,7 @@ def obtener_productos():
     except Exception as e:
         return api_response(
             False,
-            "exception",
+            "error",
             str(e),
             None
         ) 
@@ -118,7 +118,7 @@ def buscar_producto():
     except Exception as e:
         return api_response(
             False,
-            "exception",
+            "error",
             str(e.msg),
             None
         )

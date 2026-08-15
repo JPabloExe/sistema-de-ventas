@@ -54,13 +54,6 @@ export async function cargarCompras() {
 
     const info = await obtenerCompras(datos);
 
-    if (!info.ok) {
-
-        mostrarToast(info.message, info.type);
-        return;
-
-    }
-
     llenarTablaCompras(info.data);
     mostrarToast(info.message, info.type);
 
@@ -71,13 +64,6 @@ export async function buscarComprasController() {
     const numFactura = obtenerNumFactura();
     const info = await buscarCompra(numFactura);
     const comprasList = [];
-
-    if (!info.ok) {
-
-        mostrarToast(info.message, info.type);
-        return;
-
-    }
 
     comprasList.push(info.data);
 
@@ -90,13 +76,7 @@ export async function obtenerDetallesController(boton) {
 
     const info = await obtenerDetalles(boton.dataset.id);
 
-    if (!info.ok) {
-
-        mostrarToast(info.message, info.type);
-        return;
-
-    }
-
+    mostrarToast(info.message, info.type);
     llenarDetalles(boton, info.data);
 
 }
