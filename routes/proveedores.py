@@ -1,4 +1,4 @@
-from utils.responses import api_response
+from utils.responses import api_response, obtener_mensaje_mysql
 from utils.decorators import roles_required
 from flask import Blueprint, request
 from flask_login import login_required, current_user
@@ -36,7 +36,7 @@ def registrar_proveedor():
         return api_response(
             False,
             "error",
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -71,7 +71,7 @@ def actualizar_proveedor():
         return api_response(
             False,
             "error",
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -96,7 +96,7 @@ def eliminar_proveedor():
         return api_response(
             False,
             "error",
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -130,7 +130,7 @@ def buscar_proveedor():
         return api_response(
             False,
             "error",
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -162,7 +162,7 @@ def obtener_proveedores():
         return api_response(
             False,
             "error",
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -186,6 +186,6 @@ def obtener_estados_proveedores():
         return api_response(
             False,
             "error",
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )

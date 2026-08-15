@@ -1,4 +1,4 @@
-from utils.responses import api_response
+from utils.responses import api_response, obtener_mensaje_mysql
 from utils.decorators import roles_required
 from flask import Blueprint, request
 from flask_login import login_required, current_user
@@ -36,7 +36,7 @@ def realizar_compra():
         return api_response(
             False,
             "exception",
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -71,7 +71,7 @@ def obtener_compras():
         return api_response(
             False,
             "error",
-            str(e),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -105,7 +105,7 @@ def buscar_compra():
         return api_response(
             False,
             "error",
-            str(e),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -131,7 +131,7 @@ def eliminar_compra():
         return api_response(
             False,
             "exception",
-            str(e),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -162,7 +162,7 @@ def recibir_compra():
         return api_response(
             False,
             "exception",
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -188,7 +188,7 @@ def obtener_detalles_compra():
         return api_response(
             False,
             "exception",
-            str(e),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -222,7 +222,7 @@ def obtener_productos_recepcion():
         return api_response(
             False,
             "exception",
-            str(e),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -253,6 +253,6 @@ def obtener_metodos_pago():
         return api_response(
             False,
             "exception",
-            str(e),
+            obtener_mensaje_mysql(e),
             None
         ) 

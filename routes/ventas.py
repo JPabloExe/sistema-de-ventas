@@ -1,4 +1,4 @@
-from utils.responses import api_response
+from utils.responses import api_response, obtener_mensaje_mysql
 from utils.decorators import roles_required
 from flask import Blueprint, request
 from flask_login import login_required, current_user
@@ -34,7 +34,7 @@ def informe_ventas():
         return api_response(
             False,
             "error",
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -66,7 +66,7 @@ def realizar_venta():
         return api_response(
             False,
             "error",
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
         
@@ -96,7 +96,7 @@ def obtener_ventas():
         return api_response(
             False,
             "error",
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -129,7 +129,7 @@ def buscar_ventas():
         return api_response(
             False,
             "error",
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
         
@@ -154,7 +154,7 @@ def obtener_detalles_ventas():
         return api_response(
             False,
             "error",
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
         
@@ -178,6 +178,6 @@ def eliminar_venta():
         return api_response(
             False,
             "error",
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )

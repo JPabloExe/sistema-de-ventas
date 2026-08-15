@@ -1,4 +1,4 @@
-from utils.responses import api_response
+from utils.responses import api_response, obtener_mensaje_mysql
 from utils.decorators import roles_required
 from flask import Blueprint, request
 from flask_login import login_required
@@ -27,8 +27,8 @@ def agregar_producto():
     except Exception as e:
         return api_response(
             False,
-            "exception",
-            str(e.msg),
+            "error",
+            obtener_mensaje_mysql(e),
             None
         )
         
@@ -53,8 +53,8 @@ def crear_categoria():
     except Exception as e:
         return api_response(
             False,
-            "exception",
-            str(e.msg),
+            "error",
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -87,7 +87,7 @@ def obtener_productos():
         return api_response(
             False,
             "error",
-            str(e),
+            obtener_mensaje_mysql(e),
             None
         ) 
     
@@ -119,7 +119,7 @@ def buscar_producto():
         return api_response(
             False,
             "error",
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -144,8 +144,8 @@ def actualizar_producto():
     except Exception as e:
         return api_response(
             False,
-            "exception",
-            str(e.msg),
+            "error",
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -169,8 +169,8 @@ def eliminar_producto():
     except Exception as e:
         return api_response(
             False,
-            "exception",
-            str(e.msg),
+            "error",
+            obtener_mensaje_mysql(e),
             None
         )
     
@@ -200,8 +200,8 @@ def informe_inventario():
     except Exception as e:
         return api_response(
             False,
-            "exception",
-            str(e.msg),
+            "error",
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -232,7 +232,7 @@ def obtener_categorias():
     except Exception as e:
         return api_response(
             False,
-            "exception",
-            str(e),
+            "error",
+            obtener_mensaje_mysql(e),
             None
         ) 

@@ -1,4 +1,4 @@
-from utils.responses import api_response
+from utils.responses import api_response, obtener_mensaje_mysql
 from flask import Blueprint, request
 from flask_login import login_user, logout_user, login_required
 from repositories.login_repository import LoginRepository
@@ -37,8 +37,8 @@ def iniciar_sesion():
     except Exception as e:
         return api_response(
             False,
-            "exception",
-            str(e.msg),
+            "error",
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -60,7 +60,7 @@ def cerrar_sesion():
     except Exception as e:
         return api_response(
             False,
-            "exception",
-            str(e.msg),
+            "error",
+            obtener_mensaje_mysql(e),
             None
         )

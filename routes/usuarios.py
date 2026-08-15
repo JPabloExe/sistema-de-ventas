@@ -1,4 +1,4 @@
-from utils.responses import api_response
+from utils.responses import api_response, obtener_mensaje_mysql
 from utils.decorators import roles_required
 from flask import Blueprint, request
 from flask_login import login_required, current_user
@@ -28,7 +28,7 @@ def registrar_usuario():
         return api_response(
             False,
             'error',
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
         
@@ -60,7 +60,7 @@ def obtener_usuarios():
         return api_response(
             False,
             'error',
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -86,7 +86,7 @@ def eliminar_usuario():
         return api_response(
             False,
             'error',
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
     
@@ -120,7 +120,7 @@ def buscar_usuario():
         return api_response(
             False,
             'error',
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
 
@@ -147,7 +147,7 @@ def actualizar_usuario():
         return api_response(
             False,
             'error',
-            str(e.msg),
+            obtener_mensaje_mysql(e),
             None
         )
 

@@ -7,3 +7,9 @@ def api_response(ok, type_response, message="", data=None):
         "message": message,
         "data": data
     })
+
+def obtener_mensaje_mysql(e):
+    if ": " in e.msg:
+        return e.msg.split(": ", 1)[1]
+
+    return e.msg
