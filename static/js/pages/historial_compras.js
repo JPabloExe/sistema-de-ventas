@@ -2,6 +2,8 @@ import { activarSidebar } from "../components/sidebar.js";
 
 import { botonDesplegableCompras } from "../utilities/botonDesplegable.js";
 
+import { abrirVentanas } from "../utilities/ventanas.js";
+
 import {
     cargarCompras,
     obtenerDetallesController,
@@ -184,10 +186,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         lblFaltante.textContent = Math.max(0, faltante - valor);
 
-
-
-
     });
 
+});
 
+// Recargar Pagina
+document.addEventListener("DOMContentLoaded", () => {
+    const boton = document.getElementById("btn-actualizar-pagina");
+
+    boton.addEventListener("click", () => {
+        window.location.reload();
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const boton = document.getElementById("btn-nueva-compra");
+
+    boton.addEventListener("click", () => {
+        abrirVentanas("compras");
+    });
 });

@@ -22,7 +22,7 @@ import {
     obtenerDatosFormularioProducto,
     mostrarInformeInventario,
     obtenerDatosFormularioCategoria,
-    cargarCategorias
+    limpiarFormularioProducto
 } from "../ui/inventarioUI.js";
 
 
@@ -71,6 +71,7 @@ export async function agregarProductoController(formulario) {
 
     }
 
+    limpiarFormularioProducto(formulario);
     mostrarToast(info.message, info.type);
 
 }
@@ -92,7 +93,7 @@ export async function crearCategoriaController() {
 
 }
 
-export async function actualizarProductoController() {
+export async function actualizarProductoController(formulario) {
 
     const productoActualizado = obtenerDatosFormularioProducto();
 
@@ -105,6 +106,7 @@ export async function actualizarProductoController() {
 
     }
 
+    limpiarFormularioProducto(formulario);
     mostrarToast(info.message, info.type);
 
 }

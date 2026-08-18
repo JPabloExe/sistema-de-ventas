@@ -57,7 +57,9 @@ export function llenarTablaVentas(ventas) {
                 </td>
                 
                 <td class="acciones">
-                    <i id="btn-detalles" class="fa-solid fa-circle-info detalles"
+                    <i id="btn-detalles" 
+                    class="fa-solid fa-circle-info detalles"
+                    title="Detalles de la venta"
                         data-id="${venta.id}"
                         data-numero="${venta.num_venta}"
                         data-fecha="${venta.fecha}"
@@ -67,7 +69,9 @@ export function llenarTablaVentas(ventas) {
                         data-estado="${venta.estado}"
                         data-total="${venta.total}">
                     </i>
-                    <i id="btn-eliminar-venta" class="fa-solid fa-trash eliminar"
+                    <i id="btn-eliminar-venta" 
+                    class="fa-solid fa-trash eliminar"
+                    title="Eliminar venta"
                         data-id="${venta.id}">
                     </i>
                 </td>

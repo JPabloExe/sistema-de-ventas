@@ -87,16 +87,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (modo === "agregar") {
 
-            await agregarProductoController();
+            await agregarProductoController(form);
 
         } else if (modo === "actualizar") {
 
-            await actualizarProductoController();
+            await actualizarProductoController(form);
 
         }
 
         await cargarInventarioController(0);
-        limpiarFormulario(form);
 
     })
 

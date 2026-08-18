@@ -76,7 +76,12 @@ export async function obtenerDetallesController(boton) {
 
     const info = await obtenerDetalles(boton.dataset.id);
 
-    mostrarToast(info.message, info.type);
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+
+    }
+
     llenarDetalles(boton, info.data);
 
 }
@@ -84,6 +89,12 @@ export async function obtenerDetallesController(boton) {
 export async function obtenerProductosRecepcionController(boton) {
 
     const info = await obtenerProductosRecepcion(boton.dataset.id);
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+
+    }
 
     llenarRecepcion(boton, info.data);
 

@@ -29,7 +29,9 @@ export function llenarTablaInventario(productos) {
                 <div class="cantidad">${producto.stock} UNIDADES</div>
             </td>
             <td class="acciones">
-                <i id="btn-actualizar-producto" class="fa-solid fa-pen-to-square actualizar"
+                <i id="btn-actualizar-producto" 
+                class="fa-solid fa-pen-to-square actualizar"
+                title="Actualizar producto"
                     data-id="${producto.id}"
                     data-codigo="${producto.codigo}"
                     data-nombre="${producto.nombre}"
@@ -41,7 +43,9 @@ export function llenarTablaInventario(productos) {
                     data-proveedor="${producto.id_proveedor}">
                 </i>
 
-                <i id="btn-eliminar-producto" class="fa-solid fa-trash eliminar"
+                <i id="btn-eliminar-producto" 
+                class="fa-solid fa-trash eliminar"
+                title="Eliminar producto"
                     data-id="${producto.id}"
                     data-codigo="${producto.codigo}">
                 </i>

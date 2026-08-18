@@ -39,7 +39,9 @@ export function llenarTablaProveedores(proveedores) {
                     </span>
                 </td>
                 <td class="acciones">
-                    <i id="btn-actualizar" class="fa-solid fa-pen-to-square actualizar"
+                    <i id="btn-actualizar" 
+                    class="fa-solid fa-pen-to-square actualizar"
+                    title="Actualizar proveedor"
                         data-id="${proveedor.id}"
                         data-nombre="${proveedor.nombre}"
                         data-nit="${proveedor.nit}"
@@ -50,7 +52,9 @@ export function llenarTablaProveedores(proveedores) {
                         data-estado="${proveedor.estado}">
                     </i>
 
-                    <i id="btn-eliminar" class="fa-solid fa-trash eliminar"
+                    <i id="btn-eliminar" 
+                    class="fa-solid fa-trash eliminar"
+                    title="Eliminar proveedor"
                         data-id="${proveedor.id}">  
                     </i>
 

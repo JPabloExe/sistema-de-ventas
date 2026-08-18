@@ -42,7 +42,12 @@ export async function obtenerDetallesController(boton) {
 
     const info = await obtenerDetalles(boton.dataset.id);
 
-    mostrarToast(info.message, info.type);
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+
+    }
+
     llenarDetalles(boton, info.data);
 
 }

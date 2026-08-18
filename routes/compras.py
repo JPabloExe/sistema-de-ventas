@@ -207,7 +207,7 @@ def obtener_productos_recepcion():
             return api_response(
                 False,
                 "error",
-                "",
+                "Todos los productos de esta compra ya fueron recibidos",
                 None
             )
         
