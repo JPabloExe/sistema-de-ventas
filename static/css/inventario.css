@@ -138,9 +138,15 @@ i {
     padding-left: 15px;
 }
 
-.stock .cantidad {
+.stock {
     font-weight: bold;
     padding-left: 17px;
+}
+
+.stock-bajo {
+    font-weight: bold;
+    padding-left: 17px;
+    color: #982826;
 }
 
 .acciones {

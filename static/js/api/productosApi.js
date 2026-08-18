@@ -1,8 +1,8 @@
 import { llenarTablaInventario } from "../ui/inventarioUI.js";
-import {URL_API} from "../config/config.js"
+import { URL_API } from "../config/config.js"
 
 export async function agregarProducto(producto) {
-   
+
     const respuesta = await fetch(`${URL_API}/agregarProducto`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -14,7 +14,7 @@ export async function agregarProducto(producto) {
 };
 
 export async function crearCategoria(categoria) {
-   
+
     const respuesta = await fetch(`${URL_API}/crearCategoria`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -70,7 +70,7 @@ export async function obtenerProductos(categoria) {
     const respuesta = await fetch(`${URL_API}/obtenerProductos?categoria=${categoria}`);
 
     return await respuesta.json();
-    
+
 }
 
 export async function obtenerCategorias() {
@@ -78,5 +78,21 @@ export async function obtenerCategorias() {
     const respuesta = await fetch(`${URL_API}/obtenerCategorias`);
 
     return await respuesta.json();
-    
+
+}
+
+export async function obtenerProductosStockBajo() {
+
+    const respuesta = await fetch(`${URL_API}/obtenerProductosStockBajo`);
+
+    return await respuesta.json();
+
+}
+
+export async function obtenerProductosAVencer() {
+
+    const respuesta = await fetch(`${URL_API}/obtenerProductosAVencer`);
+
+    return await respuesta.json();
+
 }

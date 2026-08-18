@@ -236,3 +236,63 @@ def obtener_categorias():
             obtener_mensaje_mysql(e),
             None
         ) 
+
+@productos_bp.route('/obtenerProductosStockBajo', methods=['GET'])
+@login_required
+def obtener_productos_stock_bajo():
+    try:
+
+        productos = ProductoRepository.obtenerProductosStockBajo()
+
+        if productos == None:
+            return api_response(
+                False,
+                "error",
+                "No hay productos con stock bajo",
+                None
+            )
+        else:
+            return api_response(
+                True,
+                "success",
+                "Productos con stock bajo cargados",
+                productos
+            )
+        
+    except Exception as e:
+        return api_response(
+            False,
+            "error",
+            obtener_mensaje_mysql(e),
+            None
+        ) 
+
+@productos_bp.route('/obtenerProductosAVencer', methods=['GET'])
+@login_required
+def obtener_productos_a_vencer():
+    try:
+
+        productos = ProductoRepository.obtenerProductosAVencer()
+
+        if productos == None:
+            return api_response(
+                False,
+                "error",
+                "No hay productos proximos a vencer",
+                None
+            )
+        else:
+            return api_response(
+                True,
+                "success",
+                "Productos proximos a vencer cargados",
+                productos
+            )
+        
+    except Exception as e:
+        return api_response(
+            False,
+            "error",
+            obtener_mensaje_mysql(e),
+            None
+        ) 

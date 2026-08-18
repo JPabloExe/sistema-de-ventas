@@ -170,8 +170,78 @@ class ProductoRepository:
             })
             
         return categorias
-            
+
+    @staticmethod    
+    def obtenerProductosStockBajo():
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
         
+        cursor.callproc("sp_obtener_productos_stock_bajo")
+        
+        filas = []
+
+        for resultado in cursor.stored_results():
+            filas.extend(resultado.fetchall())
+
+        if filas == []:
+            return None
+            
+        cursor.close()
+        conexion.close()
+        
+        productos = []
+        
+        for fila in filas:
+            productos.append({
+                "id": fila[0],
+                "codigo": fila[1],
+                "nombre": fila[2],
+                "stock": fila[3],
+                "valor_unitario": fila[4],
+                "costo": fila[5],
+                "fecha_caducidad": fila[6].strftime("%Y-%m-%d"),
+                "id_categoria": fila[7],
+                "id_proveedor": fila[8],
+                "id_busqueda": fila[1]
+            })
+            
+        return productos 
+           
+    @staticmethod    
+    def obtenerProductosAVencer():
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
+        
+        cursor.callproc("sp_obtener_productos_a_vencer") 
+        
+        filas = []
+
+        for resultado in cursor.stored_results():
+            filas.extend(resultado.fetchall())
+
+        if filas == []:
+            return None
+            
+        cursor.close()
+        conexion.close()
+        
+        productos = []
+        
+        for fila in filas:
+            productos.append({
+                "id": fila[0],
+                "codigo": fila[1],
+                "nombre": fila[2],
+                "stock": fila[3],
+                "valor_unitario": fila[4],
+                "costo": fila[5],
+                "fecha_caducidad": fila[6].strftime("%Y-%m-%d"),
+                "id_categoria": fila[7],
+                "id_proveedor": fila[8],
+                "id_busqueda": fila[1]
+            })
+            
+        return productos    
         
           
         

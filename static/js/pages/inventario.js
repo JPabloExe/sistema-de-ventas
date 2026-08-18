@@ -18,7 +18,9 @@ import {
     crearCategoriaController,
     cargarCategoriasController,
     cargarInputBusquedaController,
-    cargarProveedoresController
+    cargarProveedoresController,
+    cargarProductosStockBajoController,
+    cargarProductosAVencerController
 } from "../controllers/inventarioController.js";
 
 import { limpiarFormulario } from "../ui/usuariosUI.js";
@@ -28,9 +30,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectCategorias = document.getElementById("select-categorias");
     const selectProveedores = document.getElementById("select-proveedor-dialog");
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const stockBajo = urlParams.get("stock_bajo");
+    const aVencer = urlParams.get("aVencer");
+
     activarSidebar();
     botonDesplegableCompras();
-    cargarInventarioController(0);
+
+    if (stockBajo) {
+        cargarProductosStockBajoController();
+    } else if (aVencer) {
+        cargarProductosAVencerController();
+    } else {
+        cargarInventarioController(0);
+    }
+
     cargarCategoriasController(selectCategorias);
     cargarProveedoresController(selectProveedores);
     cargarInputBusquedaController();
@@ -166,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const boton = document.getElementById("btn-actualizar-pagina");
 
     boton.addEventListener("click", () => {
-        window.location.reload();
+        window.location.href = "/inventario";
     });
 });
 

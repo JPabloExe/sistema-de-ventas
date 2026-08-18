@@ -25,7 +25,7 @@ export function llenarTablaInventario(productos) {
             <td class="codigo">${producto.codigo}</td>
             <td class="precio">COP ${formatearCOP(producto.valor_unitario)}</td>
             <td class="costo">COP ${formatearCOP(producto.costo)}</td>
-            <td class="stock">
+            <td class="${producto.stock <= 5 ? "stock-bajo" : "stock"}">
                 <div class="cantidad">${producto.stock} UNIDADES</div>
             </td>
             <td class="acciones">

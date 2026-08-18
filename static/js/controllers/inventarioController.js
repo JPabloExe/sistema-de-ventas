@@ -14,7 +14,9 @@ import {
     buscarProducto,
     obtenerInformeInventario,
     crearCategoria,
-    obtenerCategorias
+    obtenerCategorias,
+    obtenerProductosStockBajo,
+    obtenerProductosAVencer
 } from "../api/productosApi.js";
 
 import {
@@ -181,5 +183,23 @@ export async function cargarInputBusquedaController() {
     }
 
     cargarInputBusqueda(info.data);
+
+}
+
+export async function cargarProductosStockBajoController() {
+
+    const info = await obtenerProductosStockBajo();
+
+    mostrarToast(info.message, info.type);
+    llenarTablaInventario(info.data);
+
+}
+
+export async function cargarProductosAVencerController() {
+
+    const info = await obtenerProductosAVencer();
+
+    mostrarToast(info.message, info.type);
+    llenarTablaInventario(info.data);
 
 }

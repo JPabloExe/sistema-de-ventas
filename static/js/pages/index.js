@@ -1,8 +1,8 @@
-import { abrirVentanas } from "../utilities/ventanas.js"
+import { abrirVentanas } from "../utilities/ventanas.js";
 
-import { cargarInformeInventario } from "../controllers/inventarioController.js"
+import { cargarInformeInventario } from "../controllers/inventarioController.js";
 
-import { cargarInformeVentas } from "../controllers/ventasController.js"
+import { cargarInformeVentas } from "../controllers/ventasController.js";
 
 import { usuarioActualController } from "../controllers/usuariosController.js";
 
@@ -31,14 +31,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const botonPVentas = document.getElementById("btn-pos");
     const botonInventario = document.getElementById("btn-inventario");
+    const botonStockBajo = document.getElementById("btn-stock-bajo");
 
     botonPVentas.addEventListener("click", () => {
-        abrirVentanas("puntoVentas")
+        abrirVentanas("puntoVentas");
     });
 
     botonInventario.addEventListener("click", () => {
-        abrirVentanas("inventario")
+        abrirVentanas("inventario");
     });
 
+    botonStockBajo.addEventListener("click", async () => {
+        window.location.href = "/inventario?stock_bajo=true";
+    });
 
 });
