@@ -6,14 +6,23 @@ import {
     eliminarVentaController,
     buscarVentasController,
     cargarVentas,
-    obtenerDetallesController
+    obtenerDetallesController,
+    cargarVentasHoyController
 } from "../controllers/ventasController.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const ventasHoy = urlParams.get("ventas_hoy");
+
+    if (ventasHoy) {
+        cargarVentasHoyController();
+    } else {
+        cargarVentas();
+    }
+
     activarSidebar();
     botonDesplegableCompras();
-    cargarVentas();
 
 });
 
@@ -55,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const boton = document.getElementById("btn-actualizar-pagina");
 
     boton.addEventListener("click", () => {
-        window.location.reload();
+        window.location.href = "/ventas";
     });
 });
 

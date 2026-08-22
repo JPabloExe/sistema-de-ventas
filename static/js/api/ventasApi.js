@@ -36,7 +36,15 @@ export async function eliminarVenta(numeroVenta) {
 
 export async function obtenerInformeVentas() {
 
-    const respuesta = await fetch('/obtenerInformeVentas');
+    const respuesta = await fetch(`${URL_API}/obtenerInformeVentas`);
+    return await respuesta.json();
+
+}
+
+export async function obtenerVentasHoy() {
+
+    const respuesta = await fetch(`${URL_API}/obtenerVentasHoy`);
+
     return await respuesta.json();
 
 }

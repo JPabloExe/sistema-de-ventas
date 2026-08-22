@@ -32,6 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const botonPVentas = document.getElementById("btn-pos");
     const botonInventario = document.getElementById("btn-inventario");
     const botonStockBajo = document.getElementById("btn-stock-bajo");
+    const botonVentasHoy = document.getElementById("btn-ventas-hoy");
+    const botonVerProductos = document.getElementById("btn-ver-productos");
+    const botonValorInventario = document.getElementById("btn-valor-inventario");
 
     botonPVentas.addEventListener("click", () => {
         abrirVentanas("puntoVentas");
@@ -41,8 +44,19 @@ document.addEventListener("DOMContentLoaded", () => {
         abrirVentanas("inventario");
     });
 
-    botonStockBajo.addEventListener("click", async () => {
+    botonStockBajo.addEventListener("click", () => {
         window.location.href = "/inventario?stock_bajo=true";
     });
 
+    botonVentasHoy.addEventListener("click", () => {
+        window.location.href = "/ventas?ventas_hoy=true";
+    });
+
+    botonVerProductos.addEventListener("click", () => {
+        window.location.href = "/inventario";
+    });
+
+    botonValorInventario.addEventListener("click", () => {
+        window.location.href = "/inventario";
+    });
 });

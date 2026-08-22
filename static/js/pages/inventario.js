@@ -4,6 +4,8 @@ import { botonDesplegableCompras } from "../utilities/botonDesplegable.js";
 
 import { cargarSelect } from "../utilities/cargarSelects.js";
 
+import { recargarPagina } from "../utilities/recargar.js";
+
 import {
     llenarFormularioProducto,
     limpiarFormularioProducto

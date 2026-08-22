@@ -3,7 +3,8 @@ import {
     obtenerVentas,
     eliminarVenta,
     buscarVentas,
-    obtenerDetalles
+    obtenerDetalles,
+    obtenerVentasHoy
 } from "../api/ventasApi.js"
 
 import {
@@ -74,6 +75,15 @@ export async function cargarVentas() {
 
     llenarTablaVentas(info.data);
     mostrarToast(info.message, info.type);
+
+}
+
+export async function cargarVentasHoyController() {
+
+    const info = await obtenerVentasHoy();
+
+    mostrarToast(info.message, info.type);
+    llenarTablaVentas(info.data);
 
 }
 

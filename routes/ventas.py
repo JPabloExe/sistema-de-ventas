@@ -181,3 +181,34 @@ def eliminar_venta():
             obtener_mensaje_mysql(e),
             None
         )
+
+@ventas_bp.route('/obtenerVentasHoy', methods=['GET'])
+@login_required
+@roles_required("Administrador", "Supervisor")
+def obtener_ventas_hoy():
+    
+    try:
+        ventas = VentaRepository.obtenerVentasHoy()
+        
+        if ventas == None:
+            return api_response(
+                False,
+                "error",
+                "No se han realizado ventas hoy",
+                None
+            )
+        else:
+            return api_response(
+            True,
+            "success",
+            "Ventas encontradas",
+            ventas
+        )
+    
+    except Exception as e:
+        return api_response(
+            False,
+            "error",
+            obtener_mensaje_mysql(e),
+            None
+        )

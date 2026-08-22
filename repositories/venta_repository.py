@@ -153,3 +153,43 @@ class VentaRepository:
         }
         
         return informe
+
+    @staticmethod
+    def obtenerVentasHoy():
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
+        
+        try:
+            cursor.callproc("sp_obtener_ventas_hoy")
+
+            ventas = []
+
+            for resultado in cursor.stored_results():
+                ventas = resultado.fetchall()
+
+            if len(ventas) == 0:
+                return None
+            
+            conexion.commit()
+            cursor.close()
+            conexion.close()
+            
+            ventas_t = []
+
+            for venta in ventas:
+                ventas_t.append({
+                    "id": venta[0],
+                    "usuario": venta[1],
+                    "fecha": venta[2].strftime("%Y-%m-%d"),
+                    "hora": str(venta[3]),
+                    "items": venta[4],
+                    "metodo": venta[5],
+                    "total": venta[6],
+                    "num_venta": venta[7],
+                    "estado": venta[8]
+                })
+            
+            return ventas_t
+        
+        except Exception as e:
+            print("Error: ", e)
