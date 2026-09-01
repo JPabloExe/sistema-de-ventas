@@ -1,3 +1,7 @@
+h1 {
+    font-size: xx-large !important;
+}
+
 .btn-primary {
     background-color: #2E3547 !important;
 }
@@ -5,5 +9,5 @@
 .form-control:focus {
     outline: none;
     border-color: #2E3547;
-    box-shadow: 0 0 0 3px rgba(46,53,71,.15);
+    box-shadow: 0 0 0 3px rgba(46, 53, 71, .15);
 }
