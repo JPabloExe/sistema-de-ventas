@@ -41,12 +41,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    const inputCodigo = document.getElementById("input-buscar");
     const btnConfirmarCompra = document.getElementById("btnConfirmarCompra");
     const botonLimpiar = document.getElementById("btnLimpiarCarrito");
 
     btnConfirmarCompra.addEventListener("click", async () => {
 
         await realizarCompraController();
+        inputCodigo.focus();
 
     });
 

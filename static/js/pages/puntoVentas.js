@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Realizar venta
 document.addEventListener("DOMContentLoaded", () => {
+    const inputCodigo = document.getElementById("input-buscar");
     const cantidad = document.getElementById("cantidad");
     const botonProcesar = document.getElementById("btn-procesar-venta");
     const botonLimpiar = document.getElementById("btn-limpiar-carrito");
@@ -49,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         realizarVentaController();
         limpiarCarrito();
         cantidad.textContent = `(${productosEnCarrito()} productos)`;
+        inputCodigo.focus();
     });
 
     botonLimpiar.addEventListener("click", () => {
@@ -81,8 +83,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Recalcula el subtotal de un producto dependiendo de la cantidad
 document.addEventListener("DOMContentLoaded", () => {
+    const lblTotal = document.getElementById("totalPagar");
 
-    reCalcularTotal();
+    reCalcularTotal(lblTotal);
 
     const divCarrito = document.querySelector(".div-carrito");
     const cantidad = document.getElementById("cantidad");
@@ -100,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Actualizamos el <b> con clase .subtotal
         filaProducto.querySelector(".subtotal").textContent = `COP ${formatearCOP(subtotal)}`;
 
-        if (typeof reCalcularTotal === "function") reCalcularTotal();
+        if (typeof reCalcularTotal === "function") reCalcularTotal(lblTotal);
     });
 
     // 2. Escuchar clics en botones (+, -, borrar)
