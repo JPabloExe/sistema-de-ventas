@@ -113,6 +113,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         await cargarInventarioController(0);
 
+        inputCodigo.focus();
+
     })
 
 });
@@ -192,13 +194,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("input-buscar");
     input.setAttribute("placeholder", "Buscar producto por codigo");
 
-    input.addEventListener("input", () => {
+    input.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter") return;
 
-        if (input.value.trim() === "") {
-            cargarInventarioController(0);
+        const codigo = input.value.trim();
+
+        if (codigo) {
+            buscarProductoController(codigo);
         }
-        if (input.value.trim().length > 3) {
-            buscarProductoController(input.value.trim());
+    });
+
+    input.addEventListener("input", () => {
+        const codigo = input.value.trim();
+
+        if (!codigo) {
+            cargarInventarioController(0);
         }
     });
 });

@@ -38,7 +38,7 @@ export async function realizarVentaController() {
 
 }
 
-export async function agregarProductosAlcarritoController(codigo) {
+export async function agregarProductosAlcarritoController(codigo, lbl) {
 
     const info = await buscarProducto(codigo);
 
@@ -50,7 +50,7 @@ export async function agregarProductosAlcarritoController(codigo) {
     }
 
     agregarProductoAlCarrito(info.data);
-    reCalcularTotal();
+    reCalcularTotal(lbl);
     mostrarToast(info.message, info.type);
 
 }

@@ -62,14 +62,21 @@ document.addEventListener("DOMContentLoaded", () => {
 // Agrega producto al carrito
 document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("input-buscar");
+    const lblTotal = document.getElementById("totalPagar");
     input.setAttribute("placeholder", "Buscar producto por codigo");
 
-    input.addEventListener("input", () => {
+    input.addEventListener("keydown", (e) => {
 
-        if (input.value.trim().length > 3) {
-            agregarProductosAlcarritoController(input.value.trim());
+        if (e.key !== "Enter") return;
+
+        const codigo = input.value.trim();
+
+        if (codigo) {
+            agregarProductosAlcarritoController(codigo, lblTotal);
+            input.value = "";
         }
     });
+
 });
 
 // Recalcula el subtotal de un producto dependiendo de la cantidad

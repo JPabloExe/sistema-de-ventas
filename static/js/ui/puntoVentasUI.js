@@ -95,13 +95,10 @@ export function agregarProductoAlCarrito(producto) {
 
 export let total = 0;
 
-export function reCalcularTotal() {
+export function reCalcularTotal(lbl) {
 
-
-    // Buscamos el elemento donde quieres mostrar el gran total
-    const lblTotal = document.getElementById("totalPagar");
-    if (lblTotal) {
-        total = recalcularTotal(lblTotal);
+    if (lbl) {
+        total = recalcularTotal(lbl);
         calcularVueltos();
     }
 }
