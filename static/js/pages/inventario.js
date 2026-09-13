@@ -2,10 +2,6 @@ import { activarSidebar } from "../components/sidebar.js";
 
 import { botonDesplegableCompras } from "../utilities/botonDesplegable.js";
 
-import { cargarSelect } from "../utilities/cargarSelects.js";
-
-import { recargarPagina } from "../utilities/recargar.js";
-
 import {
     llenarFormularioProducto,
     limpiarFormularioProducto
@@ -22,15 +18,15 @@ import {
     cargarInputBusquedaController,
     cargarProveedoresController,
     cargarProductosStockBajoController,
-    cargarProductosAVencerController
+    cargarProductosAVencerController,
+    cargarTiposPerecibilidadController
 } from "../controllers/inventarioController.js";
-
-import { limpiarFormulario } from "../ui/usuariosUI.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
     const selectCategorias = document.getElementById("select-categorias");
     const selectProveedores = document.getElementById("select-proveedor-dialog");
+    const selectPerecibilidad = document.getElementById("select-perecibilidad-dialog");
 
     const urlParams = new URLSearchParams(window.location.search);
     const stockBajo = urlParams.get("stock_bajo");
@@ -49,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cargarCategoriasController(selectCategorias);
     cargarProveedoresController(selectProveedores);
+    cargarTiposPerecibilidadController(selectPerecibilidad);
     cargarInputBusquedaController();
 
 });
@@ -108,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (modo === "actualizar") {
 
             await actualizarProductoController(form);
+            dialog.close();
 
         }
 

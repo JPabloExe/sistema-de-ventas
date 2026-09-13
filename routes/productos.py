@@ -267,6 +267,36 @@ def obtener_productos_stock_bajo():
             None
         ) 
 
+@productos_bp.route('/obtenerTiposPerecibilidad', methods=['GET'])
+@login_required
+def obtener_tipos_perecibilidad():
+    try:
+
+        productos = ProductoRepository.obtenerTiposPerecibilidad()
+
+        if productos == None:
+            return api_response(
+                False,
+                "error",
+                "No hay tipos de perecibilidad registrados",
+                None
+            )
+        else:
+            return api_response(
+                True,
+                "success",
+                "Tipos de perecibilidad cargados",
+                productos
+            )
+        
+    except Exception as e:
+        return api_response(
+            False,
+            "error",
+            obtener_mensaje_mysql(e),
+            None
+        ) 
+
 @productos_bp.route('/obtenerProductosAVencer', methods=['GET'])
 @login_required
 def obtener_productos_a_vencer():

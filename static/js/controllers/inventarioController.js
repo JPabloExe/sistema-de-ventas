@@ -16,7 +16,8 @@ import {
     crearCategoria,
     obtenerCategorias,
     obtenerProductosStockBajo,
-    obtenerProductosAVencer
+    obtenerProductosAVencer,
+    obtenerTiposPerecibilidad
 } from "../api/productosApi.js";
 
 import {
@@ -159,6 +160,21 @@ export async function cargarCategoriasController(select) {
 export async function cargarProveedoresController(select) {
 
     const info = await obtenerProveedores();
+
+    if (!info.ok) {
+
+        mostrarToast(info.message, info.type);
+        return;
+
+    }
+
+    cargarSelect(info.data, select);
+
+}
+
+export async function cargarTiposPerecibilidadController(select) {
+
+    const info = await obtenerTiposPerecibilidad();
 
     if (!info.ok) {
 

@@ -15,7 +15,8 @@ class ProductoRepository:
             datos['costo'],
             datos['fecha_caducidad'],
             datos['id_categoria'],
-            datos['id_proveedor']
+            datos['id_proveedor'],
+            datos['id_perecibilidad']
         ])
 
         conexion.commit()
@@ -92,7 +93,8 @@ class ProductoRepository:
             "costo": resultado_final[5],
             "fecha_caducidad": resultado_final[6].strftime("%Y-%m-%d"),
             "id_categoria": resultado_final[7],
-            "id_proveedor": resultado_final[8]
+            "id_proveedor": resultado_final[8],
+            "id_perecibilidad": resultado_final[9]
         }
     
     @staticmethod
@@ -105,9 +107,10 @@ class ProductoRepository:
             datos['stock'], 
             datos['valor_unitario'], 
             datos['costo'],
-            datos['fecha_caducidad'],
+            datos['fecha_caducidad'] or None,
             datos['id_categoria'],
-            datos['id_proveedor']
+            datos['id_proveedor'],
+            datos['id_perecibilidad']
         ])
         conexion.commit()
         cursor.close()
@@ -138,9 +141,10 @@ class ProductoRepository:
                 "stock": fila[3],
                 "valor_unitario": fila[4],
                 "costo": fila[5],
-                "fecha_caducidad": fila[6].strftime("%Y-%m-%d"),
+                "fecha_caducidad": fila[6].strftime("%Y-%m-%d") if fila[6] != None else None,
                 "id_categoria": fila[7],
                 "id_proveedor": fila[8],
+                "id_perecibilidad": fila[9],
                 "id_busqueda": fila[1]
             })
             
@@ -170,6 +174,31 @@ class ProductoRepository:
             })
             
         return categorias
+
+    @staticmethod
+    def obtenerTiposPerecibilidad():
+        conexion = ConexionDB.get_conexion()
+        cursor = conexion.cursor()
+        
+        cursor.callproc("sp_obtener_tipos_perecibilidad")
+        
+        filas = []
+
+        for resultado in cursor.stored_results():
+            filas.extend(resultado.fetchall())
+            
+        cursor.close()
+        conexion.close()
+        
+        tipos = []
+        
+        for fila in filas:
+            tipos.append({
+                "id": fila[0],
+                "nombre": fila[1]
+            })
+            
+        return tipos    
 
     @staticmethod    
     def obtenerProductosStockBajo():

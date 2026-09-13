@@ -40,7 +40,8 @@ export function llenarTablaInventario(productos) {
                     data-costo="${producto.costo}"
                     data-caducidad="${producto.fecha_caducidad}"
                     data-categoria="${producto.id_categoria}"
-                    data-proveedor="${producto.id_proveedor}">
+                    data-proveedor="${producto.id_proveedor}"
+                    data-perecibilidad="${producto.id_perecibilidad}">
                 </i>
 
                 <i id="btn-eliminar-producto" 
@@ -68,7 +69,8 @@ export function obtenerDatosFormularioProducto() {
         "costo": document.getElementById("input-costo").value,
         "fecha_caducidad": document.getElementById("input-caducidad").value,
         "id_categoria": document.getElementById("select-categorias-dialog").value,
-        "id_proveedor": document.getElementById("select-proveedor-dialog").value
+        "id_proveedor": document.getElementById("select-proveedor-dialog").value,
+        "id_perecibilidad": document.getElementById("select-perecibilidad-dialog").value
     }
 
 }
@@ -110,6 +112,7 @@ export function llenarFormularioProducto(boton) {
     document.getElementById("input-caducidad").value = boton.dataset.caducidad;
     document.getElementById("select-categorias-dialog").value = boton.dataset.categoria;
     document.getElementById("select-proveedor-dialog").value = boton.dataset.proveedor;
+    document.getElementById("select-perecibilidad-dialog").value = boton.dataset.perecibilidad;
 
 }
 

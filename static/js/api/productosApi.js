@@ -81,6 +81,14 @@ export async function obtenerCategorias() {
 
 }
 
+export async function obtenerTiposPerecibilidad() {
+
+    const respuesta = await fetch(`${URL_API}/obtenerTiposPerecibilidad`);
+
+    return await respuesta.json();
+
+}
+
 export async function obtenerProductosStockBajo() {
 
     const respuesta = await fetch(`${URL_API}/obtenerProductosStockBajo`);
