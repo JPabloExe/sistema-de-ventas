@@ -91,7 +91,7 @@ class ProductoRepository:
             "stock": resultado_final[3],
             "valor_unitario": resultado_final[4],
             "costo": resultado_final[5],
-            "fecha_caducidad": resultado_final[6].strftime("%Y-%m-%d"),
+            "fecha_caducidad": resultado_final[6].strftime("%Y-%m-%d") if resultado_final[6] != None else None,
             "id_categoria": resultado_final[7],
             "id_proveedor": resultado_final[8],
             "id_perecibilidad": resultado_final[9]

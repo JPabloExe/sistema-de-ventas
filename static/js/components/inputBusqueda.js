@@ -1,16 +1,41 @@
 export function cargarInputBusqueda(datos) {
 
-    const datalist = document.getElementById('datos');
+    const input = document.getElementById("input-buscar");
+    const lista = document.getElementById("listaDatos");
 
-    datalist.innerHTML = '';
+    input.addEventListener("input", function () {
+        const texto = input.value.toLowerCase();
 
-    datos.forEach(dato => {
-        const option = document.createElement('option');
-        option.value = dato.id_busqueda;
-        option.textContent = dato.nombre;
+        lista.innerHTML = "";
 
-        datalist.appendChild(option);
+        if (texto === "") {
+            lista.style.display = "none";
+            return;
+        }
+
+        const resultados = datos.filter(dato =>
+            dato.nombre.toLowerCase().includes(texto)
+        );
+
+        if (resultados.length === 0) {
+            lista.style.display = "none";
+            return;
+        }
+
+        resultados.forEach(dato => {
+            const li = document.createElement("li");
+
+            li.textContent = dato.nombre;
+
+            li.addEventListener("click", function () {
+                input.value = dato.id_busqueda;
+                lista.style.display = "none";
+                input.focus();
+            });
+
+            lista.appendChild(li);
+        });
+
+        lista.style.display = "block";
     });
-
 }
-

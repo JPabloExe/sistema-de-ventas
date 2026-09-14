@@ -273,30 +273,6 @@ li {
     background-color: #8b2e2e;
 }
 
-/*INPUT DE BUSQUEDA*/
-.contenedor-input-buscar {
-    border: solid #DEDEDE 1px;
-    background-color: #FEFEFE;
-    width: 40%;
-    padding-left: 10px;
-    color: gray;
-}
-
-.input-buscar {
-    width: 90%;
-    padding: 10px 10px 10px 0px;
-    border: none;
-    font-size: 14px;
-    outline: none;
-    transition: .2s;
-}
-
-/* Icono Buscar */
-.input-buscar i {
-    font-size: 18px;
-    color: #555;
-}
-
 /*DIALOGS - FORMULARIOS*/
 .dialog-usuarios,
 .dialog-productos,
@@ -501,4 +477,49 @@ input[type="date"] {
     text-align: center;
     color: #555;
     font-size: small;
+}
+
+.contenedor-input-buscar {
+    position: relative;
+    width: 40%;
+    border: solid #d6d6d6 1px;
+}
+
+.input-buscar {
+    width: 70%;
+    padding: 10px 10px 10px 0px;
+    border: none;
+    font-size: 14px;
+    outline: none;
+    transition: .2s;
+}
+
+.contenedor-input-buscar i {
+    font-size: 18px;
+    color: #555;
+    padding-left: 5px;
+}
+
+.listaDatos {
+    position: absolute;
+    width: 100%;
+    margin: 2px 0 0;
+    padding: 0;
+    list-style: none;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+
+}
+
+.listaDatos li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.listaDatos li:hover {
+    background: #f0f0f0;
 }
