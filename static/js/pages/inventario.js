@@ -221,3 +221,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const perecibilidad = document.getElementById("select-perecibilidad-dialog");
+    const inputCaducidad = document.getElementById("input-caducidad");
+
+    perecibilidad.addEventListener("change", () => {
+
+        if (perecibilidad.value === "1") {
+            inputCaducidad.required = true;
+            inputCaducidad.readOnly = false;
+
+        } else if (perecibilidad.value === "2") {
+            inputCaducidad.required = false;
+            inputCaducidad.readOnly = true;
+            inputCaducidad.value = '';
+
+        } else {
+            inputCaducidad.required = true;
+            inputCaducidad.readOnly = true;
+
+        }
+
+    });
+
+});

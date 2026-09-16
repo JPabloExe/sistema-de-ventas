@@ -13,7 +13,7 @@ class ProductoRepository:
             datos['stock'], 
             datos['valor_unitario'], 
             datos['costo'],
-            datos['fecha_caducidad'],
+            datos['fecha_caducidad'] or None,
             datos['id_categoria'],
             datos['id_proveedor'],
             datos['id_perecibilidad']
