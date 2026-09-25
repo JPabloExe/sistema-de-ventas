@@ -32,15 +32,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("input-buscar");
     input.setAttribute("placeholder", "Buscar compra por factura");
 
-    input.addEventListener("input", () => {
-
-        if (input.value.trim() === "") {
-            cargarCompras();
-        }
-        if (input.value.trim().length >= 1) {
+    input.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter") return;
+        
+        const numFactura = input.value.trim();
+        
+        if (numFactura) {
             buscarComprasController(input.value.trim());
         }
     });
+    
+    input.addEventListener("input", () => {
+        const numFactura = input.value.trim();
+        
+        if (!numFactura) {
+                cargarCompras();
+            }
+        });
 });
 
 

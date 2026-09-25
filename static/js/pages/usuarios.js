@@ -122,16 +122,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("input-buscar");
     input.setAttribute("placeholder", "Buscar usuario por cédula");
 
+    input.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter") return;
+        
+        const cedula = input.value.trim();
+        
+        if (cedula) {
+            buscarUsuarioController(input.value.trim());
+        }
+    });
+    
     input.addEventListener("input", () => {
-
-        if (input.value.trim() === "") {
+        const cedula = input.value.trim();
+        
+        if (!cedula) {
             cargarUsuarios();
         }
-
-        if (input.value.trim().length < 6) {
-            return;
-        }
-
-        buscarUsuarioController(input.value.trim());
     });
 });

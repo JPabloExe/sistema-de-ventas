@@ -58,7 +58,8 @@ class ComprasRepository:
                     "total": compra[7],
                     "estado": compra[8],
                     "num_compra": compra[9],
-                    "id_busqueda": compra[5]
+                    "id_busqueda": compra[5],
+                    "nombre": compra[9]
                 })
 
             return compras

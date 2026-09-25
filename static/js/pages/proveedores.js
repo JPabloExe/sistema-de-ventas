@@ -129,18 +129,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const input = document.getElementById("input-buscar");
     input.setAttribute("placeholder", "Buscar proveedor por nit");
-
+    
+    input.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter") return;
+        
+        const nit = input.value.trim();
+        
+        if (nit) {
+            buscarProveedorController();
+        }
+    });
+    
     input.addEventListener("input", () => {
-
-        if (input.value.trim() === "") {
+        const nit = input.value.trim();
+        
+        if (!nit) {
             cargarProveedoresController();
         }
-
-        if (input.value.trim().length < 6) {
-            return;
-        }
-
-        buscarProveedorController();
     });
 });
 
